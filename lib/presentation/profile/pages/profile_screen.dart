@@ -1,0 +1,171 @@
+import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tez_med_client/core/utils/app_color.dart';
+import 'package:tez_med_client/core/utils/app_textstyle.dart';
+import 'package:tez_med_client/core/widgets/enviroment_dialog.dart';
+import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
+import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/generated/l10n.dart';
+import 'package:tez_med_client/presentation/profile/bloc/profile_bloc/profile_bloc.dart';
+import 'package:tez_med_client/presentation/profile/widgets/profile_menu_widget.dart';
+import '../widgets/profile_header.dart';
+
+@RoutePage()
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  int _actionButtonPressCount = 0;
+  DateTime? _lastPressTime;
+
+  // Action button press handler
+  void _handleActionButtonPress() {
+    final now = DateTime.now();
+    final isDoubleClick = _lastPressTime != null &&
+        now.difference(_lastPressTime!) <= const Duration(milliseconds: 300);
+
+    _actionButtonPressCount = isDoubleClick ? _actionButtonPressCount + 1 : 1;
+    _lastPressTime = now;
+
+    if (_actionButtonPressCount == 4) {
+      _showEnvironmentDialog();
+      _actionButtonPressCount = 0;
+    }
+  }
+
+  // Show environment dialog
+  void _showEnvironmentDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => EnvironmentDialog(),
+    );
+  }
+
+  // Profile data refresh handler
+  Future<void> _onRefresh() async {
+    context.read<ProfileBloc>().add(GetProfileData());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColor.buttonBackColor,
+      appBar: _buildAppBar(),
+      body: SafeArea(
+        child: BlocBuilder<ProfileBloc, ProfileState>(
+          bloc: context.read<ProfileBloc>()..add(GetProfileData()),
+          builder: (context, state) {
+            return state is ProfileError
+                ? ErrorWidget(state: state)
+                : state is ProfileLoaded || state is ProfileLoading
+                    ? _buildProfileScreen(state)
+                    : const SizedBox();
+          },
+        ),
+      ),
+    );
+  }
+
+  // AppBar widget
+  AppBar _buildAppBar() {
+    return AppBar(
+      surfaceTintColor: Colors.white,
+      backgroundColor: Colors.white,
+      shadowColor: AppColor.buttonBackColor,
+      elevation: 1,
+      centerTitle: true,
+      title: Text(
+        S.of(context).profile,
+        style: AppTextstyle.nunitoBold,
+      ),
+      actions: [
+        GestureDetector(
+          onTap: _handleActionButtonPress,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.all(15),
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Profile screen content
+  Widget _buildProfileScreen(ProfileState state) {
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ProfileHeader(clientModel: state.clientModel),
+            const ProfileMenuWidget(),
+            const SizedBox(height: 24),
+            _buildVersionInfo(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Version info widget
+  Widget _buildVersionInfo() {
+    return FutureBuilder<PackageInfo>(
+      future: PackageInfo.fromPlatform(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox();
+        }
+        if (snapshot.hasError || !snapshot.hasData) {
+          return const SizedBox();
+        }
+        final packageInfo = snapshot.data!;
+        return Center(
+          child: Text(
+            'Version ${packageInfo.version} (${packageInfo.buildNumber})',
+            style: AppTextstyle.nunitoRegular.copyWith(
+              color: Colors.grey.shade500,
+              fontSize: 12,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class ErrorWidget extends StatelessWidget {
+  final ProfileState state;
+
+  const ErrorWidget({super.key, required this.state});
+
+  @override
+  Widget build(BuildContext context) {
+    if (state.error.code == 400) {
+      return NoInternetConnectionWidget(
+        onRetry: () => context.read<ProfileBloc>().add(GetProfileData()),
+      );
+    } else if (state.error.code == 500) {
+      return ServerConnection(
+        onRetry: () => context.read<ProfileBloc>().add(GetProfileData()),
+      );
+    }
+    return Center(
+      child: Text(
+        'Unexpected Error',
+        style: AppTextstyle.nunitoBold.copyWith(fontSize: 20),
+      ),
+    );
+  }
+}

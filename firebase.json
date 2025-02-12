@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"tez-med-client","appId":"1:315615038709:android:8ac6500f69ade5343049bc","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"tez-med-client","configurations":{"android":"1:315615038709:android:8ac6500f69ade5343049bc","ios":"1:315615038709:ios:e41246fe66843bf63049bc"}}}}}}
