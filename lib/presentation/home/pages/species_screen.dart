@@ -84,7 +84,7 @@ class _SpeciesScreenState extends State<SpeciesScreen>
               color: AppColor.primaryColor,
               onRefresh: _refreshCategories,
               child: CustomScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 slivers: [
                   SliverToBoxAdapter(child: const CustomBanner()),
                   SliverToBoxAdapter(
@@ -163,9 +163,7 @@ class _SpeciesScreenState extends State<SpeciesScreen>
                     ),
                     floating: false,
                   ),
-                  // Add this to fill the remaining space
-                  SliverFillRemaining(
-                    hasScrollBody: true,
+                  SliverToBoxAdapter(
                     child: BlocBuilder<SpeciesBloc, SpeciesState>(
                       bloc: speciesBloc,
                       builder: (context, speciesState) {

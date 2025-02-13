@@ -60,7 +60,7 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
             );
           },
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           itemCount: widget.service.where((service) => service.isActive).length,
           itemBuilder: (context, index) {

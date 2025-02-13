@@ -19,44 +19,29 @@ class CategoryNurse extends StatefulWidget {
   State<CategoryNurse> createState() => _CategoryNurseState();
 }
 
-class _CategoryNurseState extends State<CategoryNurse>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _CategoryNurseState extends State<CategoryNurse> {
   late ValueNotifier<int> _selectedIndex;
   final List<Map<int, int>> _selectedServicesPerDepartment = [];
 
   @override
   void initState() {
     super.initState();
-    // Initialize TabController safely
-    _tabController = widget.departments.isNotEmpty
-        ? TabController(length: widget.departments.length, vsync: this)
-        : TabController(length: 0, vsync: this);
-
     _selectedIndex = ValueNotifier<int>(0);
 
     // Initialize selected services for each department
     for (var _ in widget.departments) {
       _selectedServicesPerDepartment.add({});
     }
-
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        _selectedIndex.value = _tabController.index;
-      }
-    });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
     _selectedIndex.dispose();
     super.dispose();
   }
 
   double _calculateTotalPrice() {
     double totalPrice = 0.0;
-
     for (int departmentIndex = 0;
         departmentIndex < widget.departments.length;
         departmentIndex++) {
@@ -68,13 +53,11 @@ class _CategoryNurseState extends State<CategoryNurse>
 
       final selectedServicesInDepartment =
           _selectedServicesPerDepartment[departmentIndex];
-
       for (var serviceEntry in selectedServicesInDepartment.entries) {
         final service = allActiveServices[serviceEntry.key];
         totalPrice += service.price * serviceEntry.value;
       }
     }
-
     return totalPrice;
   }
 
@@ -99,7 +82,6 @@ class _CategoryNurseState extends State<CategoryNurse>
         departmentIndex++) {
       final department = widget.departments[departmentIndex];
       final selectedServices = _selectedServicesPerDepartment[departmentIndex];
-
       final allActiveServices = department.affairs
           .expand((affair) => affair.service)
           .where((s) => s.isActive)
@@ -107,8 +89,8 @@ class _CategoryNurseState extends State<CategoryNurse>
 
       for (var serviceEntry in selectedServices.entries) {
         final service = allActiveServices[serviceEntry.key];
-
-        requestAffairs.add(RequestAffairGet(
+        requestAffairs.add(
+          RequestAffairGet(
             startDate: "",
             hour: "",
             nameUz: service.nameUz,
@@ -118,10 +100,11 @@ class _CategoryNurseState extends State<CategoryNurse>
             affairId: service.id,
             count: serviceEntry.value,
             createdAt: now,
-            typeModel: service.type));
+            typeModel: service.type,
+          ),
+        );
       }
     }
-
     return requestAffairs;
   }
 
@@ -143,35 +126,37 @@ class _CategoryNurseState extends State<CategoryNurse>
 
     return Scaffold(
       backgroundColor: AppColor.buttonBackColor,
-      bottomNavigationBar: _buildBottomNavigationBar(),
-      body: Column(
-        children: [
-          _buildTabBar(context, lang),
-          Expanded(child: _buildTabBarView(lang)),
-        ],
+      appBar: AppBar(
+        leading: SizedBox(),
+        flexibleSpace: _buildDepartmentList(context, lang),
       ),
+      bottomNavigationBar: _buildBottomNavigationBar(),
+      body: _buildServiceList(lang),
     );
   }
 
-  Widget _buildTabBar(BuildContext context, String lang) {
+  Widget _buildDepartmentList(BuildContext context, String lang) {
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
       child: ValueListenableBuilder<int>(
         valueListenable: _selectedIndex,
         builder: (context, selectedIndex, _) {
-          return TabBar(
-            tabAlignment: TabAlignment.start,
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            controller: _tabController,
-            isScrollable: true,
-            labelPadding: const EdgeInsets.symmetric(horizontal: 5),
-            dividerColor: Colors.transparent,
-            indicatorColor: Colors.transparent,
-            labelColor: Colors.transparent,
-            tabs: List.generate(
-              widget.departments.length,
-              (index) => _buildTab(
-                  widget.departments[index], index, selectedIndex, lang),
+            child: Row(
+              children: List.generate(
+                widget.departments.length,
+                (index) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: _buildDepartmentItem(
+                    widget.departments[index],
+                    index,
+                    selectedIndex,
+                    lang,
+                  ),
+                ),
+              ),
             ),
           );
         },
@@ -179,10 +164,11 @@ class _CategoryNurseState extends State<CategoryNurse>
     );
   }
 
-  Widget _buildTab(
+  Widget _buildDepartmentItem(
       Department department, int index, int selectedIndex, String lang) {
     final isSelected = index == selectedIndex;
-    return Tab(
+    return GestureDetector(
+      onTap: () => _selectedIndex.value = index,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
@@ -211,14 +197,11 @@ class _CategoryNurseState extends State<CategoryNurse>
     );
   }
 
-  Widget _buildTabBarView(String lang) {
-    return TabBarView(
-      physics: const NeverScrollableScrollPhysics(),
-      controller: _tabController,
-      children: widget.departments.asMap().entries.map((entry) {
-        final departmentIndex = entry.key;
-        final department = entry.value;
-
+  Widget _buildServiceList(String lang) {
+    return ValueListenableBuilder<int>(
+      valueListenable: _selectedIndex,
+      builder: (context, selectedIndex, _) {
+        final department = widget.departments[selectedIndex];
         final allActiveServices = department.affairs
             .expand((affair) => affair.service)
             .where((service) => service.isActive)
@@ -226,11 +209,11 @@ class _CategoryNurseState extends State<CategoryNurse>
 
         return SelectServiceScreen(
           service: allActiveServices,
-          selectedItems: _selectedServicesPerDepartment[departmentIndex],
+          selectedItems: _selectedServicesPerDepartment[selectedIndex],
           onUpdate: (serviceIndex, quantity) =>
-              _updateSelectedServices(departmentIndex, serviceIndex, quantity),
+              _updateSelectedServices(selectedIndex, serviceIndex, quantity),
         );
-      }).toList(),
+      },
     );
   }
 
