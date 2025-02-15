@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
@@ -10,7 +11,8 @@ import 'package:tez_med_client/presentation/doctor/bloc/doctor_get_list/doctor_b
 import 'package:tez_med_client/presentation/doctor/widgets/doctor_card.dart';
 
 class CategoryDoctor extends StatefulWidget {
-  const CategoryDoctor({super.key});
+  final String type;
+  const CategoryDoctor({super.key, required this.type});
 
   @override
   State<CategoryDoctor> createState() => _CategoryDoctorState();
@@ -22,6 +24,7 @@ class _CategoryDoctorState extends State<CategoryDoctor>
 
   @override
   Widget build(BuildContext context) {
+    final lang = context.read<LanguageBloc>().state.locale.languageCode;
     return BlocBuilder<NurseTypeBloc, NurseTypeState>(
       builder: (context, state) {
         if (state is NurseTypeLoading) {
@@ -109,7 +112,11 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                                     child: FittedBox(
                                       fit: BoxFit.scaleDown,
                                       child: Text(
-                                        type.nameUz,
+                                        lang == 'uz'
+                                            ? type.nameUz
+                                            : lang == "en"
+                                                ? type.nameEn
+                                                : type.nameRu,
                                         style: AppTextstyle.nunitoBold
                                             .copyWith(fontSize: 15),
                                       ),
@@ -131,19 +138,23 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                   }
                   if (state is DoctorLoaded) {
                     final data = state.data;
-                    print(doctorTypes[_tabController.index].nameUz);
                     return ListView.builder(
                       padding: const EdgeInsets.all(16),
                       itemCount: data.doctors.length,
                       itemBuilder: (context, index) {
                         final item = data.doctors[index];
                         return DoctorCard(
+                          typeDoctor: widget.type,
                           online: doctorTypes[_tabController.index]
                                   .nameUz
                                   .toLowerCase() !=
                               "telemeditsina",
                           doc: item,
-                          type: doctorTypes[_tabController.index].nameUz,
+                          type: lang == "uz"
+                              ? doctorTypes[_tabController.index].nameUz
+                              : lang == 'en'
+                                  ? doctorTypes[_tabController.index].nameEn
+                                  : doctorTypes[_tabController.index].nameRu,
                         );
                       },
                     );

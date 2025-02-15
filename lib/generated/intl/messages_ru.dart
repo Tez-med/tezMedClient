@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_phone":
             MessageLookupByLibrary.simpleMessage("Введите корректный номер"),
         "choose": MessageLookupByLibrary.simpleMessage("Выбрать"),
+        "choose_date_time":
+            MessageLookupByLibrary.simpleMessage("Выберите дату и время"),
         "choose_profile_picture":
             MessageLookupByLibrary.simpleMessage("Выберите фото профиля"),
         "code_error":
@@ -84,6 +86,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "consent4": MessageLookupByLibrary.simpleMessage(
             "Политикой конфиденциальности "),
         "consent5": MessageLookupByLibrary.simpleMessage("нашего сайта"),
+        "consultation":
+            MessageLookupByLibrary.simpleMessage("Запись на консультацию"),
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Свяжитесь с нами через любую из этих платформ для получения помощи"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Координаты"),
@@ -97,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ориентир или дополнительная информация"),
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Цена со скидкой"),
+        "doctor": MessageLookupByLibrary.simpleMessage("Врач"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Рецепт врача"),
         "english": MessageLookupByLibrary.simpleMessage("Английский"),
@@ -111,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "example":
             MessageLookupByLibrary.simpleMessage("Например: напротив улицы"),
         "exit": MessageLookupByLibrary.simpleMessage("Выход"),
+        "experience": MessageLookupByLibrary.simpleMessage("Опыт"),
         "expert_guidance":
             MessageLookupByLibrary.simpleMessage("Советы специалистов"),
         "expert_guidance_desc": MessageLookupByLibrary.simpleMessage(
@@ -120,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished": MessageLookupByLibrary.simpleMessage("Завершено"),
         "fio": MessageLookupByLibrary.simpleMessage("ФИО"),
         "floor": MessageLookupByLibrary.simpleMessage("Этаж"),
+        "for_another": MessageLookupByLibrary.simpleMessage("Для другого"),
         "form_submitted":
             MessageLookupByLibrary.simpleMessage("Форма отправлена"),
         "full_name": MessageLookupByLibrary.simpleMessage("Полное имя"),
@@ -158,6 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_not_found": MessageLookupByLibrary.simpleMessage(
             "Приложение карты не найдено."),
         "my_address": MessageLookupByLibrary.simpleMessage("Мои адреса"),
+        "my_self": MessageLookupByLibrary.simpleMessage("Для себя"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "name_only_letter": MessageLookupByLibrary.simpleMessage(
             "Имя и фамилия должны содержать только буквы"),
@@ -178,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("Уведомления"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Настройки уведомлений"),
+        "nurse": MessageLookupByLibrary.simpleMessage("Медсестра"),
         "nurse_info":
             MessageLookupByLibrary.simpleMessage("Информация по уходу"),
         "ontheway": MessageLookupByLibrary.simpleMessage("В пути"),
@@ -231,6 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "raiting_succes": MessageLookupByLibrary.simpleMessage(
             "Спасибо за ваш отзыв! Ваше мнение очень важно для нас."),
         "rate_us": MessageLookupByLibrary.simpleMessage("Оценить"),
+        "rating": MessageLookupByLibrary.simpleMessage("Рейтинг"),
         "ready": MessageLookupByLibrary.simpleMessage("Готово"),
         "really_quit": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите выйти?"),
@@ -303,6 +313,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Код подтверждения"),
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Видеоуроки и руководства"),
+        "work_experience": MessageLookupByLibrary.simpleMessage("Опыт работы"),
+        "year": MessageLookupByLibrary.simpleMessage("год"),
         "your_check": MessageLookupByLibrary.simpleMessage("Ваш чек"),
         "your_details":
             MessageLookupByLibrary.simpleMessage("Информация о пациенте"),

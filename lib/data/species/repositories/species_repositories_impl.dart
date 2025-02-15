@@ -9,8 +9,8 @@ class SpeciesRepositoriesImpl implements SpeciesRepositories {
 
   SpeciesRepositoriesImpl(this.speciesSource);
   @override
-  Future<Either<Failure, SpeciesModel>> getSpecies(String id) async {
-    return await speciesSource.getSpecies(id);
+  Future<Either<Failure, SpeciesModel>> getSpecies() async {
+    return await speciesSource.getSpecies();
   }
 
   @override

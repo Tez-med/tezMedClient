@@ -16,7 +16,7 @@ class SpeciesBloc extends Bloc<SpeciesEvent, SpeciesState> {
   Future<void> _onGetSpecies(
       GetSpecies event, Emitter<SpeciesState> emit) async {
     emit(SpeciesLoading());
-    final result = await getSpeciesUsecase.getSpecies(event.id);
+    final result = await getSpeciesUsecase.getSpecies();
 
     result.fold(
       (error) => emit(SpeciesError(error)),

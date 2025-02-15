@@ -21,7 +21,7 @@ class AppRouter extends RootStackRouter {
             ),
             AutoRoute(path: 'history', page: HistoryRoute.page, children: [
               AutoRoute(page: ActiveRequestRoute.page),
-              AutoRoute(page: FinishedRequestRoute.page),
+              AutoRoute(page: ActiveDoctorRequest.page),
             ]),
             AutoRoute(
               path: 'profile',
@@ -29,6 +29,7 @@ class AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        AutoRoute(page: FinishedRequestRoute.page),
         AutoRoute(page: PhoneInputRoute.page, path: '/phone_input'),
         AutoRoute(page: SmsVerifyRoute.page, path: '/sms_verify'),
         AutoRoute(page: AddUserRoute.page, path: '/addUser'),

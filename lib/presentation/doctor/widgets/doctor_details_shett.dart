@@ -7,16 +7,26 @@ import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/gen/assets.gen.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_details/doctor_details_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/widgets/custom_calendar_widget.dart';
+import 'package:tez_med_client/presentation/doctor/widgets/loading.dart';
 
 class DoctorDetailSheet extends StatefulWidget {
   final String id;
   final bool online;
+  final String type;
+  final String price;
   final ScrollController controller;
 
   const DoctorDetailSheet(
-      {super.key, required this.id, required this.controller, required this.online});
+      {super.key,
+      required this.id,
+      required this.controller,
+      required this.online,
+      required this.type,
+      required this.price});
 
   @override
   State<DoctorDetailSheet> createState() => _DoctorDetailSheetState();
@@ -43,26 +53,34 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
       child: Scaffold(
         bottomNavigationBar: BottomAppBar(
           color: Colors.transparent,
-          child: ElevatedButton(
-            onPressed: selectedDateId.isEmpty
-                ? null
-                : () {
-                    context.router.push(ClientData(id: selectedDateId,online: widget.online));
-                  },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColor.primaryColor,
-              elevation: 0,
-            ),
-            child: Text(
-              "Ro'yxatdan o'tish",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ElevatedButton(
+              onPressed: selectedDateId.isEmpty
+                  ? null
+                  : () {
+                      context.router.push(ClientData(
+                          id: selectedDateId,
+                          online: widget.online,
+                          type: widget.type,
+                          price: widget.price));
+                    },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColor.primaryColor,
+                elevation: 0,
+              ),
+              child: Text(
+                S.of(context).sign_up,
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffF9F9F9),
         body: BlocBuilder<DoctorDetailsBloc, DoctorDetailsState>(
           builder: (context, state) {
             if (state is DoctorDetailsError) {
@@ -82,7 +100,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
               return Center(child: Text("Xatolik yuz berdi"));
             }
             if (state is DoctorDetailsLoading) {
-              return Center(child: CupertinoActivityIndicator());
+              return DoctorDetailsSkeleton();
             }
             if (state is DoctorDetailsLoaded) {
               final data = state.data;
@@ -119,7 +137,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                         ),
                       ),
                       Text(
-                        "Doctor",
+                        widget.type,
                         style: TextStyle(
                           fontSize: 16,
                           color: AppColor.greyTextColor,
@@ -128,91 +146,79 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                       SizedBox(height: 16),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 12),
+                            horizontal: 12, vertical: 12),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withValues(alpha: 0.1),
-                              spreadRadius: 2,
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: Colors.grey.withValues(alpha: 0.1),
+                          //     spreadRadius: 2,
+                          //     blurRadius: 8,
+                          //     offset: const Offset(0, 2),
+                          //   ),
+                          // ],
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(8),
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(0xFFF5F7FB),
-                                    ),
-                                    child: const Icon(
-                                      Icons.work_outline,
-                                      size: 25,
-                                      color: Color(0xFF4C75D9),
-                                    ),
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xFFF5F7FB),
                                   ),
-                                  const SizedBox(width: 8),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Ish tajribasi",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColor.greyTextColor,
-                                        ),
+                                  child: Assets.icons.expirense.svg(),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      S.of(context).work_experience,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.greyTextColor,
                                       ),
-                                      Text(
-                                        "${data.experience} yil",
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xFF1A1C1E),
-                                        ),
+                                    ),
+                                    Text(
+                                      "${data.experience} ${S.of(context).year}",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF1A1C1E),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                             Container(
                               width: 1.5,
                               height: 40,
                               color: AppColor.buttonBackColor,
                             ),
-                            SizedBox(width: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(12),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Color(0xFFF5F7FB),
                                   ),
-                                  child: const Icon(
-                                    Icons.star_border_rounded,
-                                    size: 25,
-                                    color: Color(0xFFFFB800),
-                                  ),
+                                  child: Assets.icons.doctorStar.svg(),
                                 ),
                                 const SizedBox(width: 10),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Reyting",
+                                      S.of(context).rating,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
@@ -239,7 +245,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                       Row(
                         children: [
                           Text(
-                            "Sanani va vaqtni tanlang",
+                            S.of(context).choose_date_time,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontSize: 15,
@@ -250,20 +256,13 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 5),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 12),
+                            horizontal: 20, vertical: 10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withValues(alpha: 0.1),
-                              spreadRadius: 2,
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
                         ),
                         child: CustomCalendarWidget(
                           data: data.schedules,

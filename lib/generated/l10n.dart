@@ -1979,6 +1979,106 @@ class S {
       args: [],
     );
   }
+
+  /// `For myself`
+  String get my_self {
+    return Intl.message(
+      'For myself',
+      name: 'my_self',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For another`
+  String get for_another {
+    return Intl.message(
+      'For another',
+      name: 'for_another',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book a consultation`
+  String get consultation {
+    return Intl.message(
+      'Book a consultation',
+      name: 'consultation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Experience`
+  String get experience {
+    return Intl.message(
+      'Experience',
+      name: 'experience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `year`
+  String get year {
+    return Intl.message(
+      'year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work experience`
+  String get work_experience {
+    return Intl.message(
+      'Work experience',
+      name: 'work_experience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message(
+      'Rating',
+      name: 'rating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose date and time`
+  String get choose_date_time {
+    return Intl.message(
+      'Choose date and time',
+      name: 'choose_date_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nurse`
+  String get nurse {
+    return Intl.message(
+      'Nurse',
+      name: 'nurse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doctor`
+  String get doctor {
+    return Intl.message(
+      'Doctor',
+      name: 'doctor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

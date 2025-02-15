@@ -52,7 +52,8 @@ class _CustomBannerState extends State<CustomBanner> {
         if (state is BannerLoading) {
           return _buildShimmer(bannerHeight);
         } else if (state is BannerLoaded) {
-          _banners = state.data.banners.map((banner) => banner.photo).toList();
+          _banners =
+              state.data.banners.map((banner) => banner.photoSmUz).toList();
           return _buildBannerView(_banners, bannerHeight);
         }
         return _buildShimmer(bannerHeight);

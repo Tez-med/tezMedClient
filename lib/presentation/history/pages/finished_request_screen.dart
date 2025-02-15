@@ -19,6 +19,21 @@ class FinishedRequestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.white,
+        backgroundColor: Colors.white,
+        shadowColor: AppColor.buttonBackColor,
+        elevation: 1,
+        leading: IconButton(
+          onPressed: () => context.router.maybePop(),
+          icon: Icon(Icons.arrow_back_ios_new_rounded),
+        ),
+        centerTitle: true,
+        title: Text(
+          S.of(context).order_history,
+          style: AppTextstyle.nunitoBold.copyWith(fontSize: 22),
+        ),
+      ),
       backgroundColor: AppColor.buttonBackColor,
       body: BlocBuilder<FinishedBloc, FinishedState>(
         bloc: context.read<FinishedBloc>()..add(GetFinishedRequest()),
@@ -43,7 +58,7 @@ class FinishedRequestScreen extends StatelessWidget {
               );
             }
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: ListView.builder(
                 itemCount: state.requestss.length,
                 itemBuilder: (context, index) {

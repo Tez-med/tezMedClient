@@ -228,10 +228,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                             S.of(context).order_successfully_created,
                       ),
                       onComplete: () {
-                        context.router.pushAndPopUntil(
-                          const MainRoute(),
-                          predicate: (route) => false,
-                        );
+                        context.router.replaceAll([HomeRoute()]);
                       },
                     ),
                   );

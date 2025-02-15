@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 DateTime parseToDateTime(String dateString) {
   // Har xil vaqt formatlarini sinab ko'rish uchun ro'yxat
   List<String> formats = [
+    "yyyy/mm/dd",
     "yyyy/MM/dd HH:mm:ss",
     "yyyy-MM-dd HH:mm",
     "dd-MM-yyyy HH:mm:ss",

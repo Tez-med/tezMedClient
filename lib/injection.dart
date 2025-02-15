@@ -34,6 +34,8 @@ import 'package:tez_med_client/data/request_post/repositories/request_repositori
 import 'package:tez_med_client/data/request_post/source/request_source.dart';
 import 'package:tez_med_client/data/requests_get/source/finished_request_source.dart';
 import 'package:tez_med_client/data/requests_get/source/id_request_source.dart';
+import 'package:tez_med_client/data/schedule/repositories/schedule_repositories_impl.dart';
+import 'package:tez_med_client/data/schedule/source/schedule_source.dart';
 import 'package:tez_med_client/data/species/repositories/species_repositories_impl.dart';
 import 'package:tez_med_client/data/species/source/get_nurse_type_source.dart';
 import 'package:tez_med_client/data/species/source/species_source.dart';
@@ -67,6 +69,8 @@ import 'package:tez_med_client/domain/request_post/repositories/request_reposito
 import 'package:tez_med_client/domain/request_post/usecase/post_request_usecase.dart';
 import 'package:tez_med_client/domain/requests_get/usecase/get_by_id_request_usecase.dart';
 import 'package:tez_med_client/domain/requests_get/usecase/get_finished_request_usecase.dart';
+import 'package:tez_med_client/domain/schedule/repositories/schedule_repositories.dart';
+import 'package:tez_med_client/domain/schedule/usecase/schedule_usecase.dart';
 import 'package:tez_med_client/domain/species/repositories/species_repositories.dart';
 import 'package:tez_med_client/domain/species/usecase/get_species_usecase.dart';
 import 'package:tez_med_client/domain/upload_file/usecase/upload_file_usecase.dart';
@@ -243,4 +247,12 @@ Future<void> setUp() async {
   // Banner
   getIt.registerSingleton<GetBannerSource>(
       GetBannerSourceImpl(getIt<DioClientRepository>()));
+
+  // Schedule
+  getIt.registerSingleton<ScheduleSource>(
+      ScheduleSourceImpl(getIt<DioClientRepository>()));
+  getIt.registerSingleton<ScheduleRepositories>(
+      ScheduleRepositoriesImpl(getIt<ScheduleSource>()));
+  getIt.registerSingleton<ScheduleUsecase>(
+      ScheduleUsecase(getIt<ScheduleRepositories>()));
 }

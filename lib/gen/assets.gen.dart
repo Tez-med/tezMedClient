@@ -34,8 +34,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/connecting.svg
   SvgGenImage get connecting => const SvgGenImage('assets/icons/connecting.svg');
 
+  /// File path: assets/icons/doctor_star.svg
+  SvgGenImage get doctorStar => const SvgGenImage('assets/icons/doctor_star.svg');
+
   /// File path: assets/icons/en.png
   AssetGenImage get en => const AssetGenImage('assets/icons/en.png');
+
+  /// File path: assets/icons/expirense.svg
+  SvgGenImage get expirense => const SvgGenImage('assets/icons/expirense.svg');
 
   /// File path: assets/icons/finished.svg
   SvgGenImage get finished => const SvgGenImage('assets/icons/finished.svg');
@@ -91,7 +97,9 @@ class $AssetsIconsGen {
         came,
         camera,
         connecting,
+        doctorStar,
         en,
+        expirense,
         finished,
         history,
         historyEmpty,

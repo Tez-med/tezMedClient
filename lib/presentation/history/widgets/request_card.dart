@@ -175,19 +175,19 @@ class RequestCard extends StatelessWidget {
                   _buildInfoItem(
                       S.of(context).day,
                       _formatDate(data
-                          .requestAffairs.first.hour)), // Safe check for null
+                          .requestAffairs.first.hour)), 
                   const SizedBox(width: 10),
                   _buildDivider(),
                   const SizedBox(width: 10),
                   _buildInfoItem(
                       S.of(context).time,
                       _formatTime(data
-                          .requestAffairs.first.hour)), // Safe check for null
+                          .requestAffairs.first.hour)), 
                   const SizedBox(width: 10),
                   _buildDivider(),
                   const SizedBox(width: 10),
-                  _buildInfoItem(
-                      S.of(context).price, "${format.format(data.price)} sum"),
+                  _buildInfoItem(S.of(context).price,
+                      "${format.format(data.price)} ${S.of(context).sum}"),
                 ],
               ),
             ],

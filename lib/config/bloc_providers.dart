@@ -18,6 +18,7 @@ import 'package:tez_med_client/domain/profile/usecase/get_client_usecase.dart';
 import 'package:tez_med_client/domain/request_post/usecase/post_request_usecase.dart';
 import 'package:tez_med_client/domain/requests_get/usecase/get_by_id_request_usecase.dart';
 import 'package:tez_med_client/domain/requests_get/usecase/get_finished_request_usecase.dart';
+import 'package:tez_med_client/domain/schedule/usecase/schedule_usecase.dart';
 import 'package:tez_med_client/domain/species/usecase/get_species_usecase.dart';
 import 'package:tez_med_client/injection.dart';
 import 'package:tez_med_client/presentation/add_user/bloc/add_client/add_client_bloc.dart';
@@ -29,6 +30,7 @@ import 'package:tez_med_client/presentation/category/bloc/species_get_bloc/speci
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_details/doctor_details_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_get_list/doctor_bloc.dart';
 import 'package:tez_med_client/presentation/doctor_request/bloc/doctor_request_bloc.dart';
+import 'package:tez_med_client/presentation/history/bloc/active_doctor_bloc/active_doctor_request_bloc.dart';
 import 'package:tez_med_client/presentation/history/bloc/active_request_bloc/active_request_bloc.dart';
 import 'package:tez_med_client/presentation/history/bloc/finished_request_bloc/finished_bloc.dart';
 import 'package:tez_med_client/presentation/history/bloc/get_by_id_request/get_by_id_request_bloc.dart';
@@ -106,7 +108,8 @@ class AppBlocProviders {
           create: (context) => CommentBloc(getIt<PostCommentUsecase>()),
         ),
         BlocProvider(
-          create: (context) => SpeciesBloc(getIt<GetSpeciesUsecase>()),
+          create: (context) =>
+              SpeciesBloc(getIt<GetSpeciesUsecase>())..add(GetSpecies()),
         ),
         BlocProvider(
           create: (context) => SpeciesGetByIdBloc(getIt<GetSpeciesUsecase>()),
@@ -127,6 +130,10 @@ class AppBlocProviders {
         ),
         BlocProvider(
           create: (context) => DoctorRequestBloc(getIt<DoctorUsecase>()),
+        ),
+        BlocProvider(
+          create: (context) => ActiveDoctorRequestBloc(getIt<ScheduleUsecase>())
+            ..add(GetSchedule()),
         )
       ];
 }

@@ -48,21 +48,21 @@ class _UserDetailsState extends State<UserDetails> {
   }
 
   Future<void> _submitForm() async {
-    final priceResponse = await ServicePriceSource(getIt<DioClientRepository>()).getPrice();
+    final priceResponse =
+        await ServicePriceSource(getIt<DioClientRepository>()).getPrice();
     priceResponse.fold(
-    (failure) {
-    },
-    (price) {
-      context.router.push(
-        LocationDetails(
-          requestAffair: widget.requestAffair,
-          photo: _imagesNotifier.value,
-          extraPhone: formatPhoneNumber(_extraPhoneController.text),
-          price: price, 
-        ),
-      );
-    },
-  );
+      (failure) {},
+      (price) {
+        context.router.push(
+          LocationDetails(
+            requestAffair: widget.requestAffair,
+            photo: _imagesNotifier.value,
+            extraPhone: formatPhoneNumber(_extraPhoneController.text),
+            price: price,
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -85,7 +85,7 @@ class _UserDetailsState extends State<UserDetails> {
           S.of(context).your_details,
           style: AppTextstyle.nunitoBold.copyWith(
             color: Colors.black,
-            fontSize: 22,
+            fontSize: 20,
           ),
         ),
       ),
@@ -256,20 +256,6 @@ class _UserDetailsState extends State<UserDetails> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        S.of(context).full_name,
-                        style:
-                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
-                      ),
-                      const SizedBox(height: 5),
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
                         S.of(context).phone_number,
                         style:
                             AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
@@ -291,6 +277,48 @@ class _UserDetailsState extends State<UserDetails> {
                       const SizedBox(height: 5),
                       Container(
                         height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        S.of(context).birthday,
+                        style:
+                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                      ),
+                      const SizedBox(height: 5),
+                      Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        S.of(context).birthday,
+                        style:
+                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                      ),
+                      const SizedBox(height: 5),
+                      Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        S.of(context).birthday,
+                        style:
+                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                      ),
+                      const SizedBox(height: 5),
+                      Container(
+                        height: 100,
                         decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(10),

@@ -7,8 +7,8 @@ class GetSpeciesUsecase {
   final SpeciesRepositories speciesRepositories;
   GetSpeciesUsecase(this.speciesRepositories);
 
-  Future<Either<Failure, SpeciesModel>> getSpecies(String id) async {
-    return await speciesRepositories.getSpecies(id);
+  Future<Either<Failure, SpeciesModel>> getSpecies() async {
+    return await speciesRepositories.getSpecies();
   }
 
   Future<Either<Failure, Speciess>> getByIdSpecies(String id) async {

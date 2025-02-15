@@ -10,6 +10,7 @@ import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/generated/l10n.dart';
+import 'package:tez_med_client/presentation/history/bloc/active_doctor_bloc/active_doctor_request_bloc.dart';
 import 'package:tez_med_client/presentation/history/bloc/active_request_bloc/active_request_bloc.dart';
 
 @RoutePage()
@@ -70,7 +71,7 @@ class MainPage extends HookWidget {
                         context,
                         index: 1,
                         svgAsset: Assets.icons.history,
-                        label: S.of(context).history,
+                        label: S.of(context).order,
                         isSelected: tabsRouter.activeIndex == 1,
                         iconSize: iconSize,
                       ),
@@ -101,7 +102,7 @@ class MainPage extends HookWidget {
                         count: true,
                         index: 1,
                         svgAsset: Assets.icons.history,
-                        label: S.of(context).order_history,
+                        label: S.of(context).current_order,
                         isSelected: tabsRouter.activeIndex == 1,
                         iconSize: iconSize,
                         onTap: () => _handleTabSelection(tabsRouter, 1),
@@ -237,33 +238,47 @@ class _NavItem extends StatelessWidget {
                       .length;
                 }
 
-                return count
-                    ? Badge(
-                        alignment: Alignment.topRight,
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        padding: const EdgeInsets.all(4),
-                        largeSize: 16,
-                        smallSize: 12,
-                        offset: const Offset(8, -8),
-                        isLabelVisible: requestCount > 0,
-                        label: Text('$requestCount'),
-                        child: svgAsset.svg(
-                          width: iconSize,
-                          height: iconSize,
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-                        ),
-                      )
-                    : svgAsset.svg(
-                        width: iconSize,
-                        height: iconSize,
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-                      );
+                return BlocBuilder<ActiveDoctorRequestBloc,
+                    ActiveDoctorRequestState>(
+                  builder: (context, doctorState) {
+                    int totalDoctorRequests = 0;
+                    if (doctorState is ActiveDoctorRequestLoaded) {
+                      totalDoctorRequests =
+                          doctorState.scheduleModel.schedules.length;
+                    }
+                    int totalRequests = requestCount + totalDoctorRequests;
+
+                    return count
+                        ? Badge(
+                            alignment: Alignment.topRight,
+                            textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            padding: const EdgeInsets.all(4),
+                            largeSize: 16,
+                            smallSize: 12,
+                            offset: const Offset(8, -8),
+                            isLabelVisible: totalRequests > 0,
+                            label: Text('$totalRequests'),
+                            child: svgAsset.svg(
+                              width: iconSize,
+                              height: iconSize,
+                              fit: BoxFit.cover,
+                              colorFilter:
+                                  ColorFilter.mode(color, BlendMode.srcIn),
+                            ),
+                          )
+                        : svgAsset.svg(
+                            width: iconSize,
+                            height: iconSize,
+                            fit: BoxFit.cover,
+                            colorFilter:
+                                ColorFilter.mode(color, BlendMode.srcIn),
+                          );
+                  },
+                );
               },
             ),
             const SizedBox(height: 4),

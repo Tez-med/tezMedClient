@@ -51,48 +51,57 @@ class CategoryModel {
 class Department {
   final String id;
   final String categoryId;
-  final String nameEn;
+  final String categoryNameUz;
+  final String categoryNameRu;
+  final String categoryNameEn;
   final String nameUz;
   final String nameRu;
+  final String nameEn;
   final bool isActive;
   final String photo;
   final String descriptionUz;
   final String descriptionRu;
   final String descriptionEn;
-  final String createdAt;
+  final int orderNumber;
   final List<Affairs> affairs;
 
   Department({
     required this.id,
     required this.categoryId,
-    required this.nameEn,
+    required this.categoryNameUz,
+    required this.categoryNameRu,
+    required this.categoryNameEn,
     required this.nameUz,
     required this.nameRu,
-    required this.affairs,
+    required this.nameEn,
     required this.isActive,
     required this.photo,
     required this.descriptionUz,
     required this.descriptionRu,
     required this.descriptionEn,
-    required this.createdAt,
+    required this.orderNumber,
+    required this.affairs,
   });
 
   factory Department.fromJson(Map<String, dynamic> json) {
     return Department(
-      id: json['id'] ?? "",
+     id: json['id'] ?? "",
       categoryId: json['category_id'] ?? "",
-      nameEn: json['name_en'] ?? "",
+      categoryNameUz: json['category_name_uz'] ?? "",
+      categoryNameRu: json['category_name_ru'] ?? "",
+      categoryNameEn: json['category_name_en'] ?? "",
       nameUz: json['name_uz'] ?? "",
       nameRu: json['name_ru'] ?? "",
+      nameEn: json['name_en'] ?? "",
+      isActive: json['is_active'] ?? false,
+      photo: json['photo'] ?? "",
+      descriptionUz: json['description_uz'] ?? "",
+      descriptionRu: json['description_ru'] ?? "",
+      descriptionEn: json['description_en'] ?? "",
+      orderNumber: json['order_number'] ?? 0,
       affairs: json['affairss'] != null
           ? List<Affairs>.from(json['affairss'].map((x) => Affairs.fromJson(x)))
           : [],
-      isActive: json['is_active'] ?? false,
-      photo: json['photo'] ?? '',
-      descriptionUz: json['description_uz'] ?? '',
-      descriptionRu: json['description_ru'] ?? '',
-      descriptionEn: json['description_en'] ?? '',
-      createdAt: json['created_at'] ?? "",
     );
   }
 }

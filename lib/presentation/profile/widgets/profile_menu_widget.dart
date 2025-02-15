@@ -25,6 +25,13 @@ class ProfileMenuWidget extends StatelessWidget {
           _buildDivider(),
           _buildMenuItem(
             context: context,
+            icon: CupertinoIcons.folder,
+            title: S.of(context).order_history,
+            onTap: () => context.router.push(const FinishedRequestRoute()),
+          ),
+          _buildDivider(),
+          _buildMenuItem(
+            context: context,
             icon: CupertinoIcons.settings_solid,
             title: S.of(context).settings,
             onTap: () => context.router.push(const SettingsRoute()),

@@ -10,11 +10,16 @@ import 'doctor_details_shett.dart';
 
 class DoctorCard extends StatelessWidget {
   final String type;
+  final String typeDoctor;
   final bool online;
   final Doctor doc;
 
   const DoctorCard(
-      {super.key, required this.doc, required this.type, required this.online});
+      {super.key,
+      required this.doc,
+      required this.type,
+      required this.online,
+      required this.typeDoctor});
 
   @override
   Widget build(BuildContext context) {
@@ -36,24 +41,27 @@ class DoctorCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomCachedImage(
-                    image: doc.photo,
-                    isProfile: false,
-                    imageBuilder: (context, imageProvider) {
-                      return Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: CustomCachedImage(
+                      image: doc.photo,
+                      isProfile: false,
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    width: 50,
-                    height: 50,
+                        );
+                      },
+                      width: 50,
+                      height: 50,
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -70,7 +78,7 @@ class DoctorCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Tajriba: ${doc.experience} yil',
+                          '${S.of(context).experience}: ${doc.experience} ${S.of(context).year}',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -78,7 +86,7 @@ class DoctorCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Narxi: ${format.format(doc.consultationPrice)} ${S.of(context).sum}",
+                          "${S.of(context).price}: ${format.format(doc.consultationPrice)} ${S.of(context).sum}",
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -110,7 +118,9 @@ class DoctorCard extends StatelessWidget {
                         expand: false,
                         builder: (context, scrollController) {
                           return DoctorDetailSheet(
+                            price: doc.consultationPrice.toString(),
                             online: online,
+                            type: typeDoctor,
                             id: doc.id,
                             controller: scrollController,
                           );
@@ -127,8 +137,8 @@ class DoctorCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),
-                child: const Text(
-                  'Konsultatsiyaga yozilish',
+                child: Text(
+                  S.of(context).consultation,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

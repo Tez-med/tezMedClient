@@ -7,8 +7,9 @@ import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/presentation/category/bloc/species_get_bloc/species_get_by_id_bloc.dart';
+import 'package:tez_med_client/presentation/category/widgets/category_nurse_main.dart';
 import 'package:tez_med_client/presentation/doctor/screen/category_doctor.dart';
-import 'package:tez_med_client/presentation/category/widgets/category_nurse.dart';
+import 'package:tez_med_client/presentation/home/bloc/category_bloc/category_bloc.dart';
 import '../../../generated/l10n.dart';
 
 @RoutePage()
@@ -25,6 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   void initState() {
     context.read<SpeciesGetByIdBloc>().add(GetByIdSpecies(widget.id));
+    context.read<CategoryBloc>().add(GetCategory());
     super.initState();
   }
 
@@ -54,9 +56,18 @@ class _CategoryScreenState extends State<CategoryScreen> {
             return _handleCategoryError(state);
           } else if (state is SpeciesGetByIdLoaded) {
             if (state.speciesModel.type == 'nurse') {
-              return CategoryNurse(departments: state.speciesModel.departments);
+              return BlocBuilder<CategoryBloc, CategoryState>(
+                builder: (context, state) {
+                  if (state is CategoryLoading) {
+                    return Center(child: CupertinoActivityIndicator());
+                  } else if (state is CategoryLoaded) {
+                    return CategoryNurseMain(category: state.category);
+                  }
+                  return SizedBox();
+                },
+              );
             } else if (state.speciesModel.type == 'doctor') {
-              return CategoryDoctor();
+              return CategoryDoctor(type: widget.title);
             }
           }
           return SizedBox();

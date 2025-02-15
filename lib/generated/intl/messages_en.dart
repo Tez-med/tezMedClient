@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_phone":
             MessageLookupByLibrary.simpleMessage("Enter a valid number"),
         "choose": MessageLookupByLibrary.simpleMessage("Choose"),
+        "choose_date_time":
+            MessageLookupByLibrary.simpleMessage("Choose date and time"),
         "choose_profile_picture":
             MessageLookupByLibrary.simpleMessage("Choose profile picture"),
         "code_error":
@@ -81,6 +83,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "consent3": MessageLookupByLibrary.simpleMessage("and "),
         "consent4": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "consent5": MessageLookupByLibrary.simpleMessage("consent"),
+        "consultation":
+            MessageLookupByLibrary.simpleMessage("Book a consultation"),
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Contact us through any of these platforms for assistance"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Coordinates"),
@@ -92,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Landmark or additional info"),
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Discount price"),
+        "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Doctor prescription"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -106,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "example": MessageLookupByLibrary.simpleMessage(
             "Example: Opposite the street"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "experience": MessageLookupByLibrary.simpleMessage("Experience"),
         "expert_guidance":
             MessageLookupByLibrary.simpleMessage("Expert Guidance"),
         "expert_guidance_desc": MessageLookupByLibrary.simpleMessage(
@@ -115,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished": MessageLookupByLibrary.simpleMessage("Finished"),
         "fio": MessageLookupByLibrary.simpleMessage("Full Name"),
         "floor": MessageLookupByLibrary.simpleMessage("Floor"),
+        "for_another": MessageLookupByLibrary.simpleMessage("For another"),
         "form_submitted":
             MessageLookupByLibrary.simpleMessage("Form submitted"),
         "full_name": MessageLookupByLibrary.simpleMessage("Full name"),
@@ -153,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_not_found":
             MessageLookupByLibrary.simpleMessage("Map application not found."),
         "my_address": MessageLookupByLibrary.simpleMessage("My addresses"),
+        "my_self": MessageLookupByLibrary.simpleMessage("For myself"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "name_only_letter": MessageLookupByLibrary.simpleMessage(
             "Name and surname must consist of only letters"),
@@ -173,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Notification settings"),
+        "nurse": MessageLookupByLibrary.simpleMessage("Nurse"),
         "nurse_info": MessageLookupByLibrary.simpleMessage("Nurse information"),
         "ontheway": MessageLookupByLibrary.simpleMessage("On the way"),
         "open_camera": MessageLookupByLibrary.simpleMessage("Open camera"),
@@ -222,6 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "raiting_succes": MessageLookupByLibrary.simpleMessage(
             "Thank you for your feedback! Your opinion is very important to us."),
         "rate_us": MessageLookupByLibrary.simpleMessage("Rate Us"),
+        "rating": MessageLookupByLibrary.simpleMessage("Rating"),
         "ready": MessageLookupByLibrary.simpleMessage("Ready"),
         "really_quit":
             MessageLookupByLibrary.simpleMessage("Do you really want to exit?"),
@@ -296,6 +306,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verification code"),
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Video guides & tutorials"),
+        "work_experience":
+            MessageLookupByLibrary.simpleMessage("Work experience"),
+        "year": MessageLookupByLibrary.simpleMessage("year"),
         "your_check": MessageLookupByLibrary.simpleMessage("Your check"),
         "your_details":
             MessageLookupByLibrary.simpleMessage("Patient information"),

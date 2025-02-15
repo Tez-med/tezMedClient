@@ -11,17 +11,12 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> tabs = [
-      S.of(context).current_order,
-      S.of(context).history
-    ];
+    final tabs = [S.of(context).nurse, S.of(context).doctor];
 
-    return AutoTabsRouter.tabBar(
-      routes: const [
-        ActiveRequestRoute(),
-        FinishedRequestRoute(),
-      ],
-      builder: (context, child, controller) {
+    return AutoTabsRouter(
+      routes: const [ActiveRequestRoute(), ActiveDoctorRequest()],
+      builder: (context, child) {
+        final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
           backgroundColor: AppColor.buttonBackColor,
           appBar: AppBar(
@@ -31,65 +26,54 @@ class HistoryScreen extends StatelessWidget {
             elevation: 1,
             centerTitle: true,
             title: Text(
-              S.of(context).order_history,
+              S.of(context).current_order,
               style: AppTextstyle.nunitoBold.copyWith(fontSize: 22),
             ),
             bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(60),
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: _buildTabBar(tabs, controller),
+              preferredSize: const Size.fromHeight(50),
+              child: Row(
+                children: [
+                  _buildTabBar(tabs, tabsRouter),
+                ],
               ),
             ),
           ),
-          body: Column(
-            children: [
-              const SizedBox(height: 16),
-              Expanded(child: child),
-            ],
-          ),
+          body: child,
         );
       },
     );
   }
 
-  Widget _buildTabBar(List<String> tabs, TabController controller) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TabBar(
-          dividerColor: Colors.transparent,
-          controller: controller,
-          indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
-          ),
-          labelPadding: const EdgeInsets.symmetric(horizontal: 5),
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          labelColor: Colors.black,
-          unselectedLabelColor: AppColor.greyColor500,
-          unselectedLabelStyle: AppTextstyle.nunitoRegular,
-          labelStyle: AppTextstyle.nunitoBold.copyWith(fontSize: 14),
-          tabs: tabs.map((String name) {
-            return Tab(
-              child: Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    name,
-                    style: AppTextstyle.nunitoBold.copyWith(fontSize: 15),
-                  ),
+  Widget _buildTabBar(List<String> tabs, TabsRouter tabsRouter) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: Row(
+        children: List.generate(
+          tabs.length,
+          (index) => InkWell(
+            onTap: () => tabsRouter.setActiveIndex(index),
+            borderRadius: BorderRadius.circular(30),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: tabsRouter.activeIndex == index
+                    ? AppColor.primaryColor
+                    : AppColor.buttonBackColor,
+              ),
+              child: Text(
+                tabs[index],
+                style: AppTextstyle.nunitoBold.copyWith(
+                  fontSize: 15,
+                  color: tabsRouter.activeIndex == index
+                      ? Colors.white
+                      : AppColor.greyColor500,
                 ),
               ),
-            );
-          }).toList(),
+            ),
+          ),
         ),
       ),
     );

@@ -193,5 +193,15 @@
   "promocode_count" : "Вы уже использовали этот промокод.",
   "our_service" : "Наши услуги",
   "added_soon" : "Скоро будет добавлено.",
-  "select_gender" : "Выберите пол"
+  "select_gender" : "Выберите пол",
+  "my_self": "Для себя",
+  "for_another": "Для другого",
+  "consultation": "Запись на консультацию",
+  "experience": "Опыт",
+  "year": "год",
+  "work_experience": "Опыт работы",
+  "rating": "Рейтинг",
+  "choose_date_time": "Выберите дату и время",
+  "nurse": "Медсестра",
+  "doctor": "Врач"
 }

@@ -62,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_phone": MessageLookupByLibrary.simpleMessage(
             "Iltimos, telefon raqamingizni to\'g\'ri kiriting"),
         "choose": MessageLookupByLibrary.simpleMessage("Tanlash"),
+        "choose_date_time":
+            MessageLookupByLibrary.simpleMessage("Sanani va vaqtni tanlang"),
         "choose_profile_picture":
             MessageLookupByLibrary.simpleMessage("Profil suratini tanlang"),
         "code_error":
@@ -82,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "consent4": MessageLookupByLibrary.simpleMessage("Maxfiylik siyosati "),
         "consent5":
             MessageLookupByLibrary.simpleMessage("bilan rozilik bildirasiz"),
+        "consultation":
+            MessageLookupByLibrary.simpleMessage("Konsultatsiyaga yozilish"),
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Biz bilan ushbu platformalardan birida bog\'laning"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Koordinatalar"),
@@ -95,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Yo\'nalish yoki qo\'shimcha ma\'lumot"),
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Chegirma narxi"),
+        "doctor": MessageLookupByLibrary.simpleMessage("Shifokor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Shifokor retsepti"),
         "english": MessageLookupByLibrary.simpleMessage("Ingliz"),
@@ -109,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "example": MessageLookupByLibrary.simpleMessage(
             "Misol: ko\'chaning qarshisida"),
         "exit": MessageLookupByLibrary.simpleMessage("Chiqish"),
+        "experience": MessageLookupByLibrary.simpleMessage("Tajriba"),
         "expert_guidance": MessageLookupByLibrary.simpleMessage(
             "Mutaxassis yo\'l-yo\'riqlari"),
         "expert_guidance_desc": MessageLookupByLibrary.simpleMessage(
@@ -118,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished": MessageLookupByLibrary.simpleMessage("Yakunlandi"),
         "fio": MessageLookupByLibrary.simpleMessage("FIO"),
         "floor": MessageLookupByLibrary.simpleMessage("Qavat"),
+        "for_another": MessageLookupByLibrary.simpleMessage("Boshqa uchun"),
         "form_submitted":
             MessageLookupByLibrary.simpleMessage("Forma yuborildi"),
         "full_name": MessageLookupByLibrary.simpleMessage("To\'liq ism"),
@@ -158,6 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xarita ilovasi topilmadi."),
         "my_address":
             MessageLookupByLibrary.simpleMessage("Mening manzillarim"),
+        "my_self": MessageLookupByLibrary.simpleMessage("O\'zim uchun"),
         "name": MessageLookupByLibrary.simpleMessage("Ismi"),
         "name_only_letter": MessageLookupByLibrary.simpleMessage(
             "Ism-familiya faqat harflardan iborat bo\'lishi kerak"),
@@ -179,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bildirishnomalar"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Bildirishnoma sozlamalari"),
+        "nurse": MessageLookupByLibrary.simpleMessage("Hamshira"),
         "nurse_info":
             MessageLookupByLibrary.simpleMessage("Hamshira ma\'lumotlari"),
         "ontheway": MessageLookupByLibrary.simpleMessage("Yo\'lda"),
@@ -233,6 +242,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "raiting_succes": MessageLookupByLibrary.simpleMessage(
             "Baholangangiz uchun rahmat! Sizning fikringiz biz uchun juda muhim."),
         "rate_us": MessageLookupByLibrary.simpleMessage("Baholash"),
+        "rating": MessageLookupByLibrary.simpleMessage("Reyting"),
         "ready": MessageLookupByLibrary.simpleMessage("Tayyor"),
         "really_quit": MessageLookupByLibrary.simpleMessage(
             "Haqiqatan ham chiqmoqchimisiz?"),
@@ -303,6 +313,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "verify_code": MessageLookupByLibrary.simpleMessage("Tasdiqlash kodi"),
         "videoGuides": MessageLookupByLibrary.simpleMessage(
             "Video qo\'llanmalar va darsliklar"),
+        "work_experience":
+            MessageLookupByLibrary.simpleMessage("Ish tajribasi"),
+        "year": MessageLookupByLibrary.simpleMessage("yil"),
         "your_check": MessageLookupByLibrary.simpleMessage("Sizning chekingiz"),
         "your_details":
             MessageLookupByLibrary.simpleMessage("Bemorning ma\'lumotlari"),

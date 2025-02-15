@@ -7,11 +7,4 @@ sealed class SpeciesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetSpecies extends SpeciesEvent {
-  final String id;
-
-  const GetSpecies(this.id);
-
-   @override
-  List<Object> get props => [id];
-}
+class GetSpecies extends SpeciesEvent {}

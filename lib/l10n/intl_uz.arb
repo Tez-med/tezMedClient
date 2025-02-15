@@ -193,5 +193,15 @@
   "promocode_count" : "Siz ilgari promokoddan foydalangansiz.",
   "our_service" : "Bizning xizmatlarimiz",
   "added_soon" : "Yaqin orqada qo‘shiladi",
-  "select_gender" : "Jinsni tanlang"
+  "select_gender" : "Jinsni tanlang",
+  "my_self" : "O'zim uchun",
+  "for_another" : "Boshqa uchun",
+  "consultation" : "Konsultatsiyaga yozilish",
+  "experience" : "Tajriba",
+  "year" : "yil",
+  "work_experience" : "Ish tajribasi",
+  "rating" : "Reyting",
+  "choose_date_time" : "Sanani va vaqtni tanlang",
+  "nurse" : "Hamshira",
+  "doctor" : "Shifokor"
 }

@@ -9,7 +9,7 @@ import 'package:tez_med_client/domain/dio_client/repository/dio_client_repositor
 import '../../../core/error/error_handler.dart';
 
 abstract class SpeciesSource {
-  Future<Either<Failure, SpeciesModel>> getSpecies(String id);
+  Future<Either<Failure, SpeciesModel>> getSpecies();
   Future<Either<Failure, Speciess>> getByIdSpecies(String id);
 }
 
@@ -18,11 +18,9 @@ class SpeciesSourceImpl implements SpeciesSource {
   SpeciesSourceImpl(this.dioClientRepository);
 
   @override
-  Future<Either<Failure, SpeciesModel>> getSpecies(String id) async {
-
+  Future<Either<Failure, SpeciesModel>> getSpecies() async {
     try {
-      final response =
-          await dioClientRepository.getData("/species?category_id=$id");
+      final response = await dioClientRepository.getData("/species");
       final data = SpeciesModel.fromJson(response.data);
 
       return Right(data);
@@ -36,7 +34,6 @@ class SpeciesSourceImpl implements SpeciesSource {
   @override
   Future<Either<Failure, Speciess>> getByIdSpecies(String id) async {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
-
     try {
       final response =
           await dioClientRepository.getData("/species/$id", token: token);

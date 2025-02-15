@@ -193,5 +193,15 @@
   "promocode_count" : "You have already used the promo code.",
   "our_service" : "Our services",
   "added_soon" : "Will be added soon.",
-  "select_gender" : "Select gender"
+  "select_gender" : "Select gender",
+  "my_self": "For myself",
+  "for_another": "For another",
+  "consultation": "Book a consultation",
+  "experience": "Experience",
+  "year": "year",
+  "work_experience": "Work experience",
+  "rating": "Rating",
+  "choose_date_time": "Choose date and time",
+  "nurse": "Nurse",
+  "doctor": "Doctor"
 }
