@@ -18,8 +18,8 @@ class DioClient {
 
   DioClient(this._dio) {
     _dio.options
-      ..connectTimeout = const Duration(minutes: 5)
-      ..receiveTimeout = const Duration(minutes: 5)
+      ..connectTimeout = const Duration(minutes: 10)
+      ..receiveTimeout = const Duration(minutes: 10)
       ..baseUrl = EnvironmentConfig.instance.apiUrl;
     if (EnvironmentConfig.instance.isDev) {
       _dio.interceptors.add(chuck.getDioInterceptor());

@@ -610,10 +610,10 @@ class S {
     );
   }
 
-  /// `Current order`
+  /// `Orders`
   String get current_order {
     return Intl.message(
-      'Current order',
+      'Orders',
       name: 'current_order',
       desc: '',
       args: [],
@@ -2085,6 +2085,16 @@ class S {
     return Intl.message(
       'No doctor types found',
       name: 'no_doctor_types_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Detecting location...`
+  String get location_detecting {
+    return Intl.message(
+      'Detecting location...',
+      name: 'location_detecting',
       desc: '',
       args: [],
     );

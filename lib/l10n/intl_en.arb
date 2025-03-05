@@ -56,7 +56,7 @@
   "no_notification": "No notifications available",
   "no_notification_subtitle": "Stay tuned for news and updates!",
   "history": "History",
-  "current_order": "Current order",
+  "current_order": "Orders",
   "order": "Order",
   "location": "Location",
   "retry": "Retry",
@@ -204,5 +204,6 @@
   "choose_date_time": "Choose date and time",
   "nurse": "Nurse",
   "doctor": "Doctor",
-  "no_doctor_types_found": "No doctor types found"
+  "no_doctor_types_found": "No doctor types found",
+  "location_detecting": "Detecting location..."
 }

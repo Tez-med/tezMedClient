@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,16 +30,64 @@ class _HomePageState extends State<HomePage> {
   ValueNotifier<String?> locationNameNotifier = ValueNotifier(null);
 
   late final LocalStorageService _localStorageService;
-  late final LocationService _locationService;
+  StreamSubscription? _locationSubscription;
 
   @override
   void initState() {
     super.initState();
     updateManager.checkForUpdate();
-    _localStorageService = LocalStorageService();
-    _locationService = LocationService();
 
+    _localStorageService = LocalStorageService();
     _initializeLocation();
+
+    // SharedPreferences-dagi lokatsiyani doimiy kuzatamiz
+    _listenForLocationChanges();
+  }
+
+  void _listenForLocationChanges() {
+    _locationSubscription =
+        Stream.periodic(const Duration(seconds: 2)).listen((_) {
+      final savedLocation =
+          _localStorageService.getString(StorageKeys.locationName);
+      if (savedLocation.isNotEmpty &&
+          locationNameNotifier.value != savedLocation) {
+        locationNameNotifier.value = savedLocation;
+      }
+    });
+  }
+
+  Future<void> _initializeLocation() async {
+    try {
+      // Avval saqlangan lokatsiyani olish
+      String? savedLocation =
+          _localStorageService.getString(StorageKeys.locationName);
+
+      if (savedLocation.isNotEmpty) {
+        locationNameNotifier.value = savedLocation;
+        return; 
+      }
+
+      final locationService = LocationService();
+      final point = await locationService.getCurrentLocation();
+
+      if (point != null) {
+        final address = await locationService.getAddressFromCoordinates(point);
+        if (address != null && address.isNotEmpty) {
+          _localStorageService.setString(StorageKeys.locationName, address);
+          locationNameNotifier.value = address;
+        }
+      } else {
+        locationNameNotifier.value = S.of(context).location_detecting;
+      }
+    } catch (e) {
+      locationNameNotifier.value = S.of(context).location_detecting;
+    }
+  }
+
+  @override
+  void dispose() {
+    _locationSubscription?.cancel();
+    super.dispose();
   }
 
   @override
@@ -134,19 +184,5 @@ class _HomePageState extends State<HomePage> {
         return const SizedBox.shrink();
       },
     );
-  }
-
-  Future<void> _initializeLocation() async {
-    locationNameNotifier.value =
-        _localStorageService.getString(StorageKeys.locationName);
-    await _fetchAndSetLocation();
-  }
-
-  Future<void> _fetchAndSetLocation() async {
-    final point = await _locationService.getCurrentLocation();
-    if (point != null) {
-      final address = await _locationService.getAddressFromCoordinates(point);
-      locationNameNotifier.value = address;
-    }
   }
 }

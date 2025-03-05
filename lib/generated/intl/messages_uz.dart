@@ -89,7 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Biz bilan ushbu platformalardan birida bog\'laning"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Koordinatalar"),
-        "current_order": MessageLookupByLibrary.simpleMessage("Joriy buyurtma"),
+        "current_order": MessageLookupByLibrary.simpleMessage("Buyurtmalar"),
         "current_time": MessageLookupByLibrary.simpleMessage("Joriy vaqt"),
         "data_update":
             MessageLookupByLibrary.simpleMessage("Ma\'lumotlarni yangilash"),
@@ -153,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sharh qoldiring"),
         "loading": MessageLookupByLibrary.simpleMessage("Yuklanmoqda..."),
         "location": MessageLookupByLibrary.simpleMessage("Manzil"),
+        "location_detecting":
+            MessageLookupByLibrary.simpleMessage("Lokatsiya aniqlanmoqda..."),
         "location_error":
             MessageLookupByLibrary.simpleMessage("Manzilni olishda xatolik"),
         "location_selected":

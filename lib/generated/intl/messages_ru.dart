@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Свяжитесь с нами через любую из этих платформ для получения помощи"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Координаты"),
-        "current_order": MessageLookupByLibrary.simpleMessage("Текущий заказ"),
+        "current_order": MessageLookupByLibrary.simpleMessage("Заказы"),
         "current_time": MessageLookupByLibrary.simpleMessage("Текущее время"),
         "data_update":
             MessageLookupByLibrary.simpleMessage("Обновление данных"),
@@ -155,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Оставить комментарий"),
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "location": MessageLookupByLibrary.simpleMessage("Местоположение"),
+        "location_detecting": MessageLookupByLibrary.simpleMessage(
+            "Определение местоположения..."),
         "location_error": MessageLookupByLibrary.simpleMessage(
             "Ошибка при получении местоположения"),
         "location_selected":

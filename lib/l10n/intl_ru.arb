@@ -56,7 +56,7 @@
   "no_notification": "У вас пока нет уведомлений",
   "no_notification_subtitle": "Ожидайте новостей и обновлений!",
   "history": "История",
-  "current_order": "Текущий заказ",
+  "current_order": "Заказы",
   "order": "Заказ",
   "location": "Местоположение",
   "retry": "Повторить",
@@ -204,6 +204,6 @@
   "choose_date_time": "Выберите дату и время",
   "nurse": "Медсестра",
   "doctor": "Врач",
-  "no_doctor_types_found": "Виды врачей не найдены"
-
+  "no_doctor_types_found": "Виды врачей не найдены",
+  "location_detecting": "Определение местоположения..."
 }

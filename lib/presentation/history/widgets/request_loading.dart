@@ -27,7 +27,7 @@ class RequestLoadingWidget extends StatelessWidget {
                   clientId: "loading_client",
                   number: 12345,
                   nurseRating: 0,
-                  price: 100000,
+                  price: 100,
                   nurseName: "",
                   nursePhoto: "",
                   longitude: "0.0",

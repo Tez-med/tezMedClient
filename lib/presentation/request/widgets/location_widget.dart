@@ -7,8 +7,10 @@ import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/request/bloc/my_address/my_address_bloc.dart';
+import 'package:tez_med_client/presentation/request/widgets/addres_error.dart';
 import 'package:tez_med_client/presentation/request/widgets/my_adress_empty.dart';
 import 'package:tez_med_client/presentation/request/widgets/my_adress_loading.dart';
+import 'package:tez_med_client/presentation/request/widgets/select_table_feild.dart';
 
 class LocationWidget extends StatefulWidget {
   final TextEditingController addressController;
@@ -181,37 +183,39 @@ class _LocationWidgetState extends State<LocationWidget> {
           const SizedBox(height: 16),
           Row(
             children: [
-              _buildSelectableField(
-                title: S.of(context).house,
-                controller: widget.houseController,
-                onChanged: (value) {
-                  _validateInputs();
-                  widget.formKey.currentState!.validate();
+              SelectTableFeild(
+                  isValid: _isValid,
+                  context: context,
+                  title: S.of(context).house,
+                  controller: widget.houseController,
+                  onChanged: (value) {
+                    _validateInputs();
+                    widget.formKey.currentState!.validate();
 
-                  if (value.isNotEmpty) {
-                    setState(() {
-                      _isApartmentSelected = false;
-                      widget.apartmentController.clear();
-                    });
-                  }
-                },
-              ),
+                    if (value.isNotEmpty) {
+                      setState(() {
+                        _isApartmentSelected = false;
+                        widget.apartmentController.clear();
+                      });
+                    }
+                  }),
               const SizedBox(width: 12),
-              _buildSelectableField(
-                title: S.of(context).apartment,
-                controller: widget.apartmentController,
-                onChanged: (value) {
-                  widget.formKey.currentState!.validate();
+              SelectTableFeild(
+                  isValid: _isValid,
+                  context: context,
+                  title: S.of(context).apartment,
+                  controller: widget.apartmentController,
+                  onChanged: (value) {
+                    widget.formKey.currentState!.validate();
 
-                  _validateInputs();
-                  if (value.isNotEmpty) {
-                    setState(() {
-                      _isApartmentSelected = true;
-                      widget.houseController.clear();
-                    });
-                  }
-                },
-              ),
+                    _validateInputs();
+                    if (value.isNotEmpty) {
+                      setState(() {
+                        _isApartmentSelected = true;
+                        widget.houseController.clear();
+                      });
+                    }
+                  }),
             ],
           ),
           if (_isApartmentSelected) ...[
@@ -414,78 +418,9 @@ class _LocationWidgetState extends State<LocationWidget> {
       );
     } else if (state is MyAddressError) {
       if (state.error.code == 41) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.location_off_rounded,
-                color: AppColor.greyColor500,
-                size: 50,
-              ),
-              const SizedBox(height: 24),
-              Text(
-                S.of(context).address_not_found,
-                style: AppTextstyle.nunitoBold.copyWith(
-                  fontSize: 20,
-                  color: AppColor.primaryColor,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                S.of(context).address_not_found_desc,
-                textAlign: TextAlign.center,
-                style: AppTextstyle.nunitoRegular.copyWith(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                ),
-              ),
-            ],
-          ),
-        );
+        return AddreesError(context: context);
       }
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.cloud_off,
-              size: 100,
-              color: Colors.grey[400],
-            ),
-            const SizedBox(height: 24),
-            Text(
-              S.of(context).region_error,
-              style: AppTextstyle.nunitoBold.copyWith(
-                fontSize: 20,
-                color: Colors.red[600],
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              S.of(context).region_error_desc,
-              style: AppTextstyle.nunitoRegular.copyWith(
-                fontSize: 16,
-                color: Colors.grey[600],
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            OutlinedButton(
-              onPressed: () =>
-                  context.read<MyAddressBloc>().add(FetchMyAddress()),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColor.primaryColor,
-                side: BorderSide(color: AppColor.primaryColor),
-              ),
-              child: Text(
-                S.of(context).retry,
-                style: AppTextstyle.nunitoSemiBold,
-              ),
-            ),
-          ],
-        ),
-      );
+      return AddressError2(context: context);
     }
 
     return const SizedBox.expand();
@@ -575,66 +510,6 @@ class _LocationWidgetState extends State<LocationWidget> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildSelectableField({
-    required String title,
-    required TextEditingController controller,
-    void Function(String)? onChanged,
-  }) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: AppTextstyle.nunitoSemiBold.copyWith(fontSize: 15),
-          ),
-          const SizedBox(height: 8),
-          TextFormField(
-            controller: controller,
-            validator: (value) {
-              if (!_isValid) {
-                return S.of(context).required_field;
-              }
-              return null;
-            },
-            keyboardType: TextInputType.number,
-            onChanged: (value) => onChanged?.call(value),
-            decoration: InputDecoration(
-              hintText: '№',
-              hintStyle: AppTextstyle.nunitoRegular,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(
-                  color: AppColor.greyTextColor,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(
-                  color: AppColor.primaryColor,
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(color: Colors.red),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(
-                  color: AppColor.buttonBackColor,
-                ),
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 8,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -45,7 +45,7 @@ class DoctorCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: CustomCachedImage(
                       image: doc.photo,
-                      isProfile: false,
+                      isProfile: true,
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           width: 50,

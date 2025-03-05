@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
+import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
@@ -180,11 +181,10 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                                   .toLowerCase() !=
                               "telemeditsina",
                           doc: item,
-                          type: lang == "uz"
-                              ? doctorTypes[_tabController.index].nameUz
-                              : lang == 'en'
-                                  ? doctorTypes[_tabController.index].nameEn
-                                  : doctorTypes[_tabController.index].nameRu,
+                          type: context.toLocalized(
+                              uz: doctorTypes[_tabController.index].nameUz,
+                              ru: doctorTypes[_tabController.index].nameRu,
+                              en: doctorTypes[_tabController.index].nameEn),
                         );
                       },
                     );

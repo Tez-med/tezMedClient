@@ -88,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Contact us through any of these platforms for assistance"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Coordinates"),
-        "current_order": MessageLookupByLibrary.simpleMessage("Current order"),
+        "current_order": MessageLookupByLibrary.simpleMessage("Orders"),
         "current_time": MessageLookupByLibrary.simpleMessage("Current time"),
         "data_update": MessageLookupByLibrary.simpleMessage("Data update"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
@@ -150,6 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Leave a comment"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
+        "location_detecting":
+            MessageLookupByLibrary.simpleMessage("Detecting location..."),
         "location_error":
             MessageLookupByLibrary.simpleMessage("Error obtaining location"),
         "location_selected":
