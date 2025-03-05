@@ -150,92 +150,25 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.grey.withValues(alpha: 0.1),
-                          //     spreadRadius: 2,
-                          //     blurRadius: 8,
-                          //     offset: const Offset(0, 2),
-                          //   ),
-                          // ],
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xFFF5F7FB),
-                                  ),
-                                  child: Assets.icons.expirense.svg(),
-                                ),
-                                const SizedBox(width: 8),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).work_experience,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.greyTextColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      "${data.experience} ${S.of(context).year}",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xFF1A1C1E),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            _buildInfoItem(
+                              icon: Assets.icons.expirense.svg(),
+                              title: S.of(context).work_experience,
+                              value: "${data.experience} ${S.of(context).year}",
                             ),
                             Container(
                               width: 1.5,
                               height: 40,
                               color: AppColor.buttonBackColor,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xFFF5F7FB),
-                                  ),
-                                  child: Assets.icons.doctorStar.svg(),
-                                ),
-                                const SizedBox(width: 10),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).rating,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.greyTextColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      data.rating.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xFF1A1C1E),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            _buildInfoItem(
+                              icon: Assets.icons.doctorStar.svg(),
+                              title: S.of(context).rating,
+                              value: data.rating.toString(),
                             ),
                           ],
                         ),
@@ -277,6 +210,47 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
             return Center(child: Text("Ma'lumotlar topilmadi"));
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildInfoItem(
+      {required Widget icon, required String title, required String value}) {
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFFF5F7FB),
+            ),
+            child: icon,
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.greyTextColor,
+                ),
+              ),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF1A1C1E),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

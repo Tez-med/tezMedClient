@@ -179,7 +179,7 @@
   "invalid_promo_code": "Недействительный промокод.",
   "promocode": "Промо-код",
   "rate_us" : "Оценить",
-  "helpSupport": "Cвязаться с нами",
+  "helpSupport": "Контакт",
   "contactPlatforms": "Свяжитесь с нами через любую из этих платформ для получения помощи",
   "youtube": "YouTube",
   "videoGuides": "Видеоуроки и руководства",
@@ -203,5 +203,7 @@
   "rating": "Рейтинг",
   "choose_date_time": "Выберите дату и время",
   "nurse": "Медсестра",
-  "doctor": "Врач"
+  "doctor": "Врач",
+  "no_doctor_types_found": "Виды врачей не найдены"
+
 }

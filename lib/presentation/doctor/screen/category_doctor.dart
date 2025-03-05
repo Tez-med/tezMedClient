@@ -6,6 +6,7 @@ import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/category/bloc/nurse_type/nurse_type_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_get_list/doctor_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/widgets/doctor_card.dart';
@@ -46,19 +47,31 @@ class _CategoryDoctorState extends State<CategoryDoctor>
           final doctorTypes = state.data.types
               .where((element) => element.type == "doctor")
               .toList();
+
+          if (doctorTypes.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.sentiment_dissatisfied,
+                      size: 64, color: AppColor.greyTextColor),
+                  SizedBox(height: 16),
+                  Text(
+                    S.of(context).no_doctor_types_found,
+                    style: AppTextstyle.nunitoRegular.copyWith(fontSize: 18),
+                  ),
+                ],
+              ),
+            );
+          }
+
           final selectedType = doctorTypes[0];
           context.read<DoctorBloc>().add(GetDoctor(selectedType.id));
+
           _tabController = TabController(
             length: doctorTypes.length,
             vsync: this,
           );
-
-          _tabController.addListener(() {
-            if (_tabController.indexIsChanging) {
-              final selectedType = doctorTypes[_tabController.index];
-              context.read<DoctorBloc>().add(GetDoctor(selectedType.id));
-            }
-          });
 
           return DefaultTabController(
             length: doctorTypes.length,
@@ -138,6 +151,23 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                   }
                   if (state is DoctorLoaded) {
                     final data = state.data;
+                    if (data.doctors.isEmpty) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.sentiment_dissatisfied,
+                                size: 64, color: AppColor.greyTextColor),
+                            SizedBox(height: 16),
+                            Text(
+                              S.of(context).no_doctor_types_found,
+                              style: AppTextstyle.nunitoRegular
+                                  .copyWith(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                     return ListView.builder(
                       padding: const EdgeInsets.all(16),
                       itemCount: data.doctors.length,

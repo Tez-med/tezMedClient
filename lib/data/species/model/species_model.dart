@@ -8,7 +8,7 @@ SpeciesModel speciesModelFromJson(String str) =>
 String speciesModelToJson(SpeciesModel data) => json.encode(data.toJson());
 
 class SpeciesModel {
-  final int count;
+  final num count;
   final List<Speciess> speciess;
 
   SpeciesModel({
@@ -44,7 +44,7 @@ class Speciess {
   final String descriptionUz;
   final String descriptionRu;
   final String descriptionEn;
-  final int orderNumber;
+  final num orderNumber;
   final String type;
   final List<Department> departments;
   final List<DoctorBasic> doctors;
@@ -135,12 +135,12 @@ class DoctorBasic {
   final List<String> medicalSheet;
   final List<String> selfEmployed;
   final String status;
-  final int rating;
+  final num rating;
   final String phoneNumber;
   final String photo;
-  final int experience;
-  final double consultationTime;
-  final int consultationPrice;
+  final num experience;
+  final num consultationTime;
+  final num consultationPrice;
   final dynamic schedules;
   final List<DoctorAffair> doctorAffairs;
   final String createdAt;
@@ -196,11 +196,11 @@ class DoctorBasic {
             ? List<String>.from(json["self_employed"].map((x) => x))
             : [],
         status: json["status"] ?? "",
-        rating: json["rating"] ?? "",
+        rating: json["rating"] ?? 0,
         phoneNumber: json["phone_number"] ?? "",
         photo: json["photo"] ?? "",
-        experience: json["experience"] ?? "",
-        consultationTime: json["consultation_time"]?.toDouble() ?? 0.0,
+        experience: json["experience"] ?? 0,
+        consultationTime: json["consultation_time"] ?? 0, // Modified line
         consultationPrice: json["consultation_price"] ?? 0,
         schedules: json["schedules"] ?? "",
         doctorAffairs: json["doctor_affairs"] != null
@@ -242,11 +242,11 @@ class DoctorAffair {
   final String id;
   final String doctorId;
   final String nurseTypeId;
-  final List<String> days;
+  final String days;
   final String startTime;
   final String endTime;
-  final int price;
-  final int consultationTime;
+  final num price;
+  final num consultationTime;
   final String createdAt;
 
   DoctorAffair({
@@ -265,13 +265,11 @@ class DoctorAffair {
         id: json["id"] ?? "",
         doctorId: json["doctor_id"] ?? "",
         nurseTypeId: json["nurse_type_id"] ?? "",
-        days: json["days"] != null
-            ? List<String>.from(json["days"].map((x) => x))
-            : [],
+        days: json["days"] ?? "",
         startTime: json["start_time"] ?? "",
         endTime: json["end_time"] ?? "",
         price: json["price"] ?? 0,
-        consultationTime: json["consultation_time"] ?? 0,
+        consultationTime: json["consultation_time"] ?? 0.0,
         createdAt: json["created_at"] ?? "",
       );
 
@@ -279,7 +277,7 @@ class DoctorAffair {
         "id": id,
         "doctor_id": doctorId,
         "nurse_type_id": nurseTypeId,
-        "days": List<dynamic>.from(days.map((x) => x)),
+        "days": days,
         "start_time": startTime,
         "end_time": endTime,
         "price": price,

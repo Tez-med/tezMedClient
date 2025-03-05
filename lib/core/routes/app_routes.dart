@@ -23,6 +23,7 @@ class AppRouter extends RootStackRouter {
               AutoRoute(page: ActiveRequestRoute.page),
               AutoRoute(page: ActiveDoctorRequest.page),
             ]),
+            AutoRoute(page: SupportRoute.page),
             AutoRoute(
               path: 'profile',
               page: ProfileRoute.page,

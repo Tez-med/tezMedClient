@@ -7,7 +7,6 @@ import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/profile/widgets/log_out_dialog.dart';
-import 'package:tez_med_client/presentation/profile/widgets/support_bottom_sheet.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({super.key});
@@ -49,19 +48,6 @@ class ProfileMenuWidget extends StatelessWidget {
             icon: Icons.privacy_tip_outlined,
             title: S.of(context).consent4,
             onTap: () => context.router.push(PrivacyPolicy()),
-          ),
-          _buildDivider(),
-          _buildMenuItem(
-            context: context,
-            icon: Icons.call_outlined,
-            title: S.of(context).helpSupport,
-            onTap: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) => const SupportBottomSheet(),
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent);
-            },
           ),
           _buildDivider(),
           _buildMenuItem(

@@ -31,7 +31,6 @@ class ProfileSourceImpl implements ProfileSource {
     } on DioException catch (e) {
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {
-      print(e);
       return const Left(UnexpectedFailure(code: 40));
     }
   }

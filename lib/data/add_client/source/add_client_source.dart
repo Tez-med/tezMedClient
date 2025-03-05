@@ -19,7 +19,6 @@ class AddClientSourceImpl implements AddClientSource {
   @override
   Future<Either<Failure, void>> addClient(AddClientModel addClient) async {
     final prefs = LocalStorageService();
-    print(addClient.toJson());
 
     try {
       final response = await dioClientRepository.postData(
@@ -31,7 +30,6 @@ class AddClientSourceImpl implements AddClientSource {
       prefs.setString(StorageKeys.userId, data.id);
       return const Right(null);
     } on DioException catch (e) {
-      print(e.response!.data);
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {
       return const Left(UnexpectedFailure(code: 40));

@@ -1,17 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
+import 'package:chuck_interceptor/chuck.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tez_med_client/config/environment.dart';
 import 'package:tez_med_client/core/constant/storage_keys.dart';
 import 'package:tez_med_client/core/routes/app_routes.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/local_storage/local_storage_service.dart';
 import 'package:tez_med_client/data/notification/model/notification_message.dart';
 import 'package:tez_med_client/domain/notification/repositories/notification_repository.dart';
+import 'package:tez_med_client/injection.dart';
 
 enum NotificationPermissionStatus {
   granted,
@@ -239,7 +242,7 @@ class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   void _navigateToScreen(String screenName) async {
-    // final chuck = getIt<Chuck>();
+    final chuck = getIt<Chuck>();
 
     // final prefs = await SharedPreferences.getInstance();
     // if (screenName == 'new') {
@@ -255,7 +258,11 @@ class NotificationRepositoryImpl implements NotificationRepository {
     // } else if (EnvironmentConfig.instance.isDev) {
     //   chuck.showInspector();
     // } else {
-    AppRouter.instance.pushNamed('/$screenName');
+    if (EnvironmentConfig.instance.isDev) {
+      chuck.showInspector();
+    } else {
+      AppRouter.instance.pushNamed('/$screenName');
+    }
   }
 
   @override

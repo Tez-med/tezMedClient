@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
-        "helpSupport": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "helpSupport": MessageLookupByLibrary.simpleMessage("Contact"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "hour": MessageLookupByLibrary.simpleMessage("Hour"),
@@ -170,6 +170,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No completed orders"),
         "no_current_order":
             MessageLookupByLibrary.simpleMessage("No current orders"),
+        "no_doctor_types_found":
+            MessageLookupByLibrary.simpleMessage("No doctor types found"),
         "no_internet":
             MessageLookupByLibrary.simpleMessage("Internet connection is poor"),
         "no_notification":

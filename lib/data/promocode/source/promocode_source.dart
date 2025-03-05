@@ -27,7 +27,6 @@ class PromocodeSourceImpl implements PromocodeSource {
 
       return Right(data);
     } on DioException catch (e) {
-      print(e.response!.data);
       if (e.response!.data != null) {
         if (e.response!.data['error_message'] == 'count') {
           return Left(UnexpectedFailure(code: 50));

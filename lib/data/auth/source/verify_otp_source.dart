@@ -20,8 +20,6 @@ class VerifyOtpSourceImpl implements VerifyOtpSource {
   @override
   Future<Either<Failure, AuthResponse>> verifyCode(
       String code, String phoneNumber) async {
-    print(phoneNumber);
-    print(code);
     try {
       final parsedCode = int.tryParse(code);
 
@@ -32,7 +30,6 @@ class VerifyOtpSourceImpl implements VerifyOtpSource {
       final data = AuthResponse.fromJson(response.data);
       return Right(data);
     } on DioException catch (e) {
-      print(e.response!.data);
       if (e.response != null && e.response!.data != null) {
         final error = ErrorModel.fromJson(e.response!.data);
 

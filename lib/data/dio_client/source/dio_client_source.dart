@@ -1,3 +1,4 @@
+import 'package:chuck_interceptor/chuck.dart';
 import 'package:dio/dio.dart';
 import 'package:tez_med_client/config/environment.dart';
 import 'package:tez_med_client/core/constant/storage_keys.dart';
@@ -7,18 +8,22 @@ import 'package:tez_med_client/data/auth/models/auth_response.dart';
 import 'package:tez_med_client/data/local_storage/local_storage_service.dart';
 import 'dart:developer' as developer;
 
+import 'package:tez_med_client/injection.dart';
+
 class DioClient {
   final Dio _dio;
   bool _isRefreshing = false;
   final prefs = LocalStorageService();
+  final chuck = getIt<Chuck>();
 
   DioClient(this._dio) {
     _dio.options
       ..connectTimeout = const Duration(minutes: 5)
       ..receiveTimeout = const Duration(minutes: 5)
-      ..sendTimeout = const Duration(minutes: 5)
       ..baseUrl = EnvironmentConfig.instance.apiUrl;
-
+    if (EnvironmentConfig.instance.isDev) {
+      _dio.interceptors.add(chuck.getDioInterceptor());
+    }
     _dio.interceptors.add(
       InterceptorsWrapper(
         onError: (error, handler) async {
@@ -51,7 +56,7 @@ class DioClient {
             developer.log("Refresh token expired");
             return _handleLogout(handler, error);
           }
-
+            developer.log(error.response?.data.toString() ?? "No error data");
           return handler.next(error);
         },
       ),
@@ -74,7 +79,7 @@ class DioClient {
 
       return true;
     } on DioException catch (e) {
-      developer.log("Failed to refresh token: ${e.response!.data}");
+      developer.log("Failed to refresh token: ${e.response}");
       return false;
     }
   }
@@ -145,7 +150,7 @@ class DioClient {
       );
       return response;
     } on DioException catch (e) {
-      developer.log("Request error: ${e.response}");
+      developer.log("Request error: ${e}", name: "ERROR");
       rethrow;
     } catch (e) {
       rethrow;

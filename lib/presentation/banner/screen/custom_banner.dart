@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tez_med_client/presentation/banner/bloc/banner_bloc.dart';
@@ -20,7 +21,8 @@ class _CustomBannerState extends State<CustomBanner> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 1000, viewportFraction: 0.94);
+    _pageController = PageController(
+        initialPage: 1000, viewportFraction: 0.94, keepPage: true);
     _startAutoPlay();
   }
 
@@ -44,20 +46,31 @@ class _CustomBannerState extends State<CustomBanner> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final bannerHeight = screenHeight * 0.23;
-
-    return BlocBuilder<BannerBloc, BannerState>(
-      builder: (context, state) {
-        if (state is BannerLoading) {
-          return _buildShimmer(bannerHeight);
-        } else if (state is BannerLoaded) {
-          _banners =
-              state.data.banners.map((banner) => banner.photoSmUz).toList();
-          return _buildBannerView(_banners, bannerHeight);
-        }
-        return _buildShimmer(bannerHeight);
+    return BlocListener<LanguageBloc, LanguageState>(
+      listener: (context, state) {
+        setState(() {}); // Til o'zgarsa UI ni yangilash
       },
+      child: BlocBuilder<BannerBloc, BannerState>(
+        builder: (context, state) {
+          final lang = context.read<LanguageBloc>().state.locale.languageCode;
+          final screenHeight = MediaQuery.of(context).size.height;
+          final bannerHeight = screenHeight * 0.23;
+
+          if (state is BannerLoading) {
+            return _buildShimmer(bannerHeight);
+          } else if (state is BannerLoaded) {
+            _banners = state.data.banners
+                .map((banner) => lang == "uz"
+                    ? banner.photoSmUz
+                    : lang == 'en'
+                        ? banner.photoSmEn
+                        : banner.photoSmRu)
+                .toList();
+            return _buildBannerView(_banners, bannerHeight);
+          }
+          return _buildShimmer(bannerHeight);
+        },
+      ),
     );
   }
 
@@ -101,7 +114,7 @@ class _CustomBannerState extends State<CustomBanner> {
             child: CustomCachedImage(
               image: banner,
               borderRadius: BorderRadius.circular(20),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           );
         },

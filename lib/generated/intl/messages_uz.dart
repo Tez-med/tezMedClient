@@ -131,8 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Galereya"),
         "gender": MessageLookupByLibrary.simpleMessage("Jinsi"),
         "general": MessageLookupByLibrary.simpleMessage("Umumiy"),
-        "helpSupport":
-            MessageLookupByLibrary.simpleMessage("Biz bilan bog\'lanish"),
+        "helpSupport": MessageLookupByLibrary.simpleMessage("Bog\'lanish"),
         "history": MessageLookupByLibrary.simpleMessage("Tarix"),
         "home": MessageLookupByLibrary.simpleMessage("Asosiy"),
         "hour": MessageLookupByLibrary.simpleMessage("Soat"),
@@ -175,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tugatilgan buyurtmalar yo\'q"),
         "no_current_order":
             MessageLookupByLibrary.simpleMessage("Hozircha buyurtmalar yo\'q"),
+        "no_doctor_types_found":
+            MessageLookupByLibrary.simpleMessage("Shifokor turlari topilmadi"),
         "no_internet":
             MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
         "no_notification": MessageLookupByLibrary.simpleMessage(

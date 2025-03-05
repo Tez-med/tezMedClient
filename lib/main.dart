@@ -26,7 +26,6 @@ Future<void> main(List<String> args) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   await initHive();
   await setUp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);

@@ -133,7 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Галерея"),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
         "general": MessageLookupByLibrary.simpleMessage("Общий"),
-        "helpSupport": MessageLookupByLibrary.simpleMessage("Cвязаться с нами"),
+        "helpSupport": MessageLookupByLibrary.simpleMessage("Контакт"),
         "history": MessageLookupByLibrary.simpleMessage("История"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "hour": MessageLookupByLibrary.simpleMessage("Час"),
@@ -175,6 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Нет завершенных заказов"),
         "no_current_order":
             MessageLookupByLibrary.simpleMessage("Нет текущих заказов"),
+        "no_doctor_types_found":
+            MessageLookupByLibrary.simpleMessage("Виды врачей не найдены"),
         "no_internet": MessageLookupByLibrary.simpleMessage(
             "Интернет-соединение нестабильно"),
         "no_notification":

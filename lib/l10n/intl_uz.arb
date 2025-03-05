@@ -179,7 +179,7 @@
   "invalid_promo_code":"Yaroqsiz promokod.",
   "promocode" : "Promo-code",
   "rate_us" : "Baholash",
-  "helpSupport": "Biz bilan bog'lanish",
+  "helpSupport": "Bog'lanish",
   "contactPlatforms": "Biz bilan ushbu platformalardan birida bog'laning",
   "youtube": "YouTube",
   "videoGuides": "Video qo'llanmalar va darsliklar",
@@ -203,5 +203,6 @@
   "rating" : "Reyting",
   "choose_date_time" : "Sanani va vaqtni tanlang",
   "nurse" : "Hamshira",
-  "doctor" : "Shifokor"
+  "doctor" : "Shifokor",
+  "no_doctor_types_found": "Shifokor turlari topilmadi"
 }

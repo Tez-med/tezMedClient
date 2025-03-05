@@ -8,7 +8,6 @@ import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/core/widgets/raiting_stars.dart';
 import 'package:tez_med_client/data/requests_get/model/active_request_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-import '../../../core/constant/parse_date_time.dart';
 import '../../../core/utils/app_textstyle.dart';
 
 class RequestCard extends StatelessWidget {
@@ -22,7 +21,7 @@ class RequestCard extends StatelessWidget {
 
   String _formatDate(String dateString) {
     try {
-      DateTime date = parseToDateTime(dateString);
+      DateTime date = DateFormat("yyyy/MM/dd").parse(dateString);
       return _dateFormatter.format(date);
     } catch (e) {
       return "Invalid date";
@@ -31,7 +30,7 @@ class RequestCard extends StatelessWidget {
 
   String _formatTime(String dateString) {
     try {
-      DateTime date = parseToDateTime(dateString);
+      DateTime date = DateFormat("yyyy/MM/dd HH:mm").parse(dateString);
       return _timeFormatter.format(date);
     } catch (e) {
       return "Invalid time";
@@ -172,17 +171,13 @@ class RequestCard extends StatelessWidget {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  _buildInfoItem(
-                      S.of(context).day,
-                      _formatDate(data
-                          .requestAffairs.first.hour)), 
+                  _buildInfoItem(S.of(context).day,
+                      _formatDate(data.requestAffairs.first.hour)),
                   const SizedBox(width: 10),
                   _buildDivider(),
                   const SizedBox(width: 10),
-                  _buildInfoItem(
-                      S.of(context).time,
-                      _formatTime(data
-                          .requestAffairs.first.hour)), 
+                  _buildInfoItem(S.of(context).time,
+                      _formatTime(data.requestAffairs.first.hour)),
                   const SizedBox(width: 10),
                   _buildDivider(),
                   const SizedBox(width: 10),

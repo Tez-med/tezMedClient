@@ -58,7 +58,7 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
                     color: Color(0xff1D2D50),
-                    height: 29.05 / 24,
+                    height: 29.05 / 24, //
                   ),
                 ),
               ),

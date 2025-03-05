@@ -1,6 +1,8 @@
+import 'package:chuck_interceptor/chuck.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tez_med_client/core/routes/app_routes.dart';
 import 'package:tez_med_client/data/banner/source/get_banner_source.dart';
 import 'package:tez_med_client/data/comments/repositories/comment_repositories_impl.dart';
 import 'package:tez_med_client/data/comments/source/comment_source.dart';
@@ -85,6 +87,10 @@ import 'domain/upload_file/repository/upload_file_repository.dart';
 final GetIt getIt = GetIt.instance;
 
 Future<void> setUp() async {
+  getIt.registerLazySingleton<Chuck>(() => Chuck(
+        showNotification: true,
+        navigatorKey: AppRouter.instance.navigatorKey,
+      ));
   // SharedPreferences ro'yxatga olish
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(sharedPreferences);

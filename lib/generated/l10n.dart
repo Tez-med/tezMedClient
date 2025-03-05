@@ -1830,10 +1830,10 @@ class S {
     );
   }
 
-  /// `Contact us`
+  /// `Contact`
   String get helpSupport {
     return Intl.message(
-      'Contact us',
+      'Contact',
       name: 'helpSupport',
       desc: '',
       args: [],
@@ -2075,6 +2075,16 @@ class S {
     return Intl.message(
       'Doctor',
       name: 'doctor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No doctor types found`
+  String get no_doctor_types_found {
+    return Intl.message(
+      'No doctor types found',
+      name: 'no_doctor_types_found',
       desc: '',
       args: [],
     );

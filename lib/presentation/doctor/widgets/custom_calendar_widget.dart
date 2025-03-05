@@ -144,13 +144,12 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
                           width: double.infinity,
                           color: AppColor.buttonBackColor,
                         ),
-                        Container(
-                          height: 2,
-                          width: 50,
-                          color: isSelected
-                              ? Colors.indigo[900]
-                              : Colors.transparent,
-                        ),
+                        if (isSelected)
+                          Container(
+                            height: 2,
+                            width: double.infinity,
+                            color: AppColor.primaryColor,
+                          ),
                       ],
                     ),
                   ],

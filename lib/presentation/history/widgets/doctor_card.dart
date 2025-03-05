@@ -5,7 +5,6 @@ import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/core/widgets/raiting_stars.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-import '../../../core/constant/parse_date_time.dart';
 import '../../../data/schedule/model/schedule_model.dart';
 
 class DoctorCardWidget extends StatelessWidget {
@@ -18,7 +17,7 @@ class DoctorCardWidget extends StatelessWidget {
 
   String _formatDate(String dateString) {
     try {
-      DateTime date = parseToDateTime(dateString);
+      DateTime date = DateFormat("yyyy/MM/dd").parse(dateString);
       return _dateFormatter.format(date);
     } catch (e) {
       return "Invalid date";

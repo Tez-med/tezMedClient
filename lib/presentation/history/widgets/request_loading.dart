@@ -14,7 +14,7 @@ class RequestLoadingWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
-        itemCount: 3, // Show 3 skeleton items while loading
+        itemCount: 3,
         itemBuilder: (context, index) {
           return Skeletonizer(
             enabled: true,
@@ -32,7 +32,7 @@ class RequestLoadingWidget extends StatelessWidget {
                   nursePhoto: "",
                   longitude: "0.0",
                   latitude: "0.0",
-                  startTime: "2004/01/12 12:55",
+                  startTime: "2025/02/26",
                   address: "Loading address...",
                   house: "1",
                   floor: "1",
@@ -41,11 +41,11 @@ class RequestLoadingWidget extends StatelessWidget {
                   photos: ["loading_photo"],
                   requestAffairs: [
                     RequestAffairGet(
-                        startDate: "2025-01-11 12:57",
+                        startDate: "2025/02/26",
                         affairId: "",
-                        hour: "2025-01-11 12:57",
+                        hour: "2025/02/26",
                         count: 0,
-                        createdAt: "2025-01-11 12:57",
+                        createdAt: "2025/02/26",
                         nameUz: "",
                         nameEn: "",
                         nameRu: "",

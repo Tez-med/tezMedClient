@@ -108,7 +108,6 @@ class _SplashScreenState extends State<SplashScreen>
                         // fit: BoxFit.cover,
                       ),
                     ),
-                    const SizedBox(height: 20),
                     // RichText(
                     //   text: TextSpan(
                     //     children: [

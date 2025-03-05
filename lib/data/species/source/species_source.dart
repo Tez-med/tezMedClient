@@ -20,7 +20,7 @@ class SpeciesSourceImpl implements SpeciesSource {
   @override
   Future<Either<Failure, SpeciesModel>> getSpecies() async {
     try {
-      final response = await dioClientRepository.getData("/species");
+      final response = await dioClientRepository.getData("/species/");
       final data = SpeciesModel.fromJson(response.data);
 
       return Right(data);
@@ -43,6 +43,7 @@ class SpeciesSourceImpl implements SpeciesSource {
     } on DioException catch (e) {
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {
+
       return const Left(UnexpectedFailure(code: 40));
     }
   }

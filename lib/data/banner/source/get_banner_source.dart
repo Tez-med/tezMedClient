@@ -26,7 +26,6 @@ class GetBannerSourceImpl implements GetBannerSource {
 
       return Right(data);
     } on DioException catch (e) {
-      print(e);
 
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {

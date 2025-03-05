@@ -179,7 +179,7 @@
   "invalid_promo_code": "Invalid promo code.",
   "promocode": "Promo-code",
   "rate_us" : "Rate Us",
-  "helpSupport": "Contact us",
+  "helpSupport": "Contact",
   "contactPlatforms": "Contact us through any of these platforms for assistance",
   "youtube": "YouTube",
   "videoGuides": "Video guides & tutorials",
@@ -203,5 +203,6 @@
   "rating": "Rating",
   "choose_date_time": "Choose date and time",
   "nurse": "Nurse",
-  "doctor": "Doctor"
+  "doctor": "Doctor",
+  "no_doctor_types_found": "No doctor types found"
 }

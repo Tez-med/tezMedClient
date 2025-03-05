@@ -6,7 +6,7 @@ DoctorModel doctorModelFromJson(String str) =>
 String doctorModelToJson(DoctorModel data) => json.encode(data.toJson());
 
 class DoctorModel {
-  final int count;
+  final num count;
   final List<Doctor> doctors;
 
   DoctorModel({
@@ -16,8 +16,9 @@ class DoctorModel {
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
         count: json["count"],
-        doctors:
-            List<Doctor>.from(json["Doctors"].map((x) => Doctor.fromJson(x))),
+        doctors: json["Doctors"] != null
+            ? List<Doctor>.from(json["Doctors"].map((x) => Doctor.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {
@@ -41,12 +42,12 @@ class Doctor {
   final List<String> medicalSheet;
   final List<String> selfEmployed;
   final String status;
-  final int rating;
+  final num rating;
   final String phoneNumber;
   final String photo;
-  final int experience;
-  final double consultationTime;
-  final int consultationPrice;
+  final num experience;
+  final num consultationTime;
+  final num consultationPrice;
   final String createdAt;
 
   Doctor({
@@ -102,7 +103,7 @@ class Doctor {
         phoneNumber: json["phone_number"],
         photo: json["photo"],
         experience: json["experience"],
-        consultationTime: json["consultation_time"]?.toDouble(),
+        consultationTime: json["consultation_time"],
         consultationPrice: json["consultation_price"],
         createdAt: json["created_at"],
       );

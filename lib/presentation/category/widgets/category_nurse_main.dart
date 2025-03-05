@@ -142,14 +142,13 @@ class _CategoryNurseMainState extends State<CategoryNurseMain> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: SizedBox(),
-          flexibleSpace: _buildTabBar(
-              widget.category
-                  .map((e) => lang == "uz"
-                      ? e.nameUz
-                      : lang == 'en'
-                          ? e.nameEn
-                          : e.nameRu)
-                  .toList()),
+          flexibleSpace: _buildTabBar(widget.category
+              .map((e) => lang == "uz"
+                  ? e.nameUz
+                  : lang == 'en'
+                      ? e.nameEn
+                      : e.nameRu)
+              .toList()),
         ),
         body: TabBarView(
           children: List.generate(
@@ -174,7 +173,7 @@ class _CategoryNurseMainState extends State<CategoryNurseMain> {
       child: Container(
         height: 45,
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: AppColor.buttonBackColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: TabBar(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:tez_med_client/core/constant/parse_date_time.dart';
 import 'package:tez_med_client/core/constant/status.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
@@ -52,7 +51,8 @@ class StatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime parsedDate = parseToDateTime(requestss.requestAffairs.first.hour);
+    DateTime parsedDate = DateFormat("yyyy/MM/dd HH:mm")
+        .parse(requestss.requestAffairs.first.hour);
     String formattedDate = DateFormat('dd.MM.yyyy | HH:mm').format(parsedDate);
 
     return Card(

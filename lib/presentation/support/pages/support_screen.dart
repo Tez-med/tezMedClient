@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
@@ -5,75 +6,36 @@ import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SupportBottomSheet extends StatelessWidget {
-  const SupportBottomSheet({super.key});
+@RoutePage()
+class SupportScreen extends StatelessWidget {
+  const SupportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      initialChildSize: .8,
-      minChildSize: .8,
-      maxChildSize: .8,
-      builder: (context, scrollController) => Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+    return Scaffold(
+      backgroundColor: AppColor.buttonBackColor,
+      appBar: AppBar(
+        surfaceTintColor: Colors.white,
+        backgroundColor: Colors.white,
+        title: Text(
+          S.of(context).helpSupport,
+          style: AppTextstyle.nunitoBold.copyWith(fontSize: 22),
         ),
-        child: SingleChildScrollView(
-          controller: scrollController,
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 8),
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
-              ),
-              // Header
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: AppColor.primaryColor.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(
-                        Icons.call,
-                        color: AppColor.primaryColor,
-                        size: 25,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Text(
-                        S.of(context).helpSupport,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 8),
-              // Description
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  S.of(context).contactPlatforms,
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 14,
-                  ),
+              Text(
+                S.of(context).contactPlatforms,
+                style: AppTextstyle.nunitoBold.copyWith(
+                  color: Colors.black,
+                  fontSize: 17,
                 ),
               ),
               const SizedBox(height: 16),
@@ -143,7 +105,7 @@ class SupportBottomSheet extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
         child: Card(
           elevation: 0,
           color: Colors.transparent,
@@ -217,7 +179,7 @@ class SupportBottomSheet extends StatelessWidget {
 
   Future<void> _launchUrl(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalNonBrowserApplication);
     }
   }
 }

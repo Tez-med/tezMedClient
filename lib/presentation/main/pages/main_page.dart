@@ -25,6 +25,7 @@ class MainPage extends HookWidget {
       routes: const [
         HomeRoute(),
         HistoryRoute(),
+        SupportRoute(),
         ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
@@ -78,16 +79,24 @@ class MainPage extends HookWidget {
                       _buildBottomNavItem(
                         context,
                         index: 2,
+                        svgAsset: Assets.icons.call,
+                        label: S.of(context).helpSupport,
+                        isSelected: tabsRouter.activeIndex == 2,
+                        iconSize: iconSize,
+                      ),
+                      _buildBottomNavItem(
+                        context,
+                        index: 3,
                         svgAsset: Assets.icons.profile,
                         label: S.of(context).profile,
-                        isSelected: tabsRouter.activeIndex == 2,
+                        isSelected: tabsRouter.activeIndex == 3,
                         iconSize: iconSize,
                       ),
                     ],
                     onTap: (index) => _handleTabSelection(tabsRouter, index),
                   )
                 : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _NavItem(
                         count: false,
@@ -110,11 +119,20 @@ class MainPage extends HookWidget {
                       _NavItem(
                         count: false,
                         index: 2,
-                        svgAsset: Assets.icons.profile,
-                        label: S.of(context).profile,
+                        svgAsset: Assets.icons.call,
+                        label: S.of(context).helpSupport,
                         isSelected: tabsRouter.activeIndex == 2,
                         iconSize: iconSize,
                         onTap: () => _handleTabSelection(tabsRouter, 2),
+                      ),
+                      _NavItem(
+                        count: false,
+                        index: 3,
+                        svgAsset: Assets.icons.profile,
+                        label: S.of(context).profile,
+                        isSelected: tabsRouter.activeIndex == 3,
+                        iconSize: iconSize,
+                        onTap: () => _handleTabSelection(tabsRouter, 3),
                       ),
                     ],
                   ),
@@ -212,11 +230,10 @@ class _NavItem extends StatelessWidget {
     final color = isSelected ? AppColor.primaryColor : Colors.black;
     final fontSize = MediaQuery.of(context).size.width * 0.035;
 
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width / 3,
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.translucent,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

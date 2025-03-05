@@ -57,7 +57,6 @@ class DoctorSourceImpl implements DoctorSource {
   Future<Either<Failure, void>> doctorRequest(
       DoctorRequestModel request, String id) async {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
-    print(request.toJson());
     try {
       await dioClientRepository.updateData(
         "/schedule/$id",

@@ -1,14 +1,19 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:chuck_interceptor/chuck.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/config/environment.dart';
 import 'package:tez_med_client/core/constant/storage_keys.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/local_storage/local_storage_service.dart';
+import 'package:tez_med_client/injection.dart';
 
 class EnvironmentDialog extends StatelessWidget {
   EnvironmentDialog({super.key});
   final TextEditingController _pin = TextEditingController();
+  final chuck = getIt<Chuck>();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -51,7 +56,7 @@ class EnvironmentDialog extends StatelessWidget {
               letterSpacing: 1,
             ),
           ),
-          onSubmitted: (pin) => _verifyPin(context, pin),
+          onSubmitted: (pin) => _verifyPin(context, pin,chuck),
         ),
       ),
       actionsAlignment: MainAxisAlignment.spaceEvenly,
@@ -81,7 +86,7 @@ class EnvironmentDialog extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
                 ),
-                onPressed: () => _verifyPin(context, _pin.text),
+                onPressed: () => _verifyPin(context, _pin.text,chuck),
                 child: const Text('Tasdiqlash'),
               ),
             ),
@@ -91,17 +96,17 @@ class EnvironmentDialog extends StatelessWidget {
     );
   }
 
-  void _verifyPin(BuildContext context, String pin) {
+  void _verifyPin(BuildContext context, String pin, Chuck chuck) {
     final now = DateTime.now();
     final currentPin =
         '${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}';
     if (pin == currentPin) {
       Navigator.pop(context);
-      _showEnvironmentSelector(context);
+      _showEnvironmentSelector(context, chuck);
     }
   }
 
-  void _showEnvironmentSelector(BuildContext context) {
+  void _showEnvironmentSelector(BuildContext context, Chuck chuck) {
     final isDev = EnvironmentConfig.instance.isDev;
 
     showDialog(
@@ -137,6 +142,7 @@ class EnvironmentDialog extends StatelessWidget {
             ),
             onPressed: () {
               if (!isDev) {
+                getIt<Dio>().interceptors.add(chuck.getDioInterceptor());
                 EnvironmentConfig.switchEnvironment(Environment.dev);
                 LocalStorageService().removeKey(StorageKeys.userId);
                 LocalStorageService().removeKey(StorageKeys.isRegister);
@@ -156,6 +162,7 @@ class EnvironmentDialog extends StatelessWidget {
             ),
             onPressed: () {
               if (isDev) {
+                getIt<Dio>().interceptors.clear();
                 EnvironmentConfig.switchEnvironment(Environment.prod);
                 LocalStorageService().removeKey(StorageKeys.userId);
                 LocalStorageService().removeKey(StorageKeys.isRegister);
