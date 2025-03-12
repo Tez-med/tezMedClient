@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/data/doctor/model/doctor_model.dart';
@@ -101,31 +101,20 @@ class DoctorCard extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  showCupertinoModalPopup(
+                  showBarModalBottomSheet(
+                    enableDrag: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(25),
+                      ),
+                    ),
+                    barrierColor: Colors.black54,
                     context: context,
-                    barrierColor: Colors.black87,
-                    builder: (context) => Container(
-                      decoration: BoxDecoration(
-                        color: CupertinoColors.systemBackground
-                            .resolveFrom(context),
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(25)),
-                      ),
-                      child: DraggableScrollableSheet(
-                        initialChildSize: 0.9,
-                        minChildSize: 0.6,
-                        maxChildSize: 1,
-                        expand: false,
-                        builder: (context, scrollController) {
-                          return DoctorDetailSheet(
-                            price: doc.consultationPrice.toString(),
-                            online: online,
-                            type: typeDoctor,
-                            id: doc.id,
-                            controller: scrollController,
-                          );
-                        },
-                      ),
+                    builder: (context) => DoctorDetailSheet(
+                      price: doc.consultationPrice.toString(),
+                      online: online,
+                      type: typeDoctor,
+                      id: doc.id,
                     ),
                   );
                 },

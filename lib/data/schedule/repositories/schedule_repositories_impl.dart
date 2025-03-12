@@ -12,4 +12,9 @@ class ScheduleRepositoriesImpl implements ScheduleRepositories {
   Future<Either<Failure, ScheduleModel>> getSchedule(String id) async {
     return await scheduleSource.getSchedule(id);
   }
+
+  @override
+  Future<Either<Failure, Schedule>> getById(String id) async {
+    return await scheduleSource.getById(id);
+  }
 }

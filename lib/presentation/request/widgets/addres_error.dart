@@ -37,7 +37,7 @@ class AddressError2 extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               S.of(context).region_error_desc,
-              style: AppTextstyle.nunitoRegular.copyWith(
+              style: AppTextstyle.nunitoMedium.copyWith(
                 fontSize: 16,
                 color: Colors.grey[600],
               ),
@@ -53,7 +53,7 @@ class AddressError2 extends StatelessWidget {
               ),
               child: Text(
                 S.of(context).retry,
-                style: AppTextstyle.nunitoSemiBold,
+                style: AppTextstyle.nunitoMedium,
               ),
             ),
           ],
@@ -96,7 +96,7 @@ class AddreesError extends StatelessWidget {
             Text(
               S.of(context).address_not_found_desc,
               textAlign: TextAlign.center,
-              style: AppTextstyle.nunitoRegular.copyWith(
+              style: AppTextstyle.nunitoMedium.copyWith(
                 fontSize: 16,
                 color: Colors.grey[600],
               ),

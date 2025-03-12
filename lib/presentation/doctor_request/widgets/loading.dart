@@ -83,7 +83,7 @@ class ClientDataSkeleton extends StatelessWidget {
             // Full Name Field
             Text(
               S.of(context).fio,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 5),
             TextFormField(
@@ -101,7 +101,7 @@ class ClientDataSkeleton extends StatelessWidget {
             // Phone Number Field
             Text(
               S.of(context).phone_number,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 5),
             TextFormField(
@@ -119,7 +119,7 @@ class ClientDataSkeleton extends StatelessWidget {
             // Birth Date Field
             Text(
               S.of(context).birthday,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 5),
             TextFormField(
@@ -137,7 +137,7 @@ class ClientDataSkeleton extends StatelessWidget {
             // Gender Selection
             Text(
               S.of(context).gender,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 10),
             SizedBox(
@@ -185,7 +185,7 @@ class ClientDataSkeleton extends StatelessWidget {
           children: [
             Text(
               "Rasm",
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 10),
             Container(
@@ -215,7 +215,7 @@ class ClientDataSkeleton extends StatelessWidget {
           children: [
             Text(
               S.current.payment_type,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 10),
             Container(

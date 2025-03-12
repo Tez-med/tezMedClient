@@ -34,6 +34,7 @@ import 'package:tez_med_client/presentation/history/bloc/active_doctor_bloc/acti
 import 'package:tez_med_client/presentation/history/bloc/active_request_bloc/active_request_bloc.dart';
 import 'package:tez_med_client/presentation/history/bloc/finished_request_bloc/finished_bloc.dart';
 import 'package:tez_med_client/presentation/history/bloc/get_by_id_request/get_by_id_request_bloc.dart';
+import 'package:tez_med_client/presentation/history/bloc/schedule_id/schedule_get_id_bloc.dart';
 import 'package:tez_med_client/presentation/home/bloc/category_bloc/category_bloc.dart';
 import 'package:tez_med_client/presentation/home/bloc/species_bloc/species_bloc.dart';
 import 'package:tez_med_client/presentation/notification/bloc/notification_bloc.dart';
@@ -134,6 +135,9 @@ class AppBlocProviders {
         BlocProvider(
           create: (context) => ActiveDoctorRequestBloc(getIt<ScheduleUsecase>())
             ..add(GetSchedule()),
+        ),
+        BlocProvider(
+          create: (context) => ScheduleGetIdBloc(getIt<ScheduleUsecase>()),
         )
       ];
 }

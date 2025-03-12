@@ -43,8 +43,9 @@ class RequestCard extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTextstyle.nunitoRegular.copyWith(
+          style: AppTextstyle.nunitoMedium.copyWith(
             fontSize: 15,
+            fontWeight: FontWeight.w500,
             color: AppColor.greyTextColor,
           ),
         ),
@@ -70,7 +71,7 @@ class RequestCard extends StatelessWidget {
   Widget _buildNurseInfo() {
     return Expanded(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             backgroundColor: Colors.white,
@@ -123,9 +124,9 @@ class RequestCard extends StatelessWidget {
       ),
       child: Text(
         StatusHelper.getName(data.status, context),
-        style: AppTextstyle.nunitoRegular.copyWith(
+        style: AppTextstyle.nunitoMedium.copyWith(
           color: statusColor,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -153,6 +154,7 @@ class RequestCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (data.nurseName.isEmpty)

@@ -22,7 +22,7 @@ class ServicePriceSource {
 
       final nurseType = data.types.firstWhere(
         (t) => t.type == "nurse",
-        orElse: () => Type(
+        orElse: () => Types(
           id: '',
           nameUz: '',
           nameEn: '',

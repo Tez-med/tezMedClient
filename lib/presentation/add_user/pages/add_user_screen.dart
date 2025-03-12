@@ -284,7 +284,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
             children: [
               Text(
                 S.of(context).additional_phone_number,
-                style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
               ),
               const SizedBox(height: 10),
               PhoneInputField(

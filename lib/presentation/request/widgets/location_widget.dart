@@ -246,9 +246,9 @@ class _LocationWidgetState extends State<LocationWidget> {
               controller: widget.accessCodeController,
               decoration: InputDecoration(
                 hintText: S.of(context).access_code,
-                hintStyle: AppTextstyle.nunitoRegular,
+                hintStyle: AppTextstyle.nunitoMedium,
                 errorStyle:
-                    AppTextstyle.nunitoRegular.copyWith(color: Colors.red),
+                    AppTextstyle.nunitoMedium.copyWith(color: Colors.red),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: const BorderSide(
@@ -284,14 +284,14 @@ class _LocationWidgetState extends State<LocationWidget> {
             children: [
               Text(
                 S.of(context).destination_additional_information,
-                style: AppTextstyle.nunitoSemiBold.copyWith(fontSize: 15),
+                style: AppTextstyle.nunitoMedium.copyWith(fontSize: 15),
               ),
               const SizedBox(height: 8),
               TextFormField(
                 controller: widget.landmarkController,
                 decoration: InputDecoration(
                   hintText: S.of(context).example,
-                  hintStyle: AppTextstyle.nunitoRegular,
+                  hintStyle: AppTextstyle.nunitoMedium,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: const BorderSide(
@@ -384,7 +384,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                             data.name.isNotEmpty
                                 ? data.name
                                 : 'Nomi kiritilmagan',
-                            style: AppTextstyle.nunitoSemiBold.copyWith(
+                            style: AppTextstyle.nunitoMedium.copyWith(
                               fontSize: 16,
                               color: Colors.black87,
                             ),
@@ -526,7 +526,7 @@ class _LocationWidgetState extends State<LocationWidget> {
         children: [
           Text(
             title,
-            style: AppTextstyle.nunitoSemiBold.copyWith(fontSize: 15),
+            style: AppTextstyle.nunitoMedium.copyWith(fontSize: 15),
           ),
           const SizedBox(height: 8),
           TextFormField(
@@ -541,9 +541,8 @@ class _LocationWidgetState extends State<LocationWidget> {
             },
             decoration: InputDecoration(
               hintText: '№',
-              hintStyle: AppTextstyle.nunitoRegular,
-              errorStyle:
-                  AppTextstyle.nunitoRegular.copyWith(color: Colors.red),
+              hintStyle: AppTextstyle.nunitoMedium,
+              errorStyle: AppTextstyle.nunitoMedium.copyWith(color: Colors.red),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: BorderSide(

@@ -36,7 +36,7 @@ class CategoryEmpty extends StatelessWidget {
             Text(
               'Hozircha ushbu kategoriyada\nma\'lumotlar mavjud emas',
               textAlign: TextAlign.center,
-              style: AppTextstyle.nunitoRegular.copyWith(
+              style: AppTextstyle.nunitoMedium.copyWith(
                 fontSize: 20,
                 color: Colors.grey.shade700,
                 fontWeight: FontWeight.w500,
@@ -46,7 +46,7 @@ class CategoryEmpty extends StatelessWidget {
             Text(
               'Boshqa kategoriyalarni tekshirib ko\'ring',
               textAlign: TextAlign.center,
-              style: AppTextstyle.nunitoRegular.copyWith(
+              style: AppTextstyle.nunitoMedium.copyWith(
                 fontSize: 16,
                 color: Colors.grey.shade500,
               ),

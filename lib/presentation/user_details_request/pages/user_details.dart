@@ -132,7 +132,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   children: [
                                     Text(
                                       S.of(context).phone_number,
-                                      style: AppTextstyle.nunitoExtraBold
+                                      style: AppTextstyle.nunitoBold
                                           .copyWith(fontSize: 17),
                                     ),
                                     const SizedBox(height: 5),
@@ -148,7 +148,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   children: [
                                     Text(
                                       S.of(context).additional_number,
-                                      style: AppTextstyle.nunitoExtraBold
+                                      style: AppTextstyle.nunitoBold
                                           .copyWith(fontSize: 17),
                                     ),
                                     const SizedBox(height: 5),
@@ -258,7 +258,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Text(
                         S.of(context).phone_number,
                         style:
-                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -272,7 +272,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Text(
                         S.of(context).birthday,
                         style:
-                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -286,7 +286,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Text(
                         S.of(context).birthday,
                         style:
-                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -300,7 +300,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Text(
                         S.of(context).birthday,
                         style:
-                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -314,7 +314,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Text(
                         S.of(context).birthday,
                         style:
-                            AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(

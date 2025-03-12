@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/data/category/model/category_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-
-import '../../../core/bloc/language/language_bloc.dart';
 
 class SelectServiceScreen extends StatefulWidget {
   final List<Service> service;
@@ -47,7 +45,6 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final lang = context.read<LanguageBloc>().state.locale.languageCode;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       child: Card(
@@ -73,11 +70,8 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 1),
               title: Text(
-                lang == 'uz'
-                    ? data.nameUz
-                    : lang == 'en'
-                        ? data.nameEn
-                        : data.nameRu,
+                context.toLocalized(
+                    uz: data.nameUz, ru: data.nameRu, en: data.nameEn),
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 17,
@@ -171,7 +165,7 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
       ),
       child: Text(
         S.of(context).add,
-        style: AppTextstyle.nunitoRegular.copyWith(color: Colors.black),
+        style: AppTextstyle.nunitoMedium.copyWith(color: Colors.black),
       ),
     );
   }

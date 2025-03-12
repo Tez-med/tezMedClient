@@ -10,6 +10,7 @@ import '../../../core/error/error_handler.dart';
 
 abstract class ScheduleSource {
   Future<Either<Failure, ScheduleModel>> getSchedule(String id);
+  Future<Either<Failure, Schedule>> getById(String id);
 }
 
 class ScheduleSourceImpl implements ScheduleSource {
@@ -30,6 +31,22 @@ class ScheduleSourceImpl implements ScheduleSource {
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {
       return const Left(UnexpectedFailure(code: 40));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Schedule>> getById(String id) async {
+    final idClient = LocalStorageService().getString(StorageKeys.userId);
+    final token = LocalStorageService().getString(StorageKeys.accestoken);
+    try {
+      final response = await dioClientRepository.getData(
+          '/schedule/$id?client_id=$idClient&generate_link=true',
+          token: token);
+      return Right(Schedule.fromJson(response.data));
+    } on DioException catch (e) {
+      return Left(ErrorHandler.handleDioError(e));
+    } catch (e) {
+      return const Left(ServerFailure());
     }
   }
 }

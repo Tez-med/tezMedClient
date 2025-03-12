@@ -338,7 +338,7 @@ class _ClientDatasState extends State<ClientData> {
                                     children: [
                                       Text(
                                         S.of(context).phone_number,
-                                        style: AppTextstyle.nunitoExtraBold
+                                        style: AppTextstyle.nunitoBold
                                             .copyWith(fontSize: 17),
                                       ),
                                       const SizedBox(height: 5),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
@@ -26,7 +25,6 @@ class _CategoryDoctorState extends State<CategoryDoctor>
 
   @override
   Widget build(BuildContext context) {
-    final lang = context.read<LanguageBloc>().state.locale.languageCode;
     return BlocBuilder<NurseTypeBloc, NurseTypeState>(
       builder: (context, state) {
         if (state is NurseTypeLoading) {
@@ -59,7 +57,7 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                   SizedBox(height: 16),
                   Text(
                     S.of(context).no_doctor_types_found,
-                    style: AppTextstyle.nunitoRegular.copyWith(fontSize: 18),
+                    style: AppTextstyle.nunitoMedium.copyWith(fontSize: 18),
                   ),
                 ],
               ),
@@ -115,7 +113,7 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                             vertical: 4, horizontal: 0),
                         labelColor: Colors.black,
                         unselectedLabelColor: AppColor.greyTextColor,
-                        unselectedLabelStyle: AppTextstyle.nunitoRegular,
+                        unselectedLabelStyle: AppTextstyle.nunitoMedium,
                         labelStyle:
                             AppTextstyle.nunitoBold.copyWith(fontSize: 14),
                         tabs: doctorTypes
@@ -126,11 +124,10 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                                     child: FittedBox(
                                       fit: BoxFit.scaleDown,
                                       child: Text(
-                                        lang == 'uz'
-                                            ? type.nameUz
-                                            : lang == "en"
-                                                ? type.nameEn
-                                                : type.nameRu,
+                                        context.toLocalized(
+                                            uz: type.nameUz,
+                                            ru: type.nameRu,
+                                            en: type.nameEn),
                                         style: AppTextstyle.nunitoBold
                                             .copyWith(fontSize: 15),
                                       ),
@@ -162,7 +159,7 @@ class _CategoryDoctorState extends State<CategoryDoctor>
                             SizedBox(height: 16),
                             Text(
                               S.of(context).no_doctor_types_found,
-                              style: AppTextstyle.nunitoRegular
+                              style: AppTextstyle.nunitoMedium
                                   .copyWith(fontSize: 18),
                             ),
                           ],

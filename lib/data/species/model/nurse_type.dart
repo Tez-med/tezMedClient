@@ -6,7 +6,7 @@ String nurseTypeToJson(NurseType data) => json.encode(data.toJson());
 
 class NurseType {
     final int count;
-    final List<Type> types;
+    final List<Types> types;
 
     NurseType({
         required this.count,
@@ -15,7 +15,7 @@ class NurseType {
 
     factory NurseType.fromJson(Map<String, dynamic> json) => NurseType(
         count: json["count"],
-        types: List<Type>.from(json["types"].map((x) => Type.fromJson(x))),
+        types: List<Types>.from(json["types"].map((x) => Types.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -24,7 +24,7 @@ class NurseType {
     };
 }
 
-class Type {
+class Types {
     final String id;
     final String nameUz;
     final String nameEn;
@@ -34,7 +34,7 @@ class Type {
     final String createdAt;
     final String updatedAt;
 
-    Type({
+    Types({
         required this.id,
         required this.nameUz,
         required this.nameEn,
@@ -45,7 +45,7 @@ class Type {
         required this.updatedAt,
     });
 
-    factory Type.fromJson(Map<String, dynamic> json) => Type(
+    factory Types.fromJson(Map<String, dynamic> json) => Types(
         id: json["id"] ?? "",
         nameUz: json["name_uz"] ?? "",
         nameEn: json["name_en"] ?? "",

@@ -5,6 +5,7 @@ import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/core/widgets/raiting_stars.dart';
 import 'package:tez_med_client/generated/l10n.dart';
+import 'package:tez_med_client/presentation/history/widgets/video_call_button.dart';
 import '../../../data/schedule/model/schedule_model.dart';
 
 class DoctorCardWidget extends StatelessWidget {
@@ -13,6 +14,7 @@ class DoctorCardWidget extends StatelessWidget {
   DoctorCardWidget({super.key, required this.data});
 
   final format = NumberFormat("#,###");
+
   final _dateFormatter = DateFormat('dd MMMM');
 
   String _formatDate(String dateString) {
@@ -30,8 +32,9 @@ class DoctorCardWidget extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTextstyle.nunitoRegular.copyWith(
+          style: AppTextstyle.nunitoMedium.copyWith(
             fontSize: 15,
+            fontWeight: FontWeight.w400,
             color: AppColor.greyTextColor,
           ),
         ),
@@ -102,37 +105,6 @@ class DoctorCardWidget extends StatelessWidget {
   }
 
   // Widget _buildStatusBadge(BuildContext context) {
-  //   Color statusColor;
-  //   switch (data.status.toLowerCase()) {
-  //     case 'booked':
-  //       statusColor = Colors.blue;
-  //       break;
-  //     case 'completed':
-  //       statusColor = Colors.green;
-  //       break;
-  //     case 'cancelled':
-  //       statusColor = Colors.red;
-  //       break;
-  //     default:
-  //       statusColor = Colors.grey;
-  //   }
-
-  //   return Container(
-  //     padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-  //     decoration: BoxDecoration(
-  //       color: statusColor.withValues(alpha: 0.1),
-  //       borderRadius: BorderRadius.circular(12),
-  //     ),
-  //     child: Text(
-  //       data.status,
-  //       style: AppTextstyle.nunitoRegular.copyWith(
-  //         color: statusColor,
-  //         fontWeight: FontWeight.w600,
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -151,6 +123,9 @@ class DoctorCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildDoctorInfo(),
+                VideoCallButton(
+                  scheduleId: data.id,
+                )
                 // _buildStatusBadge(context),
               ],
             ),

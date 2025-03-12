@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
+import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/category/model/category_model.dart';
 import 'package:tez_med_client/presentation/request/pages/select_service_screen.dart';
@@ -91,11 +92,10 @@ class _CategoryNurseState extends State<CategoryNurse> {
           borderRadius: BorderRadius.circular(25),
         ),
         child: Text(
-          lang == 'uz'
-              ? department.nameUz
-              : lang == 'en'
-                  ? department.nameEn
-                  : department.nameRu,
+          context.toLocalized(
+              uz: department.nameUz,
+              ru: department.nameRu,
+              en: department.nameEn),
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,

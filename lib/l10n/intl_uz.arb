@@ -205,5 +205,21 @@
   "nurse" : "Hamshira",
   "doctor" : "Shifokor",
   "no_doctor_types_found": "Shifokor turlari topilmadi",
-  "location_detecting": "Lokatsiya aniqlanmoqda..."
+  "location_detecting": "Lokatsiya aniqlanmoqda...",
+  "exitDialog": "Chiqish oynasi",
+  "exitTitle": "Video suhbatni tugatish",
+  "exitDescription": "Haqiqatan ham video suhbatni tugatishni xohlaysizmi?",
+  "endText": "Tugatish",
+  "infoDialog": "Ma'lumot oynasi",
+  "infoTitle": "Video suhbat haqida",
+  "infoDescription": "Bu ekranda siz video orqali suhbat qilishingiz mumkin. Video suhbat jarayonida quyidagi imkoniyatlardan foydalanishingiz mumkin:",
+  "fullscreenText": "Ekranni kattalashtirish yoki kichraytirish",
+  "endCallText": "Video suhbatni tugatish",
+  "understoodText": "Tushundim",
+  "video_chat": "Video suhbat",
+  "zoom_out": "Kichraytirish",
+  "zoom_in": "Kattalashtirish",
+  "loading_video": "Video yuklanmoqda",
+  "permission_required": "Ruxsat kerak",
+  "permission_description": "Video qo'ng'iroq qilish uchun kamera va mikrofon ruxsati kerak. Ruxsat berish uchun ilova sozlamalariga o'ting."
 }

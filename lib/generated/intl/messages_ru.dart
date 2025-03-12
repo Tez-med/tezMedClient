@@ -104,6 +104,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "doctor": MessageLookupByLibrary.simpleMessage("Врач"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Рецепт врача"),
+        "endCallText":
+            MessageLookupByLibrary.simpleMessage("Завершить видеозвонок"),
+        "endText": MessageLookupByLibrary.simpleMessage("Завершить"),
         "english": MessageLookupByLibrary.simpleMessage("Английский"),
         "enter_fullname":
             MessageLookupByLibrary.simpleMessage("Введите ваше полное имя"),
@@ -116,6 +119,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "example":
             MessageLookupByLibrary.simpleMessage("Например: напротив улицы"),
         "exit": MessageLookupByLibrary.simpleMessage("Выход"),
+        "exitDescription": MessageLookupByLibrary.simpleMessage(
+            "Вы уверены, что хотите завершить видеозвонок?"),
+        "exitDialog": MessageLookupByLibrary.simpleMessage("Диалог выхода"),
+        "exitTitle":
+            MessageLookupByLibrary.simpleMessage("Завершить видеозвонок"),
         "experience": MessageLookupByLibrary.simpleMessage("Опыт"),
         "expert_guidance":
             MessageLookupByLibrary.simpleMessage("Советы специалистов"),
@@ -130,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "form_submitted":
             MessageLookupByLibrary.simpleMessage("Форма отправлена"),
         "full_name": MessageLookupByLibrary.simpleMessage("Полное имя"),
+        "fullscreenText": MessageLookupByLibrary.simpleMessage(
+            "Увеличение или уменьшение экрана"),
         "gallery": MessageLookupByLibrary.simpleMessage("Галерея"),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
         "general": MessageLookupByLibrary.simpleMessage("Общий"),
@@ -141,6 +151,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "image_not_loaded":
             MessageLookupByLibrary.simpleMessage("Изображение не загружено"),
         "in_process": MessageLookupByLibrary.simpleMessage("В процессе"),
+        "infoDescription": MessageLookupByLibrary.simpleMessage(
+            "На этом экране вы можете общаться по видео. Во время видеозвонка вы можете использовать следующие функции:"),
+        "infoDialog":
+            MessageLookupByLibrary.simpleMessage("Информационный диалог"),
+        "infoTitle": MessageLookupByLibrary.simpleMessage("О видеозвонке"),
         "information_update":
             MessageLookupByLibrary.simpleMessage("Данные обновлены"),
         "input_phone_number":
@@ -154,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "leave_comment":
             MessageLookupByLibrary.simpleMessage("Оставить комментарий"),
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
+        "loading_video": MessageLookupByLibrary.simpleMessage("Загрузка видео"),
         "location": MessageLookupByLibrary.simpleMessage("Местоположение"),
         "location_detecting": MessageLookupByLibrary.simpleMessage(
             "Определение местоположения..."),
@@ -212,6 +228,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "На данный момент вы можете оплатить только наличными. В будущем будут добавлены другие виды оплаты"),
         "payment_type": MessageLookupByLibrary.simpleMessage("Тип оплаты"),
         "pending": MessageLookupByLibrary.simpleMessage("В ожидании"),
+        "permission_description": MessageLookupByLibrary.simpleMessage(
+            "Для видеозвонка необходимы разрешения на камеру и микрофон. Перейдите в настройки приложения, чтобы предоставить доступ."),
+        "permission_required":
+            MessageLookupByLibrary.simpleMessage("Требуется разрешение"),
         "personal_information":
             MessageLookupByLibrary.simpleMessage("Личная информация"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Номер телефона"),
@@ -310,6 +330,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Время"),
         "total": MessageLookupByLibrary.simpleMessage("Итого"),
         "total_price": MessageLookupByLibrary.simpleMessage("Общая цена"),
+        "understoodText": MessageLookupByLibrary.simpleMessage("Понял"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "Произошла непредвиденная ошибка"),
         "uzbek": MessageLookupByLibrary.simpleMessage("Узбекский"),
@@ -317,6 +338,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Код подтверждения"),
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Видеоуроки и руководства"),
+        "video_chat": MessageLookupByLibrary.simpleMessage("Видеочат"),
         "work_experience": MessageLookupByLibrary.simpleMessage("Опыт работы"),
         "year": MessageLookupByLibrary.simpleMessage("год"),
         "your_check": MessageLookupByLibrary.simpleMessage("Ваш чек"),
@@ -324,6 +346,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Информация о пациенте"),
         "your_phone_number":
             MessageLookupByLibrary.simpleMessage("Ваш номер телефона"),
-        "youtube": MessageLookupByLibrary.simpleMessage("YouTube")
+        "youtube": MessageLookupByLibrary.simpleMessage("YouTube"),
+        "zoom_in": MessageLookupByLibrary.simpleMessage("Увеличить"),
+        "zoom_out": MessageLookupByLibrary.simpleMessage("Уменьшить")
       };
 }

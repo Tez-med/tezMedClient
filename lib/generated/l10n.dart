@@ -2099,6 +2099,166 @@ class S {
       args: [],
     );
   }
+
+  /// `Exit Dialog`
+  String get exitDialog {
+    return Intl.message(
+      'Exit Dialog',
+      name: 'exitDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End Video Call`
+  String get exitTitle {
+    return Intl.message(
+      'End Video Call',
+      name: 'exitTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to end the video call?`
+  String get exitDescription {
+    return Intl.message(
+      'Are you sure you want to end the video call?',
+      name: 'exitDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End`
+  String get endText {
+    return Intl.message(
+      'End',
+      name: 'endText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Info Dialog`
+  String get infoDialog {
+    return Intl.message(
+      'Info Dialog',
+      name: 'infoDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Video Call`
+  String get infoTitle {
+    return Intl.message(
+      'About Video Call',
+      name: 'infoTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `On this screen, you can communicate via video. During the video call, you can use the following features:`
+  String get infoDescription {
+    return Intl.message(
+      'On this screen, you can communicate via video. During the video call, you can use the following features:',
+      name: 'infoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enlarge or reduce the screen`
+  String get fullscreenText {
+    return Intl.message(
+      'Enlarge or reduce the screen',
+      name: 'fullscreenText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End video call`
+  String get endCallText {
+    return Intl.message(
+      'End video call',
+      name: 'endCallText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Got it`
+  String get understoodText {
+    return Intl.message(
+      'Got it',
+      name: 'understoodText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Video Chat`
+  String get video_chat {
+    return Intl.message(
+      'Video Chat',
+      name: 'video_chat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Zoom Out`
+  String get zoom_out {
+    return Intl.message(
+      'Zoom Out',
+      name: 'zoom_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Zoom In`
+  String get zoom_in {
+    return Intl.message(
+      'Zoom In',
+      name: 'zoom_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading video`
+  String get loading_video {
+    return Intl.message(
+      'Loading video',
+      name: 'loading_video',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permission Required`
+  String get permission_required {
+    return Intl.message(
+      'Permission Required',
+      name: 'permission_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera and microphone permissions are required for a video call. Please go to app settings to grant permissions.`
+  String get permission_description {
+    return Intl.message(
+      'Camera and microphone permissions are required for a video call. Please go to app settings to grant permissions.',
+      name: 'permission_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

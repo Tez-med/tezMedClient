@@ -133,12 +133,12 @@ class OrderDetailsCard extends StatelessWidget {
               children: [
                 TextSpan(
                   text: "$title\n",
-                  style: AppTextstyle.nunitoSemiBold
+                  style: AppTextstyle.nunitoMedium
                       .copyWith(fontSize: 14, color: AppColor.greyColor500),
                 ),
                 TextSpan(
                   text: value,
-                  style: AppTextstyle.nunitoRegular.copyWith(
+                  style: AppTextstyle.nunitoMedium.copyWith(
                     fontSize: 16,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

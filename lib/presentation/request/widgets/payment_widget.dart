@@ -21,9 +21,9 @@ class PaymentWidget extends StatelessWidget {
               style: AppTextstyle.nunitoBold.copyWith(fontSize: 20),
             ),
             const SizedBox(height: 10),
-             Text(
+            Text(
               S.of(context).payment_other,
-              style: AppTextstyle.nunitoRegular,
+              style: AppTextstyle.nunitoMedium,
             ),
             const SizedBox(height: 10),
             Row(

@@ -11,4 +11,7 @@ class ScheduleUsecase {
   Future<Either<Failure, ScheduleModel>> getSchedule(String id) async {
     return await scheduleRepositories.getSchedule(id);
   }
+
+  Future<Either<Failure, Schedule>> getById(String id) =>
+      scheduleRepositories.getById(id);
 }

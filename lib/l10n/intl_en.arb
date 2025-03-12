@@ -205,5 +205,21 @@
   "nurse": "Nurse",
   "doctor": "Doctor",
   "no_doctor_types_found": "No doctor types found",
-  "location_detecting": "Detecting location..."
+  "location_detecting": "Detecting location...",
+  "exitDialog": "Exit Dialog",
+  "exitTitle": "End Video Call",
+  "exitDescription": "Are you sure you want to end the video call?",
+  "endText": "End",
+  "infoDialog": "Info Dialog",
+  "infoTitle": "About Video Call",
+  "infoDescription": "On this screen, you can communicate via video. During the video call, you can use the following features:",
+  "fullscreenText": "Enlarge or reduce the screen",
+  "endCallText": "End video call",
+  "understoodText": "Got it",
+  "video_chat": "Video Chat",
+  "zoom_out": "Zoom Out",
+  "zoom_in": "Zoom In",
+  "loading_video": "Loading video",
+  "permission_required": "Permission Required",
+  "permission_description": "Camera and microphone permissions are required for a video call. Please go to app settings to grant permissions."
 }

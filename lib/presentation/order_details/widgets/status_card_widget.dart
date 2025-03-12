@@ -73,7 +73,7 @@ class StatusCard extends StatelessWidget {
                 ),
                 Text(
                   formattedDate,
-                  style: AppTextstyle.nunitoRegular
+                  style: AppTextstyle.nunitoMedium
                       .copyWith(color: AppColor.greyColor500),
                 )
               ],
@@ -107,7 +107,7 @@ class StatusCard extends StatelessWidget {
           ),
           Text(
             StatusHelper.getName(requestss.status, context),
-            style: AppTextstyle.nunitoRegular.copyWith(
+            style: AppTextstyle.nunitoMedium.copyWith(
               fontSize: 18,
               color: AppColor.greyColor500,
               fontWeight: FontWeight.bold,

@@ -26,7 +26,7 @@ class TextFeildWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+          style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
         ),
         TextFormField(
           readOnly: readOnly,

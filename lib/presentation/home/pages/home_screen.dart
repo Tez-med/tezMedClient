@@ -39,8 +39,6 @@ class _HomePageState extends State<HomePage> {
 
     _localStorageService = LocalStorageService();
     _initializeLocation();
-
-    // SharedPreferences-dagi lokatsiyani doimiy kuzatamiz
     _listenForLocationChanges();
   }
 
@@ -58,15 +56,13 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _initializeLocation() async {
     try {
-      // Avval saqlangan lokatsiyani olish
       String? savedLocation =
           _localStorageService.getString(StorageKeys.locationName);
 
       if (savedLocation.isNotEmpty) {
         locationNameNotifier.value = savedLocation;
-        return; 
+        return;
       }
-
       final locationService = LocationService();
       final point = await locationService.getCurrentLocation();
 
@@ -123,9 +119,10 @@ class _HomePageState extends State<HomePage> {
             valueListenable: locationNameNotifier,
             builder: (context, locationName, child) {
               return Text(
-                locationName ?? "Lokatsiya tanlanmagan",
+                locationName ?? "",
                 style: AppTextstyle.nunitoMedium.copyWith(
                   fontSize: 14,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black87,
                 ),
                 maxLines: 1,
@@ -134,7 +131,6 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
-        // const Icon(Icons.keyboard_arrow_down_rounded)
       ],
     );
   }

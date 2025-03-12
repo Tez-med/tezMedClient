@@ -318,7 +318,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           children: [
             Text(
               S.of(context).phone_number,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
             ),
             const SizedBox(height: 5),
             PhoneInputField(phoneController: _phoneController),

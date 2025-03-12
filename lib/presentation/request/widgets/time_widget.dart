@@ -165,8 +165,7 @@ class _DeliveryTimeWidgetState extends State<DeliveryTimeWidget> {
                     Expanded(
                       child: Text(
                         '${S.of(context).current_time} ~ ${_formatTime(selectedDateTime)} (1 ${S.of(context).hour})',
-                        style:
-                            AppTextstyle.nunitoRegular.copyWith(fontSize: 15),
+                        style: AppTextstyle.nunitoMedium.copyWith(fontSize: 15),
                       ),
                     ),
                     Radio<bool?>(
@@ -209,13 +208,13 @@ class _DeliveryTimeWidgetState extends State<DeliveryTimeWidget> {
                         Text(
                           S.of(context).setting_according_table,
                           style:
-                              AppTextstyle.nunitoRegular.copyWith(fontSize: 15),
+                              AppTextstyle.nunitoMedium.copyWith(fontSize: 15),
                         ),
                         if (isScheduledDelivery == true) ...[
                           const SizedBox(height: 4),
                           Text(
                             '${_formatDate(selectedDateTime)} ${_formatTime(selectedDateTime)}',
-                            style: AppTextstyle.nunitoRegular.copyWith(
+                            style: AppTextstyle.nunitoMedium.copyWith(
                               color: Colors.blue,
                             ),
                           ),

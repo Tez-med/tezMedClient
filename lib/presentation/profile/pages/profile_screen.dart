@@ -134,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return Center(
           child: Text(
             'Version ${packageInfo.version} (${packageInfo.buildNumber})',
-            style: AppTextstyle.nunitoRegular.copyWith(
+            style: AppTextstyle.nunitoMedium.copyWith(
               color: Colors.grey.shade500,
               fontSize: 12,
             ),

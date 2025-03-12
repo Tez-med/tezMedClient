@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
+import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/data/species/model/species_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
+
+import '../../../core/utils/app_textstyle.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
@@ -17,35 +18,14 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lang = context.read<LanguageBloc>().state.locale.languageCode;
-
-    String getLocalizedName() {
-      switch (lang) {
-        case "uz":
-          return speciess.nameUz;
-        case "en":
-          return speciess.nameEn;
-        default:
-          return speciess.nameRu;
-      }
-    }
-
-    String getLocalizedDescription() {
-      switch (lang) {
-        case "uz":
-          return speciess.descriptionUz;
-        case "en":
-          return speciess.descriptionEn;
-        default:
-          return speciess.descriptionRu;
-      }
-    }
-
     return GestureDetector(
       onTap: speciess.isActive
           ? () {
               context.router.push(CategoryRoute(
-                title: getLocalizedName(),
+                title: context.toLocalized(
+                    uz: speciess.nameUz,
+                    ru: speciess.nameRu,
+                    en: speciess.nameEn),
                 id: speciess.id,
               ));
             }
@@ -83,7 +63,7 @@ class CategoryCard extends StatelessWidget {
                         child: Center(
                           child: Text(
                             S.of(context).added_soon,
-                            style: TextStyle(
+                            style: AppTextstyle.nunitoBold.copyWith(
                               color: Colors.white,
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
@@ -102,22 +82,26 @@ class CategoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      getLocalizedName(),
-                      style: const TextStyle(
+                      context.toLocalized(
+                          uz: speciess.nameUz,
+                          ru: speciess.nameRu,
+                          en: speciess.nameEn),
+                      style: AppTextstyle.nunitoBold.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 20.0,
-                        height: 24.2 / 20.0,
                         color: Color(0xff1D2D50),
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      getLocalizedDescription(),
-                      style: const TextStyle(
+                      context.toLocalized(
+                          uz: speciess.descriptionUz,
+                          ru: speciess.descriptionRu,
+                          en: speciess.descriptionEn),
+                      style: AppTextstyle.nunitoMedium.copyWith(
                         fontWeight: FontWeight.w400,
                         fontSize: 14.0,
-                        height: 16.94 / 14.0,
                         color: Color(0xff737F91),
                       ),
                       maxLines: 2,

@@ -147,7 +147,7 @@ class SupportScreen extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           subtitle,
-                          style: AppTextstyle.nunitoRegular.copyWith(
+                          style: AppTextstyle.nunitoMedium.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: AppColor.greyColor500,
@@ -179,7 +179,8 @@ class SupportScreen extends StatelessWidget {
 
   Future<void> _launchUrl(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalNonBrowserApplication);
+      await launchUrl(Uri.parse(url),
+          mode: LaunchMode.externalNonBrowserApplication);
     }
   }
 }

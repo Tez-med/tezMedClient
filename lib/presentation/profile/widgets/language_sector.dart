@@ -94,7 +94,7 @@ class _LanguageOverlay extends StatelessWidget {
           children: [
             Text(
               S.of(context).language,
-              style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 18),
+              style: AppTextstyle.nunitoBold.copyWith(fontSize: 18),
             ),
             const SizedBox(height: 24),
             _buildLanguageOption(context, 'uz', S.of(context).uzbek),

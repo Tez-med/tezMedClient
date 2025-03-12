@@ -169,7 +169,7 @@ class _NotificationItem extends StatelessWidget {
                       ),
                       Text(
                         notification.body ?? 'No body',
-                        style: AppTextstyle.nunitoRegular.copyWith(
+                        style: AppTextstyle.nunitoMedium.copyWith(
                           fontSize: 15,
                           color: Colors.black87,
                         ),
@@ -177,7 +177,7 @@ class _NotificationItem extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         _formatDate(notification.timestamp),
-                        style: AppTextstyle.nunitoRegular.copyWith(
+                        style: AppTextstyle.nunitoMedium.copyWith(
                           fontSize: 13,
                           color: AppColor.greyColor500,
                         ),
@@ -243,7 +243,7 @@ class _EmptyNotification extends StatelessWidget {
           Text(
             S.of(context).no_notification_subtitle,
             textAlign: TextAlign.center,
-            style: AppTextstyle.nunitoRegular
+            style: AppTextstyle.nunitoMedium
                 .copyWith(fontSize: 18, color: AppColor.greyTextColor),
           ),
         ],

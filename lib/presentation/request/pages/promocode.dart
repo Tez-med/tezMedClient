@@ -161,7 +161,7 @@ class _PromocodeState extends State<Promocode> {
                           )
                         : Text(
                             S.of(context).apply,
-                            style: AppTextstyle.nunitoRegular.copyWith(
+                            style: AppTextstyle.nunitoMedium.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
                             ),

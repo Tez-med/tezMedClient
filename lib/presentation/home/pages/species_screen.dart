@@ -50,15 +50,13 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
             SliverToBoxAdapter(child: const CustomBanner()),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 16, right: 16, top: 16, bottom: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
                 child: Text(
                   S.of(context).our_service,
-                  style: const TextStyle(
+                  style: AppTextstyle.nunitoBold.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
                     color: Color(0xff1D2D50),
-                    height: 29.05 / 24, //
                   ),
                 ),
               ),

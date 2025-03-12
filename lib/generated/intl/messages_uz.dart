@@ -102,6 +102,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "doctor": MessageLookupByLibrary.simpleMessage("Shifokor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Shifokor retsepti"),
+        "endCallText":
+            MessageLookupByLibrary.simpleMessage("Video suhbatni tugatish"),
+        "endText": MessageLookupByLibrary.simpleMessage("Tugatish"),
         "english": MessageLookupByLibrary.simpleMessage("Ingliz"),
         "enter_fullname":
             MessageLookupByLibrary.simpleMessage("To\'liq ismingizni kiriting"),
@@ -114,6 +117,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "example": MessageLookupByLibrary.simpleMessage(
             "Misol: ko\'chaning qarshisida"),
         "exit": MessageLookupByLibrary.simpleMessage("Chiqish"),
+        "exitDescription": MessageLookupByLibrary.simpleMessage(
+            "Haqiqatan ham video suhbatni tugatishni xohlaysizmi?"),
+        "exitDialog": MessageLookupByLibrary.simpleMessage("Chiqish oynasi"),
+        "exitTitle":
+            MessageLookupByLibrary.simpleMessage("Video suhbatni tugatish"),
         "experience": MessageLookupByLibrary.simpleMessage("Tajriba"),
         "expert_guidance": MessageLookupByLibrary.simpleMessage(
             "Mutaxassis yo\'l-yo\'riqlari"),
@@ -128,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "form_submitted":
             MessageLookupByLibrary.simpleMessage("Forma yuborildi"),
         "full_name": MessageLookupByLibrary.simpleMessage("To\'liq ism"),
+        "fullscreenText": MessageLookupByLibrary.simpleMessage(
+            "Ekranni kattalashtirish yoki kichraytirish"),
         "gallery": MessageLookupByLibrary.simpleMessage("Galereya"),
         "gender": MessageLookupByLibrary.simpleMessage("Jinsi"),
         "general": MessageLookupByLibrary.simpleMessage("Umumiy"),
@@ -139,6 +149,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "image_not_loaded":
             MessageLookupByLibrary.simpleMessage("Rasm yuklanmadi"),
         "in_process": MessageLookupByLibrary.simpleMessage("Jarayonda"),
+        "infoDescription": MessageLookupByLibrary.simpleMessage(
+            "Bu ekranda siz video orqali suhbat qilishingiz mumkin. Video suhbat jarayonida quyidagi imkoniyatlardan foydalanishingiz mumkin:"),
+        "infoDialog": MessageLookupByLibrary.simpleMessage("Ma\'lumot oynasi"),
+        "infoTitle":
+            MessageLookupByLibrary.simpleMessage("Video suhbat haqida"),
         "information_update":
             MessageLookupByLibrary.simpleMessage("Ma\'lumotlar yangilandi"),
         "input_phone_number": MessageLookupByLibrary.simpleMessage(
@@ -152,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "leave_comment":
             MessageLookupByLibrary.simpleMessage("Sharh qoldiring"),
         "loading": MessageLookupByLibrary.simpleMessage("Yuklanmoqda..."),
+        "loading_video":
+            MessageLookupByLibrary.simpleMessage("Video yuklanmoqda"),
         "location": MessageLookupByLibrary.simpleMessage("Manzil"),
         "location_detecting":
             MessageLookupByLibrary.simpleMessage("Lokatsiya aniqlanmoqda..."),
@@ -214,6 +231,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hozirda faqat naqd pul orqali to\'lash mumkin. Keyinchalik boshqa to\'lov turlari ham qo\'shiladi"),
         "payment_type": MessageLookupByLibrary.simpleMessage("To\'lov turi"),
         "pending": MessageLookupByLibrary.simpleMessage("Kutilmoqda"),
+        "permission_description": MessageLookupByLibrary.simpleMessage(
+            "Video qo\'ng\'iroq qilish uchun kamera va mikrofon ruxsati kerak. Ruxsat berish uchun ilova sozlamalariga o\'ting."),
+        "permission_required":
+            MessageLookupByLibrary.simpleMessage("Ruxsat kerak"),
         "personal_information":
             MessageLookupByLibrary.simpleMessage("Shaxsiy ma\'lumot"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Telefon raqami"),
@@ -310,12 +331,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Vaqt"),
         "total": MessageLookupByLibrary.simpleMessage("Jami"),
         "total_price": MessageLookupByLibrary.simpleMessage("Umumiy narx"),
+        "understoodText": MessageLookupByLibrary.simpleMessage("Tushundim"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "Kutilmagan xatolik yuz berdi"),
         "uzbek": MessageLookupByLibrary.simpleMessage("O\'zbek"),
         "verify_code": MessageLookupByLibrary.simpleMessage("Tasdiqlash kodi"),
         "videoGuides": MessageLookupByLibrary.simpleMessage(
             "Video qo\'llanmalar va darsliklar"),
+        "video_chat": MessageLookupByLibrary.simpleMessage("Video suhbat"),
         "work_experience":
             MessageLookupByLibrary.simpleMessage("Ish tajribasi"),
         "year": MessageLookupByLibrary.simpleMessage("yil"),
@@ -324,6 +347,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bemorning ma\'lumotlari"),
         "your_phone_number":
             MessageLookupByLibrary.simpleMessage("Telefon raqamingiz"),
-        "youtube": MessageLookupByLibrary.simpleMessage("YouTube")
+        "youtube": MessageLookupByLibrary.simpleMessage("YouTube"),
+        "zoom_in": MessageLookupByLibrary.simpleMessage("Kattalashtirish"),
+        "zoom_out": MessageLookupByLibrary.simpleMessage("Kichraytirish")
       };
 }

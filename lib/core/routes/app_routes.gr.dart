@@ -8,12 +8,12 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i25;
-import 'package:flutter/cupertino.dart' as _i27;
-import 'package:flutter/material.dart' as _i26;
-import 'package:tez_med_client/data/profile/model/client_model.dart' as _i29;
+import 'package:auto_route/auto_route.dart' as _i26;
+import 'package:flutter/cupertino.dart' as _i28;
+import 'package:flutter/material.dart' as _i27;
+import 'package:tez_med_client/data/profile/model/client_model.dart' as _i30;
 import 'package:tez_med_client/data/requests_get/model/active_request_model.dart'
-    as _i28;
+    as _i29;
 import 'package:tez_med_client/presentation/add_user/pages/add_user_screen.dart'
     as _i3;
 import 'package:tez_med_client/presentation/auth/pages/phone_input_screen.dart'
@@ -49,7 +49,7 @@ import 'package:tez_med_client/presentation/profile/pages/settings_screen.dart'
 import 'package:tez_med_client/presentation/request/pages/location_details.dart'
     as _i10;
 import 'package:tez_med_client/presentation/request/widgets/yandex_map_screen.dart'
-    as _i24;
+    as _i25;
 import 'package:tez_med_client/presentation/splash/language_select_screen.dart'
     as _i9;
 import 'package:tez_med_client/presentation/splash/onboarding_screen.dart'
@@ -59,11 +59,13 @@ import 'package:tez_med_client/presentation/support/pages/support_screen.dart'
     as _i22;
 import 'package:tez_med_client/presentation/user_details_request/pages/user_details.dart'
     as _i23;
+import 'package:tez_med_client/presentation/video_call/pages/video_call.dart'
+    as _i24;
 
 /// generated route for
 /// [_i1.ActiveDoctorRequest]
-class ActiveDoctorRequest extends _i25.PageRouteInfo<void> {
-  const ActiveDoctorRequest({List<_i25.PageRouteInfo>? children})
+class ActiveDoctorRequest extends _i26.PageRouteInfo<void> {
+  const ActiveDoctorRequest({List<_i26.PageRouteInfo>? children})
       : super(
           ActiveDoctorRequest.name,
           initialChildren: children,
@@ -71,7 +73,7 @@ class ActiveDoctorRequest extends _i25.PageRouteInfo<void> {
 
   static const String name = 'ActiveDoctorRequest';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i1.ActiveDoctorRequest();
@@ -81,8 +83,8 @@ class ActiveDoctorRequest extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.ActiveRequestScreen]
-class ActiveRequestRoute extends _i25.PageRouteInfo<void> {
-  const ActiveRequestRoute({List<_i25.PageRouteInfo>? children})
+class ActiveRequestRoute extends _i26.PageRouteInfo<void> {
+  const ActiveRequestRoute({List<_i26.PageRouteInfo>? children})
       : super(
           ActiveRequestRoute.name,
           initialChildren: children,
@@ -90,7 +92,7 @@ class ActiveRequestRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'ActiveRequestRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i2.ActiveRequestScreen();
@@ -100,11 +102,11 @@ class ActiveRequestRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AddUserScreen]
-class AddUserRoute extends _i25.PageRouteInfo<AddUserRouteArgs> {
+class AddUserRoute extends _i26.PageRouteInfo<AddUserRouteArgs> {
   AddUserRoute({
-    _i26.Key? key,
+    _i27.Key? key,
     required String phoneNumber,
-    List<_i25.PageRouteInfo>? children,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           AddUserRoute.name,
           args: AddUserRouteArgs(
@@ -116,7 +118,7 @@ class AddUserRoute extends _i25.PageRouteInfo<AddUserRouteArgs> {
 
   static const String name = 'AddUserRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AddUserRouteArgs>();
@@ -134,7 +136,7 @@ class AddUserRouteArgs {
     required this.phoneNumber,
   });
 
-  final _i26.Key? key;
+  final _i27.Key? key;
 
   final String phoneNumber;
 
@@ -146,12 +148,12 @@ class AddUserRouteArgs {
 
 /// generated route for
 /// [_i4.CategoryScreen]
-class CategoryRoute extends _i25.PageRouteInfo<CategoryRouteArgs> {
+class CategoryRoute extends _i26.PageRouteInfo<CategoryRouteArgs> {
   CategoryRoute({
-    _i27.Key? key,
+    _i28.Key? key,
     required String title,
     required String id,
-    List<_i25.PageRouteInfo>? children,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           CategoryRoute.name,
           args: CategoryRouteArgs(
@@ -164,7 +166,7 @@ class CategoryRoute extends _i25.PageRouteInfo<CategoryRouteArgs> {
 
   static const String name = 'CategoryRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CategoryRouteArgs>();
@@ -184,7 +186,7 @@ class CategoryRouteArgs {
     required this.id,
   });
 
-  final _i27.Key? key;
+  final _i28.Key? key;
 
   final String title;
 
@@ -198,14 +200,14 @@ class CategoryRouteArgs {
 
 /// generated route for
 /// [_i5.ClientData]
-class ClientData extends _i25.PageRouteInfo<ClientDataArgs> {
+class ClientData extends _i26.PageRouteInfo<ClientDataArgs> {
   ClientData({
-    _i27.Key? key,
+    _i28.Key? key,
     required String id,
     required bool online,
     required String type,
     required String price,
-    List<_i25.PageRouteInfo>? children,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           ClientData.name,
           args: ClientDataArgs(
@@ -220,7 +222,7 @@ class ClientData extends _i25.PageRouteInfo<ClientDataArgs> {
 
   static const String name = 'ClientData';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClientDataArgs>();
@@ -244,7 +246,7 @@ class ClientDataArgs {
     required this.price,
   });
 
-  final _i27.Key? key;
+  final _i28.Key? key;
 
   final String id;
 
@@ -262,8 +264,8 @@ class ClientDataArgs {
 
 /// generated route for
 /// [_i6.FinishedRequestScreen]
-class FinishedRequestRoute extends _i25.PageRouteInfo<void> {
-  const FinishedRequestRoute({List<_i25.PageRouteInfo>? children})
+class FinishedRequestRoute extends _i26.PageRouteInfo<void> {
+  const FinishedRequestRoute({List<_i26.PageRouteInfo>? children})
       : super(
           FinishedRequestRoute.name,
           initialChildren: children,
@@ -271,7 +273,7 @@ class FinishedRequestRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'FinishedRequestRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i6.FinishedRequestScreen();
@@ -281,8 +283,8 @@ class FinishedRequestRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.HistoryScreen]
-class HistoryRoute extends _i25.PageRouteInfo<void> {
-  const HistoryRoute({List<_i25.PageRouteInfo>? children})
+class HistoryRoute extends _i26.PageRouteInfo<void> {
+  const HistoryRoute({List<_i26.PageRouteInfo>? children})
       : super(
           HistoryRoute.name,
           initialChildren: children,
@@ -290,7 +292,7 @@ class HistoryRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'HistoryRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i7.HistoryScreen();
@@ -300,8 +302,8 @@ class HistoryRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.HomePage]
-class HomeRoute extends _i25.PageRouteInfo<void> {
-  const HomeRoute({List<_i25.PageRouteInfo>? children})
+class HomeRoute extends _i26.PageRouteInfo<void> {
+  const HomeRoute({List<_i26.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -309,7 +311,7 @@ class HomeRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i8.HomePage();
@@ -319,8 +321,8 @@ class HomeRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.LanguageSelectScreen]
-class LanguageSelectRoute extends _i25.PageRouteInfo<void> {
-  const LanguageSelectRoute({List<_i25.PageRouteInfo>? children})
+class LanguageSelectRoute extends _i26.PageRouteInfo<void> {
+  const LanguageSelectRoute({List<_i26.PageRouteInfo>? children})
       : super(
           LanguageSelectRoute.name,
           initialChildren: children,
@@ -328,7 +330,7 @@ class LanguageSelectRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'LanguageSelectRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i9.LanguageSelectScreen();
@@ -338,14 +340,14 @@ class LanguageSelectRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.LocationDetails]
-class LocationDetails extends _i25.PageRouteInfo<LocationDetailsArgs> {
+class LocationDetails extends _i26.PageRouteInfo<LocationDetailsArgs> {
   LocationDetails({
-    _i26.Key? key,
-    required List<_i28.RequestAffairGet> requestAffair,
+    _i27.Key? key,
+    required List<_i29.RequestAffairGet> requestAffair,
     required List<String> photo,
     required String extraPhone,
     required int price,
-    List<_i25.PageRouteInfo>? children,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           LocationDetails.name,
           args: LocationDetailsArgs(
@@ -360,7 +362,7 @@ class LocationDetails extends _i25.PageRouteInfo<LocationDetailsArgs> {
 
   static const String name = 'LocationDetails';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LocationDetailsArgs>();
@@ -384,9 +386,9 @@ class LocationDetailsArgs {
     required this.price,
   });
 
-  final _i26.Key? key;
+  final _i27.Key? key;
 
-  final List<_i28.RequestAffairGet> requestAffair;
+  final List<_i29.RequestAffairGet> requestAffair;
 
   final List<String> photo;
 
@@ -402,8 +404,8 @@ class LocationDetailsArgs {
 
 /// generated route for
 /// [_i11.MainPage]
-class MainRoute extends _i25.PageRouteInfo<void> {
-  const MainRoute({List<_i25.PageRouteInfo>? children})
+class MainRoute extends _i26.PageRouteInfo<void> {
+  const MainRoute({List<_i26.PageRouteInfo>? children})
       : super(
           MainRoute.name,
           initialChildren: children,
@@ -411,7 +413,7 @@ class MainRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'MainRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i11.MainPage();
@@ -421,8 +423,8 @@ class MainRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.NotificationPage]
-class NotificationRoute extends _i25.PageRouteInfo<void> {
-  const NotificationRoute({List<_i25.PageRouteInfo>? children})
+class NotificationRoute extends _i26.PageRouteInfo<void> {
+  const NotificationRoute({List<_i26.PageRouteInfo>? children})
       : super(
           NotificationRoute.name,
           initialChildren: children,
@@ -430,7 +432,7 @@ class NotificationRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'NotificationRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i12.NotificationPage();
@@ -440,8 +442,8 @@ class NotificationRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.OnboardingScreen]
-class OnboardingRoute extends _i25.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i25.PageRouteInfo>? children})
+class OnboardingRoute extends _i26.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i26.PageRouteInfo>? children})
       : super(
           OnboardingRoute.name,
           initialChildren: children,
@@ -449,7 +451,7 @@ class OnboardingRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'OnboardingRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i13.OnboardingScreen();
@@ -459,13 +461,13 @@ class OnboardingRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.OrderDetailsScreen]
-class OrderDetailsRoute extends _i25.PageRouteInfo<OrderDetailsRouteArgs> {
+class OrderDetailsRoute extends _i26.PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
-    _i26.Key? key,
+    _i27.Key? key,
     required String id,
     required String number,
     required String nursePhoto,
-    List<_i25.PageRouteInfo>? children,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           OrderDetailsRoute.name,
           args: OrderDetailsRouteArgs(
@@ -479,7 +481,7 @@ class OrderDetailsRoute extends _i25.PageRouteInfo<OrderDetailsRouteArgs> {
 
   static const String name = 'OrderDetailsRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<OrderDetailsRouteArgs>();
@@ -501,7 +503,7 @@ class OrderDetailsRouteArgs {
     required this.nursePhoto,
   });
 
-  final _i26.Key? key;
+  final _i27.Key? key;
 
   final String id;
 
@@ -517,8 +519,8 @@ class OrderDetailsRouteArgs {
 
 /// generated route for
 /// [_i15.PhoneInputScreen]
-class PhoneInputRoute extends _i25.PageRouteInfo<void> {
-  const PhoneInputRoute({List<_i25.PageRouteInfo>? children})
+class PhoneInputRoute extends _i26.PageRouteInfo<void> {
+  const PhoneInputRoute({List<_i26.PageRouteInfo>? children})
       : super(
           PhoneInputRoute.name,
           initialChildren: children,
@@ -526,7 +528,7 @@ class PhoneInputRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'PhoneInputRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i15.PhoneInputScreen();
@@ -536,8 +538,8 @@ class PhoneInputRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.PrivacyPolicy]
-class PrivacyPolicy extends _i25.PageRouteInfo<void> {
-  const PrivacyPolicy({List<_i25.PageRouteInfo>? children})
+class PrivacyPolicy extends _i26.PageRouteInfo<void> {
+  const PrivacyPolicy({List<_i26.PageRouteInfo>? children})
       : super(
           PrivacyPolicy.name,
           initialChildren: children,
@@ -545,7 +547,7 @@ class PrivacyPolicy extends _i25.PageRouteInfo<void> {
 
   static const String name = 'PrivacyPolicy';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i16.PrivacyPolicy();
@@ -555,8 +557,8 @@ class PrivacyPolicy extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i17.ProfileScreen]
-class ProfileRoute extends _i25.PageRouteInfo<void> {
-  const ProfileRoute({List<_i25.PageRouteInfo>? children})
+class ProfileRoute extends _i26.PageRouteInfo<void> {
+  const ProfileRoute({List<_i26.PageRouteInfo>? children})
       : super(
           ProfileRoute.name,
           initialChildren: children,
@@ -564,7 +566,7 @@ class ProfileRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i17.ProfileScreen();
@@ -574,11 +576,11 @@ class ProfileRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.ProfileUpdateScreen]
-class ProfileUpdateRoute extends _i25.PageRouteInfo<ProfileUpdateRouteArgs> {
+class ProfileUpdateRoute extends _i26.PageRouteInfo<ProfileUpdateRouteArgs> {
   ProfileUpdateRoute({
-    _i26.Key? key,
-    required _i29.ClientModel clientModel,
-    List<_i25.PageRouteInfo>? children,
+    _i27.Key? key,
+    required _i30.ClientModel clientModel,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           ProfileUpdateRoute.name,
           args: ProfileUpdateRouteArgs(
@@ -590,7 +592,7 @@ class ProfileUpdateRoute extends _i25.PageRouteInfo<ProfileUpdateRouteArgs> {
 
   static const String name = 'ProfileUpdateRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ProfileUpdateRouteArgs>();
@@ -608,9 +610,9 @@ class ProfileUpdateRouteArgs {
     required this.clientModel,
   });
 
-  final _i26.Key? key;
+  final _i27.Key? key;
 
-  final _i29.ClientModel clientModel;
+  final _i30.ClientModel clientModel;
 
   @override
   String toString() {
@@ -620,8 +622,8 @@ class ProfileUpdateRouteArgs {
 
 /// generated route for
 /// [_i19.SettingsScreen]
-class SettingsRoute extends _i25.PageRouteInfo<void> {
-  const SettingsRoute({List<_i25.PageRouteInfo>? children})
+class SettingsRoute extends _i26.PageRouteInfo<void> {
+  const SettingsRoute({List<_i26.PageRouteInfo>? children})
       : super(
           SettingsRoute.name,
           initialChildren: children,
@@ -629,7 +631,7 @@ class SettingsRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'SettingsRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i19.SettingsScreen();
@@ -639,11 +641,11 @@ class SettingsRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.SmsVerifyScreen]
-class SmsVerifyRoute extends _i25.PageRouteInfo<SmsVerifyRouteArgs> {
+class SmsVerifyRoute extends _i26.PageRouteInfo<SmsVerifyRouteArgs> {
   SmsVerifyRoute({
-    _i26.Key? key,
+    _i27.Key? key,
     required String phoneNumber,
-    List<_i25.PageRouteInfo>? children,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           SmsVerifyRoute.name,
           args: SmsVerifyRouteArgs(
@@ -655,7 +657,7 @@ class SmsVerifyRoute extends _i25.PageRouteInfo<SmsVerifyRouteArgs> {
 
   static const String name = 'SmsVerifyRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SmsVerifyRouteArgs>();
@@ -673,7 +675,7 @@ class SmsVerifyRouteArgs {
     required this.phoneNumber,
   });
 
-  final _i26.Key? key;
+  final _i27.Key? key;
 
   final String phoneNumber;
 
@@ -685,8 +687,8 @@ class SmsVerifyRouteArgs {
 
 /// generated route for
 /// [_i21.SplashScreen]
-class SplashRoute extends _i25.PageRouteInfo<void> {
-  const SplashRoute({List<_i25.PageRouteInfo>? children})
+class SplashRoute extends _i26.PageRouteInfo<void> {
+  const SplashRoute({List<_i26.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -694,7 +696,7 @@ class SplashRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i21.SplashScreen();
@@ -704,8 +706,8 @@ class SplashRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.SupportScreen]
-class SupportRoute extends _i25.PageRouteInfo<void> {
-  const SupportRoute({List<_i25.PageRouteInfo>? children})
+class SupportRoute extends _i26.PageRouteInfo<void> {
+  const SupportRoute({List<_i26.PageRouteInfo>? children})
       : super(
           SupportRoute.name,
           initialChildren: children,
@@ -713,7 +715,7 @@ class SupportRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'SupportRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       return const _i22.SupportScreen();
@@ -723,11 +725,11 @@ class SupportRoute extends _i25.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.UserDetails]
-class UserDetails extends _i25.PageRouteInfo<UserDetailsArgs> {
+class UserDetails extends _i26.PageRouteInfo<UserDetailsArgs> {
   UserDetails({
-    _i26.Key? key,
-    required List<_i28.RequestAffairGet> requestAffair,
-    List<_i25.PageRouteInfo>? children,
+    _i27.Key? key,
+    required List<_i29.RequestAffairGet> requestAffair,
+    List<_i26.PageRouteInfo>? children,
   }) : super(
           UserDetails.name,
           args: UserDetailsArgs(
@@ -739,7 +741,7 @@ class UserDetails extends _i25.PageRouteInfo<UserDetailsArgs> {
 
   static const String name = 'UserDetails';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<UserDetailsArgs>();
@@ -757,9 +759,9 @@ class UserDetailsArgs {
     required this.requestAffair,
   });
 
-  final _i26.Key? key;
+  final _i27.Key? key;
 
-  final List<_i28.RequestAffairGet> requestAffair;
+  final List<_i29.RequestAffairGet> requestAffair;
 
   @override
   String toString() {
@@ -768,9 +770,55 @@ class UserDetailsArgs {
 }
 
 /// generated route for
-/// [_i24.YandexMapScreen]
-class YandexMapRoute extends _i25.PageRouteInfo<void> {
-  const YandexMapRoute({List<_i25.PageRouteInfo>? children})
+/// [_i24.VideoCallScreen]
+class VideoCallRoute extends _i26.PageRouteInfo<VideoCallRouteArgs> {
+  VideoCallRoute({
+    _i27.Key? key,
+    required String url,
+    List<_i26.PageRouteInfo>? children,
+  }) : super(
+          VideoCallRoute.name,
+          args: VideoCallRouteArgs(
+            key: key,
+            url: url,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'VideoCallRoute';
+
+  static _i26.PageInfo page = _i26.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<VideoCallRouteArgs>();
+      return _i24.VideoCallScreen(
+        key: args.key,
+        url: args.url,
+      );
+    },
+  );
+}
+
+class VideoCallRouteArgs {
+  const VideoCallRouteArgs({
+    this.key,
+    required this.url,
+  });
+
+  final _i27.Key? key;
+
+  final String url;
+
+  @override
+  String toString() {
+    return 'VideoCallRouteArgs{key: $key, url: $url}';
+  }
+}
+
+/// generated route for
+/// [_i25.YandexMapScreen]
+class YandexMapRoute extends _i26.PageRouteInfo<void> {
+  const YandexMapRoute({List<_i26.PageRouteInfo>? children})
       : super(
           YandexMapRoute.name,
           initialChildren: children,
@@ -778,10 +826,10 @@ class YandexMapRoute extends _i25.PageRouteInfo<void> {
 
   static const String name = 'YandexMapRoute';
 
-  static _i25.PageInfo page = _i25.PageInfo(
+  static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
-      return const _i24.YandexMapScreen();
+      return const _i25.YandexMapScreen();
     },
   );
 }

@@ -46,5 +46,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: CategoryRoute.page),
         AutoRoute(page: LanguageSelectRoute.page),
         AutoRoute(page: ClientData.page),
+        AutoRoute(page: VideoCallRoute.page),
       ];
 }

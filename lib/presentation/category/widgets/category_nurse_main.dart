@@ -186,7 +186,7 @@ class _CategoryNurseMainState extends State<CategoryNurseMain> {
           padding: const EdgeInsets.symmetric(vertical: 5),
           labelColor: Colors.black,
           unselectedLabelColor: AppColor.greyColor500,
-          unselectedLabelStyle: AppTextstyle.nunitoRegular,
+          unselectedLabelStyle: AppTextstyle.nunitoMedium,
           labelStyle: AppTextstyle.nunitoBold.copyWith(fontSize: 14),
           tabs: tabs.map((String name) {
             return Tab(
@@ -216,7 +216,8 @@ class _CategoryNurseMainState extends State<CategoryNurseMain> {
       child: InkWell(
         onTap: totalPrice != 0 ? _navigateToUserDetails : null,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 18, top: 10),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),

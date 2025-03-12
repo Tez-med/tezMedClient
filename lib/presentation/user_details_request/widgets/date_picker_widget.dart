@@ -84,7 +84,7 @@ class DatePickerWidget extends StatelessWidget {
       children: [
         Text(
           S.of(context).birthday,
-          style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+          style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
         ),
         const SizedBox(height: 5),
         GestureDetector(

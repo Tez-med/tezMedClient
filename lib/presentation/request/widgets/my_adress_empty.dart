@@ -36,7 +36,7 @@ class MyAdressEmpty extends StatelessWidget {
             Text(
               S.of(context).address_not_found_desc,
               textAlign: TextAlign.center,
-              style: AppTextstyle.nunitoRegular.copyWith(
+              style: AppTextstyle.nunitoMedium.copyWith(
                 fontSize: 16,
                 color: Colors.grey[600],
               ),

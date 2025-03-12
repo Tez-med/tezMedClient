@@ -99,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Doctor prescription"),
+        "endCallText": MessageLookupByLibrary.simpleMessage("End video call"),
+        "endText": MessageLookupByLibrary.simpleMessage("End"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enter_fullname":
             MessageLookupByLibrary.simpleMessage("Enter your full name"),
@@ -111,6 +113,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "example": MessageLookupByLibrary.simpleMessage(
             "Example: Opposite the street"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "exitDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to end the video call?"),
+        "exitDialog": MessageLookupByLibrary.simpleMessage("Exit Dialog"),
+        "exitTitle": MessageLookupByLibrary.simpleMessage("End Video Call"),
         "experience": MessageLookupByLibrary.simpleMessage("Experience"),
         "expert_guidance":
             MessageLookupByLibrary.simpleMessage("Expert Guidance"),
@@ -125,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "form_submitted":
             MessageLookupByLibrary.simpleMessage("Form submitted"),
         "full_name": MessageLookupByLibrary.simpleMessage("Full name"),
+        "fullscreenText": MessageLookupByLibrary.simpleMessage(
+            "Enlarge or reduce the screen"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
@@ -136,6 +144,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "image_not_loaded":
             MessageLookupByLibrary.simpleMessage("Image not loaded"),
         "in_process": MessageLookupByLibrary.simpleMessage("In process"),
+        "infoDescription": MessageLookupByLibrary.simpleMessage(
+            "On this screen, you can communicate via video. During the video call, you can use the following features:"),
+        "infoDialog": MessageLookupByLibrary.simpleMessage("Info Dialog"),
+        "infoTitle": MessageLookupByLibrary.simpleMessage("About Video Call"),
         "information_update":
             MessageLookupByLibrary.simpleMessage("Information updated"),
         "input_phone_number":
@@ -149,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "leave_comment":
             MessageLookupByLibrary.simpleMessage("Leave a comment"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
+        "loading_video": MessageLookupByLibrary.simpleMessage("Loading video"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "location_detecting":
             MessageLookupByLibrary.simpleMessage("Detecting location..."),
@@ -204,6 +217,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Currently, you can only pay in cash. Other payment types will be added soon"),
         "payment_type": MessageLookupByLibrary.simpleMessage("Payment type"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
+        "permission_description": MessageLookupByLibrary.simpleMessage(
+            "Camera and microphone permissions are required for a video call. Please go to app settings to grant permissions."),
+        "permission_required":
+            MessageLookupByLibrary.simpleMessage("Permission Required"),
         "personal_information":
             MessageLookupByLibrary.simpleMessage("Personal information"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
@@ -303,6 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "total_price": MessageLookupByLibrary.simpleMessage("Total price"),
+        "understoodText": MessageLookupByLibrary.simpleMessage("Got it"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "An unexpected error occurred"),
         "uzbek": MessageLookupByLibrary.simpleMessage("Uzbek"),
@@ -310,6 +328,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verification code"),
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Video guides & tutorials"),
+        "video_chat": MessageLookupByLibrary.simpleMessage("Video Chat"),
         "work_experience":
             MessageLookupByLibrary.simpleMessage("Work experience"),
         "year": MessageLookupByLibrary.simpleMessage("year"),
@@ -318,6 +337,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Patient information"),
         "your_phone_number":
             MessageLookupByLibrary.simpleMessage("Your phone number"),
-        "youtube": MessageLookupByLibrary.simpleMessage("YouTube")
+        "youtube": MessageLookupByLibrary.simpleMessage("YouTube"),
+        "zoom_in": MessageLookupByLibrary.simpleMessage("Zoom In"),
+        "zoom_out": MessageLookupByLibrary.simpleMessage("Zoom Out")
       };
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
@@ -28,7 +27,7 @@ class SelectTableFeild extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextstyle.nunitoSemiBold.copyWith(fontSize: 15),
+            style: AppTextstyle.nunitoMedium.copyWith(fontSize: 15),
           ),
           const SizedBox(height: 8),
           TextFormField(
@@ -43,7 +42,7 @@ class SelectTableFeild extends StatelessWidget {
             onChanged: (value) => onChanged?.call(value),
             decoration: InputDecoration(
               hintText: '№',
-              hintStyle: AppTextstyle.nunitoRegular,
+              hintStyle: AppTextstyle.nunitoMedium,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(

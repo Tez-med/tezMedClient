@@ -126,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen>
                     // ),
                     // const SizedBox(height: 10),
                     // Text('Mijozlar uchun',
-                    //     style: AppTextstyle.nunitoRegular.copyWith(
+                    //     style: AppTextstyle.nunitoMedium.copyWith(
                     //       fontSize: 20,
                     //       color: AppColor.primaryColor,
                     //     )),

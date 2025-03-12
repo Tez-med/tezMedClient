@@ -184,7 +184,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(S.of(context).doctor_prescription,
-                style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17)),
+                style: AppTextstyle.nunitoBold.copyWith(fontSize: 17)),
             Column(
               children: [
                 if (totalImages > 0 || _loadingImage != null)

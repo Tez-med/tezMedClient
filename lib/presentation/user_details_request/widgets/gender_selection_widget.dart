@@ -20,7 +20,7 @@ class GenderSelectionWidget extends StatelessWidget {
       children: [
         Text(
           S.of(context).gender,
-          style: AppTextstyle.nunitoExtraBold.copyWith(fontSize: 17),
+          style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
         ),
         const SizedBox(height: 5),
         GenderWidget(
