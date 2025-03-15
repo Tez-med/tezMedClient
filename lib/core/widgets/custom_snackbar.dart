@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 
 class AnimatedCustomSnackbar {
   static OverlayEntry? _currentOverlay;
-  static final Logger _logger = Logger();
 
   static void show({
     required BuildContext context,
@@ -52,8 +50,8 @@ class AnimatedCustomSnackbar {
           _currentOverlay = null;
         }
       });
-    } catch (e, stackTrace) {
-      _logger.e('Error showing snackbar', error: e, stackTrace: stackTrace);
+    } catch (e) {
+      debugPrint('Error showing snackbar: $e');
     }
   }
 }

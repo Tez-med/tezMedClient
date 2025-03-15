@@ -515,14 +515,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.8.0"
-  flutter_hooks:
-    dependency: "direct main"
-    description:
-      name: flutter_hooks
-      sha256: cde36b12f7188c85286fba9b38cc5a902e7279f36dd676967106c041dc9dde70
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.20.5"
   flutter_inappwebview:
     dependency: "direct main"
     description:
@@ -648,14 +640,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.24"
-  flutter_staggered_animations:
-    dependency: "direct main"
-    description:
-      name: flutter_staggered_animations
-      sha256: "81d3c816c9bb0dca9e8a5d5454610e21ffb068aedb2bde49d2f8d04f75538351"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -1034,14 +1018,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
-  logger:
-    dependency: "direct main"
-    description:
-      name: logger
-      sha256: be4b23575aac7ebf01f225a241eb7f6b5641eeaf43c6a8613510fc2f8cf187d1
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.0"
   logging:
     dependency: transitive
     description:
@@ -1346,14 +1322,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  rename:
-    dependency: "direct main"
-    description:
-      name: rename
-      sha256: "6ef5daf4b11130e71d93630cfb70725e5a35b19039739cfcd2b272c834ba25fe"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2"
   rxdart:
     dependency: transitive
     description:

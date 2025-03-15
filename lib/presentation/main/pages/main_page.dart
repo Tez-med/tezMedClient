@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
@@ -12,7 +11,7 @@ import 'package:tez_med_client/presentation/history/bloc/active_doctor_bloc/acti
 import 'package:tez_med_client/presentation/history/bloc/active_request_bloc/active_request_bloc.dart';
 
 @RoutePage()
-class MainPage extends HookWidget {
+class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
