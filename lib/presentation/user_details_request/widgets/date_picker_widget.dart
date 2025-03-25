@@ -88,7 +88,11 @@ class DatePickerWidget extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         GestureDetector(
-          onTap: () => onTap ? null : _showDatePicker(context),
+          onTap: () {
+            if (!onTap) {
+              _showDatePicker(context);
+            }
+          },
           child: Container(
             width: double.infinity,
             height: 45,

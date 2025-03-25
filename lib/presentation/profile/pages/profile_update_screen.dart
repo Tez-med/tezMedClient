@@ -267,7 +267,11 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
 
   Widget _buildImagePicker(FileUploadState state) {
     return GestureDetector(
-      onTap: state is! FileUploadLoading ? _handleImageSelection : null,
+      onTap: () {
+        if (state is! FileUploadLoading) {
+          _handleImageSelection();
+        }
+      },
       child: Stack(
         children: [
           ProfileImage(

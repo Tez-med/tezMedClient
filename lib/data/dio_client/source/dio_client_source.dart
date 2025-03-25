@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chuck_interceptor/chuck.dart';
 import 'package:dio/dio.dart';
 import 'package:tez_med_client/config/environment.dart';
@@ -21,7 +23,7 @@ class DioClient {
       ..connectTimeout = const Duration(minutes: 10)
       ..receiveTimeout = const Duration(minutes: 10)
       ..baseUrl = EnvironmentConfig.instance.apiUrl;
-    if (EnvironmentConfig.instance.isDev) {
+    if (EnvironmentConfig.instance.isDev && Platform.isAndroid) {
       _dio.interceptors.add(chuck.getDioInterceptor());
     }
     _dio.interceptors.add(
@@ -56,7 +58,7 @@ class DioClient {
             developer.log("Refresh token expired");
             return _handleLogout(handler, error);
           }
-            developer.log(error.response?.data.toString() ?? "No error data");
+          developer.log(error.response?.data.toString() ?? "No error data");
           return handler.next(error);
         },
       ),

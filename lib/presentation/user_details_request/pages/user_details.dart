@@ -97,6 +97,7 @@ class _UserDetailsState extends State<UserDetails> {
               if (state is ProfileLoading) {
                 return _buildLoadingContent();
               } else if (state is ProfileLoaded) {
+                print(state.clientModel.toJson());
                 final data = state.clientModel;
                 _fullNameController.text = data.fullName;
                 _birthDateController.text = data.birthday;
@@ -257,8 +258,7 @@ class _UserDetailsState extends State<UserDetails> {
                     children: [
                       Text(
                         S.of(context).phone_number,
-                        style:
-                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
+                        style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -271,8 +271,7 @@ class _UserDetailsState extends State<UserDetails> {
                       const SizedBox(height: 20),
                       Text(
                         S.of(context).birthday,
-                        style:
-                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
+                        style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -285,8 +284,7 @@ class _UserDetailsState extends State<UserDetails> {
                       const SizedBox(height: 20),
                       Text(
                         S.of(context).birthday,
-                        style:
-                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
+                        style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -299,8 +297,7 @@ class _UserDetailsState extends State<UserDetails> {
                       const SizedBox(height: 20),
                       Text(
                         S.of(context).birthday,
-                        style:
-                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
+                        style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(
@@ -313,8 +310,7 @@ class _UserDetailsState extends State<UserDetails> {
                       const SizedBox(height: 20),
                       Text(
                         S.of(context).birthday,
-                        style:
-                            AppTextstyle.nunitoBold.copyWith(fontSize: 17),
+                        style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
                       ),
                       const SizedBox(height: 5),
                       Container(

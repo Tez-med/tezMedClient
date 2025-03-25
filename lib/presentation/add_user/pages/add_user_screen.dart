@@ -100,13 +100,13 @@ class _AddUserScreenState extends State<AddUserScreen> {
   }
 
   void _showError(String message) {
-    if (!mounted) return;
-
-    AnimatedCustomSnackbar.show(
-      context: context,
-      message: message,
-      type: SnackbarType.warning,
-    );
+    if (mounted) {
+      AnimatedCustomSnackbar.show(
+        context: context,
+        message: message,
+        type: SnackbarType.warning,
+      );
+    }
   }
 
   Future<void> _submitForm() async {
@@ -191,18 +191,15 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Scaffold(
-        backgroundColor: AppColor.buttonBackColor,
-        appBar: _buildAppBar(),
-        body: SafeArea(
-          child: Stack(
-            children: [
-              _buildForm(),
-              _buildSubmitButton(),
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: AppColor.buttonBackColor,
+      appBar: _buildAppBar(),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            _buildForm(),
+            _buildSubmitButton(),
+          ],
         ),
       ),
     );
@@ -217,7 +214,6 @@ class _AddUserScreenState extends State<AddUserScreen> {
         onPressed: () => context.router.maybePop(),
         icon: const Icon(
           Icons.arrow_back_ios_new_rounded,
-          color: AppColor.primaryColor,
         ),
       ),
       centerTitle: true,
@@ -447,9 +443,8 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
   void _handleSuccess() {
     LocalStorageService().setBool(StorageKeys.isRegister, true).then((_) {
-      if (!mounted) return;
-
-      Navigator.of(context).pop();
+      context.router.maybePop();
+      
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -460,7 +455,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
       );
     }).catchError((error) {
       debugPrint(
-          'Ro\'yxatdan o\'tish muvaffaqiyatli yakunlandi, lekin saqlashda xatolik yuz berdi');
+          'Ro‘yxatdan o‘tish muvaffaqiyatli yakunlandi, lekin saqlashda xatolik yuz berdi');
     });
   }
 

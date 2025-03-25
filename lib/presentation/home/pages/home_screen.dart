@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    updateManager.checkForUpdate();
+    if (Platform.isAndroid) {
+      updateManager.checkForUpdate();
+    }
 
     _localStorageService = LocalStorageService();
     _initializeLocation();

@@ -218,7 +218,15 @@ class NotificationRepositoryImpl implements NotificationRepository {
     const InitializationSettings initializationSettings =
         InitializationSettings(
       android: AndroidInitializationSettings("@mipmap/ic_launcher"),
-      iOS: DarwinInitializationSettings(),
+      iOS: DarwinInitializationSettings(
+        requestAlertPermission: true,
+        requestBadgePermission: true,
+        requestSoundPermission: true,
+        defaultPresentSound: true,
+        defaultPresentAlert: true,
+        defaultPresentBadge: true,
+        defaultPresentBanner: true,
+      ),
     );
 
     await _localNotificationsPlugin.initialize(
@@ -259,14 +267,18 @@ class NotificationRepositoryImpl implements NotificationRepository {
     //   chuck.showInspector();
     // } else {
     if (EnvironmentConfig.instance.isDev) {
-      chuck.showInspector();
+      if (Platform.isAndroid) {
+        chuck.showInspector();
+      }
     } else {
       AppRouter.instance.pushNamed('/$screenName');
     }
   }
 
   @override
-  Future<String?> getFcmToken() => _firebaseMessaging.getToken();
+  Future<String?> getFcmToken() async {
+    return _firebaseMessaging.getToken();
+  }
 
   @override
   Future<void> showNotification(RemoteMessage message) async {
@@ -316,7 +328,7 @@ class NotificationRepositoryImpl implements NotificationRepository {
             presentAlert: true,
             presentBadge: true,
             presentSound: true,
-            sound: 'notification.aiff',
+            sound: 'notification.wav',
             interruptionLevel: InterruptionLevel.active,
           ),
         ),

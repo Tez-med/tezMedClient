@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +38,13 @@ class ProfileMenuWidget extends StatelessWidget {
             onTap: () => context.router.push(const SettingsRoute()),
           ),
           _buildDivider(),
-          _buildMenuItem(
-            context: context,
-            icon: CupertinoIcons.star,
-            title: S.of(context).rate_us,
-            onTap: () => _rateApp(),
-          ),
+          if (Platform.isAndroid)
+            _buildMenuItem(
+              context: context,
+              icon: CupertinoIcons.star,
+              title: S.of(context).rate_us,
+              onTap: () => _rateApp(),
+            ),
           _buildDivider(),
           _buildMenuItem(
             context: context,
@@ -64,111 +67,122 @@ class ProfileMenuWidget extends StatelessWidget {
   }
 
   Future<void> _shareApp() async {
-    const String message =
-        'https://play.google.com/store/apps/details?id=uz.client.tezmed';
+    try {
+      const String androidAppUrl =
+          'https://play.google.com/store/apps/details?id=uz.client.tezmed';
+      const String iosAppUrl = 'https://apps.apple.com/app/idYOUR_IOS_APP_ID';
 
-    await Share.share(message);
+      final String appUrl = Platform.isAndroid ? androidAppUrl : iosAppUrl;
+
+      await Share.share(appUrl);
+    } catch (e) {
+      print('Share error: $e');
+    }
   }
 
   Future<void> _rateApp() async {
     final InAppReview inAppReview = InAppReview.instance;
 
-    if (await inAppReview.isAvailable()) {
-      inAppReview.openStoreListing(
-        appStoreId: 'uz.client.tezmed',
-      );
-      await inAppReview.requestReview();
-    } else {
-      inAppReview.openStoreListing(
-        appStoreId: 'uz.client.tezmed',
-      );
+    try {
+      if (await inAppReview.isAvailable()) {
+        await inAppReview.requestReview();
+      } else {
+        final String androidAppUrl =
+            'https://play.google.com/store/apps/details?id=uz.client.tezmed';
+        final String iosAppUrl = 'https://apps.apple.com/app/idYOUR_IOS_APP_ID';
+
+        final String storeUrl = Platform.isAndroid ? androidAppUrl : iosAppUrl;
+        await inAppReview.openStoreListing();
+      }
+    } catch (e) {
+      print('Rate error: $e');
     }
   }
+}
 
-  Widget _buildMenuItem({
-    required IconData icon,
-    required String title,
-    required BuildContext context,
-    required VoidCallback onTap,
-  }) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        splashColor: AppColor.buttonBackColor,
-        hoverColor: AppColor.buttonBackColor,
-      ),
-      child: ListTile(
-        leading: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: AppColor.primaryColor.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(
-            icon,
-            color: AppColor.primaryColor,
-            size: 20,
-          ),
+Widget _buildMenuItem({
+  required IconData icon,
+  required String title,
+  required BuildContext context,
+  required VoidCallback onTap,
+}) {
+  return Theme(
+    data: Theme.of(context).copyWith(
+      splashColor: AppColor.buttonBackColor,
+      hoverColor: AppColor.buttonBackColor,
+    ),
+    child: ListTile(
+      leading: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: AppColor.primaryColor.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
         ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
-          size: 16,
+        child: Icon(
+          icon,
           color: AppColor.primaryColor,
+          size: 20,
         ),
-        onTap: onTap, // onTap ishlatildi
       ),
-    );
-  }
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: AppColor.primaryColor,
+      ),
+      onTap: onTap, // onTap ishlatildi
+    ),
+  );
+}
 
-  Widget _buildLogoutWidget(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: ListTile(
-        onTap: () => showAnimatedLogoutDialog(context),
-        leading: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.red.shade50,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(
-            Icons.logout_rounded,
-            color: Colors.red.shade400,
-            size: 20,
-          ),
+Widget _buildLogoutWidget(BuildContext context) {
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: ListTile(
+      onTap: () => showAnimatedLogoutDialog(context),
+      leading: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.red.shade50,
+          borderRadius: BorderRadius.circular(8),
         ),
-        title: Text(
-          S.of(context).exit,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: Colors.red.shade400,
-          ),
-        ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
-          size: 16,
-          color: AppColor.primaryColor,
+        child: Icon(
+          Icons.logout_rounded,
+          color: Colors.red.shade400,
+          size: 20,
         ),
       ),
-    );
-  }
+      title: Text(
+        S.of(context).exit,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: Colors.red.shade400,
+        ),
+      ),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: AppColor.primaryColor,
+      ),
+    ),
+  );
+}
 
-  Widget _buildDivider() {
-    return Divider(
-      height: 1,
-      thickness: 1,
-      color: Colors.grey.shade100,
-      indent: 56,
-    );
-  }
+Widget _buildDivider() {
+  return Divider(
+    height: 1,
+    thickness: 1,
+    color: Colors.grey.shade100,
+    indent: 56,
+  );
 }

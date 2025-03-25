@@ -178,9 +178,12 @@ class SupportScreen extends StatelessWidget {
   }
 
   Future<void> _launchUrl(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url),
-          mode: LaunchMode.externalNonBrowserApplication);
+    final Uri uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.inAppWebView);
+    } else {
+      throw 'URL ochilmadi: $url';
     }
   }
 }

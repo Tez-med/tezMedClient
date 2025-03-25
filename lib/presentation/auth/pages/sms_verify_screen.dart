@@ -18,6 +18,7 @@ import 'package:tez_med_client/injection.dart';
 import 'package:tez_med_client/presentation/auth/widgets/button_widget.dart';
 import 'package:tez_med_client/presentation/auth/widgets/resend_button.dart';
 import 'package:tez_med_client/presentation/profile/bloc/profile_update/profile_update_bloc.dart';
+import 'dart:io' show Platform;
 
 import '../../../core/error/error_handler.dart';
 import '../bloc/verify_user/verify_otp_bloc.dart';
@@ -35,17 +36,47 @@ class SmsVerifyScreen extends StatefulWidget {
 class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
   final TextEditingController _pinController = TextEditingController();
   final FocusNode _smsFocusNode = FocusNode();
-  bool _isPinComplete = false;
   Timer? _autoVerificationTimer;
   String? appSignature;
   bool isVerifying = false;
+  bool _isPinComplete = false;
+
+  // Formatted phone number cache
+  late final String _formattedPhoneNumber;
 
   @override
   void initState() {
     super.initState();
+    _formattedPhoneNumber = formatPhoneNumber(widget.phoneNumber);
     _smsFocusNode.requestFocus();
+    _setupSmsListener();
     _getAppSignature();
-    listenForCode();
+  }
+
+  void _setupSmsListener() {
+    if (Platform.isIOS) {
+      SmsAutoFill().listenForCode();
+
+      SmsAutoFill().code.listen((code) {
+        if (code.isNotEmpty && code.length == 4 && !isVerifying) {
+          _updatePinAndVerify(code);
+        }
+      });
+
+      _autoVerificationTimer = Timer(const Duration(seconds: 60), () {
+        SmsAutoFill().unregisterListener();
+      });
+    } else {
+      listenForCode();
+    }
+  }
+
+  Future<void> _getAppSignature() async {
+    try {
+      appSignature = await SmsAutoFill().getAppSignature;
+    } catch (e) {
+      debugPrint('App signature olishda xatolik: $e');
+    }
   }
 
   @override
@@ -53,47 +84,57 @@ class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
     _pinController.dispose();
     _smsFocusNode.dispose();
     _autoVerificationTimer?.cancel();
-    cancel();
-    super.dispose();
-  }
 
-  Future<void> _getAppSignature() async {
-    appSignature = await SmsAutoFill().getAppSignature;
+    if (Platform.isIOS) {
+      SmsAutoFill().unregisterListener();
+    } else {
+      cancel();
+    }
+
+    super.dispose();
   }
 
   @override
   void codeUpdated() {
-    if (!isVerifying && code != null && code!.length == 4) {
+    if (code != null && code!.length == 4 && !isVerifying) {
+      _updatePinAndVerify(code!);
+    }
+  }
+
+  void _updatePinAndVerify(String code) {
+    // Avoid settate if not needed
+    if (_pinController.text != code) {
       setState(() {
-        _pinController.text = code!;
+        _pinController.text = code;
         _isPinComplete = true;
       });
-      if (_isPinComplete) {
-        FocusScope.of(context).unfocus();
-        _verifyCode();
-      }
+      Future.microtask(() => _verifyCode());
     }
   }
 
   void _onPinChanged(String pin) {
-    setState(() {
-      _isPinComplete = pin.length == 4;
-    });
-    if (_isPinComplete) {
+    final isPinComplete = pin.length == 4;
+    if (_isPinComplete != isPinComplete) {
+      setState(() {
+        _isPinComplete = isPinComplete;
+      });
+    }
+
+    if (isPinComplete && !isVerifying) {
       _verifyCode();
     }
   }
 
   void _verifyCode() {
     if (isVerifying) return;
+
     setState(() {
       isVerifying = true;
     });
 
     FocusScope.of(context).unfocus();
     context.read<VerifyOtpBloc>().add(
-          VerifyCodeEvent(
-              _pinController.text, formatPhoneNumber(widget.phoneNumber)),
+          VerifyCodeEvent(_pinController.text, _formattedPhoneNumber),
         );
   }
 
@@ -104,14 +145,22 @@ class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
       isVerifying = false;
     });
     _smsFocusNode.requestFocus();
-
-    listenForCode();
+    _setupSmsListener();
   }
 
   Future<void> _handleSuccessfulVerification() async {
+    // Store registration status
     await LocalStorageService().setBool(StorageKeys.isRegister, true);
     if (!mounted) return;
-    final token = await getIt<NotificationRepository>().getFcmToken();
+
+    // Get FCM token and handle null case
+    String? fcmToken;
+    try {
+      fcmToken = await getIt<NotificationRepository>().getFcmToken();
+    } catch (e) {
+      debugPrint('FCM token olishda xatolik: $e');
+    }
+
     context.read<ProfileUpdateBloc>().add(ProfileUpdate(ProfileUpdateModel(
         birthday: "",
         fullName: "",
@@ -120,30 +169,34 @@ class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
         longitude: "",
         phoneNumber: "",
         photo: "",
-        fcmToken: token!,
+        fcmToken: fcmToken ?? "",
         updatedAt: DateTime.now().toString())));
+
+    // Navigate to main screen
     await context.router.replaceAll([const MainRoute()]);
   }
 
   Future<void> _handleVerificationError(ErrorVerifyState state) async {
     if (!mounted) return;
 
-    if (state.error.code == 401) {
+    final errorCode = state.error.code;
+
+    if (errorCode == 401) {
       await context.router.push(AddUserRoute(phoneNumber: widget.phoneNumber));
-    } else if (state.error.code == 400) {
+    } else if (errorCode == 400) {
       AnimatedCustomSnackbar.show(
         context: context,
         message: S.of(context).code_error,
         type: SnackbarType.error,
       );
-    } else if (state.error.code == 404) {
+    } else if (errorCode == 404) {
       AnimatedCustomSnackbar.show(
         context: context,
         message: S.of(context).error_sms_code,
         type: SnackbarType.error,
       );
     } else {
-      ErrorHandler.showError(context, state.error.code);
+      ErrorHandler.showError(context, errorCode);
     }
   }
 
@@ -172,8 +225,7 @@ class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
               isVerifying = false;
             });
             _handleVerificationError(state);
-          }
-          if (state is SuccessVerifyState) {
+          } else if (state is SuccessVerifyState) {
             _handleSuccessfulVerification();
           }
         },
@@ -196,7 +248,7 @@ class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
               ),
               const SizedBox(height: 5),
               Text(
-                formatPhoneNumber(widget.phoneNumber),
+                _formattedPhoneNumber,
                 style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
               ),
               const SizedBox(height: 40),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
@@ -53,45 +54,64 @@ class _CustomBannerState extends State<CustomBanner> {
       child: BlocBuilder<BannerBloc, BannerState>(
         builder: (context, state) {
           final lang = context.read<LanguageBloc>().state.locale.languageCode;
+          final screenWidth = MediaQuery.of(context).size.width;
           final screenHeight = MediaQuery.of(context).size.height;
-          final bannerHeight = screenHeight * 0.23;
+
+          // iPad qurilmasini aniqlash
+          final bool isIpad = Platform.isIOS && screenWidth >= 768;
+
+          // iPad uchun balandlikni kattaroq qilish
+          final bannerHeight =
+              isIpad ? screenHeight * 0.3 : screenHeight * 0.23;
 
           if (state is BannerLoading) {
-            return _buildShimmer(bannerHeight);
+            return _buildShimmer(bannerHeight, isIpad);
           } else if (state is BannerLoaded) {
-            _banners = state.data.banners
-                .map((banner) => lang == "uz"
+            // iPad uchun photoXl va boshqa qurilmalar uchun photoSm tanlash
+            _banners = state.data.banners.map((banner) {
+              if (isIpad) {
+                // iPad uchun photoXl variantini ishlatamiz
+                return lang == "uz"
+                    ? banner.photoLgUz
+                    : lang == 'en'
+                        ? banner.photoLgEn
+                        : banner.photoLgRu;
+              } else {
+                // Boshqa qurilmalar uchun photoSm variantini ishlatamiz
+                return lang == "uz"
                     ? banner.photoSmUz
                     : lang == 'en'
                         ? banner.photoSmEn
-                        : banner.photoSmRu)
-                .toList();
-            return _buildBannerView(_banners, bannerHeight);
+                        : banner.photoSmRu;
+              }
+            }).toList();
+            return _buildBannerView(_banners, bannerHeight, isIpad);
           }
-          return _buildShimmer(bannerHeight);
+          return _buildShimmer(bannerHeight, isIpad);
         },
       ),
     );
   }
 
-  Widget _buildShimmer(double height) {
+  Widget _buildShimmer(double height, bool isIpad) {
     return Container(
       height: height,
-      margin: const EdgeInsets.only(top: 16),
+      margin: EdgeInsets.only(top: isIpad ? 24 : 16),
       child: Shimmer.fromColors(
         baseColor: Colors.grey[350]!,
         highlightColor: Colors.grey[300]!,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: 5,
-          padding: const EdgeInsets.symmetric(horizontal: 4),
+          padding: EdgeInsets.symmetric(horizontal: isIpad ? 8 : 4),
           itemBuilder: (context, index) => Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            width: MediaQuery.of(context).size.width * 0.88,
+            margin: EdgeInsets.symmetric(horizontal: isIpad ? 8 : 4),
+            // iPad uchun kengroq banner
+            width: MediaQuery.of(context).size.width * (isIpad ? 0.92 : 0.88),
             height: height,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(isIpad ? 30 : 24),
             ),
           ),
         ),
@@ -99,21 +119,21 @@ class _CustomBannerState extends State<CustomBanner> {
     );
   }
 
-  Widget _buildBannerView(List<String> banners, double height) {
+  Widget _buildBannerView(List<String> banners, double height, bool isIpad) {
     return Container(
       height: height,
       color: const Color(0xffF9F9F9),
-      margin: const EdgeInsets.only(top: 16),
+      margin: EdgeInsets.only(top: isIpad ? 24 : 16),
       child: PageView.builder(
         controller: _pageController,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final banner = banners[index % banners.length]; // Cheksiz aylanish
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: EdgeInsets.symmetric(horizontal: isIpad ? 8 : 4),
             child: CustomCachedImage(
               image: banner,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(isIpad ? 26 : 20),
               fit: BoxFit.fill,
             ),
           );

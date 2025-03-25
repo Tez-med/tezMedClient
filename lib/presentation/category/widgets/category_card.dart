@@ -19,17 +19,18 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: speciess.isActive
-          ? () {
-              context.router.push(CategoryRoute(
-                title: context.toLocalized(
-                    uz: speciess.nameUz,
-                    ru: speciess.nameRu,
-                    en: speciess.nameEn),
-                id: speciess.id,
-              ));
-            }
-          : null,
+      onTap: () {
+        if (speciess.isActive) {
+          context.router.push(CategoryRoute(
+            title: context.toLocalized(
+              uz: speciess.nameUz,
+              ru: speciess.nameRu,
+              en: speciess.nameEn,
+            ),
+            id: speciess.id,
+          ));
+        }
+      },
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(

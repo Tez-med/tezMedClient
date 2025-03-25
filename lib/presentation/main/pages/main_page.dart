@@ -16,7 +16,14 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconSize = MediaQuery.of(context).size.width * 0.07;
+    // Responsive icon sizing based on device type and screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final bool isIpad = Platform.isIOS && screenWidth >= 768;
+
+    // iPad uchun ko'proq moslashtirilgan hajm
+    final double iconSize = isIpad
+        ? screenWidth * 0.035 // iPad uchun kichikroq foiz
+        : screenWidth * 0.07; // Telefonlar uchun original hajm
 
     return AutoTabsScaffold(
       routes: const [
@@ -33,73 +40,96 @@ class MainPage extends StatelessWidget {
             tabsRouter.setActiveIndex(0);
           },
           child: Platform.isIOS
-              ? _buildIOSNavBar(context, tabsRouter, iconSize)
+              ? _buildIOSNavBar(context, tabsRouter, iconSize, isIpad)
               : _buildAndroidNavBar(context, tabsRouter, iconSize),
         );
       },
     );
   }
 
-  Widget _buildIOSNavBar(
-      BuildContext context, TabsRouter tabsRouter, double iconSize) {
+  Widget _buildIOSNavBar(BuildContext context, TabsRouter tabsRouter,
+      double iconSize, bool isIpad) {
+    // iPad uchun balandlik
+    final navBarHeight = isIpad
+        ? kBottomNavigationBarHeight + 25 // iPad uchun yanada kattaroq
+        : kBottomNavigationBarHeight + 15;
+
+    // iPad uchun shrift hajmi
+    final textStyle = isIpad
+        ? const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500) // iPad uchun yaxshilangan shrift
+        : null; // Telefonlar uchun standart hajm
+
     return CupertinoTabBar(
       backgroundColor: Colors.white,
       border: const Border(top: BorderSide(color: Colors.transparent)),
+      height: navBarHeight,
+      // iPad uchun iconSize ko'paytirildi
+      iconSize: isIpad ? iconSize * 1.2 : iconSize,
+      currentIndex: tabsRouter.activeIndex,
       activeColor: AppColor.primaryColor,
       inactiveColor: Colors.black,
-      height: kBottomNavigationBarHeight + 15,
-      iconSize: iconSize,
       items: [
-        BottomNavigationBarItem(
-          icon: Assets.icons.home.svg(
-            width: iconSize,
-            height: iconSize,
-            colorFilter: ColorFilter.mode(
-              tabsRouter.activeIndex == 0
-                  ? AppColor.primaryColor
-                  : Colors.black,
-              BlendMode.srcIn,
-            ),
-          ),
-          label: S.of(context).home,
-        ),
-        _buildNavBarItemWithBadge(
-          context,
-          tabsRouter,
-          1,
-          Assets.icons.history,
-          S.of(context).order,
-          iconSize,
-        ),
-        BottomNavigationBarItem(
-          icon: Assets.icons.call.svg(
-            width: iconSize,
-            height: iconSize,
-            colorFilter: ColorFilter.mode(
-              tabsRouter.activeIndex == 2
-                  ? AppColor.primaryColor
-                  : Colors.black,
-              BlendMode.srcIn,
-            ),
-          ),
-          label: S.of(context).helpSupport,
-        ),
-        BottomNavigationBarItem(
-          icon: Assets.icons.profile.svg(
-            width: iconSize,
-            height: iconSize,
-            colorFilter: ColorFilter.mode(
-              tabsRouter.activeIndex == 3
-                  ? AppColor.primaryColor
-                  : Colors.black,
-              BlendMode.srcIn,
-            ),
-          ),
-          label: S.of(context).profile,
-        ),
+        _buildCupertinoItem(tabsRouter, 0, Assets.icons.home,
+            S.of(context).home, iconSize, textStyle),
+        _buildNavBarItemWithBadge(context, tabsRouter, 1, Assets.icons.history,
+            S.of(context).order, iconSize, textStyle),
+        _buildCupertinoItem(tabsRouter, 2, Assets.icons.call,
+            S.of(context).helpSupport, iconSize, textStyle),
+        _buildCupertinoItem(tabsRouter, 3, Assets.icons.profile,
+            S.of(context).profile, iconSize, textStyle),
       ],
       onTap: (index) => _handleTabSelection(tabsRouter, index),
     );
+  }
+
+  BottomNavigationBarItem _buildCupertinoItem(
+    TabsRouter tabsRouter,
+    int index,
+    SvgGenImage svgAsset,
+    String label,
+    double iconSize,
+    TextStyle? textStyle,
+  ) {
+    final bool isSelected = tabsRouter.activeIndex == index;
+    final color = isSelected ? AppColor.primaryColor : Colors.black;
+
+    // iPad uchun to'liq moslashtirish, har doim active/inactive uchun
+    if (textStyle != null) {
+      return BottomNavigationBarItem(
+        icon: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            svgAsset.svg(
+              width: iconSize * 1.2, // iPad uchun kattaroq hajm
+              height: iconSize * 1.2,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              label,
+              style: textStyle.copyWith(
+                color: color,
+                fontSize:
+                    isSelected ? textStyle.fontSize : textStyle.fontSize! * 0.9,
+              ),
+            ),
+          ],
+        ),
+        label: "", // Bo'sh qoldiring, tepada allaqachon label qo'shilgan
+      );
+    } else {
+      // Telefon uchun standart item
+      return BottomNavigationBarItem(
+        icon: svgAsset.svg(
+          width: iconSize,
+          height: iconSize,
+          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        ),
+        label: label,
+      );
+    }
   }
 
   Widget _buildAndroidNavBar(
@@ -175,15 +205,46 @@ class MainPage extends StatelessWidget {
     SvgGenImage svgAsset,
     String label,
     double iconSize,
+    TextStyle? textStyle,
   ) {
-    return BottomNavigationBarItem(
-      icon: _BadgeWrapper(
-        isSelected: tabsRouter.activeIndex == index,
-        svgAsset: svgAsset,
-        iconSize: iconSize,
-      ),
-      label: label,
-    );
+    final bool isSelected = tabsRouter.activeIndex == index;
+    final color = isSelected ? AppColor.primaryColor : Colors.black;
+
+    // iPad uchun to'liq moslashtirish, har doim active/inactive uchun
+    if (textStyle != null) {
+      return BottomNavigationBarItem(
+        icon: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _BadgeWrapper(
+              isSelected: isSelected,
+              svgAsset: svgAsset,
+              iconSize: iconSize * 1.2, // iPad uchun kattaroq
+            ),
+            const SizedBox(height: 3),
+            Text(
+              label,
+              style: textStyle.copyWith(
+                color: color,
+                fontSize:
+                    isSelected ? textStyle.fontSize : textStyle.fontSize! * 0.9,
+              ),
+            ),
+          ],
+        ),
+        label: "", // Bo'sh qoldiring, tepada allaqachon label qo'shilgan
+      );
+    } else {
+      // Telefon uchun standart item
+      return BottomNavigationBarItem(
+        icon: _BadgeWrapper(
+          isSelected: isSelected,
+          svgAsset: svgAsset,
+          iconSize: iconSize,
+        ),
+        label: label,
+      );
+    }
   }
 
   NavigationDestination _buildNavigationDestinationWithBadge(
@@ -230,6 +291,20 @@ class _BadgeWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = isSelected ? AppColor.primaryColor : Colors.black;
 
+    // iPad uchun tekshirish
+    final screenWidth = MediaQuery.of(context).size.width;
+    final bool isIpad = Platform.isIOS && screenWidth >= 768;
+
+    // iPad uchun badge parametrlarini moslashtirish
+    final badgeOffset = isIpad ? const Offset(12, -12) : const Offset(8, -8);
+    final badgeLargeSize = isIpad ? 24.0 : 16.0;
+    final badgeSmallSize = isIpad ? 20.0 : 12.0;
+    final textStyle = TextStyle(
+      color: Colors.white,
+      fontSize: isIpad ? 12 : 10,
+      fontWeight: FontWeight.bold,
+    );
+
     return StreamBuilder<ActiveRequestState>(
       stream: context.read<ActiveRequestBloc>().stream,
       builder: (context, snapshot) {
@@ -258,15 +333,12 @@ class _BadgeWrapper extends StatelessWidget {
 
             return Badge(
               alignment: Alignment.topRight,
-              textStyle: const TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-              ),
-              padding: const EdgeInsets.all(4),
-              largeSize: 16,
-              smallSize: 12,
-              offset: const Offset(8, -8),
+              textStyle: textStyle,
+              padding:
+                  EdgeInsets.all(isIpad ? 6 : 4), // iPad uchun kattaroq padding
+              largeSize: badgeLargeSize,
+              smallSize: badgeSmallSize,
+              offset: badgeOffset,
               isLabelVisible: totalRequests > 0,
               label: Text('$totalRequests'),
               child: svgAsset.svg(

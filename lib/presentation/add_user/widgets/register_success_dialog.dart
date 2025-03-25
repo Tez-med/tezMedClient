@@ -13,10 +13,24 @@ import 'package:tez_med_client/presentation/profile/bloc/profile_update/profile_
 
 import '../../../generated/l10n.dart';
 
-class RegisterSuccessDialog extends StatelessWidget {
+class RegisterSuccessDialog extends StatefulWidget {
   const RegisterSuccessDialog({
     super.key,
   });
+
+  @override
+  State<RegisterSuccessDialog> createState() => _RegisterSuccessDialogState();
+}
+
+class _RegisterSuccessDialogState extends State<RegisterSuccessDialog> {
+  late final ProfileUpdateBloc _profileUpdateBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    // Get reference to the bloc when the widget initializes
+    _profileUpdateBloc = context.read<ProfileUpdateBloc>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +45,7 @@ class RegisterSuccessDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.2),
+              color: Colors.black.withOpacity(0.2),
               spreadRadius: 5,
               blurRadius: 10,
               offset: const Offset(0, 3),
@@ -56,21 +70,28 @@ class RegisterSuccessDialog extends StatelessWidget {
               ),
               onLoaded: (composition) {
                 Future.delayed(composition.duration, () async {
-                  context.router.maybePop();
+                  // Store necessary data before popping
                   final token =
                       await getIt<NotificationRepository>().getFcmToken();
-                  context.read<ProfileUpdateBloc>().add(ProfileUpdate(
-                      ProfileUpdateModel(
-                          birthday: "",
-                          fullName: "",
-                          gender: "",
-                          latitude: "",
-                          longitude: "",
-                          phoneNumber: "",
-                          photo: "",
-                          fcmToken: token!,
-                          updatedAt: DateTime.now().toString())));
-                  context.router.replaceAll([const MainRoute()]);
+                  final profileUpdateModel = ProfileUpdateModel(
+                    birthday: "",
+                    fullName: "",
+                    gender: "",
+                    latitude: "",
+                    longitude: "",
+                    phoneNumber: "",
+                    photo: "",
+                    fcmToken: token!,
+                    updatedAt: DateTime.now().toString(),
+                  );
+
+                  // Update profile before navigation changes
+                  _profileUpdateBloc.add(ProfileUpdate(profileUpdateModel));
+
+                  // Check if context is still valid before navigation
+                  if (mounted) {
+                    context.router.replaceAll([const MainRoute()]);
+                  }
                 });
               },
             ),

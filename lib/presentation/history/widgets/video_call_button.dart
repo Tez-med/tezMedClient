@@ -92,20 +92,13 @@ class _VideoCallButtonState extends State<VideoCallButton> {
   }
 
   Future<bool> _requestPermissions() async {
-    final cameraStatus = await Permission.camera.status;
-    final microphoneStatus = await Permission.microphone.status;
+    final cameraStatus = await Permission.camera.request();
+    final microphoneStatus = await Permission.microphone.request();
 
     if (cameraStatus.isGranted && microphoneStatus.isGranted) {
       return true;
-    }
-
-    final cameraRequest = await Permission.camera.request();
-    final microphoneRequest = await Permission.microphone.request();
-
-    if (cameraRequest.isGranted && microphoneRequest.isGranted) {
-      return true;
-    } else if (cameraRequest.isPermanentlyDenied ||
-        microphoneRequest.isPermanentlyDenied) {
+    } else if (cameraStatus.isPermanentlyDenied ||
+        microphoneStatus.isPermanentlyDenied) {
       _showSettingsDialog();
       return false;
     } else {
