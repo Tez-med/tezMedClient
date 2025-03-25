@@ -38,9 +38,9 @@
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>This app requires access to your location to provide location-based services.</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app requires access to your location at all times.</string>
+    <string>Tez Med Client requires background location access to provide uninterrupted service availability and location-based notifications.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app requires access to your location while using the app.</string>
+    <string>Tez Med Client uses your location to connect you with nearby qualified nurses for home visits and medical services.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>The app requests access to the microphone for audio calls.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
