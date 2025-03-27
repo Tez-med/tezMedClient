@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
+import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/data/category/model/category_model.dart';
+import 'package:tez_med_client/data/request_post/model/request_model.dart';
 import 'package:tez_med_client/data/requests_get/model/active_request_model.dart';
 import 'package:tez_med_client/presentation/category/widgets/category_nurse.dart';
 import 'package:tez_med_client/presentation/request/widgets/animated_price.dart';
@@ -11,9 +11,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 
+@RoutePage()
 class CategoryNurseMain extends StatefulWidget {
   final List<CategoryModel> category;
-  const CategoryNurseMain({super.key, required this.category});
+  final RequestModel requestModel;
+  const CategoryNurseMain(
+      {super.key, required this.category, required this.requestModel});
 
   @override
   State<CategoryNurseMain> createState() => _CategoryNurseMainState();
@@ -128,13 +131,28 @@ class _CategoryNurseMainState extends State<CategoryNurseMain> {
     if (totalPrice == 0) return;
 
     final requestAffairs = _buildRequestAffairList();
-    context.router.push(UserDetails(requestAffair: requestAffairs));
+
+    final updatedRequestAffairsPost = requestAffairs.map((affairGet) {
+      return RequestAffairPost(
+        price: affairGet.price,
+        nameEn: affairGet.nameEn,
+        nameRu: affairGet.nameRu,
+        nameUz: affairGet.nameUz,
+        regionAffairId: widget.category.first.departments.first.affairs.first
+            .service.first.regionAffairId,
+        affairId: affairGet.affairId,
+        count: affairGet.count,
+        day: 1,
+        startDate: affairGet.startDate,
+      );
+    }).toList();
+    context.router.push(UserDetails(
+        requestModel: widget.requestModel
+            .copyWith(requestAffairs: updatedRequestAffairsPost)));
   }
 
   @override
   Widget build(BuildContext context) {
-    final lang = context.read<LanguageBloc>().state.locale.languageCode;
-
     return DefaultTabController(
       length: widget.category.length,
       child: Scaffold(
@@ -143,11 +161,8 @@ class _CategoryNurseMainState extends State<CategoryNurseMain> {
           backgroundColor: Colors.white,
           leading: SizedBox(),
           flexibleSpace: _buildTabBar(widget.category
-              .map((e) => lang == "uz"
-                  ? e.nameUz
-                  : lang == 'en'
-                      ? e.nameEn
-                      : e.nameRu)
+              .map((e) =>
+                  context.toLocalized(uz: e.nameUz, ru: e.nameRu, en: e.nameEn))
               .toList()),
         ),
         body: TabBarView(

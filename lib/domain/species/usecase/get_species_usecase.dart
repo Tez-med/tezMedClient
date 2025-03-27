@@ -11,7 +11,7 @@ class GetSpeciesUsecase {
     return await speciesRepositories.getSpecies();
   }
 
-  Future<Either<Failure, Speciess>> getByIdSpecies(String id) async {
+  Future<Either<Failure, Speciess>> getByIdSpecies(String id,[String? district]) async {
     return await speciesRepositories.getByIdSpecies(id);
   }
 }

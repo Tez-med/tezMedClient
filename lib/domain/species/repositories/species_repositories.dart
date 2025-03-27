@@ -4,5 +4,6 @@ import 'package:tez_med_client/data/species/model/species_model.dart';
 
 abstract class SpeciesRepositories {
   Future<Either<Failure, SpeciesModel>> getSpecies();
-  Future<Either<Failure, Speciess>> getByIdSpecies(String id);
+  Future<Either<Failure, Speciess>> getByIdSpecies(String id,
+      [String? district]);
 }

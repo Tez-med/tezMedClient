@@ -18,7 +18,7 @@ class SpeciesGetByIdBloc
   Future<void> _onGetByIdSpecies(
       GetByIdSpecies event, Emitter<SpeciesGetByIdState> emit) async {
     emit(SpeciesGetByIdLoading());
-    final result = await getSpeciesUsecase.getByIdSpecies(event.id);
+    final result = await getSpeciesUsecase.getByIdSpecies(event.id, event.district);
 
     result.fold(
       (error) => emit(SpeciesGetByIdError(error)),

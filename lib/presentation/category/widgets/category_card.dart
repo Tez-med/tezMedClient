@@ -21,14 +21,25 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (speciess.isActive) {
-          context.router.push(CategoryRoute(
-            title: context.toLocalized(
-              uz: speciess.nameUz,
-              ru: speciess.nameRu,
-              en: speciess.nameEn,
-            ),
-            id: speciess.id,
-          ));
+          if (speciess.type == 'nurse') {
+            context.router.push(LocationDetails(
+              title: context.toLocalized(
+                uz: speciess.nameUz,
+                ru: speciess.nameRu,
+                en: speciess.nameEn,
+              ),
+              id: speciess.id,
+            ));
+          } else if (speciess.type == 'doctor') {
+            context.router.push(CategoryRouteDoctor(
+              title: context.toLocalized(
+                uz: speciess.nameUz,
+                ru: speciess.nameRu,
+                en: speciess.nameEn,
+              ),
+              id: speciess.id,
+            ));
+          }
         }
       },
       child: Card(

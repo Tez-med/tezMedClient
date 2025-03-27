@@ -10,7 +10,8 @@ import '../../../core/error/error_handler.dart';
 
 abstract class SpeciesSource {
   Future<Either<Failure, SpeciesModel>> getSpecies();
-  Future<Either<Failure, Speciess>> getByIdSpecies(String id);
+  Future<Either<Failure, Speciess>> getByIdSpecies(String id,
+      [String? district]);
 }
 
 class SpeciesSourceImpl implements SpeciesSource {
@@ -32,18 +33,22 @@ class SpeciesSourceImpl implements SpeciesSource {
   }
 
   @override
-  Future<Either<Failure, Speciess>> getByIdSpecies(String id) async {
+  Future<Either<Failure, Speciess>> getByIdSpecies(String id,
+      [String? district]) async {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
     try {
-      final response =
-          await dioClientRepository.getData("/species/$id", token: token);
+      String url = "/species/$id";
+      if (district != null) {
+        url += "?district_id=$district";
+      }
+
+      final response = await dioClientRepository.getData(url, token: token);
       final data = Speciess.fromJson(response.data);
 
       return Right(data);
     } on DioException catch (e) {
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {
-
       return const Left(UnexpectedFailure(code: 40));
     }
   }

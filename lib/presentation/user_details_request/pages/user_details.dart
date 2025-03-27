@@ -7,7 +7,7 @@ import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
-import 'package:tez_med_client/data/requests_get/model/active_request_model.dart';
+import 'package:tez_med_client/data/request_post/model/request_model.dart';
 import 'package:tez_med_client/data/service_price/service_price_source.dart';
 import 'package:tez_med_client/domain/dio_client/repository/dio_client_repository.dart';
 import 'package:tez_med_client/generated/l10n.dart';
@@ -21,8 +21,8 @@ import '../widgets/image_picker_widget.dart';
 
 @RoutePage()
 class UserDetails extends StatefulWidget {
-  final List<RequestAffairGet> requestAffair;
-  const UserDetails({super.key, required this.requestAffair});
+  final RequestModel requestModel;
+  const UserDetails({super.key, required this.requestModel});
 
   @override
   State<UserDetails> createState() => _UserDetailsState();
@@ -54,11 +54,12 @@ class _UserDetailsState extends State<UserDetails> {
       (failure) {},
       (price) {
         context.router.push(
-          LocationDetails(
-            requestAffair: widget.requestAffair,
-            photo: _imagesNotifier.value,
-            extraPhone: formatPhoneNumber(_extraPhoneController.text),
+          ServiceInfo(
             price: price,
+            requestModel: widget.requestModel.copyWith(
+              photos: _imagesNotifier.value,
+              clientBody: ClientBody(extraPhone: _extraPhoneController.text),
+            ),
           ),
         );
       },
@@ -97,7 +98,6 @@ class _UserDetailsState extends State<UserDetails> {
               if (state is ProfileLoading) {
                 return _buildLoadingContent();
               } else if (state is ProfileLoaded) {
-                print(state.clientModel.toJson());
                 final data = state.clientModel;
                 _fullNameController.text = data.fullName;
                 _birthDateController.text = data.birthday;

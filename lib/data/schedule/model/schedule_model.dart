@@ -38,6 +38,7 @@ class Schedule {
   final String clientId;
   final String doctorAffairsId;
   final int price;
+  final String nurseTypeName;
   final String status;
   final String date;
   final String time;
@@ -56,6 +57,7 @@ class Schedule {
     required this.clientId,
     required this.doctorAffairsId,
     required this.price,
+    required this.nurseTypeName,
     required this.status,
     required this.date,
     required this.time,
@@ -69,6 +71,7 @@ class Schedule {
         id: json["id"] ?? "",
         doctorId: json["doctor_id"] ?? "",
         clientName: json['client_name'] ?? "",
+        nurseTypeName: json['nurse_type_name'] ?? "",
         doctorName: json["doctor_name"] ?? "",
         doctorRating: json["doctor_rating"] ?? 0,
         doctorPhoto: json["doctor_photo"] ?? "",
@@ -87,6 +90,7 @@ class Schedule {
   Map<String, dynamic> toJson() => {
         "id": id,
         "doctor_id": doctorId,
+        "nurse_type_name": nurseTypeName,
         "doctor_name": doctorName,
         "doctor_rating": doctorRating,
         "doctor_photo": doctorPhoto,

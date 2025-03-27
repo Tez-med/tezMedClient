@@ -85,7 +85,7 @@ class Department {
 
   factory Department.fromJson(Map<String, dynamic> json) {
     return Department(
-     id: json['id'] ?? "",
+      id: json['id'] ?? "",
       categoryId: json['category_id'] ?? "",
       categoryNameUz: json['category_name_uz'] ?? "",
       categoryNameRu: json['category_name_ru'] ?? "",
@@ -145,6 +145,7 @@ class Service {
   final String nameRu;
   final int price;
   final bool isActive;
+  final String regionAffairId;
   final String descriptionUz;
   final String descriptionRu;
   final String descriptionEn;
@@ -153,6 +154,7 @@ class Service {
   Service({
     required this.id,
     required this.departmentId,
+    required this.regionAffairId,
     required this.nameEn,
     required this.nameUz,
     required this.nameRu,
@@ -170,6 +172,7 @@ class Service {
       departmentId: json['department_id'] ?? "",
       nameEn: json['name_en'] ?? "",
       nameUz: json['name_uz'] ?? "",
+      regionAffairId: json['region_affair_id'] ?? "",
       nameRu: json['name_ru'] ?? "",
       price: json['price'] ?? 0,
       isActive: json['is_active'] ?? false,
@@ -187,6 +190,7 @@ class Service {
       'name_en': nameEn,
       'name_uz': nameUz,
       'name_ru': nameRu,
+      'region_affair_id': regionAffairId,
       'price': price,
       'is_active': isActive,
       'description_uz': descriptionUz,

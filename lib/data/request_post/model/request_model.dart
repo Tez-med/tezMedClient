@@ -145,21 +145,36 @@ class ClientBody {
 class RequestAffairPost {
   final String affairId;
   final int count;
+  final String nameUz;
+  final String nameEn;
+  final String nameRu;
+  final int price;
   final int day;
   final String startDate;
+  final String regionAffairId;
 
   RequestAffairPost({
     required this.affairId,
     required this.count,
+    required this.price,
+    required this.nameEn,
+    required this.nameRu,
+    required this.nameUz,
+    required this.regionAffairId,
     required this.day,
     required this.startDate,
   });
 
   factory RequestAffairPost.fromJson(Map<String, dynamic> json) {
     return RequestAffairPost(
+      nameUz: json['name_uz'] as String,
+      nameEn: json['name_en'] as String,
+      nameRu: json['name_ru'] as String,
+      price: json['price'] as int,
       affairId: json['affair_id'] as String,
       count: json['count'] as int,
       day: json['day'] as int,
+      regionAffairId: json['region_affair_id'] as String,
       startDate: json['start_date'] as String,
     );
   }
@@ -167,9 +182,38 @@ class RequestAffairPost {
   Map<String, dynamic> toJson() {
     return {
       'affair_id': affairId,
+      'region_affair_id': regionAffairId,
       'count': count,
+      'name_uz': nameUz,
+      'name_en': nameEn,
+      'name_ru': nameRu,
+      'price': price,
       'day': day,
       'start_date': startDate,
     };
+  }
+
+  RequestAffairPost copyWith({
+    String? affairId,
+    int? count,
+    String? nameUz,
+    String? nameEn,
+    String? nameRu,
+    int? price,
+    int? day,
+    String? startDate,
+    String? regionAffairId,
+  }) {
+    return RequestAffairPost(
+      affairId: affairId ?? this.affairId,
+      count: count ?? this.count,
+      nameUz: nameUz ?? this.nameUz,
+      nameEn: nameEn ?? this.nameEn,
+      nameRu: nameRu ?? this.nameRu,
+      price: price ?? this.price,
+      day: day ?? this.day,
+      startDate: startDate ?? this.startDate,
+      regionAffairId: regionAffairId ?? this.regionAffairId,
+    );
   }
 }

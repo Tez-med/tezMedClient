@@ -9,9 +9,10 @@ sealed class SpeciesGetByIdEvent extends Equatable {
 
 class GetByIdSpecies extends SpeciesGetByIdEvent {
   final String id;
+  final String? district;
 
-  const GetByIdSpecies(this.id);
+  const GetByIdSpecies(this.id, [this.district]);
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [id, if (district != null) district!];
 }

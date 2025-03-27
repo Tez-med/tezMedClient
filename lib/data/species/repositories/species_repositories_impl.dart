@@ -14,7 +14,7 @@ class SpeciesRepositoriesImpl implements SpeciesRepositories {
   }
 
   @override
-  Future<Either<Failure, Speciess>> getByIdSpecies(String id) async {
+  Future<Either<Failure, Speciess>> getByIdSpecies(String id,[String? district]) async {
     return await speciesSource.getByIdSpecies(id);
   }
 }

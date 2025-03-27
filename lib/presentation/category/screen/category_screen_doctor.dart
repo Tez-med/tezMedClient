@@ -7,22 +7,22 @@ import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/presentation/category/bloc/species_get_bloc/species_get_by_id_bloc.dart';
-import 'package:tez_med_client/presentation/category/widgets/category_nurse_main.dart';
 import 'package:tez_med_client/presentation/doctor/screen/category_doctor.dart';
 import 'package:tez_med_client/presentation/home/bloc/category_bloc/category_bloc.dart';
 import '../../../generated/l10n.dart';
 
 @RoutePage()
-class CategoryScreen extends StatefulWidget {
+class CategoryScreenDoctor extends StatefulWidget {
   final String title;
   final String id;
-  const CategoryScreen({super.key, required this.title, required this.id});
+  const CategoryScreenDoctor(
+      {super.key, required this.title, required this.id});
 
   @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
+  State<CategoryScreenDoctor> createState() => _CategoryScreenDoctorState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _CategoryScreenDoctorState extends State<CategoryScreenDoctor> {
   @override
   void initState() {
     context.read<SpeciesGetByIdBloc>().add(GetByIdSpecies(widget.id));
@@ -55,18 +55,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           } else if (state is SpeciesGetByIdError) {
             return _handleCategoryError(state);
           } else if (state is SpeciesGetByIdLoaded) {
-            if (state.speciesModel.type == 'nurse') {
-              return BlocBuilder<CategoryBloc, CategoryState>(
-                builder: (context, state) {
-                  if (state is CategoryLoading) {
-                    return Center(child: CupertinoActivityIndicator());
-                  } else if (state is CategoryLoaded) {
-                    return CategoryNurseMain(category: state.category);
-                  }
-                  return SizedBox();
-                },
-              );
-            } else if (state.speciesModel.type == 'doctor') {
+            if (state.speciesModel.type == 'doctor') {
               return CategoryDoctor(type: widget.title);
             }
           }
