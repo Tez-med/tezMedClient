@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
@@ -104,74 +106,76 @@ class DoctorCardWidget extends StatelessWidget {
     );
   }
 
-  // Widget _buildStatusBadge(BuildContext context) {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildDoctorInfo(),
-                data.nurseTypeName == 'Uyga chaqirish'
-                    ? Container(
-                        padding: EdgeInsets.all(8),
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0x99FFFFFF),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.1),
-                              blurRadius: 4,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Icon(Icons.home,
-                            color: AppColor.primaryColor, size: 22),
-                      )
-                    : VideoCallButton(
-                        scheduleId: data.id,
-                      )
-                // _buildStatusBadge(context),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                _buildInfoItem(
-                  S.of(context).day,
-                  _formatDate(data.date),
-                ),
-                const SizedBox(width: 10),
-                _buildDivider(),
-                const SizedBox(width: 10),
-                _buildInfoItem(
-                  S.of(context).time,
-                  data.time,
-                ),
-                const SizedBox(width: 10),
-                _buildDivider(),
-                const SizedBox(width: 10),
-                _buildInfoItem(
-                  S.of(context).price,
-                  "${format.format(data.price)} ${S.of(context).sum}",
-                ),
-              ],
-            ),
-          ],
+    return InkWell(
+      onTap: () => context.router.push(DoctorOrderDetailsRoute(id: data.id)),
+      child: Card(
+        elevation: 0,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildDoctorInfo(),
+                  data.nurseTypeName == 'Uyga chaqirish'
+                      ? Container(
+                          padding: EdgeInsets.all(8),
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0x99FFFFFF),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.1),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Icon(Icons.home,
+                              color: AppColor.primaryColor, size: 22),
+                        )
+                      : VideoCallButton(
+                          scheduleId: data.id,
+                        )
+                  // _buildStatusBadge(context),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  _buildInfoItem(
+                    S.of(context).day,
+                    _formatDate(data.date),
+                  ),
+                  const SizedBox(width: 10),
+                  _buildDivider(),
+                  const SizedBox(width: 10),
+                  _buildInfoItem(
+                    S.of(context).time,
+                    data.time,
+                  ),
+                  const SizedBox(width: 10),
+                  _buildDivider(),
+                  const SizedBox(width: 10),
+                  _buildInfoItem(
+                    S.of(context).price,
+                    "${format.format(data.price)} ${S.of(context).sum}",
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

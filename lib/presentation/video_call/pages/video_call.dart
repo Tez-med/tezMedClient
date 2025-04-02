@@ -56,7 +56,9 @@ class _VideoCallScreenState extends State<VideoCallScreen>
             await DialogHelper.showExitConfirmationDialog(context) ?? false;
 
         if (exitApp) {
-          Navigator.of(context).pop();
+          if (context.mounted) {
+            context.router.maybePop();
+          }
         }
       },
       child: Scaffold(
@@ -65,7 +67,7 @@ class _VideoCallScreenState extends State<VideoCallScreen>
             ? null
             : AppBar(
                 centerTitle: true,
-                title:  Text(
+                title: Text(
                   S.of(context).video_chat,
                   style: TextStyle(
                     color: Colors.white,
@@ -84,7 +86,9 @@ class _VideoCallScreenState extends State<VideoCallScreen>
                             false;
 
                     if (exitApp) {
-                      Navigator.of(context).pop();
+                      if (context.mounted) {
+                        Navigator.of(context).pop();
+                      }
                     }
                   },
                 ),
@@ -110,7 +114,7 @@ class _VideoCallScreenState extends State<VideoCallScreen>
                     onWebViewCreated: (InAppWebViewController controller) {
                       webViewController = controller;
                     },
-                    onLoadStart: (controller, url) {
+                    onLoadStart: (controller, url) async {
                       setState(() {
                         isLoading = true;
                       });
@@ -147,15 +151,6 @@ class _VideoCallScreenState extends State<VideoCallScreen>
                     onPressed: () => _endCall(context),
                     label: S.of(context).endText,
                   ),
-                  RoundButton(
-                    icon:
-                        isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                    color: AppColor.primaryColor,
-                    animationController: _animationController,
-                    scaleAnimation: _scaleAnimation,
-                    onPressed: _toggleFullScreen,
-                    label: isFullScreen ? S.of(context).zoom_out : S.of(context).zoom_in,
-                  ),
                 ],
               ),
             ),
@@ -165,17 +160,13 @@ class _VideoCallScreenState extends State<VideoCallScreen>
     );
   }
 
-  void _toggleFullScreen() {
-    setState(() {
-      isFullScreen = !isFullScreen;
-    });
-  }
-
   void _endCall(BuildContext context) async {
     bool shouldExit =
         await DialogHelper.showExitConfirmationDialog(context) ?? false;
     if (shouldExit) {
-      Navigator.of(context).pop();
+      if (context.mounted) {
+        Navigator.of(context).pop();
+      }
     }
   }
 }

@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_version": MessageLookupByLibrary.simpleMessage("Ilova versiyasi"),
         "apply": MessageLookupByLibrary.simpleMessage("Qo\'llash"),
         "attached": MessageLookupByLibrary.simpleMessage("Qabul qilindi"),
+        "attached_images":
+            MessageLookupByLibrary.simpleMessage("Ilova qilingan rasmlar"),
         "back": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "badCertificate": MessageLookupByLibrary.simpleMessage(
             "Xavfsizlik sertifikatida muammo yuzaga keldi. Bu server yoki internet ulanishi bilan bog\'liq bo\'lishi mumkin. Iltimos, internetni tekshiring yoki boshqa tarmoqni sinab ko\'ring."),
@@ -216,10 +218,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sozlamalarni ochish"),
         "optional": MessageLookupByLibrary.simpleMessage("Majburiy emas"),
         "order": MessageLookupByLibrary.simpleMessage("Buyurtma"),
+        "order_date": MessageLookupByLibrary.simpleMessage("Buyurtma sanasi"),
         "order_details":
             MessageLookupByLibrary.simpleMessage("Buyurtma tafsilotlari"),
         "order_history":
             MessageLookupByLibrary.simpleMessage("Buyurtma tarixi"),
+        "order_info":
+            MessageLookupByLibrary.simpleMessage("Buyurtma ma\'lumotlari"),
         "order_information":
             MessageLookupByLibrary.simpleMessage("Buyurtma haqida ma\'lumot"),
         "order_photo": MessageLookupByLibrary.simpleMessage("Buyurtma rasmi"),
@@ -227,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Buyurtma muvaffaqiyatli yaratildi!"),
         "our_service":
             MessageLookupByLibrary.simpleMessage("Bizning xizmatlarimiz"),
+        "patient_medical_card":
+            MessageLookupByLibrary.simpleMessage("Bemor tibbiy varaqasi"),
         "payment_other": MessageLookupByLibrary.simpleMessage(
             "Hozirda faqat naqd pul orqali to\'lash mumkin. Keyinchalik boshqa to\'lov turlari ham qo\'shiladi"),
         "payment_type": MessageLookupByLibrary.simpleMessage("To\'lov turi"),
@@ -256,6 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Iltimos, vaqtni tanlang"),
         "please_wait": MessageLookupByLibrary.simpleMessage("Iltimos, kuting"),
         "price": MessageLookupByLibrary.simpleMessage("Narx"),
+        "priceLabel": MessageLookupByLibrary.simpleMessage("Narxi"),
         "price_going": MessageLookupByLibrary.simpleMessage("Xizmat narxi"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
         "promocode": MessageLookupByLibrary.simpleMessage("Promo-code"),
@@ -315,6 +323,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("Ro\'yxatdan o\'tish"),
         "skip": MessageLookupByLibrary.simpleMessage("Oʻtkazib yuborish"),
         "start": MessageLookupByLibrary.simpleMessage("Boshlash"),
+        "startTimeLabel":
+            MessageLookupByLibrary.simpleMessage("Boshlanish vaqti"),
         "start_time": MessageLookupByLibrary.simpleMessage("Boshlanish vaqti"),
         "successful": MessageLookupByLibrary.simpleMessage("Muvaffaqiyatli"),
         "successfully_register": MessageLookupByLibrary.simpleMessage(

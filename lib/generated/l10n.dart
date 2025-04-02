@@ -2259,6 +2259,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Order Information`
+  String get order_info {
+    return Intl.message(
+      'Order Information',
+      name: 'order_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Date`
+  String get order_date {
+    return Intl.message(
+      'Order Date',
+      name: 'order_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Time`
+  String get startTimeLabel {
+    return Intl.message(
+      'Start Time',
+      name: 'startTimeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get priceLabel {
+    return Intl.message(
+      'Price',
+      name: 'priceLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Patient Medical Card`
+  String get patient_medical_card {
+    return Intl.message(
+      'Patient Medical Card',
+      name: 'patient_medical_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attached Images`
+  String get attached_images {
+    return Intl.message(
+      'Attached Images',
+      name: 'attached_images',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

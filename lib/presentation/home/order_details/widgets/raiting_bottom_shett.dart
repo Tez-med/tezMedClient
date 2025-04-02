@@ -6,7 +6,7 @@ import 'package:tez_med_client/core/widgets/custom_snackbar.dart';
 import 'package:tez_med_client/data/comments/model/comment_model.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-import 'package:tez_med_client/presentation/order_details/bloc/comment_bloc.dart';
+import 'package:tez_med_client/presentation/home/order_details/bloc/comment_bloc.dart';
 
 class RatingBottomSheet extends StatefulWidget {
   final String requestId;

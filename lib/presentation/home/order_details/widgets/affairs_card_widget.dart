@@ -5,7 +5,7 @@ import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/data/requests_get/model/get_by_id_request_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-import '../../request/widgets/check_widget.dart';
+import '../../../request/widgets/check_widget.dart';
 
 class AffairsCard extends StatelessWidget {
   const AffairsCard({

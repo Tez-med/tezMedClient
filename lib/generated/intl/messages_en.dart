@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Application version"),
         "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "attached": MessageLookupByLibrary.simpleMessage("Accepted"),
+        "attached_images":
+            MessageLookupByLibrary.simpleMessage("Attached Images"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "badCertificate": MessageLookupByLibrary.simpleMessage(
             "There is a problem with the security certificate. It may be related to the server or your internet connection. Please check your internet connection or try a different network."),
@@ -205,14 +207,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_settings": MessageLookupByLibrary.simpleMessage("Open settings"),
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "order": MessageLookupByLibrary.simpleMessage("Order"),
+        "order_date": MessageLookupByLibrary.simpleMessage("Order Date"),
         "order_details": MessageLookupByLibrary.simpleMessage("Order details"),
         "order_history": MessageLookupByLibrary.simpleMessage("Order history"),
+        "order_info": MessageLookupByLibrary.simpleMessage("Order Information"),
         "order_information":
             MessageLookupByLibrary.simpleMessage("Order information"),
         "order_photo": MessageLookupByLibrary.simpleMessage("Order photos"),
         "order_successfully_created":
             MessageLookupByLibrary.simpleMessage("Order created successfully!"),
         "our_service": MessageLookupByLibrary.simpleMessage("Our services"),
+        "patient_medical_card":
+            MessageLookupByLibrary.simpleMessage("Patient Medical Card"),
         "payment_other": MessageLookupByLibrary.simpleMessage(
             "Currently, you can only pay in cash. Other payment types will be added soon"),
         "payment_type": MessageLookupByLibrary.simpleMessage("Payment type"),
@@ -242,6 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select a time"),
         "please_wait": MessageLookupByLibrary.simpleMessage("Please wait"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
+        "priceLabel": MessageLookupByLibrary.simpleMessage("Price"),
         "price_going": MessageLookupByLibrary.simpleMessage("Service price"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "promocode": MessageLookupByLibrary.simpleMessage("Promo-code"),
@@ -304,6 +311,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "startTimeLabel": MessageLookupByLibrary.simpleMessage("Start Time"),
         "start_time": MessageLookupByLibrary.simpleMessage("Start time"),
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "successfully_register": MessageLookupByLibrary.simpleMessage(

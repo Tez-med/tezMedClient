@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
-import 'package:tez_med_client/presentation/category/screen/category_screen_doctor.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -51,5 +50,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: CategoryNurseMain.page),
         AutoRoute(page: CategoryRouteDoctor.page),
         AutoRoute(page: CategoryRouteNurse.page),
+        AutoRoute(page: DoctorOrderDetailsRoute.page),
       ];
 }

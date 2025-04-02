@@ -38,7 +38,7 @@ import 'package:tez_med_client/presentation/history/bloc/schedule_id/schedule_ge
 import 'package:tez_med_client/presentation/home/bloc/category_bloc/category_bloc.dart';
 import 'package:tez_med_client/presentation/home/bloc/species_bloc/species_bloc.dart';
 import 'package:tez_med_client/presentation/notification/bloc/notification_bloc.dart';
-import 'package:tez_med_client/presentation/order_details/bloc/comment_bloc.dart';
+import 'package:tez_med_client/presentation/home/order_details/bloc/comment_bloc.dart';
 import 'package:tez_med_client/presentation/request/bloc/promocode/promocode_bloc.dart';
 import 'package:tez_med_client/presentation/profile/bloc/profile_bloc/profile_bloc.dart';
 import 'package:tez_med_client/presentation/profile/bloc/profile_update/profile_update_bloc.dart';

@@ -1,8 +1,8 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:tez_med_client/config/environment.dart';
 import 'package:tez_med_client/core/constant/image_url.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 
@@ -48,7 +48,8 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
         builder: (BuildContext context, int index) {
           return PhotoViewGalleryPageOptions(
             imageProvider: CachedNetworkImageProvider(
-              imageUrl + widget.galleryItems[index],
+              (EnvironmentConfig.instance.isDev ? imageUrlDev : imageUrl) +
+                  widget.galleryItems[index],
             ),
             initialScale: PhotoViewComputedScale.contained,
             heroAttributes: PhotoViewHeroAttributes(

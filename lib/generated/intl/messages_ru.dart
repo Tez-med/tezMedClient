@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Версия приложения"),
         "apply": MessageLookupByLibrary.simpleMessage("Применить"),
         "attached": MessageLookupByLibrary.simpleMessage("Принято"),
+        "attached_images":
+            MessageLookupByLibrary.simpleMessage("Прикрепленные изображения"),
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
         "badCertificate": MessageLookupByLibrary.simpleMessage(
             "Проблема с сертификатом безопасности при подключении. Это может быть связано с сервером или интернет-соединением. Пожалуйста, проверьте ваш интернет или попробуйте другую сеть."),
@@ -215,15 +217,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Открыть настройки"),
         "optional": MessageLookupByLibrary.simpleMessage("Необязательно"),
         "order": MessageLookupByLibrary.simpleMessage("Заказ"),
+        "order_date": MessageLookupByLibrary.simpleMessage("Дата заказа"),
         "order_details": MessageLookupByLibrary.simpleMessage("Детали заказа"),
         "order_history":
             MessageLookupByLibrary.simpleMessage("История заказов"),
+        "order_info":
+            MessageLookupByLibrary.simpleMessage("Информация о заказе"),
         "order_information":
             MessageLookupByLibrary.simpleMessage("Информация о заказе"),
         "order_photo": MessageLookupByLibrary.simpleMessage("Фото заказа"),
         "order_successfully_created":
             MessageLookupByLibrary.simpleMessage("Заказ успешно создан!"),
         "our_service": MessageLookupByLibrary.simpleMessage("Наши услуги"),
+        "patient_medical_card":
+            MessageLookupByLibrary.simpleMessage("Медицинская карта пациента"),
         "payment_other": MessageLookupByLibrary.simpleMessage(
             "На данный момент вы можете оплатить только наличными. В будущем будут добавлены другие виды оплаты"),
         "payment_type": MessageLookupByLibrary.simpleMessage("Тип оплаты"),
@@ -254,6 +261,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_wait":
             MessageLookupByLibrary.simpleMessage("Пожалуйста, подождите"),
         "price": MessageLookupByLibrary.simpleMessage("Цена"),
+        "priceLabel": MessageLookupByLibrary.simpleMessage("Цена"),
         "price_going": MessageLookupByLibrary.simpleMessage("Стоимость услуги"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "promocode": MessageLookupByLibrary.simpleMessage("Промо-код"),
@@ -315,6 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
         "skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
         "start": MessageLookupByLibrary.simpleMessage("Начать"),
+        "startTimeLabel": MessageLookupByLibrary.simpleMessage("Время начала"),
         "start_time": MessageLookupByLibrary.simpleMessage("Время начала"),
         "successful": MessageLookupByLibrary.simpleMessage("Успешно"),
         "successfully_register": MessageLookupByLibrary.simpleMessage(

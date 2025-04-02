@@ -6,11 +6,12 @@ import '../../../core/utils/app_color.dart';
 import '../../../generated/l10n.dart'; // Lokalizatsiya uchun import
 
 class DialogHelper {
-  static Future<bool?> showExitConfirmationDialog(BuildContext context) {
+  static Future<bool?> showExitConfirmationDialog(BuildContext context) async {
+    if (!context.mounted) return null; // Navigator mavjudligini tekshirish
     return showGeneralDialog<bool>(
       context: context,
       barrierDismissible: false,
-      barrierLabel: S.of(context).exitDialog, // Lokalizatsiya qilingan
+      barrierLabel: S.of(context).exitDialog,
       transitionDuration: const Duration(milliseconds: 300),
       pageBuilder: (_, __, ___) => const SizedBox.shrink(),
       transitionBuilder: (context, animation, secondaryAnimation, child) {

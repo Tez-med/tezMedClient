@@ -221,5 +221,11 @@
   "zoom_in": "Zoom In",
   "loading_video": "Loading video",
   "permission_required": "Permission Required",
-  "permission_description": "Camera and microphone permissions are required for a video call. Please go to app settings to grant permissions."
+  "permission_description": "Camera and microphone permissions are required for a video call. Please go to app settings to grant permissions.",
+  "order_info": "Order Information",
+  "order_date": "Order Date",
+  "startTimeLabel": "Start Time",
+  "priceLabel": "Price",
+  "patient_medical_card": "Patient Medical Card",
+  "attached_images": "Attached Images"
 }

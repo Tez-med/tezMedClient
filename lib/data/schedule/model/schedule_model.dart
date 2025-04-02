@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 ScheduleModel schedulesFromJson(String str) =>
     ScheduleModel.fromJson(json.decode(str));
 
@@ -45,11 +47,14 @@ class Schedule {
   final String photo;
   final String roomId;
   final Meet meet;
+  final List<Disease> diseases;
+
   final String createdAt;
 
   Schedule({
     required this.id,
     required this.doctorId,
+    required this.diseases,
     required this.clientName,
     required this.doctorName,
     required this.doctorRating,
@@ -74,6 +79,10 @@ class Schedule {
         nurseTypeName: json['nurse_type_name'] ?? "",
         doctorName: json["doctor_name"] ?? "",
         doctorRating: json["doctor_rating"] ?? 0,
+        diseases: json["diseases"] != null
+            ? List<Disease>.from(
+                json["diseases"].map((x) => Disease.fromJson(x)))
+            : [],
         doctorPhoto: json["doctor_photo"] ?? "",
         clientId: json["client_id"] ?? "",
         doctorAffairsId: json["doctor_affairs_id"] ?? "",
@@ -99,6 +108,7 @@ class Schedule {
         "price": price,
         "status": status,
         "date": date,
+        "diseases": List<dynamic>.from(diseases.map((x) => x.toJson())),
         'client_name': clientName,
         "time": time,
         "photo": photo,
@@ -130,4 +140,52 @@ class Meet {
         "msg": msg,
         "url": url,
       };
+}
+
+class Disease extends Equatable {
+  final String id;
+  final String clientId;
+  final String scheduleId;
+  final String name;
+  final List<String> photo;
+  final String description;
+  final String status;
+
+  const Disease({
+    required this.id,
+    required this.clientId,
+    required this.scheduleId,
+    required this.name,
+    required this.photo,
+    required this.description,
+    required this.status,
+  });
+
+  factory Disease.fromJson(Map<String, dynamic> json) {
+    return Disease(
+      id: json['id'] ?? "",
+      clientId: json['client_id'] ?? "",
+      scheduleId: json['schedule_id'] ?? "",
+      name: json['name'] ?? "",
+      photo: List<String>.from(json['photo']),
+      description: json['description'] ?? "",
+      status: json['status'] ?? "",
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'client_id': clientId,
+      'schedule_id': scheduleId,
+      'name': name,
+      'photo': photo,
+      'description': description,
+      'status': status,
+    };
+  }
+
+  @override
+  List<Object?> get props =>
+      [id, clientId, scheduleId, name, photo, description, status];
 }

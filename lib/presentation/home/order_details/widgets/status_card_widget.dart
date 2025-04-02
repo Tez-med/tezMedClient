@@ -8,7 +8,7 @@ import 'package:tez_med_client/data/requests_get/model/get_by_id_request_model.d
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../gen/assets.gen.dart';
+import '../../../../gen/assets.gen.dart';
 
 class StatusCard extends StatelessWidget {
   const StatusCard({
