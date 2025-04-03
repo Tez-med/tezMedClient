@@ -151,6 +151,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: CustomCalendarWidget(
+                      online: widget.online,
                       data: data.schedules,
                       onDateSelected: _onDateSelected,
                     ),

@@ -6,12 +6,14 @@ import 'package:tez_med_client/data/doctor/model/basic_doctor_model.dart';
 
 class CustomCalendarWidget extends StatefulWidget {
   final List<Schedule> data;
+  final bool online;
   final Function(String) onDateSelected;
 
   const CustomCalendarWidget({
     super.key,
     required this.data,
     required this.onDateSelected,
+    required this.online,
   });
 
   @override
@@ -31,8 +33,18 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
   void initState() {
     super.initState();
 
-    final filteredSchedules =
-        widget.data.where((s) => s.status == 'free').toList();
+    // Filter schedules based on status and online parameter
+    final filteredSchedules = widget.data.where((s) {
+      // First filter by free status
+      if (s.status != 'free') return false;
+
+      // Then filter by online status
+      if (widget.online) {
+        return s.nurseTypeName.toLowerCase() == "telemeditsina";
+      } else {
+        return s.nurseTypeName.toLowerCase() == "uyga chaqirish";
+      }
+    }).toList();
 
     scheduleMap = _createScheduleMap(filteredSchedules);
 
@@ -69,6 +81,9 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
 
   void _selectDate(DateTime date) {
     selectedDateNotifier.value = date;
+    // Reset time selection when date changes
+    selectedTimeNotifier.value = null;
+    selectedScheduleId = null;
   }
 
   void _selectTime(Schedule schedule) {
@@ -214,42 +229,58 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
           return ValueListenableBuilder<String?>(
               valueListenable: selectedTimeNotifier,
               builder: (context, selectedTime, _) {
-                return Wrap(
-                  spacing: 5,
-                  runSpacing: 8,
-                  children: schedulesForSelectedDate.map((schedule) {
-                    bool isSelected = selectedTime == schedule.time &&
-                        selectedScheduleId == schedule.id;
-
-                    return Material(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(24),
-                      child: InkWell(
-                        onTap: () => _selectTime(schedule),
-                        borderRadius: BorderRadius.circular(24),
-                        child: Ink(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 17),
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? AppColor.primaryColor
-                                : AppColor.buttonBackColor,
-                            borderRadius: BorderRadius.circular(24),
-                          ),
+                return schedulesForSelectedDate.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: Text(
-                            schedule.time,
+                            widget.online
+                                ? "Bu kunda telemeditsina uchun vaqtlar mavjud emas"
+                                : "Bu kunda uyga chaqirish uchun vaqtlar mavjud emas",
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color:
-                                  isSelected ? Colors.white : Colors.blue[700],
+                              fontSize: 16,
+                              color: AppColor.greyTextColor,
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }).toList(),
-                );
+                      )
+                    : Wrap(
+                        spacing: 5,
+                        runSpacing: 8,
+                        children: schedulesForSelectedDate.map((schedule) {
+                          bool isSelected = selectedTime == schedule.time &&
+                              selectedScheduleId == schedule.id;
+
+                          return Material(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(24),
+                            child: InkWell(
+                              onTap: () => _selectTime(schedule),
+                              borderRadius: BorderRadius.circular(24),
+                              child: Ink(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 17),
+                                decoration: BoxDecoration(
+                                  color: isSelected
+                                      ? AppColor.primaryColor
+                                      : AppColor.buttonBackColor,
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                                child: Text(
+                                  schedule.time,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.blue[700],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
               });
         });
   }
