@@ -25,6 +25,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Continue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "access_code": MessageLookupByLibrary.simpleMessage("Код доступа"),
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "addDiseaseCard":
+            MessageLookupByLibrary.simpleMessage("Добавить карту болезни"),
+        "addNewDisease":
+            MessageLookupByLibrary.simpleMessage("Добавить новую болезнь"),
         "add_data": MessageLookupByLibrary.simpleMessage("Добавить данные"),
         "added_soon":
             MessageLookupByLibrary.simpleMessage("Скоро будет добавлено."),
@@ -70,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите дату и время"),
         "choose_profile_picture":
             MessageLookupByLibrary.simpleMessage("Выберите фото профиля"),
+        "clickAddButtonToCreateDisease": MessageLookupByLibrary.simpleMessage(
+            "Нажмите кнопку добавления, чтобы создать новую карту болезни"),
         "code_error":
             MessageLookupByLibrary.simpleMessage("Введён неправильный код"),
         "comment": MessageLookupByLibrary.simpleMessage("Комментарий"),
@@ -93,19 +99,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Свяжитесь с нами через любую из этих платформ для получения помощи"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Координаты"),
+        "createdAt": MessageLookupByLibrary.simpleMessage("Создано"),
         "current_order": MessageLookupByLibrary.simpleMessage("Заказы"),
         "current_time": MessageLookupByLibrary.simpleMessage("Текущее время"),
         "data_update":
             MessageLookupByLibrary.simpleMessage("Обновление данных"),
         "day": MessageLookupByLibrary.simpleMessage("День"),
+        "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "destination_additional_information":
             MessageLookupByLibrary.simpleMessage(
                 "Ориентир или дополнительная информация"),
+        "details": MessageLookupByLibrary.simpleMessage("Подробнее"),
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Цена со скидкой"),
+        "diseaseCards": MessageLookupByLibrary.simpleMessage("Карты болезней"),
         "doctor": MessageLookupByLibrary.simpleMessage("Врач"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Рецепт врача"),
+        "edit": MessageLookupByLibrary.simpleMessage("Редактировать"),
         "endCallText":
             MessageLookupByLibrary.simpleMessage("Завершить видеозвонок"),
         "endText": MessageLookupByLibrary.simpleMessage("Завершить"),
@@ -116,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Введите 4-значный код из SMS"),
         "enter_text": MessageLookupByLibrary.simpleMessage("Введите текст"),
         "entrance": MessageLookupByLibrary.simpleMessage("Подъезд"),
+        "errorOccurred":
+            MessageLookupByLibrary.simpleMessage("Произошла ошибка"),
         "error_sms_code": MessageLookupByLibrary.simpleMessage(
             "Код не совпадает, нажмите повторно отправить"),
         "example":
@@ -191,6 +204,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Имя и фамилия должны содержать только буквы"),
         "neww": MessageLookupByLibrary.simpleMessage("Новое"),
         "next": MessageLookupByLibrary.simpleMessage("Далее"),
+        "noDiseaseCardsAvailable":
+            MessageLookupByLibrary.simpleMessage("Нет доступных карт болезней"),
         "no_complated_order":
             MessageLookupByLibrary.simpleMessage("Нет завершенных заказов"),
         "no_current_order":
@@ -244,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("Номер телефона"),
         "photo_error":
             MessageLookupByLibrary.simpleMessage("Ошибка при загрузке фото"),
+        "photos": MessageLookupByLibrary.simpleMessage("Фотографии"),
         "please_date": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, выберите дату рождения"),
         "please_fullname": MessageLookupByLibrary.simpleMessage(
@@ -291,6 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Обязательное поле"),
         "retry": MessageLookupByLibrary.simpleMessage("Повторить"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
+        "scheduleId": MessageLookupByLibrary.simpleMessage("ID расписания"),
         "search_region":
             MessageLookupByLibrary.simpleMessage("Поиск по названию региона"),
         "select_address":
@@ -325,6 +342,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "start": MessageLookupByLibrary.simpleMessage("Начать"),
         "startTimeLabel": MessageLookupByLibrary.simpleMessage("Время начала"),
         "start_time": MessageLookupByLibrary.simpleMessage("Время начала"),
+        "statusClosed": MessageLookupByLibrary.simpleMessage("Закрыто"),
+        "statusInProgress": MessageLookupByLibrary.simpleMessage("В процессе"),
+        "statusNew": MessageLookupByLibrary.simpleMessage("Новый"),
+        "statusResolved": MessageLookupByLibrary.simpleMessage("Решено"),
         "successful": MessageLookupByLibrary.simpleMessage("Успешно"),
         "successfully_register": MessageLookupByLibrary.simpleMessage(
             "Вы успешно зарегистрировались"),
@@ -339,6 +360,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Время"),
         "total": MessageLookupByLibrary.simpleMessage("Итого"),
         "total_price": MessageLookupByLibrary.simpleMessage("Общая цена"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Попробовать снова"),
         "understoodText": MessageLookupByLibrary.simpleMessage("Понял"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "Произошла непредвиденная ошибка"),
@@ -348,6 +370,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Видеоуроки и руководства"),
         "video_chat": MessageLookupByLibrary.simpleMessage("Видеочат"),
+        "waitingForData":
+            MessageLookupByLibrary.simpleMessage("Ожидание данных..."),
         "work_experience": MessageLookupByLibrary.simpleMessage("Опыт работы"),
         "year": MessageLookupByLibrary.simpleMessage("год"),
         "your_check": MessageLookupByLibrary.simpleMessage("Ваш чек"),

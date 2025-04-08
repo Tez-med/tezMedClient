@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:tez_med_client/core/error/error_handler.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/schedule/model/schedule_model.dart';
@@ -16,7 +17,11 @@ import 'package:tez_med_client/presentation/home/order_details/widgets/photo_vie
 @RoutePage()
 class DoctorOrderDetailsScreen extends StatefulWidget {
   final String id;
-  const DoctorOrderDetailsScreen({super.key, required this.id});
+
+  const DoctorOrderDetailsScreen({
+    super.key,
+    required this.id,
+  });
 
   @override
   State<DoctorOrderDetailsScreen> createState() =>
@@ -27,6 +32,10 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchScheduleData();
+  }
+
+  void _fetchScheduleData() {
     context.read<ScheduleGetIdBloc>().add(GetScheduleId(widget.id));
   }
 
@@ -34,85 +43,94 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.buttonBackColor,
-      appBar: AppBar(
-        surfaceTintColor: Colors.white,
-        shadowColor: Colors.white,
-        backgroundColor: Colors.white,
-        elevation: .5,
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () => context.router.maybePop(),
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black)),
-        title: Text(
-          S.of(context).order_info,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+      appBar: _buildAppBar(context),
+      body: _buildBody(),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      surfaceTintColor: Colors.white,
+      shadowColor: Colors.white,
+      backgroundColor: Colors.white,
+      elevation: .5,
+      centerTitle: true,
+      leading: IconButton(
+        onPressed: () => context.router.maybePop(),
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
       ),
-      body: BlocBuilder<ScheduleGetIdBloc, ScheduleGetIdState>(
-        builder: (context, state) {
-          if (state is ScheduleGetIdLoading) {
-            return const Center(child: CupertinoActivityIndicator());
-          } else if (state is ScheduleGetIdError) {
-            if (state.error.code == 500) {
-              return Center(
-                child: NoInternetConnectionWidget(
-                  onRetry: () => context
-                      .read<ScheduleGetIdBloc>()
-                      .add(GetScheduleId(widget.id)),
-                ),
-              );
-            } else if (state.error.code == 400) {
-              return Center(
-                child: ServerConnection(
-                  onRetry: () => context
-                      .read<ScheduleGetIdBloc>()
-                      .add(GetScheduleId(widget.id)),
-                ),
-              );
-            }
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ErrorHandler.getErrorMessage(context, state.error.code);
-            });
-            return const SizedBox.shrink();
-          } else if (state is ScheduleGetIdSuccess) {
-            final schedule = state.data;
-            return _buildScheduleDetails(schedule);
-          }
-          return const Center();
-        },
+      title: Text(
+        S.of(context).order_info,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
 
+  Widget _buildBody() {
+    return BlocBuilder<ScheduleGetIdBloc, ScheduleGetIdState>(
+      builder: (context, state) {
+        if (state is ScheduleGetIdLoading) {
+          return const Center(child: CupertinoActivityIndicator());
+        } else if (state is ScheduleGetIdError) {
+          return _handleError(state);
+        } else if (state is ScheduleGetIdSuccess) {
+          return _buildScheduleDetails(state.data);
+        }
+        return const SizedBox.shrink();
+      },
+    );
+  }
+
+  Widget _handleError(ScheduleGetIdError state) {
+    if (state.error.code == 500) {
+      return Center(
+        child: NoInternetConnectionWidget(
+          onRetry: _fetchScheduleData,
+        ),
+      );
+    } else if (state.error.code == 400) {
+      return Center(
+        child: ServerConnection(
+          onRetry: _fetchScheduleData,
+        ),
+      );
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ErrorHandler.getErrorMessage(context, state.error.code);
+    });
+
+    return const SizedBox.shrink();
+  }
+
   Widget _buildScheduleDetails(Schedule schedule) {
     final format = NumberFormat("#,###");
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Order info section
           _buildSectionCard(
             title: S.of(context).order_info,
             child: Column(
               children: [
                 _buildInfoRow(
-                  icon: Icons.calendar_today,
                   title: S.of(context).order_date,
                   value: schedule.date,
                 ),
                 _buildDivider(),
                 _buildInfoRow(
-                  icon: Icons.access_time,
                   title: S.of(context).startTimeLabel,
                   value: schedule.time,
                 ),
                 _buildDivider(),
                 _buildInfoRow(
-                  icon: Icons.monetization_on,
                   title: S.of(context).priceLabel,
                   value:
                       "${format.format(schedule.price)} ${S.of(context).sum}",
@@ -120,18 +138,81 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
               ],
             ),
           ),
+
           const SizedBox(height: 16),
-          _buildSectionCard(
-            title: S.of(context).patient_medical_card,
-            child: Column(
-              children: [
-                for (int i = 0; i < schedule.diseases.length; i++) ...[
-                  if (i > 0) const SizedBox(height: 16),
-                  _buildDiseaseCard(schedule.diseases[i]),
-                ],
-              ],
+
+          // Order photo section - conditional
+          if (schedule.photo.isNotEmpty) ...[
+            _buildSectionCard(
+              title: S.of(context).order_photo,
+              child: GestureDetector(
+                onTap: () => _showFullImage(0, [schedule.photo]),
+                child: Container(
+                  padding: const EdgeInsets.all(3),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColor.primaryColor,
+                        Colors.deepPurple.withValues(alpha: .3)
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        // Asosiy rasm
+                        Container(
+                          height: 200,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: CustomCachedImage(
+                              image: schedule.photo,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
+            const SizedBox(height: 16),
+          ],
+
+          // Patient medical card section - conditional
+          if (schedule.diseases.isNotEmpty)
+            _buildSectionCard(
+              title: S.of(context).patient_medical_card,
+              child: Column(
+                children: [
+                  for (int i = 0; i < schedule.diseases.length; i++) ...[
+                    if (i > 0) const SizedBox(height: 16),
+                    _buildDiseaseCard(schedule.diseases[i]),
+                  ],
+                ],
+              ),
+            ),
         ],
       ),
     );
@@ -143,6 +224,13 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,9 +246,7 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
               ),
             ),
           ),
-          Divider(
-            color: AppColor.buttonBackColor,
-          ),
+          Divider(color: AppColor.buttonBackColor),
           Padding(
             padding: const EdgeInsets.all(16),
             child: child,
@@ -171,7 +257,6 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
   }
 
   Widget _buildInfoRow({
-    required IconData icon,
     required String title,
     required String value,
     Color? valueColor,
@@ -191,7 +276,7 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: valueColor,
+            color: valueColor ?? Colors.black,
           ),
         ),
       ],
@@ -210,67 +295,47 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
 
   Widget _buildDiseaseCard(Disease disease) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(12),
         color: Colors.grey[50],
         border: Border.all(color: Colors.grey[200]!),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  disease.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+          // Disease name
+          Text(
+            disease.name,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+
+          // Disease description - conditional
           if (disease.description.isNotEmpty) ...[
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Text(
               disease.description,
               style: const TextStyle(fontSize: 14),
             ),
           ],
+
+          // Disease photos - conditional
           if (disease.photo.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             Text(
               S.of(context).attached_images,
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+              ),
             ),
             const SizedBox(height: 8),
             SizedBox(
               height: 80,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: disease.photo.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: GestureDetector(
-                      onTap: () => _showFullImage(index, disease.photo),
-                      child: Container(
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey[300]!),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: CustomCachedImage(image: disease.photo[index]),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              child: _buildPhotoGallery(disease.photo),
             ),
           ],
         ],
@@ -278,12 +343,36 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
     );
   }
 
-  void _showFullImage(int index, List<String> photo) {
+  Widget _buildPhotoGallery(List<String> photos) {
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: photos.length,
+      separatorBuilder: (_, __) => const SizedBox(width: 8),
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () => _showFullImage(index, photos),
+          child: Container(
+            width: 80,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey[300]!),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CustomCachedImage(image: photos[index]),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showFullImage(int index, List<String> photos) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => GalleryPhotoViewWrapper(
-          galleryItems: photo,
+          galleryItems: photos,
           initialIndex: index,
         ),
       ),

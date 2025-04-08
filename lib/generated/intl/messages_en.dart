@@ -25,6 +25,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
         "access_code": MessageLookupByLibrary.simpleMessage("Access code"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "addDiseaseCard":
+            MessageLookupByLibrary.simpleMessage("Add Disease Card"),
+        "addNewDisease":
+            MessageLookupByLibrary.simpleMessage("Add new disease"),
         "add_data": MessageLookupByLibrary.simpleMessage("Add data"),
         "added_soon":
             MessageLookupByLibrary.simpleMessage("Will be added soon."),
@@ -70,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Choose date and time"),
         "choose_profile_picture":
             MessageLookupByLibrary.simpleMessage("Choose profile picture"),
+        "clickAddButtonToCreateDisease": MessageLookupByLibrary.simpleMessage(
+            "Click the add button to create a new disease card"),
         "code_error":
             MessageLookupByLibrary.simpleMessage("Entered code is incorrect"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
@@ -90,17 +96,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPlatforms": MessageLookupByLibrary.simpleMessage(
             "Contact us through any of these platforms for assistance"),
         "coordinates": MessageLookupByLibrary.simpleMessage("Coordinates"),
+        "createdAt": MessageLookupByLibrary.simpleMessage("Created at"),
         "current_order": MessageLookupByLibrary.simpleMessage("Orders"),
         "current_time": MessageLookupByLibrary.simpleMessage("Current time"),
         "data_update": MessageLookupByLibrary.simpleMessage("Data update"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "destination_additional_information":
             MessageLookupByLibrary.simpleMessage("Landmark or additional info"),
+        "details": MessageLookupByLibrary.simpleMessage("Details"),
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Discount price"),
+        "diseaseCards": MessageLookupByLibrary.simpleMessage("Disease Cards"),
         "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Doctor prescription"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "endCallText": MessageLookupByLibrary.simpleMessage("End video call"),
         "endText": MessageLookupByLibrary.simpleMessage("End"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -110,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter the 4-digit code from SMS"),
         "enter_text": MessageLookupByLibrary.simpleMessage("Enter text"),
         "entrance": MessageLookupByLibrary.simpleMessage("Entrance"),
+        "errorOccurred":
+            MessageLookupByLibrary.simpleMessage("An error occurred"),
         "error_sms_code":
             MessageLookupByLibrary.simpleMessage("Code mismatch, press resend"),
         "example": MessageLookupByLibrary.simpleMessage(
@@ -183,6 +196,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Name and surname must consist of only letters"),
         "neww": MessageLookupByLibrary.simpleMessage("New"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "noDiseaseCardsAvailable":
+            MessageLookupByLibrary.simpleMessage("No disease cards available"),
         "no_complated_order":
             MessageLookupByLibrary.simpleMessage("No completed orders"),
         "no_current_order":
@@ -232,6 +247,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
         "photo_error":
             MessageLookupByLibrary.simpleMessage("Error uploading photo"),
+        "photos": MessageLookupByLibrary.simpleMessage("Photos"),
         "please_date":
             MessageLookupByLibrary.simpleMessage("Please select a birth date"),
         "please_fullname":
@@ -278,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Required field"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "russian": MessageLookupByLibrary.simpleMessage("Russian"),
+        "scheduleId": MessageLookupByLibrary.simpleMessage("Schedule ID"),
         "search_address":
             MessageLookupByLibrary.simpleMessage("Search address"),
         "search_region":
@@ -313,6 +330,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "startTimeLabel": MessageLookupByLibrary.simpleMessage("Start Time"),
         "start_time": MessageLookupByLibrary.simpleMessage("Start time"),
+        "statusClosed": MessageLookupByLibrary.simpleMessage("Closed"),
+        "statusInProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
+        "statusNew": MessageLookupByLibrary.simpleMessage("New"),
+        "statusResolved": MessageLookupByLibrary.simpleMessage("Resolved"),
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "successfully_register": MessageLookupByLibrary.simpleMessage(
             "You have successfully registered"),
@@ -328,6 +349,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "total_price": MessageLookupByLibrary.simpleMessage("Total price"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "understoodText": MessageLookupByLibrary.simpleMessage("Got it"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "An unexpected error occurred"),
@@ -337,6 +359,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Video guides & tutorials"),
         "video_chat": MessageLookupByLibrary.simpleMessage("Video Chat"),
+        "waitingForData":
+            MessageLookupByLibrary.simpleMessage("Waiting for data..."),
         "work_experience":
             MessageLookupByLibrary.simpleMessage("Work experience"),
         "year": MessageLookupByLibrary.simpleMessage("year"),

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
@@ -51,7 +52,7 @@ class _CategoryScreenDoctorState extends State<CategoryScreenDoctor> {
       body: BlocBuilder<SpeciesGetByIdBloc, SpeciesGetByIdState>(
         builder: (context, state) {
           if (state is SpeciesGetByIdLoading) {
-            return Center(child: CupertinoActivityIndicator());
+            return Skeletonizer(child: CategoryDoctor(type: widget.title));
           } else if (state is SpeciesGetByIdError) {
             return _handleCategoryError(state);
           } else if (state is SpeciesGetByIdLoaded) {

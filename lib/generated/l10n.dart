@@ -2319,6 +2319,186 @@ class S {
       args: [],
     );
   }
+
+  /// `Disease Cards`
+  String get diseaseCards {
+    return Intl.message(
+      'Disease Cards',
+      name: 'diseaseCards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting for data...`
+  String get waitingForData {
+    return Intl.message(
+      'Waiting for data...',
+      name: 'waitingForData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No disease cards available`
+  String get noDiseaseCardsAvailable {
+    return Intl.message(
+      'No disease cards available',
+      name: 'noDiseaseCardsAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click the add button to create a new disease card`
+  String get clickAddButtonToCreateDisease {
+    return Intl.message(
+      'Click the add button to create a new disease card',
+      name: 'clickAddButtonToCreateDisease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Disease Card`
+  String get addDiseaseCard {
+    return Intl.message(
+      'Add Disease Card',
+      name: 'addDiseaseCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred`
+  String get errorOccurred {
+    return Intl.message(
+      'An error occurred',
+      name: 'errorOccurred',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message(
+      'Try Again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new disease`
+  String get addNewDisease {
+    return Intl.message(
+      'Add new disease',
+      name: 'addNewDisease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photos`
+  String get photos {
+    return Intl.message(
+      'Photos',
+      name: 'photos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Created at`
+  String get createdAt {
+    return Intl.message(
+      'Created at',
+      name: 'createdAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Schedule ID`
+  String get scheduleId {
+    return Intl.message(
+      'Schedule ID',
+      name: 'scheduleId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details`
+  String get details {
+    return Intl.message(
+      'Details',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New`
+  String get statusNew {
+    return Intl.message(
+      'New',
+      name: 'statusNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In Progress`
+  String get statusInProgress {
+    return Intl.message(
+      'In Progress',
+      name: 'statusInProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resolved`
+  String get statusResolved {
+    return Intl.message(
+      'Resolved',
+      name: 'statusResolved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closed`
+  String get statusClosed {
+    return Intl.message(
+      'Closed',
+      name: 'statusClosed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

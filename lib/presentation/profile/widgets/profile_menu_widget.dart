@@ -48,6 +48,13 @@ class ProfileMenuWidget extends StatelessWidget {
           _buildDivider(),
           _buildMenuItem(
             context: context,
+            icon: Icons.note_alt_outlined,
+            title: S.of(context).diseaseCards,
+            onTap: () => context.router.push(DiseasesRoute()),
+          ),
+          _buildDivider(),
+          _buildMenuItem(
+            context: context,
             icon: Icons.privacy_tip_outlined,
             title: S.of(context).consent4,
             onTap: () => context.router.push(PrivacyPolicy()),

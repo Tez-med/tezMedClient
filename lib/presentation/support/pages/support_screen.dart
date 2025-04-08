@@ -43,32 +43,31 @@ class SupportScreen extends StatelessWidget {
                 children: [
                   _buildAnimatedContactItem(
                     icon: FontAwesomeIcons.youtube,
-                    title: S.of(context).youtube, // Translated title
-                    subtitle: S.of(context).videoGuides, // Translated subtitle
+                    title: S.of(context).youtube,
+                    subtitle: S.of(context).videoGuides,
                     color: const Color(0xFFFF0000),
                     onTap: () => _launchUrl('https://youtube.com/@TezMed'),
                     delay: 0,
                   ),
                   _buildAnimatedContactItem(
                     icon: FontAwesomeIcons.instagram,
-                    title: S.of(context).instagram, // Translated title
-                    subtitle:
-                        S.of(context).latestUpdates, // Translated subtitle
+                    title: S.of(context).instagram,
+                    subtitle: S.of(context).latestUpdates,
                     color: const Color(0xFFE1306C),
                     onTap: () => _launchUrl('https://instagram.com/tezmed_uz'),
                     delay: 100,
                   ),
                   _buildAnimatedContactItem(
                     icon: FontAwesomeIcons.telegram,
-                    title: S.of(context).telegram, // Translated title
-                    subtitle: S.of(context).chatSupport, // Translated subtitle
+                    title: S.of(context).telegram,
+                    subtitle: S.of(context).chatSupport,
                     color: const Color(0xFF0088CC),
                     onTap: () => _launchUrl('https://t.me/tezmed_uz'),
                     delay: 200,
                   ),
                   _buildAnimatedContactItem(
                     icon: Icons.phone_in_talk_rounded,
-                    title: S.of(context).callCenter, // Translated title
+                    title: S.of(context).callCenter,
                     subtitle: '+998 55 514 00 03',
                     color: const Color(0xFF4CAF50),
                     onTap: () => _launchUrl('tel:+998555140003'),
@@ -178,12 +177,66 @@ class SupportScreen extends StatelessWidget {
   }
 
   Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
+    try {
+      // Telegram URL'ni aniqlaymiz va maxsus ishlaymiz
+      if (url.contains('t.me') || url.contains('telegram.me')) {
+        // Telegram app URL formatiga o'tkazish
+        final String telegramAppUrl = url.replaceFirst('https://', 'tg://');
+        final Uri telegramUri = Uri.parse(telegramAppUrl);
 
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.inAppWebView);
-    } else {
-      throw 'URL ochilmadi: $url';
+        // Telegram ilovasi o'rnatilganligini tekshirish
+        if (await canLaunchUrl(telegramUri)) {
+          // Agar o'rnatilgan bo'lsa, to'g'ridan-to'g'ri ilova ochiladi
+          await launchUrl(telegramUri, mode: LaunchMode.externalApplication);
+          return;
+        }
+      }
+
+      // Telegram bo'lmagan boshqa URL'lar uchun yoki Telegram o'rnatilmagan holatlar
+      final Uri uri = Uri.parse(url);
+
+      // URL turiga qarab mode tanlash
+      LaunchMode mode;
+
+      if (url.startsWith('tel:') ||
+          url.startsWith('sms:') ||
+          url.startsWith('mailto:') ||
+          url.startsWith('https://t.me/')) {
+        // Telegram web versiyasi uchun ham
+        // Tashqi ilova bilan ochish
+        mode = LaunchMode.externalApplication;
+      } else {
+        // Web URLlar uchun in-app view
+        mode = LaunchMode.inAppWebView;
+      }
+
+      // URL ochishga urinish
+      final bool canLaunch = await canLaunchUrl(uri);
+
+      if (canLaunch) {
+        await launchUrl(uri, mode: mode);
+      } else {
+        // Agar ochilmasa, mode ni o'zgartirib ko'rish
+        if (mode == LaunchMode.inAppWebView) {
+          // In-app ochilmasa, tashqi ilova bilan ochishga urinish
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        } else {
+          // Platformaga bog'liq bo'lmagan ochish usuli
+          await launchUrl(uri, mode: LaunchMode.platformDefault);
+        }
+      }
+    } catch (e) {
+      debugPrint('URL ochishda xatolik: $e');
+
+      try {
+        // Xatolik bo'lsa, oxirgi imkoniyat sifatida platformaga bog'liq
+        // bo'lmagan ochish usulini sinab ko'rish
+        final Uri uri = Uri.parse(url);
+        await launchUrl(uri, mode: LaunchMode.platformDefault);
+      } catch (e2) {
+        // Hech qanday usul ishlamasa, debug log ga yozish
+        debugPrint('URL ochilmadi: $url, Xatolik: $e2');
+      }
     }
   }
 }

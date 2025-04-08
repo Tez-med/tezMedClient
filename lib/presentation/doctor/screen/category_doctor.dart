@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/data/doctor/model/doctor_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/category/bloc/nurse_type/nurse_type_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_get_list/doctor_bloc.dart';
@@ -28,7 +29,40 @@ class _CategoryDoctorState extends State<CategoryDoctor>
     return BlocBuilder<NurseTypeBloc, NurseTypeState>(
       builder: (context, state) {
         if (state is NurseTypeLoading) {
-          return Center(child: CupertinoActivityIndicator());
+          return ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Skeletonizer(
+                child: DoctorCard(
+                    doc: Doctor(
+                        id: "",
+                        districtId: "",
+                        regionId: "",
+                        countryId: "",
+                        speciesId: "",
+                        fullName: "",
+                        birthday: "",
+                        gender: "",
+                        passportPhoto: [],
+                        diplomaPhoto: [],
+                        certificate: [],
+                        medicalSheet: [],
+                        selfEmployed: [],
+                        status: "",
+                        rating: 0,
+                        phoneNumber: "",
+                        photo: "",
+                        experience: 0,
+                        consultationTime: 0,
+                        consultationPrice: 0,
+                        createdAt: ""),
+                    type: "",
+                    online: false,
+                    typeDoctor: ""),
+              );
+            },
+          );
         }
         if (state is NurseTypeError) {
           if (state.error.code == 400) {
@@ -40,7 +74,7 @@ class _CategoryDoctorState extends State<CategoryDoctor>
               onRetry: () => context.read<NurseTypeBloc>().add(GetType()),
             );
           }
-          return Center(child: Text("Xatolik yuz berdi"));
+          return Center(child: Text(S.of(context).unexpected_error));
         }
         if (state is NurseTypeLoaded) {
           final doctorTypes = state.data.types
@@ -143,8 +177,39 @@ class _CategoryDoctorState extends State<CategoryDoctor>
               body: BlocBuilder<DoctorBloc, DoctorState>(
                 builder: (context, state) {
                   if (state is DoctorLoading) {
-                    return Center(
-                      child: CupertinoActivityIndicator(),
+                    return ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return Skeletonizer(
+                          child: DoctorCard(
+                              doc: Doctor(
+                                  id: "",
+                                  districtId: "",
+                                  regionId: "",
+                                  countryId: "",
+                                  speciesId: "",
+                                  fullName: "",
+                                  birthday: "",
+                                  gender: "",
+                                  passportPhoto: [],
+                                  diplomaPhoto: [],
+                                  certificate: [],
+                                  medicalSheet: [],
+                                  selfEmployed: [],
+                                  status: "",
+                                  rating: 0,
+                                  phoneNumber: "",
+                                  photo: "",
+                                  experience: 0,
+                                  consultationTime: 0,
+                                  consultationPrice: 0,
+                                  createdAt: ""),
+                              type: "",
+                              online: false,
+                              typeDoctor: ""),
+                        );
+                      },
                     );
                   }
                   if (state is DoctorLoaded) {

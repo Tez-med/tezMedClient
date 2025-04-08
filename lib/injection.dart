@@ -6,6 +6,8 @@ import 'package:tez_med_client/core/routes/app_routes.dart';
 import 'package:tez_med_client/data/banner/source/get_banner_source.dart';
 import 'package:tez_med_client/data/comments/repositories/comment_repositories_impl.dart';
 import 'package:tez_med_client/data/comments/source/comment_source.dart';
+import 'package:tez_med_client/data/disease/repositories/disease_repository_impl.dart';
+import 'package:tez_med_client/data/disease/source/disease_source.dart';
 import 'package:tez_med_client/data/doctor/repositories/doctor_repositories_impl.dart';
 import 'package:tez_med_client/data/doctor/source/doctor_source.dart';
 import 'package:tez_med_client/data/my_address/repositories/my_address_repositories_impl.dart';
@@ -43,6 +45,8 @@ import 'package:tez_med_client/data/species/source/get_nurse_type_source.dart';
 import 'package:tez_med_client/data/species/source/species_source.dart';
 import 'package:tez_med_client/domain/comments/repositories/comment_repositories.dart';
 import 'package:tez_med_client/domain/comments/usecase/post_comment_usecase.dart';
+import 'package:tez_med_client/domain/disease/repositories/disease_repository.dart';
+import 'package:tez_med_client/domain/disease/usecase/get_diseases_usecase.dart';
 import 'package:tez_med_client/domain/doctor/repositories/doctor_repositories.dart';
 import 'package:tez_med_client/domain/doctor/useacase/doctor_usecase.dart';
 import 'package:tez_med_client/domain/my_address/repositories/my_address_repositories.dart';
@@ -261,4 +265,12 @@ Future<void> setUp() async {
       ScheduleRepositoriesImpl(getIt<ScheduleSource>()));
   getIt.registerSingleton<ScheduleUsecase>(
       ScheduleUsecase(getIt<ScheduleRepositories>()));
+
+  // Disease
+  getIt.registerSingleton<DiseaseSource>(
+      DiseaseSourceImpl(dioClientRepository: getIt<DioClientRepository>()));
+  getIt.registerSingleton<DiseaseRepository>(
+      DiseaseRepositoryImpl(diseaseSource: getIt<DiseaseSource>()));
+  getIt.registerSingleton<GetDiseasesUseCase>(
+      GetDiseasesUseCase(getIt<DiseaseRepository>()));
 }

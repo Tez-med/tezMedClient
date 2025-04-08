@@ -23,8 +23,10 @@ class CustomCalendarWidget extends StatefulWidget {
 class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
   late final ValueNotifier<DateTime> selectedDateNotifier;
 
-  late final ValueNotifier<String?> selectedTimeNotifier;
+  // Faqat bitta vaqt tanlanadigan o'zgaruvchilar
+  String? selectedTime;
   String? selectedScheduleId;
+  DateTime? selectedScheduleDate;
 
   late final List<DateTime> availableDates;
   late final Map<DateTime, List<Schedule>> scheduleMap;
@@ -39,7 +41,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
       if (s.status != 'free') return false;
 
       // Then filter by online status
-      if (widget.online) {
+      if (!widget.online) {
         return s.nurseTypeName.toLowerCase() == "telemeditsina";
       } else {
         return s.nurseTypeName.toLowerCase() == "uyga chaqirish";
@@ -54,13 +56,11 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
         availableDates.isNotEmpty ? availableDates.first : DateTime.now();
 
     selectedDateNotifier = ValueNotifier<DateTime>(initialDate);
-    selectedTimeNotifier = ValueNotifier<String?>(null);
   }
 
   @override
   void dispose() {
     selectedDateNotifier.dispose();
-    selectedTimeNotifier.dispose();
     super.dispose();
   }
 
@@ -79,16 +79,27 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
     return result;
   }
 
+  bool _isSameDay(DateTime? date1, DateTime? date2) {
+    if (date1 == null || date2 == null) return false;
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
+
   void _selectDate(DateTime date) {
     selectedDateNotifier.value = date;
-    // Reset time selection when date changes
-    selectedTimeNotifier.value = null;
-    selectedScheduleId = null;
+    // Hech narsani o'chirmaymiz, chunki bitta tanlangan vaqt butun kalendar uchun umumiy
   }
 
   void _selectTime(Schedule schedule) {
-    selectedTimeNotifier.value = schedule.time;
-    selectedScheduleId = schedule.id;
+    final scheduleDate = DateFormat('yyyy/MM/dd').parse(schedule.date);
+
+    setState(() {
+      // Agar avval tanlangan vaqt bo'lsa, uni o'chirib, yangi tanlangan vaqt qo'yamiz
+      selectedTime = schedule.time;
+      selectedScheduleId = schedule.id;
+      selectedScheduleDate = scheduleDate;
+    });
 
     widget.onDateSelected(schedule.id);
   }
@@ -159,6 +170,8 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: availableDates.map((date) {
               bool isSelected = date.isAtSameMomentAs(selectedDate);
+              // Bu kun tanlangan vaqt kuniga to'g'ri keladimi?
+              bool hasSelectedTime = _isSameDay(date, selectedScheduleDate);
 
               return Expanded(
                 child: Material(
@@ -182,15 +195,31 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
                             ),
                           ),
                           SizedBox(height: 4),
-                          Text(
-                            context.formatDate(date: date, pattern: 'dd'),
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: isSelected
-                                  ? AppColor.textColor
-                                  : AppColor.greyTextColor,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                context.formatDate(date: date, pattern: 'dd'),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: isSelected
+                                      ? AppColor.textColor
+                                      : AppColor.greyTextColor,
+                                ),
+                              ),
+                              // Agar bu kun tanlangan vaqt kuniga to'g'ri kelsa belgi ko'rsatish
+                              if (hasSelectedTime)
+                                Container(
+                                  margin: EdgeInsets.only(left: 3),
+                                  width: 6,
+                                  height: 6,
+                                  decoration: BoxDecoration(
+                                    color: AppColor.primaryColor,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                            ],
                           ),
                           SizedBox(height: 5),
                           Stack(
@@ -226,62 +255,57 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
           List<Schedule> schedulesForSelectedDate =
               scheduleMap[selectedDate] ?? [];
 
-          return ValueListenableBuilder<String?>(
-              valueListenable: selectedTimeNotifier,
-              builder: (context, selectedTime, _) {
-                return schedulesForSelectedDate.isEmpty
-                    ? Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
+          return schedulesForSelectedDate.isEmpty
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Text(
+                      widget.online
+                          ? "Bu kunda telemeditsina uchun vaqtlar mavjud emas"
+                          : "Bu kunda uyga chaqirish uchun vaqtlar mavjud emas",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColor.greyTextColor,
+                      ),
+                    ),
+                  ),
+                )
+              : Wrap(
+                  spacing: 5,
+                  runSpacing: 8,
+                  children: schedulesForSelectedDate.map((schedule) {
+                    // Agar bu schedule selectedScheduleId bilan bir xil bo'lsa, tanlangan
+                    bool isSelected = selectedScheduleId == schedule.id;
+
+                    return Material(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(24),
+                      child: InkWell(
+                        onTap: () => _selectTime(schedule),
+                        borderRadius: BorderRadius.circular(24),
+                        child: Ink(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 17),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? AppColor.primaryColor
+                                : AppColor.buttonBackColor,
+                            borderRadius: BorderRadius.circular(24),
+                          ),
                           child: Text(
-                            widget.online
-                                ? "Bu kunda telemeditsina uchun vaqtlar mavjud emas"
-                                : "Bu kunda uyga chaqirish uchun vaqtlar mavjud emas",
+                            schedule.time,
                             style: TextStyle(
-                              fontSize: 16,
-                              color: AppColor.greyTextColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color:
+                                  isSelected ? Colors.white : Colors.blue[700],
                             ),
                           ),
                         ),
-                      )
-                    : Wrap(
-                        spacing: 5,
-                        runSpacing: 8,
-                        children: schedulesForSelectedDate.map((schedule) {
-                          bool isSelected = selectedTime == schedule.time &&
-                              selectedScheduleId == schedule.id;
-
-                          return Material(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(24),
-                            child: InkWell(
-                              onTap: () => _selectTime(schedule),
-                              borderRadius: BorderRadius.circular(24),
-                              child: Ink(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 17),
-                                decoration: BoxDecoration(
-                                  color: isSelected
-                                      ? AppColor.primaryColor
-                                      : AppColor.buttonBackColor,
-                                  borderRadius: BorderRadius.circular(24),
-                                ),
-                                child: Text(
-                                  schedule.time,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : Colors.blue[700],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      );
-              });
+                      ),
+                    );
+                  }).toList(),
+                );
         });
   }
 }
