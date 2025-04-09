@@ -33,3 +33,17 @@ class ProfileError extends ProfileState {
   @override
   List<Object> get props => [error];
 }
+
+class ProfileDeletionLoading extends ProfileState {}
+
+class ProfileDeletionSuccess extends ProfileState {}
+
+class ProfileDeletionError extends ProfileState {
+  @override
+  final Failure error;
+
+  const ProfileDeletionError(this.error);
+
+  @override
+  List<Object> get props => [error];
+}

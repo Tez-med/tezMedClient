@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Continue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "access_code": MessageLookupByLibrary.simpleMessage("Код доступа"),
+        "accountDeletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Ваш аккаунт успешно удален"),
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
         "addDiseaseCard":
             MessageLookupByLibrary.simpleMessage("Добавить карту болезни"),
@@ -105,6 +107,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_update":
             MessageLookupByLibrary.simpleMessage("Обновление данных"),
         "day": MessageLookupByLibrary.simpleMessage("День"),
+        "deleteAccount":
+            MessageLookupByLibrary.simpleMessage("Удалить аккаунт"),
+        "deleteAccountConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Вы хотите удалить свой аккаунт? Это действие необратимо, и все ваши данные будут потеряны."),
+        "deleteAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "При удалении аккаунта все личные данные и доступ к системе будут потеряны."),
+        "deleteAccountFinalWarning": MessageLookupByLibrary.simpleMessage(
+            "Это действие необратимо. Ваш аккаунт и все ваши данные будут полностью удалены. Хотите продолжить?"),
+        "deleteAccountTitle":
+            MessageLookupByLibrary.simpleMessage("Удаление аккаунта"),
+        "deletingAccount":
+            MessageLookupByLibrary.simpleMessage("Удаление аккаунта..."),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "destination_additional_information":
             MessageLookupByLibrary.simpleMessage(
@@ -220,12 +234,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ожидайте новостей и обновлений!"),
         "no_selected_address":
             MessageLookupByLibrary.simpleMessage("Адрес не выбран"),
+        "no_services_available":
+            MessageLookupByLibrary.simpleMessage("Услуги пока недоступны"),
+        "no_services_description": MessageLookupByLibrary.simpleMessage(
+            "Наши услуги пока недоступны в этом районе. Мы активно работаем над расширением зоны обслуживания. Пожалуйста, проверьте позже."),
         "notification": MessageLookupByLibrary.simpleMessage("Уведомления"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Настройки уведомлений"),
         "nurse": MessageLookupByLibrary.simpleMessage("Медсестра"),
         "nurse_info":
             MessageLookupByLibrary.simpleMessage("Информация по уходу"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "ontheway": MessageLookupByLibrary.simpleMessage("В пути"),
         "open_camera": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
         "open_settings":

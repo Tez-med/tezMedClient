@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
         "access_code": MessageLookupByLibrary.simpleMessage("Access code"),
+        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Your account has been successfully deleted"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addDiseaseCard":
             MessageLookupByLibrary.simpleMessage("Add Disease Card"),
@@ -101,6 +103,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "current_time": MessageLookupByLibrary.simpleMessage("Current time"),
         "data_update": MessageLookupByLibrary.simpleMessage("Data update"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "deleteAccountConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Do you want to delete your account? This action cannot be undone and all your data will be lost."),
+        "deleteAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "If you delete your account, all personal information and access to the system will be lost."),
+        "deleteAccountFinalWarning": MessageLookupByLibrary.simpleMessage(
+            "This action cannot be undone. Your account and all your data will be completely deleted. Do you want to continue?"),
+        "deleteAccountTitle":
+            MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "deletingAccount":
+            MessageLookupByLibrary.simpleMessage("Deleting your account..."),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "destination_additional_information":
             MessageLookupByLibrary.simpleMessage("Landmark or additional info"),
@@ -212,11 +225,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Stay tuned for news and updates!"),
         "no_selected_address":
             MessageLookupByLibrary.simpleMessage("No address selected"),
+        "no_services_available":
+            MessageLookupByLibrary.simpleMessage("Services Not Available Yet"),
+        "no_services_description": MessageLookupByLibrary.simpleMessage(
+            "Our services are not yet available in this area. We are working hard to expand our coverage. Please check back later."),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Notification settings"),
         "nurse": MessageLookupByLibrary.simpleMessage("Nurse"),
         "nurse_info": MessageLookupByLibrary.simpleMessage("Nurse information"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "ontheway": MessageLookupByLibrary.simpleMessage("On the way"),
         "open_camera": MessageLookupByLibrary.simpleMessage("Open camera"),
         "open_settings": MessageLookupByLibrary.simpleMessage("Open settings"),

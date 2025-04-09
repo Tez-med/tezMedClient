@@ -245,5 +245,15 @@
   "statusNew": "Новый",
   "statusInProgress": "В процессе",
   "statusResolved": "Решено",
-  "statusClosed": "Закрыто"
+  "statusClosed": "Закрыто",
+  "no_services_available": "Услуги пока недоступны",
+  "no_services_description": "Наши услуги пока недоступны в этом районе. Мы активно работаем над расширением зоны обслуживания. Пожалуйста, проверьте позже.",
+  "deleteAccount": "Удалить аккаунт",
+  "deleteAccountDescription": "При удалении аккаунта все личные данные и доступ к системе будут потеряны.",
+  "deleteAccountTitle": "Удаление аккаунта",
+  "deleteAccountConfirmation": "Вы хотите удалить свой аккаунт? Это действие необратимо, и все ваши данные будут потеряны.",
+  "deleteAccountFinalWarning": "Это действие необратимо. Ваш аккаунт и все ваши данные будут полностью удалены. Хотите продолжить?",
+  "deletingAccount": "Удаление аккаунта...",
+  "accountDeletedSuccessfully": "Ваш аккаунт успешно удален",
+  "ok": "OK"
 }

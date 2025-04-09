@@ -21,8 +21,6 @@ class CategoryNurseLoading extends StatelessWidget {
             descriptionRu: "Loading",
             descriptionEn: "Loading",
             isActive: true,
-            createdAt: "",
-            updatedAt: "",
             departments: List.generate(
                 4,
                 (deptIndex) => Department(

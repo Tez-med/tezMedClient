@@ -245,5 +245,15 @@
   "statusNew": "New",
   "statusInProgress": "In Progress",
   "statusResolved": "Resolved",
-  "statusClosed": "Closed"
+  "statusClosed": "Closed",
+  "no_services_available": "Services Not Available Yet",
+  "no_services_description": "Our services are not yet available in this area. We are working hard to expand our coverage. Please check back later.",
+  "deleteAccount": "Delete Account",
+  "deleteAccountDescription": "If you delete your account, all personal information and access to the system will be lost.",
+  "deleteAccountTitle": "Delete Account",
+  "deleteAccountConfirmation": "Do you want to delete your account? This action cannot be undone and all your data will be lost.",
+  "deleteAccountFinalWarning": "This action cannot be undone. Your account and all your data will be completely deleted. Do you want to continue?",
+  "deletingAccount": "Deleting your account...",
+  "accountDeletedSuccessfully": "Your account has been successfully deleted",
+  "ok": "OK"
 }

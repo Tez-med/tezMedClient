@@ -180,48 +180,35 @@ class SupportScreen extends StatelessWidget {
     try {
       // Telegram URL'ni aniqlaymiz va maxsus ishlaymiz
       if (url.contains('t.me') || url.contains('telegram.me')) {
-        // Telegram app URL formatiga o'tkazish
         final String telegramAppUrl = url.replaceFirst('https://', 'tg://');
         final Uri telegramUri = Uri.parse(telegramAppUrl);
 
-        // Telegram ilovasi o'rnatilganligini tekshirish
         if (await canLaunchUrl(telegramUri)) {
-          // Agar o'rnatilgan bo'lsa, to'g'ridan-to'g'ri ilova ochiladi
           await launchUrl(telegramUri, mode: LaunchMode.externalApplication);
           return;
         }
       }
 
-      // Telegram bo'lmagan boshqa URL'lar uchun yoki Telegram o'rnatilmagan holatlar
       final Uri uri = Uri.parse(url);
-
-      // URL turiga qarab mode tanlash
       LaunchMode mode;
 
       if (url.startsWith('tel:') ||
           url.startsWith('sms:') ||
           url.startsWith('mailto:') ||
           url.startsWith('https://t.me/')) {
-        // Telegram web versiyasi uchun ham
-        // Tashqi ilova bilan ochish
-        mode = LaunchMode.externalApplication;
+        mode = LaunchMode.externalApplication; // Tashqi ilova bilan ochish
       } else {
-        // Web URLlar uchun in-app view
-        mode = LaunchMode.inAppWebView;
+        mode = LaunchMode.inAppWebView; // In-app view
       }
 
-      // URL ochishga urinish
       final bool canLaunch = await canLaunchUrl(uri);
 
       if (canLaunch) {
         await launchUrl(uri, mode: mode);
       } else {
-        // Agar ochilmasa, mode ni o'zgartirib ko'rish
         if (mode == LaunchMode.inAppWebView) {
-          // In-app ochilmasa, tashqi ilova bilan ochishga urinish
           await launchUrl(uri, mode: LaunchMode.externalApplication);
         } else {
-          // Platformaga bog'liq bo'lmagan ochish usuli
           await launchUrl(uri, mode: LaunchMode.platformDefault);
         }
       }
@@ -229,12 +216,9 @@ class SupportScreen extends StatelessWidget {
       debugPrint('URL ochishda xatolik: $e');
 
       try {
-        // Xatolik bo'lsa, oxirgi imkoniyat sifatida platformaga bog'liq
-        // bo'lmagan ochish usulini sinab ko'rish
         final Uri uri = Uri.parse(url);
         await launchUrl(uri, mode: LaunchMode.platformDefault);
       } catch (e2) {
-        // Hech qanday usul ishlamasa, debug log ga yozish
         debugPrint('URL ochilmadi: $url, Xatolik: $e2');
       }
     }

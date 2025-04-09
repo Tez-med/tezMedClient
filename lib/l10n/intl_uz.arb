@@ -245,5 +245,15 @@
   "statusNew": "Yangi",
   "statusInProgress": "Jarayonda",
   "statusResolved": "Hal qilingan",
-  "statusClosed": "Yopilgan"
+  "statusClosed": "Yopilgan",
+  "no_services_available": "Xizmatlar hali mavjud emas",
+  "no_services_description": "Bizning xizmatlarimiz hali bu hududda ishga tushmagan. Xizmatlar doirasini kengaytirish ustida faol ish olib boryapmiz. Iltimos, keyinroq tekshiring.",
+  "deleteAccount": "Hisobni o'chirish",
+  "deleteAccountDescription": "Hisobingizni o'chirsangiz, barcha shaxsiy ma'lumotlar va tizimga kirish imkoniyati yo'qoladi.",
+  "deleteAccountTitle": "Hisobni o'chirish",
+  "deleteAccountConfirmation": "Hisobingizni o'chirishni xohlaysizmi? Bu harakat qaytarib bo'lmaydi va barcha ma'lumotlaringiz yo'qoladi.",
+  "deleteAccountFinalWarning": "Bu harakat qaytarib bo'lmaydi. Hisobingiz va barcha ma'lumotlaringiz butunlay o'chiriladi. Davom etishni xohlaysizmi?",
+  "deletingAccount": "Hisobingiz o'chirilmoqda...",
+  "accountDeletedSuccessfully": "Hisobingiz muvaffaqiyatli o'chirildi",
+  "ok": "OK"
 }

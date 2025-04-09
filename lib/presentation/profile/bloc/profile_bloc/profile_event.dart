@@ -8,3 +8,4 @@ sealed class ProfileEvent extends Equatable {
 }
 
 class GetProfileData extends ProfileEvent {}
+class DeleteProfile extends ProfileEvent {}

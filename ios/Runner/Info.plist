@@ -54,8 +54,6 @@
     <key>UIBackgroundModes</key>
     <array>
         <string>remote-notification</string>
-        <string>fetch</string>
-        <string>audio</string>
     </array>
     <key>LSApplicationQueriesSchemes</key>
     <array>

@@ -4,4 +4,5 @@ import 'package:tez_med_client/data/profile/model/client_model.dart';
 
 abstract class ProfileRepositories {
   Future<Either<Failure, ClientModel>> getData();
+  Future<Either<Failure, bool>> deleteAccount();
 }

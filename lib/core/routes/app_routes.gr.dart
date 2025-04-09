@@ -43,7 +43,7 @@ import 'package:tez_med_client/presentation/history/pages/finished_request_scree
     as _i10;
 import 'package:tez_med_client/presentation/history/pages/history_screen.dart'
     as _i11;
-import 'package:tez_med_client/presentation/home/order_details/pages/order_details_screen.dart'
+import 'package:tez_med_client/presentation/order_details/pages/order_details_screen.dart'
     as _i18;
 import 'package:tez_med_client/presentation/home/pages/home_screen.dart'
     as _i12;

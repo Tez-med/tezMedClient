@@ -8,7 +8,7 @@ class CategoryRepositoriesImpl implements CategoryRepositories {
   final CategorySource categorySource;
   CategoryRepositoriesImpl(this.categorySource);
   @override
-  Future<Either<Failure, List<CategoryModel>>> getCategory() async {
-    return await categorySource.getCategory();
+  Future<Either<Failure, List<CategoryModel>>> getCategory({String? districtId}) async {
+    return await categorySource.getCategory(districtId: districtId);
   }
 }

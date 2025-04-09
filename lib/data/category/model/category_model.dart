@@ -8,8 +8,6 @@ class CategoryModel {
   final String descriptionRu;
   final String descriptionEn;
   final bool isActive;
-  final String createdAt;
-  final String updatedAt;
   final List<Department> departments;
 
   CategoryModel({
@@ -22,29 +20,25 @@ class CategoryModel {
     required this.descriptionRu,
     required this.descriptionEn,
     required this.isActive,
-    required this.createdAt,
-    required this.updatedAt,
     required this.departments,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
-      id: json['id'] ?? "",
-      nameEn: json['name_en'] ?? "",
-      nameUz: json['name_uz'] ?? "",
-      nameRu: json['name_ru'] ?? "",
-      photo: json['photo'] ?? "",
-      descriptionUz: json['description_uz'] ?? '',
-      descriptionRu: json['description_ru'] ?? '',
-      descriptionEn: json['description_en'] ?? '',
-      isActive: json['is_active'] ?? false,
-      createdAt: json['created_at'] ?? "",
-      updatedAt: json['updated_at'] ?? "",
-      departments: json['departments'] != null
-          ? List<Department>.from(
-              json['departments'].map((x) => Department.fromJson(x)))
-          : [],
-    );
+        id: json['id'] ?? "",
+        nameEn: json['name_en'] ?? "",
+        nameUz: json['name_uz'] ?? "",
+        nameRu: json['name_ru'] ?? "",
+        photo: json['photo'] ?? "",
+        descriptionUz: json['description_uz'] ?? '',
+        descriptionRu: json['description_ru'] ?? '',
+        descriptionEn: json['description_en'] ?? '',
+        isActive: json['is_active'] ?? false,
+        departments: json['departments'] != null
+            ? List<Department>.from(
+                json['departments'].map((x) => Department.fromJson(x)))
+            : [],
+        );
   }
 }
 

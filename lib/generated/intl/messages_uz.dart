@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Continue": MessageLookupByLibrary.simpleMessage("Davom etish"),
         "access_code": MessageLookupByLibrary.simpleMessage("Kirish kodi"),
+        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Hisobingiz muvaffaqiyatli o\'chirildi"),
         "add": MessageLookupByLibrary.simpleMessage("Qo\'shish"),
         "addDiseaseCard": MessageLookupByLibrary.simpleMessage(
             "Kasallik varaqasini qo\'shish"),
@@ -103,6 +105,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_update":
             MessageLookupByLibrary.simpleMessage("Ma\'lumotlarni yangilash"),
         "day": MessageLookupByLibrary.simpleMessage("Kun"),
+        "deleteAccount":
+            MessageLookupByLibrary.simpleMessage("Hisobni o\'chirish"),
+        "deleteAccountConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Hisobingizni o\'chirishni xohlaysizmi? Bu harakat qaytarib bo\'lmaydi va barcha ma\'lumotlaringiz yo\'qoladi."),
+        "deleteAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "Hisobingizni o\'chirsangiz, barcha shaxsiy ma\'lumotlar va tizimga kirish imkoniyati yo\'qoladi."),
+        "deleteAccountFinalWarning": MessageLookupByLibrary.simpleMessage(
+            "Bu harakat qaytarib bo\'lmaydi. Hisobingiz va barcha ma\'lumotlaringiz butunlay o\'chiriladi. Davom etishni xohlaysizmi?"),
+        "deleteAccountTitle":
+            MessageLookupByLibrary.simpleMessage("Hisobni o\'chirish"),
+        "deletingAccount": MessageLookupByLibrary.simpleMessage(
+            "Hisobingiz o\'chirilmoqda..."),
         "description": MessageLookupByLibrary.simpleMessage("Tavsif"),
         "destination_additional_information":
             MessageLookupByLibrary.simpleMessage(
@@ -221,6 +235,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Yangiliklar va yangilanishlarni kuting!"),
         "no_selected_address":
             MessageLookupByLibrary.simpleMessage("Manzil tanlanmagan"),
+        "no_services_available":
+            MessageLookupByLibrary.simpleMessage("Xizmatlar hali mavjud emas"),
+        "no_services_description": MessageLookupByLibrary.simpleMessage(
+            "Bizning xizmatlarimiz hali bu hududda ishga tushmagan. Xizmatlar doirasini kengaytirish ustida faol ish olib boryapmiz. Iltimos, keyinroq tekshiring."),
         "notification":
             MessageLookupByLibrary.simpleMessage("Bildirishnomalar"),
         "notification_settings":
@@ -228,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nurse": MessageLookupByLibrary.simpleMessage("Hamshira"),
         "nurse_info":
             MessageLookupByLibrary.simpleMessage("Hamshira ma\'lumotlari"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "ontheway": MessageLookupByLibrary.simpleMessage("Yo\'lda"),
         "open_camera": MessageLookupByLibrary.simpleMessage("Kamerani ochish"),
         "open_settings":

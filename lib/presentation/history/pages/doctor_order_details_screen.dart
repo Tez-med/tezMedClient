@@ -12,7 +12,7 @@ import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/schedule/model/schedule_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/history/bloc/schedule_id/schedule_get_id_bloc.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/photo_view.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/photo_view.dart';
 
 @RoutePage()
 class DoctorOrderDetailsScreen extends StatefulWidget {

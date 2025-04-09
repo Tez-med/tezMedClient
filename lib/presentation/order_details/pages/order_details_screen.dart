@@ -12,12 +12,12 @@ import 'package:tez_med_client/data/requests_get/model/active_request_model.dart
 import 'package:tez_med_client/data/requests_get/model/get_by_id_request_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/history/bloc/get_by_id_request/get_by_id_request_bloc.dart';
-import 'package:tez_med_client/presentation/home/order_details/bloc/comment_bloc.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/affairs_card_widget.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/nurse_details.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/photos_card_widget.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/raiting_bottom_shett.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/status_card_widget.dart';
+import 'package:tez_med_client/presentation/order_details/bloc/comment_bloc.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/affairs_card_widget.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/nurse_details.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/photos_card_widget.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/raiting_bottom_shett.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/status_card_widget.dart';
 import '../widgets/order_details_card.dart';
 
 @RoutePage()

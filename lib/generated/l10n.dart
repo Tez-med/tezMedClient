@@ -2499,6 +2499,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Services Not Available Yet`
+  String get no_services_available {
+    return Intl.message(
+      'Services Not Available Yet',
+      name: 'no_services_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our services are not yet available in this area. We are working hard to expand our coverage. Please check back later.`
+  String get no_services_description {
+    return Intl.message(
+      'Our services are not yet available in this area. We are working hard to expand our coverage. Please check back later.',
+      name: 'no_services_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAccount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you delete your account, all personal information and access to the system will be lost.`
+  String get deleteAccountDescription {
+    return Intl.message(
+      'If you delete your account, all personal information and access to the system will be lost.',
+      name: 'deleteAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAccountTitle {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccountTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to delete your account? This action cannot be undone and all your data will be lost.`
+  String get deleteAccountConfirmation {
+    return Intl.message(
+      'Do you want to delete your account? This action cannot be undone and all your data will be lost.',
+      name: 'deleteAccountConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This action cannot be undone. Your account and all your data will be completely deleted. Do you want to continue?`
+  String get deleteAccountFinalWarning {
+    return Intl.message(
+      'This action cannot be undone. Your account and all your data will be completely deleted. Do you want to continue?',
+      name: 'deleteAccountFinalWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting your account...`
+  String get deletingAccount {
+    return Intl.message(
+      'Deleting your account...',
+      name: 'deletingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account has been successfully deleted`
+  String get accountDeletedSuccessfully {
+    return Intl.message(
+      'Your account has been successfully deleted',
+      name: 'accountDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

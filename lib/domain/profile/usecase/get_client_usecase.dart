@@ -11,4 +11,8 @@ class GetClientUsecase {
   Future<Either<Failure, ClientModel>> getData() async {
     return await profileRepositories.getData();
   }
+
+  Future<Either<Failure, bool>> deleteAccount() async {
+    return await profileRepositories.deleteAccount();
+  }
 }

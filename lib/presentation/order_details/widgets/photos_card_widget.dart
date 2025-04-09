@@ -3,7 +3,7 @@ import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/data/requests_get/model/get_by_id_request_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/photo_view.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/photo_view.dart';
 
 class PhotosCard extends StatelessWidget {
   const PhotosCard({

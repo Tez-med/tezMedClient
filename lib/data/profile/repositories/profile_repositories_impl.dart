@@ -11,4 +11,9 @@ class ProfileRepositoriesImpl implements ProfileRepositories {
   Future<Either<Failure, ClientModel>> getData() async {
     return await profileSource.getData();
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteAccount() async {
+    return await profileSource.deleteAccount();
+  }
 }

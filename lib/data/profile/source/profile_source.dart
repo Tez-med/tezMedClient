@@ -10,12 +10,14 @@ import 'dart:developer' as developer;
 
 abstract class ProfileSource {
   Future<Either<Failure, ClientModel>> getData();
+  Future<Either<Failure, bool>> deleteAccount();
 }
 
 class ProfileSourceImpl implements ProfileSource {
   final DioClientRepository dioClientRepository;
 
   ProfileSourceImpl(this.dioClientRepository);
+
   @override
   Future<Either<Failure, ClientModel>> getData() async {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
@@ -32,6 +34,29 @@ class ProfileSourceImpl implements ProfileSource {
       return Left(ErrorHandler.handleDioError(e));
     } catch (e) {
       return const Left(UnexpectedFailure(code: 40));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteAccount() async {
+    final token = LocalStorageService().getString(StorageKeys.accestoken);
+    final id = LocalStorageService().getString(StorageKeys.userId);
+    try {
+      // DELETE so'rovi yuborish
+      await dioClientRepository.deleteData(
+        "/client/$id",
+        token: token,
+      );
+
+      return const Right(true);
+    } on DioException catch (e) {
+      developer.log("Error deleting account: ${e.message}",
+          name: "AccountDeletion");
+      return Left(ErrorHandler.handleDioError(e));
+    } catch (e) {
+      developer.log("Unexpected error deleting account: $e",
+          name: "AccountDeletion");
+      return const Left(UnexpectedFailure(code: 41));
     }
   }
 }

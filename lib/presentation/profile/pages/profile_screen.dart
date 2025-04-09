@@ -9,6 +9,7 @@ import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/profile/bloc/profile_bloc/profile_bloc.dart';
+import 'package:tez_med_client/presentation/profile/widgets/delete_account.dart';
 import 'package:tez_med_client/presentation/profile/widgets/profile_menu_widget.dart';
 import '../widgets/profile_header.dart';
 
@@ -111,6 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             ProfileHeader(clientModel: state.clientModel),
             const ProfileMenuWidget(),
+            const DeleteAccountSection(),
             const SizedBox(height: 24),
             _buildVersionInfo(),
           ],

@@ -4,7 +4,7 @@ import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/data/disease/model/disease_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
-import 'package:tez_med_client/presentation/home/order_details/widgets/photo_view.dart';
+import 'package:tez_med_client/presentation/order_details/widgets/photo_view.dart';
 
 class DiseaseCard extends StatelessWidget {
   final Diseasess disease;

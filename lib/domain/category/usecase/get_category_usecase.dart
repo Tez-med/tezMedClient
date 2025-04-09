@@ -7,7 +7,7 @@ class GetCategoryUsecase {
   final CategoryRepositories categoryRepositories;
   GetCategoryUsecase(this.categoryRepositories);
 
-  Future<Either<Failure, List<CategoryModel>>> getCategory() async {
-    return await categoryRepositories.getCategory();
+  Future<Either<Failure, List<CategoryModel>>> getCategory({String? districtId}) async {
+    return await categoryRepositories.getCategory(districtId: districtId);
   }
 }

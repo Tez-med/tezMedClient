@@ -9,4 +9,5 @@ class StorageKeys {
   static const String locationName = 'location_name';
   static const String latitude = 'latitude';
   static const String longitude = 'longitude';
+  static const String districtId = 'district_id';
 }

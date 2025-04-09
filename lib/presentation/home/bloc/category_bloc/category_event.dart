@@ -7,4 +7,11 @@ sealed class CategoryEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCategory extends CategoryEvent {}
+class GetCategory extends CategoryEvent {
+  final String? districtId;
+
+  const GetCategory({this.districtId});
+
+  @override
+  List<Object> get props => [districtId ?? '']; 
+}
