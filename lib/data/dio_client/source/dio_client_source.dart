@@ -152,7 +152,7 @@ class DioClient {
       );
       return response;
     } on DioException catch (e) {
-      developer.log("Request error: ${e}", name: "ERROR");
+      developer.log("Request error: ${e.response}", name: "ERROR");
       rethrow;
     } catch (e) {
       rethrow;
