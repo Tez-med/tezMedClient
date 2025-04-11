@@ -56,8 +56,6 @@ class StatusCard extends StatelessWidget {
     String formattedDate = DateFormat('dd.MM.yyyy | HH:mm').format(parsedDate);
 
     return Card(
-      elevation: 0,
-      color: Colors.white,
       child: Column(
         children: [
           Padding(

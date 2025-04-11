@@ -13,16 +13,10 @@ class SupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
         title: Text(
           S.of(context).helpSupport,
-          style: AppTextstyle.nunitoBold.copyWith(fontSize: 22),
         ),
-        centerTitle: true,
-        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -106,7 +100,6 @@ class SupportScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
         child: Card(
-          elevation: 0,
           color: Colors.transparent,
           margin: EdgeInsets.zero,
           child: InkWell(

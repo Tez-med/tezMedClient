@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
-import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/data/request_post/model/request_model.dart';
 import 'package:tez_med_client/domain/dio_client/repository/dio_client_repository.dart';
 import 'package:tez_med_client/generated/l10n.dart';
@@ -58,25 +56,15 @@ class _LocationDetailsState extends State<LocationDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
-        elevation: 1,
-        shadowColor: AppColor.buttonBackColor,
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => context.router.maybePop(),
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
           ),
         ),
-        centerTitle: true,
         title: Text(
           S.of(context).address,
-          style: AppTextstyle.nunitoBold.copyWith(
-            color: Colors.black,
-            fontSize: 22,
-          ),
         ),
       ),
       body: Stack(

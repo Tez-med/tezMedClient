@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
@@ -19,7 +18,6 @@ class ActiveDoctorRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       body: BlocBuilder<ActiveDoctorRequestBloc, ActiveDoctorRequestState>(
         bloc: context.read<ActiveDoctorRequestBloc>()..add(GetSchedule()),
         builder: (context, state) {

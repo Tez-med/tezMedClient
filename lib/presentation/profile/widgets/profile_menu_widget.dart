@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:share_plus/share_plus.dart';
@@ -102,7 +103,9 @@ class ProfileMenuWidget extends StatelessWidget {
         await inAppReview.openStoreListing();
       }
     } catch (e) {
-      print('Rate error: $e');
+      if (kDebugMode) {
+        print('Rate error: $e');
+      }
     }
   }
 }

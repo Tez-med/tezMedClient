@@ -25,8 +25,16 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
-      appBar: _buildAppBar(context),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded,
+              color: AppColor.primaryColor),
+          onPressed: () => context.router.maybePop(),
+        ),
+        title: Text(
+          S.of(context).notification,
+        ),
+      ),
       body: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {
           if (state is NotificationLoading) {
@@ -62,25 +70,6 @@ class _NotificationPageState extends State<NotificationPage> {
           return const SizedBox.expand();
         },
       ),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      surfaceTintColor: Colors.white,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded,
-            color: AppColor.primaryColor),
-        onPressed: () => context.router.maybePop(),
-      ),
-      centerTitle: true,
-      title: Text(
-        S.of(context).notification,
-        style: AppTextstyle.nunitoBold.copyWith(fontSize: 22),
-      ),
-      backgroundColor: Colors.white,
-      elevation: 1,
-      shadowColor: AppColor.buttonBackColor,
     );
   }
 

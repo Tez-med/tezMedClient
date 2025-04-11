@@ -39,16 +39,9 @@ class HistoryScreen extends StatelessWidget {
         final tabCounts = [nurseOrdersCount, doctorOrdersCount];
 
         return Scaffold(
-          backgroundColor: AppColor.buttonBackColor,
           appBar: AppBar(
-            surfaceTintColor: Colors.white,
-            backgroundColor: Colors.white,
-            shadowColor: AppColor.buttonBackColor,
-            elevation: 1,
-            centerTitle: true,
             title: Text(
               S.of(context).current_order,
-              style: AppTextstyle.nunitoBold.copyWith(fontSize: 22),
             ),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(50),

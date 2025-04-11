@@ -65,12 +65,7 @@ class _ServiceInfoState extends State<ServiceInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
-        elevation: 1,
-        shadowColor: AppColor.buttonBackColor,
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => context.router.maybePop(),
           icon: const Icon(
@@ -80,10 +75,6 @@ class _ServiceInfoState extends State<ServiceInfo> {
         centerTitle: true,
         title: Text(
           S.of(context).order_details,
-          style: AppTextstyle.nunitoBold.copyWith(
-            color: Colors.black,
-            fontSize: 22,
-          ),
         ),
       ),
       body: Stack(

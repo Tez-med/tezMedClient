@@ -115,7 +115,6 @@ class _PhoneInputScreenState extends State<PhoneInputScreen>
       appBar: AppBar(
         leading: const SizedBox(),
         leadingWidth: 0,
-        backgroundColor: Colors.white,
         actions: [
           GestureDetector(
             onTap: _handleActionButtonPress,

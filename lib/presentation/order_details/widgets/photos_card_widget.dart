@@ -28,11 +28,6 @@ class PhotosCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
@@ -60,7 +55,7 @@ class PhotosCard extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: CustomCachedImage(
-                              image:  image,
+                              image: image,
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover,

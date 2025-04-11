@@ -3,8 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
-import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/category/model/category_model.dart';
@@ -167,16 +165,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         final bool showRatingButton = state is GetByIdRequestLoaded &&
             state.requestss.status == "finished";
         return Scaffold(
-          backgroundColor: AppColor.buttonBackColor,
           appBar: AppBar(
-            centerTitle: true,
-            elevation: 1,
-            backgroundColor: Colors.white,
-            shadowColor: AppColor.buttonBackColor,
-            surfaceTintColor: Colors.white,
             title: Text(
               "${S.of(context).order} №${widget.number}",
-              style: AppTextstyle.nunitoBold.copyWith(fontSize: 20),
             ),
             leading: IconButton(
               onPressed: () {

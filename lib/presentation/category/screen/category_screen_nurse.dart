@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
@@ -44,19 +43,12 @@ class _CategoryScreenNurseState extends State<CategoryScreenNurse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () => context.router.maybePop(),
             icon: Icon(Icons.arrow_back_ios_new_rounded)),
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
-        shadowColor: AppColor.buttonBackColor,
-        centerTitle: true,
         title: Text(
           widget.title,
-          style: AppTextstyle.nunitoBold.copyWith(
-              fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
         ),
       ),
       body: BlocBuilder<SpeciesGetByIdBloc, SpeciesGetByIdState>(
@@ -72,19 +64,17 @@ class _CategoryScreenNurseState extends State<CategoryScreenNurse> {
                   if (state is CategoryLoading) {
                     return CategoryNurseLoading(widget: widget);
                   } else if (state is CategoryLoaded) {
-                    // Tekshiramiz: hamma kategoriyalarda affairs bo'sh ekanligini
                     if (state.category.every((category) => category.departments
                         .every((department) => department.affairs.isEmpty))) {
-                      // Chiroyli xizmatlar mavjud emas widgetini ko'rsatamiz
                       return NoServicesWidget(
                         onRetry: () {
-                          context.read<CategoryBloc>().add(
-                              GetCategory(districtId: widget.district));
+                          context
+                              .read<CategoryBloc>()
+                              .add(GetCategory(districtId: widget.district));
                         },
                       );
                     }
-                    
-                    // Agar xizmatlar mavjud bo'lsa, asosiy kontentni ko'rsatamiz
+
                     return CategoryNurseMain(
                       category: state.category,
                       requestModel: widget.requestModel.copyWith(
@@ -111,13 +101,17 @@ class _CategoryScreenNurseState extends State<CategoryScreenNurse> {
     if (state.error.code == 400) {
       return NoInternetConnectionWidget(
         onRetry: () {
-          context.read<SpeciesGetByIdBloc>().add(GetByIdSpecies(widget.id, widget.district));
+          context
+              .read<SpeciesGetByIdBloc>()
+              .add(GetByIdSpecies(widget.id, widget.district));
         },
       );
     } else if (state.error.code == 500) {
       return ServerConnection(
         onRetry: () {
-          context.read<SpeciesGetByIdBloc>().add(GetByIdSpecies(widget.id, widget.district));
+          context
+              .read<SpeciesGetByIdBloc>()
+              .add(GetByIdSpecies(widget.id, widget.district));
         },
       );
     }
@@ -128,19 +122,23 @@ class _CategoryScreenNurseState extends State<CategoryScreenNurse> {
       ),
     );
   }
-  
+
   // CategoryBloc xatoliklarini ham ko'rsatish uchun
   Widget _handleCategoryBlocError(CategoryError state) {
     if (state.error.code == 400) {
       return NoInternetConnectionWidget(
         onRetry: () {
-          context.read<CategoryBloc>().add(GetCategory(districtId: widget.district));
+          context
+              .read<CategoryBloc>()
+              .add(GetCategory(districtId: widget.district));
         },
       );
     } else if (state.error.code == 500) {
       return ServerConnection(
         onRetry: () {
-          context.read<CategoryBloc>().add(GetCategory(districtId: widget.district));
+          context
+              .read<CategoryBloc>()
+              .add(GetCategory(districtId: widget.district));
         },
       );
     }

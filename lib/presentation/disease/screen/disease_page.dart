@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
-import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/disease/model/disease_model.dart';
@@ -29,16 +27,12 @@ class _DiseasesScreenState extends State<DiseasesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
           leading: IconButton(
               onPressed: () => context.router.maybePop(),
               icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-          backgroundColor: Colors.white,
-          centerTitle: true,
           title: Text(
             S.of(context).diseaseCards,
-            style: AppTextstyle.nunitoBold.copyWith(fontSize: 18),
           )),
       body: BlocBuilder<DiseaseBloc, DiseaseState>(
         builder: (context, state) {

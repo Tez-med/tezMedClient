@@ -203,8 +203,15 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
         ),
       ],
       child: Scaffold(
-        backgroundColor: AppColor.buttonBackColor,
-        appBar: _buildAppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () => context.router.maybePop(),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          ),
+          title: Text(
+            S.of(context).personal_information,
+          ),
+        ),
         body: Stack(
           children: [
             _buildBody(),
@@ -218,24 +225,6 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      centerTitle: true,
-      shadowColor: AppColor.buttonBackColor,
-      elevation: 1,
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      leading: IconButton(
-        onPressed: () => context.router.maybePop(),
-        icon: const Icon(Icons.arrow_back_ios_new_rounded),
-      ),
-      title: Text(
-        S.of(context).personal_information,
-        style: AppTextstyle.nunitoBold.copyWith(fontSize: 20),
-      ),
-    );
-  }
-
   Widget _buildBody() {
     return BlocBuilder<FileUploadBloc, FileUploadState>(
       builder: (context, state) {
@@ -243,8 +232,6 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Card(
-              elevation: 0,
-              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Form(

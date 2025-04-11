@@ -8,6 +8,7 @@ import 'package:tez_med_client/config/environment.dart';
 import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/core/init/hive_init.dart';
 import 'package:tez_med_client/core/routes/app_routes.dart';
+import 'package:tez_med_client/core/utils/app_theme.dart';
 import 'package:tez_med_client/data/notification/repositories/notification_repository_impl.dart';
 import 'package:tez_med_client/firebase_options.dart';
 import 'package:tez_med_client/injection.dart';
@@ -47,14 +48,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp.router(
             locale: state.locale,
-            theme: ThemeData(
-              pageTransitionsTheme: const PageTransitionsTheme(
-                builders: {
-                  TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-                  TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-                },
-              ),
-            ),
+            theme: AppTheme.lightTheme,
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,

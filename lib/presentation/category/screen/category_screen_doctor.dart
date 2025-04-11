@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
@@ -34,19 +32,12 @@ class _CategoryScreenDoctorState extends State<CategoryScreenDoctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () => context.router.maybePop(),
             icon: Icon(Icons.arrow_back_ios_new_rounded)),
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
-        shadowColor: AppColor.buttonBackColor,
-        centerTitle: true,
         title: Text(
           widget.title,
-          style: AppTextstyle.nunitoBold.copyWith(
-              fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
         ),
       ),
       body: BlocBuilder<SpeciesGetByIdBloc, SpeciesGetByIdState>(

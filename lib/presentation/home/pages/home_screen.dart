@@ -92,12 +92,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF9F9F9),
       appBar: AppBar(
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
-        shadowColor: AppColor.buttonBackColor,
-        elevation: 1,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

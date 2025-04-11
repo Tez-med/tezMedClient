@@ -43,11 +43,6 @@ class RegionSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(

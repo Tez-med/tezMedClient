@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/enviroment_dialog.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
@@ -57,7 +56,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: _buildAppBar(),
       body: SafeArea(
         child: BlocBuilder<ProfileBloc, ProfileState>(
@@ -77,14 +75,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // AppBar widget
   AppBar _buildAppBar() {
     return AppBar(
-      surfaceTintColor: Colors.white,
-      backgroundColor: Colors.white,
-      shadowColor: AppColor.buttonBackColor,
-      elevation: 1,
-      centerTitle: true,
       title: Text(
         S.of(context).profile,
-        style: AppTextstyle.nunitoBold,
       ),
       actions: [
         GestureDetector(

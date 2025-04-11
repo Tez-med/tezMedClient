@@ -209,7 +209,6 @@ class _SmsVerifyScreenState extends State<SmsVerifyScreen> with CodeAutoFill {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => context.router.maybePop(),
           icon: const Icon(

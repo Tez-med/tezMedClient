@@ -20,11 +20,6 @@ class OrderDetailsCard extends StatelessWidget {
     String formattedDate = DateFormat('HH:mm').format(parsedDate);
 
     return Card(
-      elevation: 0,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

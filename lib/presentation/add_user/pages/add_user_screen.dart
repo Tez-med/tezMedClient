@@ -192,7 +192,6 @@ class _AddUserScreenState extends State<AddUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Stack(
@@ -207,22 +206,14 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      elevation: 1,
-      surfaceTintColor: Colors.white,
-      backgroundColor: Colors.white,
       leading: IconButton(
         onPressed: () => context.router.maybePop(),
         icon: const Icon(
           Icons.arrow_back_ios_new_rounded,
         ),
       ),
-      centerTitle: true,
       title: Text(
         S.of(context).sign_up,
-        style: AppTextstyle.nunitoBold.copyWith(
-          color: Colors.black,
-          fontSize: 22,
-        ),
       ),
     );
   }
@@ -444,7 +435,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
   void _handleSuccess() {
     LocalStorageService().setBool(StorageKeys.isRegister, true).then((_) {
       context.router.maybePop();
-      
+
       showDialog(
         context: context,
         barrierDismissible: false,

@@ -48,8 +48,6 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       child: Card(
-        elevation: 0,
-        color: Colors.white,
         child: ListView.separated(
           separatorBuilder: (context, index) {
             return Divider(

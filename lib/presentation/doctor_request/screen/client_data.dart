@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
@@ -212,25 +211,15 @@ class _ClientDatasState extends State<ClientData> {
     }
 
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
-        elevation: 1,
-        shadowColor: AppColor.buttonBackColor,
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => context.router.maybePop(),
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
           ),
         ),
-        centerTitle: true,
         title: Text(
           S.of(context).your_details,
-          style: AppTextstyle.nunitoBold.copyWith(
-            color: Colors.black,
-            fontSize: 20,
-          ),
         ),
       ),
       body: Stack(

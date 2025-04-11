@@ -69,25 +69,15 @@ class _UserDetailsState extends State<UserDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
-        elevation: 1,
-        shadowColor: AppColor.buttonBackColor,
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => context.router.maybePop(),
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
           ),
         ),
-        centerTitle: true,
         title: Text(
           S.of(context).your_details,
-          style: AppTextstyle.nunitoBold.copyWith(
-            color: Colors.black,
-            fontSize: 20,
-          ),
         ),
       ),
       body: Stack(
@@ -108,8 +98,6 @@ class _UserDetailsState extends State<UserDetails> {
                     child: Column(
                       children: [
                         Card(
-                          elevation: 0,
-                          color: Colors.white,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Column(
@@ -249,8 +237,6 @@ class _UserDetailsState extends State<UserDetails> {
           child: Column(
             children: [
               Card(
-                elevation: 0,
-                color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(

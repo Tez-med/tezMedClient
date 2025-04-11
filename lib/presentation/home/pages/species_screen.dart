@@ -39,7 +39,6 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
       body: RefreshIndicator(
         backgroundColor: Colors.white,
         color: AppColor.primaryColor,

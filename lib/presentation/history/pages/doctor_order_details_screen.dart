@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:tez_med_client/core/error/error_handler.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
-import 'package:flutter/gestures.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/schedule/model/schedule_model.dart';
@@ -42,7 +41,6 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: _buildAppBar(context),
       body: _buildBody(),
     );
@@ -50,22 +48,12 @@ class _DoctorOrderDetailsScreenState extends State<DoctorOrderDetailsScreen> {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      surfaceTintColor: Colors.white,
-      shadowColor: Colors.white,
-      backgroundColor: Colors.white,
-      elevation: .5,
-      centerTitle: true,
       leading: IconButton(
         onPressed: () => context.router.maybePop(),
         icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
       ),
       title: Text(
         S.of(context).order_info,
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }

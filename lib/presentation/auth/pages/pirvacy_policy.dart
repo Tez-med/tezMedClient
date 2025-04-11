@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 
@@ -43,12 +42,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        shadowColor: AppColor.buttonBackColor,
-        surfaceTintColor: Colors.white,
         leading: IconButton(
           onPressed: () => context.router.maybePop(),
           icon: const Icon(
@@ -56,13 +50,8 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             color: Colors.black,
           ),
         ),
-        title:  Text(
+        title: Text(
           S.of(context).consent4,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
         ),
         centerTitle: true,
       ),
