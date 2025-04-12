@@ -46,14 +46,8 @@ class ProfileMenuWidget extends StatelessWidget {
               title: S.of(context).rate_us,
               onTap: () => _rateApp(),
             ),
-          _buildDivider(),
-          _buildMenuItem(
-            context: context,
-            icon: Icons.note_alt_outlined,
-            title: S.of(context).diseaseCards,
-            onTap: () => context.router.push(DiseasesRoute()),
-          ),
-          _buildDivider(),
+          if (Platform.isAndroid) _buildDivider(),
+          const SizedBox(height: 8),
           _buildMenuItem(
             context: context,
             icon: Icons.privacy_tip_outlined,
@@ -73,6 +67,9 @@ class ProfileMenuWidget extends StatelessWidget {
       ),
     );
   }
+
+  // Kasallik varaqalari uchun to'liq boshqacha dizayndagi maxsus element
+  
 
   Future<void> _shareApp() async {
     try {
@@ -146,7 +143,7 @@ Widget _buildMenuItem({
         size: 16,
         color: AppColor.primaryColor,
       ),
-      onTap: onTap, // onTap ishlatildi
+      onTap: onTap,
     ),
   );
 }

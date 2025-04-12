@@ -255,5 +255,11 @@
   "deleteAccountFinalWarning": "Bu harakat qaytarib bo'lmaydi. Hisobingiz va barcha ma'lumotlaringiz butunlay o'chiriladi. Davom etishni xohlaysizmi?",
   "deletingAccount": "Hisobingiz o'chirilmoqda...",
   "accountDeletedSuccessfully": "Hisobingiz muvaffaqiyatli o'chirildi",
-  "ok": "OK"
+  "ok": "OK",
+  "disease_info":"Kasallik ma'lumotlarini ko'rish",
+  "video_call_ended": "Suhbat yakunlandi",
+  "fill_all_fields": "Barcha maydonlarni to'ldiring",
+  "data_saved_successfully": "Ma'lumotlar muvaffaqiyatli saqlandi",
+  "video_call_exit_message": "Siz video qo'ng'iroqdan chiqdingiz. Iltimos, kasallik ma'lumotlarini kiriting.",
+  "disease_name": "Kasallik nomi"
 }

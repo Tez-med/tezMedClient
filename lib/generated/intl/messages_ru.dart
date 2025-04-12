@@ -104,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createdAt": MessageLookupByLibrary.simpleMessage("Создано"),
         "current_order": MessageLookupByLibrary.simpleMessage("Заказы"),
         "current_time": MessageLookupByLibrary.simpleMessage("Текущее время"),
+        "data_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("Данные успешно сохранены"),
         "data_update":
             MessageLookupByLibrary.simpleMessage("Обновление данных"),
         "day": MessageLookupByLibrary.simpleMessage("День"),
@@ -127,6 +129,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Цена со скидкой"),
         "diseaseCards": MessageLookupByLibrary.simpleMessage("Карты болезней"),
+        "disease_info": MessageLookupByLibrary.simpleMessage(
+            "Просмотр информации о болезни"),
+        "disease_name":
+            MessageLookupByLibrary.simpleMessage("Название болезни"),
         "doctor": MessageLookupByLibrary.simpleMessage("Врач"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Рецепт врача"),
@@ -159,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "expert_guidance_desc": MessageLookupByLibrary.simpleMessage(
             "Платформа TezMed станет решением болезненных проблем, таких как посещение медицинских учреждений и ожидание в очередях часами."),
         "female": MessageLookupByLibrary.simpleMessage("Женский"),
+        "fill_all_fields": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста, заполните все поля"),
         "finish": MessageLookupByLibrary.simpleMessage("Завершить"),
         "finished": MessageLookupByLibrary.simpleMessage("Завершено"),
         "fio": MessageLookupByLibrary.simpleMessage("ФИО"),
@@ -388,6 +396,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Код подтверждения"),
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Видеоуроки и руководства"),
+        "video_call_ended":
+            MessageLookupByLibrary.simpleMessage("Звонок завершен"),
+        "video_call_exit_message": MessageLookupByLibrary.simpleMessage(
+            "Вы вышли из видеозвонка. Пожалуйста, введите информацию о болезни."),
         "video_chat": MessageLookupByLibrary.simpleMessage("Видеочат"),
         "waitingForData":
             MessageLookupByLibrary.simpleMessage("Ожидание данных..."),

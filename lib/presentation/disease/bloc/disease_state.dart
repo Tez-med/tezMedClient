@@ -19,6 +19,7 @@ final class DiseaseLoaded extends DiseaseState {
   @override
   List<Object> get props => [diseases];
 }
+final class DiseaseLoadedPost extends DiseaseState {}
 
 final class DiseaseError extends DiseaseState {
   final Failure error;

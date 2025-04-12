@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:tez_med_client/core/constant/storage_keys.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/disease/model/disease_model.dart';
+import 'package:tez_med_client/data/local_storage/local_storage_service.dart';
 import 'package:tez_med_client/presentation/disease/bloc/disease_bloc.dart';
 import 'package:tez_med_client/generated/l10n.dart';
+import 'package:tez_med_client/presentation/disease/widgets/disease_bottom_shett.dart';
 import 'package:tez_med_client/presentation/disease/widgets/disease_card.dart';
 
 @RoutePage()
@@ -28,6 +32,30 @@ class _DiseasesScreenState extends State<DiseasesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showBarModalBottomSheet(
+                    enableDrag: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(25),
+                      ),
+                    ),
+                    barrierColor: Colors.black54,
+                    context: context,
+                    builder: (context) {
+                      final id =
+                          LocalStorageService().getString(StorageKeys.userId);
+                      return VideoCallCompletionBottomSheet(
+                        clientId: id,
+                        scheduleId: "",
+                      );
+                    },
+                  );
+                },
+                icon: Icon(Icons.add)),
+          ],
           leading: IconButton(
               onPressed: () => context.router.maybePop(),
               icon: const Icon(Icons.arrow_back_ios_new_rounded)),

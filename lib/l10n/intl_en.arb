@@ -255,5 +255,11 @@
   "deleteAccountFinalWarning": "This action cannot be undone. Your account and all your data will be completely deleted. Do you want to continue?",
   "deletingAccount": "Deleting your account...",
   "accountDeletedSuccessfully": "Your account has been successfully deleted",
-  "ok": "OK"
+  "ok": "OK",
+  "disease_info":"View Disease Information",
+  "video_call_ended": "The call has ended",
+  "fill_all_fields": "Please fill in all the fields",
+  "data_saved_successfully": "Data saved successfully",
+  "video_call_exit_message": "You have exited the video call. Please enter the disease information.",
+  "disease_name": "Disease name"
 }

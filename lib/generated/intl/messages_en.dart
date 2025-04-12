@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createdAt": MessageLookupByLibrary.simpleMessage("Created at"),
         "current_order": MessageLookupByLibrary.simpleMessage("Orders"),
         "current_time": MessageLookupByLibrary.simpleMessage("Current time"),
+        "data_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("Data saved successfully"),
         "data_update": MessageLookupByLibrary.simpleMessage("Data update"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
@@ -121,6 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "discount_price":
             MessageLookupByLibrary.simpleMessage("Discount price"),
         "diseaseCards": MessageLookupByLibrary.simpleMessage("Disease Cards"),
+        "disease_info":
+            MessageLookupByLibrary.simpleMessage("View Disease Information"),
+        "disease_name": MessageLookupByLibrary.simpleMessage("Disease name"),
         "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Doctor prescription"),
@@ -151,6 +156,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "expert_guidance_desc": MessageLookupByLibrary.simpleMessage(
             "The TezMed platform provides a solution to painful issues like visiting medical institutions and waiting in long queues for hours."),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
+        "fill_all_fields": MessageLookupByLibrary.simpleMessage(
+            "Please fill in all the fields"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "finished": MessageLookupByLibrary.simpleMessage("Finished"),
         "fio": MessageLookupByLibrary.simpleMessage("Full Name"),
@@ -376,6 +383,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verification code"),
         "videoGuides":
             MessageLookupByLibrary.simpleMessage("Video guides & tutorials"),
+        "video_call_ended":
+            MessageLookupByLibrary.simpleMessage("The call has ended"),
+        "video_call_exit_message": MessageLookupByLibrary.simpleMessage(
+            "You have exited the video call. Please enter the disease information."),
         "video_chat": MessageLookupByLibrary.simpleMessage("Video Chat"),
         "waitingForData":
             MessageLookupByLibrary.simpleMessage("Waiting for data..."),

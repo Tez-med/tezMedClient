@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
-import 'package:shimmer/shimmer.dart'; // Import the shimmer package
+import 'package:shimmer/shimmer.dart';
 
 import '../../../core/utils/app_color.dart';
 import '../../../data/profile/model/client_model.dart';
@@ -39,27 +39,39 @@ class ProfileHeader extends StatelessWidget {
               ? _buildShimmerLoading()
               : Row(
                   children: [
-                    SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: ClipOval(
-                        child: clientModel!.photo.isEmpty
-                            ? Icon(
-                                CupertinoIcons.person_alt_circle_fill,
-                                color: Colors.grey.shade400,
-                                size: 55,
-                              )
-                            : CustomCachedImage(
-                                image: clientModel!.photo,
-                                fit: BoxFit.cover,
-                              ),
+                    GestureDetector(
+                      onTap: () {
+                        if (clientModel != null &&
+                            clientModel!.photo.isNotEmpty) {
+                          _showProfileImage(context);
+                        }
+                      },
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: ClipOval(
+                          child: clientModel!.photo.isEmpty
+                              ? Icon(
+                                  CupertinoIcons.person_alt_circle_fill,
+                                  color: Colors.grey.shade400,
+                                  size: 55,
+                                )
+                              : Hero(
+                                  tag:
+                                      'profileImage-${clientModel!.phoneNumber}',
+                                  child: CustomCachedImage(
+                                    image: clientModel!.photo,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
                       ),
                     ),
                     Expanded(
                       child: ListTile(
                         title: Text(
                           clientModel!.fullName,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -96,6 +108,88 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 
+  void _showProfileImage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: EdgeInsets.zero,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Colors.black.withOpacity(0.7),
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 300,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Hero(
+                        tag: 'profileImage-${clientModel!.phoneNumber}',
+                        child: CustomCachedImage(
+                          image: clientModel!.photo,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      clientModel!.fullName,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Positioned(
+                top: 40,
+                right: 20,
+                child: IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   // Shimmer loading effect
   Widget _buildShimmerLoading() {
     return Shimmer.fromColors(
@@ -108,7 +202,7 @@ class ProfileHeader extends StatelessWidget {
             Container(
               width: 50,
               height: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),
@@ -136,7 +230,7 @@ class ProfileHeader extends StatelessWidget {
             Container(
               width: 20,
               height: 20,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),

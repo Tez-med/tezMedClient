@@ -8,3 +8,12 @@ sealed class DiseaseEvent extends Equatable {
 }
 
 class FetchDiseases extends DiseaseEvent {}
+
+class CreateDisease extends DiseaseEvent {
+  final DiseasePost diseasePost;
+
+  const CreateDisease(this.diseasePost);
+
+  @override
+  List<Object> get props => [diseasePost];
+}

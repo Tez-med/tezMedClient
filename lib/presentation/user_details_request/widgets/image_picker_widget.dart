@@ -14,12 +14,14 @@ import '../../../gen/assets.gen.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   final int maxImages;
+  final String? title; 
   final Function(List<String>) onImagesUpdated;
 
   const ImagePickerWidget({
     super.key,
     this.maxImages = 5,
     required this.onImagesUpdated,
+    this.title, // title optional
   });
 
   @override
@@ -94,7 +96,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
       builder: (_) => ImagePickerModal(
         showDelete: _canDeleteImage,
         onCameraTap: () {
-          _pickImage(ImageSource.camera); //
+          _pickImage(ImageSource.camera);
           context.router.maybePop();
         },
         onGalleryTap: () async {
@@ -105,7 +107,6 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
             ? () {
                 setState(() {
                   _loadingImage = null;
-                  // _uploadedImageUrl = null;
                 });
                 Navigator.pop(context);
               }
@@ -183,8 +184,12 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(S.of(context).doctor_prescription,
-                style: AppTextstyle.nunitoBold.copyWith(fontSize: 17)),
+            // Title faqat berilgan bo'lsagina ko'rsatiladi
+            if (widget.title != null)
+              Text(
+                widget.title!,
+                style: AppTextstyle.nunitoBold.copyWith(fontSize: 17),
+              ),
             Column(
               children: [
                 if (totalImages > 0 || _loadingImage != null)
@@ -274,7 +279,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
               child: Container(
                 padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.7),
+                  color: Colors.black
+                      .withOpacity(0.7), // withValues o'rniga withOpacity
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -314,7 +320,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Colors.black.withValues(alpha: 0.5),
+              color: Colors.black
+                  .withOpacity(0.5), // withValues o'rniga withOpacity
             ),
           ),
           Center(
@@ -326,7 +333,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget>
                   height: 40,
                   child: CircularProgressIndicator(
                     value: _uploadProgress,
-                    backgroundColor: Colors.white.withValues(alpha: 0.2),
+                    backgroundColor: Colors.white
+                        .withOpacity(0.2), // withValues o'rniga withOpacity
                     valueColor:
                         const AlwaysStoppedAnimation<Color>(Colors.white),
                     strokeWidth: 3,

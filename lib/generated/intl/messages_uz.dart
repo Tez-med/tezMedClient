@@ -102,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createdAt": MessageLookupByLibrary.simpleMessage("Yaratilgan vaqt"),
         "current_order": MessageLookupByLibrary.simpleMessage("Buyurtmalar"),
         "current_time": MessageLookupByLibrary.simpleMessage("Joriy vaqt"),
+        "data_saved_successfully": MessageLookupByLibrary.simpleMessage(
+            "Ma\'lumotlar muvaffaqiyatli saqlandi"),
         "data_update":
             MessageLookupByLibrary.simpleMessage("Ma\'lumotlarni yangilash"),
         "day": MessageLookupByLibrary.simpleMessage("Kun"),
@@ -126,6 +128,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chegirma narxi"),
         "diseaseCards":
             MessageLookupByLibrary.simpleMessage("Kasallik varaqalari"),
+        "disease_info": MessageLookupByLibrary.simpleMessage(
+            "Kasallik ma\'lumotlarini ko\'rish"),
+        "disease_name": MessageLookupByLibrary.simpleMessage("Kasallik nomi"),
         "doctor": MessageLookupByLibrary.simpleMessage("Shifokor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Shifokor retsepti"),
@@ -158,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "expert_guidance_desc": MessageLookupByLibrary.simpleMessage(
             "TezMed platformasi bemorlar uchun tibbiy muassasalarga borish, eshiklar oldida soatlab navbat kutish kabi og’riqli muammolarga yechim bo\'ladi."),
         "female": MessageLookupByLibrary.simpleMessage("Ayol"),
+        "fill_all_fields": MessageLookupByLibrary.simpleMessage(
+            "Barcha maydonlarni to\'ldiring"),
         "finish": MessageLookupByLibrary.simpleMessage("Tugatish"),
         "finished": MessageLookupByLibrary.simpleMessage("Yakunlandi"),
         "fio": MessageLookupByLibrary.simpleMessage("FIO"),
@@ -391,6 +398,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "verify_code": MessageLookupByLibrary.simpleMessage("Tasdiqlash kodi"),
         "videoGuides": MessageLookupByLibrary.simpleMessage(
             "Video qo\'llanmalar va darsliklar"),
+        "video_call_ended":
+            MessageLookupByLibrary.simpleMessage("Suhbat yakunlandi"),
+        "video_call_exit_message": MessageLookupByLibrary.simpleMessage(
+            "Siz video qo\'ng\'iroqdan chiqdingiz. Iltimos, kasallik ma\'lumotlarini kiriting."),
         "video_chat": MessageLookupByLibrary.simpleMessage("Video suhbat"),
         "waitingForData":
             MessageLookupByLibrary.simpleMessage("Ma\'lumotlar kutilmoqda..."),

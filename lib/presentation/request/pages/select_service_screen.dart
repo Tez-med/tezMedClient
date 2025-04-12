@@ -99,64 +99,64 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
     );
   }
 
+  // Quantity control: + / - tugmalari bilan
   Widget _buildQuantityControl(int index) {
+    final quantity = widget.selectedItems[index] ?? 0;
+
     return Container(
       decoration: BoxDecoration(
         color: AppColor.buttonBackColor,
         borderRadius: BorderRadius.circular(10),
       ),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildIconButton(
-            Icons.remove,
-            () {
+          _buildIconButton(Icons.remove, () {
+            if (quantity > 0) {
               setState(() {
-                setState(() {});
-                final currentQuantity = widget.selectedItems[index] ?? 0;
-                if (currentQuantity > 0) {
-                  widget.onUpdate(index, currentQuantity - 1);
-                }
+                widget.onUpdate(index, quantity - 1);
               });
-            },
-          ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return ScaleTransition(scale: animation, child: child);
-            },
-            child: Text(
-              '${widget.selectedItems[index] ?? 0}',
-              key: ValueKey<int>(widget.selectedItems[index] ?? 0),
-              style: AppTextstyle.nunitoBold.copyWith(
-                fontSize: 18,
-                color: Colors.black,
+            }
+          }),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              transitionBuilder: (child, animation) =>
+                  ScaleTransition(scale: animation, child: child),
+              child: Text(
+                '$quantity',
+                key: ValueKey<int>(quantity),
+                style: AppTextstyle.nunitoBold.copyWith(
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
-          _buildIconButton(
-            Icons.add,
-            () {
-              setState(() {});
-              final currentQuantity = widget.selectedItems[index] ?? 0;
-              widget.onUpdate(index, currentQuantity + 1);
-            },
-          ),
+          _buildIconButton(Icons.add, () {
+            setState(() {
+              widget.onUpdate(index, quantity + 1);
+            });
+          }),
         ],
       ),
     );
   }
 
+// ADD button — faqat 0 bo‘lsa ko‘rinadi
   Widget _buildAddButton(int index) {
     return OutlinedButton(
       onPressed: () {
-        setState(() {});
-        widget.onUpdate(index, 1);
+        setState(() {
+          widget.onUpdate(index, 1);
+        });
       },
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        side: const BorderSide(color: Colors.transparent),
         backgroundColor: AppColor.buttonBackColor,
+        side: BorderSide.none,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),

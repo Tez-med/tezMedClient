@@ -2599,6 +2599,66 @@ class S {
       args: [],
     );
   }
+
+  /// `View Disease Information`
+  String get disease_info {
+    return Intl.message(
+      'View Disease Information',
+      name: 'disease_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The call has ended`
+  String get video_call_ended {
+    return Intl.message(
+      'The call has ended',
+      name: 'video_call_ended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill in all the fields`
+  String get fill_all_fields {
+    return Intl.message(
+      'Please fill in all the fields',
+      name: 'fill_all_fields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data saved successfully`
+  String get data_saved_successfully {
+    return Intl.message(
+      'Data saved successfully',
+      name: 'data_saved_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have exited the video call. Please enter the disease information.`
+  String get video_call_exit_message {
+    return Intl.message(
+      'You have exited the video call. Please enter the disease information.',
+      name: 'video_call_exit_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disease name`
+  String get disease_name {
+    return Intl.message(
+      'Disease name',
+      name: 'disease_name',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
