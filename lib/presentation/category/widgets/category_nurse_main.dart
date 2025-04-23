@@ -387,6 +387,7 @@ class _CategoryNurseMainState extends State<CategoryNurseMain>
       color: Colors.white,
       child: SafeArea(
         top: false,
+        bottom: false,
         child: InkWell(
           onTap: totalPrice != 0 ? _navigateToUserDetails : null,
           child: Padding(

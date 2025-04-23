@@ -75,7 +75,7 @@ class ProfileMenuWidget extends StatelessWidget {
     try {
       const String androidAppUrl =
           'https://play.google.com/store/apps/details?id=uz.client.tezmed';
-      const String iosAppUrl = 'https://apps.apple.com/app/idYOUR_IOS_APP_ID';
+      const String iosAppUrl = 'https://apps.apple.com/app/6743434275';
 
       final String appUrl = Platform.isAndroid ? androidAppUrl : iosAppUrl;
 
