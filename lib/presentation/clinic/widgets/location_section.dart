@@ -124,8 +124,8 @@ class LocationSection extends StatelessWidget {
                             Text(
                               snapshot.connectionState ==
                                       ConnectionState.waiting
-                                  ? "Masofani hisoblash..."
-                                  : "${snapshot.data ?? 'Aniqlanmadi'} km",
+                                  ? S.of(context).calculating_distance
+                                  : "${snapshot.data ?? S.of(context).not_found} km",
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey[600],
@@ -146,13 +146,13 @@ class LocationSection extends StatelessWidget {
                         left: 12, right: 12, bottom: 15, top: 5),
                     child: InkWell(
                       onTap: () {
-                        _openMapWithLocation(clinic.latitude, clinic.longitude);
+                        _openMapWithLocation(clinic.latitude, clinic.longitude,context);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Yo'nalish olish",
+                            S.of(context).get_route,
                             style: AppTextstyle.nunitoBold.copyWith(
                               fontSize: 16,
                               color: AppColor.primaryColor,
@@ -178,7 +178,7 @@ class LocationSection extends StatelessWidget {
 
   Future<String> _getDistance(BuildContext context) async {
     if (clinic.latitude.isEmpty || clinic.longitude.isEmpty) {
-      return 'Aniqlanmadi';
+      return S.of(context).not_found;
     }
 
     try {
@@ -190,15 +190,15 @@ class LocationSection extends StatelessWidget {
       return distance.toStringAsFixed(1);
     } catch (e) {
       debugPrint('Masofani hisoblashda xatolik: $e');
-      return 'Aniqlanmadi';
+      return S.of(context).not_found;
     }
   }
 
-  void _openMapWithLocation(String lat, String lon) async {
+  void _openMapWithLocation(String lat, String lon,BuildContext context) async {
     try {
       final double latitude = double.parse(lat);
       final double longitude = double.parse(lon);
-      final String label = "Manzil"; // Your desired location name
+      final String label = S.of(context).location; // Your desired location name
 
       // Create Intent for Android that forces chooser every time
       if (Platform.isAndroid) {

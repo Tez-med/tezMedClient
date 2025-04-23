@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 
 class ErrorView extends StatelessWidget {
   final VoidCallback onRetry;
@@ -21,8 +22,8 @@ class ErrorView extends StatelessWidget {
             color: Colors.red,
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Xaritani yuklashda xatolik yuz berdi',
+          Text(
+            S.of(context).unexpected_error,
             style: TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
@@ -33,7 +34,7 @@ class ErrorView extends StatelessWidget {
               backgroundColor: AppColor.primaryColor,
               foregroundColor: Colors.white,
             ),
-            child: const Text('Qayta yuklash'),
+            child: Text(S.of(context).retry),
           ),
         ],
       ),

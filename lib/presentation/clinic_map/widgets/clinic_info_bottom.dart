@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/clinic/model/clinics_model.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 import 'route_time_calculator.dart'; // RouteTimeCalculator import
 
@@ -186,7 +187,7 @@ class _ClinicInfoBottomSheetState extends State<ClinicInfoBottomSheet> {
                     backgroundColor: Colors.blue[50]!,
                     textColor: Colors.blue[700]!,
                     iconData: Icons.directions,
-                    label: "Yo'l ko'rsatish",
+                    label: S.of(context).get_directions,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -197,7 +198,7 @@ class _ClinicInfoBottomSheetState extends State<ClinicInfoBottomSheet> {
                     backgroundColor: AppColor.primaryColor,
                     textColor: Colors.white,
                     iconData: Icons.info_outline,
-                    label: "Batafsil",
+                    label: S.of(context).details,
                   ),
                 ),
               ],
@@ -260,7 +261,7 @@ class _ClinicInfoBottomSheetState extends State<ClinicInfoBottomSheet> {
           icon: Icons.directions_walk,
           iconColor: Colors.green[600]!,
           backgroundColor: Colors.green[50]!,
-          text: 'Masofa: $distance',
+          text: '${S.of(context).distance}: $distance',
           textColor: Colors.green[700]!,
         );
       }
@@ -278,7 +279,7 @@ class _ClinicInfoBottomSheetState extends State<ClinicInfoBottomSheet> {
       icon: Icons.directions_car,
       iconColor: Colors.blue[600]!,
       backgroundColor: Colors.blue[50]!,
-      text: 'Yo\'l vaqti: $timeText',
+      text: '${S.of(context).travel_time}: $timeText',
       textColor: Colors.blue[700]!,
     );
   }

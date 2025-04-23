@@ -4,6 +4,7 @@ import 'package:tez_med_client/core/widgets/custom_cached_image.dart';
 import 'package:tez_med_client/core/widgets/raiting_stars.dart';
 import 'package:tez_med_client/data/clinic/model/clinics_model.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/auth/widgets/button_widget.dart';
 import 'package:tez_med_client/presentation/clinic/widgets/contact_button.dart';
 import 'package:tez_med_client/presentation/clinic/widgets/description_section.dart';
@@ -146,7 +147,7 @@ class _ClinicDetailViewState extends State<ClinicDetailView>
           },
           isLoading: false,
           consent: true,
-          buttonText: "Telefon qilish",
+          buttonText: S.of(context).helpSupport,
         ),
       ),
       body: Stack(

@@ -96,7 +96,7 @@ class _ServicesSectionState extends State<ServicesSection>
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(8),
         ),
-        child: const Text('Xizmatlar mavjud emas'),
+        child: Text(S.of(context).no_services),
       );
     }
 
@@ -140,7 +140,7 @@ class _ServicesSectionState extends State<ServicesSection>
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  _showAllServices ? "Yashirish" : "Barchasini ko'rish",
+                  _showAllServices ? S.of(context).hide : S.of(context).see_all,
                   style: TextStyle(
                     color: AppColor.primaryColor,
                     fontWeight: FontWeight.w600,

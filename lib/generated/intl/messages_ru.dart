@@ -59,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "balance_fill":
             MessageLookupByLibrary.simpleMessage("Пополнение баланса"),
         "birthday": MessageLookupByLibrary.simpleMessage("Дата рождения"),
+        "calculating_distance":
+            MessageLookupByLibrary.simpleMessage("Вычисление расстояния..."),
         "callCenter": MessageLookupByLibrary.simpleMessage("Колл-центр"),
         "call_help_center":
             MessageLookupByLibrary.simpleMessage("Позвонить в центр поддержки"),
@@ -80,6 +82,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите фото профиля"),
         "clickAddButtonToCreateDisease": MessageLookupByLibrary.simpleMessage(
             "Нажмите кнопку добавления, чтобы создать новую карту болезни"),
+        "clinic_map": MessageLookupByLibrary.simpleMessage("Карта клиник"),
+        "clinic_name_or_address":
+            MessageLookupByLibrary.simpleMessage("Название или адрес клиники"),
+        "clinic_welcome": MessageLookupByLibrary.simpleMessage(
+            "Наши клиники ждут вас с квалифицированными специалистами и современными услугами."),
+        "clinics": MessageLookupByLibrary.simpleMessage("Клиники"),
+        "clinics_nearby": MessageLookupByLibrary.simpleMessage(
+            "Будут отображены клиники, находящиеся на указанном расстоянии от вашего местоположения"),
+        "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
         "code_error":
             MessageLookupByLibrary.simpleMessage("Введён неправильный код"),
         "comment": MessageLookupByLibrary.simpleMessage("Комментарий"),
@@ -135,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Просмотр информации о болезни"),
         "disease_name":
             MessageLookupByLibrary.simpleMessage("Название болезни"),
+        "distance": MessageLookupByLibrary.simpleMessage("Расстояние"),
         "doctor": MessageLookupByLibrary.simpleMessage("Врач"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Рецепт врача"),
@@ -172,6 +184,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Пожалуйста, заполните все поля"),
         "fill_price": MessageLookupByLibrary.simpleMessage("Сумма пополнения"),
         "filled": MessageLookupByLibrary.simpleMessage("Заполнено"),
+        "filter_by_distance":
+            MessageLookupByLibrary.simpleMessage("Фильтровать по расстоянию"),
         "finish": MessageLookupByLibrary.simpleMessage("Завершить"),
         "finished": MessageLookupByLibrary.simpleMessage("Завершено"),
         "fio": MessageLookupByLibrary.simpleMessage("ФИО"),
@@ -185,7 +199,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Галерея"),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
         "general": MessageLookupByLibrary.simpleMessage("Общий"),
+        "get_directions":
+            MessageLookupByLibrary.simpleMessage("Проложить маршрут"),
+        "get_route": MessageLookupByLibrary.simpleMessage("Получить маршрут"),
         "helpSupport": MessageLookupByLibrary.simpleMessage("Контакт"),
+        "hide": MessageLookupByLibrary.simpleMessage("Скрыть"),
         "history": MessageLookupByLibrary.simpleMessage("История"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "hour": MessageLookupByLibrary.simpleMessage("Час"),
@@ -217,6 +235,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Определение местоположения..."),
         "location_error": MessageLookupByLibrary.simpleMessage(
             "Ошибка при получении местоположения"),
+        "location_permission": MessageLookupByLibrary.simpleMessage(
+            "Местоположение не определено. Пожалуйста, сначала разрешите доступ к местоположению."),
         "location_selected":
             MessageLookupByLibrary.simpleMessage("Местоположение выбрано"),
         "location_successfully": MessageLookupByLibrary.simpleMessage(
@@ -224,6 +244,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Мужской"),
         "map_not_found": MessageLookupByLibrary.simpleMessage(
             "Приложение карты не найдено."),
+        "max_distance":
+            MessageLookupByLibrary.simpleMessage("Максимальное расстояние"),
         "minimum_amount_error": MessageLookupByLibrary.simpleMessage(
             "Минимальная сумма должна быть 1000 сум"),
         "minimum_amount_hint": MessageLookupByLibrary.simpleMessage(
@@ -237,6 +259,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Далее"),
         "noDiseaseCardsAvailable":
             MessageLookupByLibrary.simpleMessage("Нет доступных карт болезней"),
+        "no_clinics_found":
+            MessageLookupByLibrary.simpleMessage("Клиники не найдены"),
+        "no_clinics_in_distance": MessageLookupByLibrary.simpleMessage(
+            "Клиники не найдены в пределах км"),
         "no_complated_order":
             MessageLookupByLibrary.simpleMessage("Нет завершенных заказов"),
         "no_current_order":
@@ -253,12 +279,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ожидайте новостей и обновлений!"),
         "no_selected_address":
             MessageLookupByLibrary.simpleMessage("Адрес не выбран"),
+        "no_services":
+            MessageLookupByLibrary.simpleMessage("Услуги недоступны"),
         "no_services_available":
             MessageLookupByLibrary.simpleMessage("Услуги пока недоступны"),
         "no_services_description": MessageLookupByLibrary.simpleMessage(
             "Наши услуги пока недоступны в этом районе. Мы активно работаем над расширением зоны обслуживания. Пожалуйста, проверьте позже."),
         "no_telemedicine_time": MessageLookupByLibrary.simpleMessage(
             "В этот день нет доступного времени для телемедицины"),
+        "not_found": MessageLookupByLibrary.simpleMessage("Не найдено"),
         "not_payment_history":
             MessageLookupByLibrary.simpleMessage("История платежей недоступна"),
         "notification": MessageLookupByLibrary.simpleMessage("Уведомления"),
@@ -350,19 +379,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Произошла ошибка"),
         "region_error_desc": MessageLookupByLibrary.simpleMessage(
             "Произошла ошибка при загрузке данных"),
+        "remove_filter": MessageLookupByLibrary.simpleMessage("Удалить фильтр"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Обязательное поле"),
+        "reset": MessageLookupByLibrary.simpleMessage("Сбросить"),
         "retry": MessageLookupByLibrary.simpleMessage("Повторить"),
         "russian": MessageLookupByLibrary.simpleMessage("Русский"),
         "scheduleId": MessageLookupByLibrary.simpleMessage("ID расписания"),
+        "search_clinic": MessageLookupByLibrary.simpleMessage("Поиск клиники"),
         "search_region":
             MessageLookupByLibrary.simpleMessage("Поиск по названию региона"),
+        "see_all": MessageLookupByLibrary.simpleMessage("Показать все"),
         "select_address":
             MessageLookupByLibrary.simpleMessage("Выберите адрес"),
         "select_gender": MessageLookupByLibrary.simpleMessage("Выберите пол"),
         "select_location":
             MessageLookupByLibrary.simpleMessage("Выберите местоположение"),
         "select_map": MessageLookupByLibrary.simpleMessage("Выберите карту"),
+        "select_phone":
+            MessageLookupByLibrary.simpleMessage("Выберите номер телефона"),
         "select_photo": MessageLookupByLibrary.simpleMessage("Выбрать фото"),
         "select_region":
             MessageLookupByLibrary.simpleMessage("Выберите ваш регион"),
@@ -384,6 +419,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "share_app":
             MessageLookupByLibrary.simpleMessage("Поделиться приложением"),
+        "showing": MessageLookupByLibrary.simpleMessage("Отображается"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
         "skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
         "start": MessageLookupByLibrary.simpleMessage("Начать"),
@@ -402,11 +438,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Вы можете в любое время связаться с нашими квалифицированными врачами и получить консультацию о вашем здоровье."),
         "supreme": MessageLookupByLibrary.simpleMessage("Высший"),
         "taking_pictures": MessageLookupByLibrary.simpleMessage("Сделать фото"),
+        "tap_to_call":
+            MessageLookupByLibrary.simpleMessage("Нажмите, чтобы позвонить"),
         "telegram": MessageLookupByLibrary.simpleMessage("Telegram"),
         "term": MessageLookupByLibrary.simpleMessage("Срок"),
         "time": MessageLookupByLibrary.simpleMessage("Время"),
         "total": MessageLookupByLibrary.simpleMessage("Итого"),
         "total_price": MessageLookupByLibrary.simpleMessage("Общая цена"),
+        "travel_time": MessageLookupByLibrary.simpleMessage("Время в пути"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Попробовать снова"),
         "understoodText": MessageLookupByLibrary.simpleMessage("Понял"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(

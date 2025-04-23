@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 
+import '../../../generated/l10n.dart';
+
 class ClinicFilterDialog extends StatefulWidget {
   final double initialDistance;
   final Function(double) onApplyFilter;
@@ -17,7 +19,7 @@ class ClinicFilterDialog extends StatefulWidget {
 
 class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
   late double _maxDistance;
-  
+
   @override
   void initState() {
     super.initState();
@@ -40,8 +42,8 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Masofa bo\'yicha filtrlash',
+                Text(
+                  S.of(context).filter_by_distance,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -51,24 +53,24 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                 IconButton(
                   onPressed: _resetFilter,
                   icon: const Icon(Icons.refresh, size: 20),
-                  tooltip: 'Asl holatga qaytarish',
+                  tooltip: S.of(context).reset,
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            
+
             // Max distance slider
-            const Text(
-              'Maksimal masofa',
+            Text(
+              S.of(context).max_distance,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 8),
-            
+
             Row(
               children: [
                 Expanded(
@@ -106,9 +108,9 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Izoh
             Container(
               padding: const EdgeInsets.all(12),
@@ -126,7 +128,7 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Sizning joylashuvingizdan ko\'rsatilgan masofada joylashgan klinikalar ko\'rsatiladi',
+                      S.of(context).clinics_nearby,
                       style: TextStyle(
                         color: Colors.blue[800],
                         fontSize: 13,
@@ -136,7 +138,7 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 24),
 
             // Action buttons
@@ -154,7 +156,7 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: const Text('Bekor qilish'),
+                  child: Text(S.of(context).cancel),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -164,13 +166,14 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColor.primaryColor,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: const Text('Qo\'llash'),
+                  child: Text(S.of(context).apply),
                 ),
               ],
             ),
@@ -179,7 +182,7 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
       ),
     );
   }
-  
+
   void _resetFilter() {
     setState(() {
       _maxDistance = 5.0; // Default qiymat

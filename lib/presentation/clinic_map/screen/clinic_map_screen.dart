@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
+import 'package:tez_med_client/core/widgets/custom_snackbar.dart';
 import 'package:tez_med_client/data/clinic/model/clinics_model.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/clinic/bloc/clinic_bloc.dart';
 import 'package:tez_med_client/presentation/clinic_map/widgets/clinic_filter_dialog.dart';
 import 'package:tez_med_client/presentation/clinic_map/widgets/clinic_info_bottom.dart';
@@ -107,13 +109,10 @@ class _ClinicsMapScreenState extends State<ClinicsMapScreen>
 
   void _showFilterDialog() {
     if (_mapController.currentPosition == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-              'Joylashuvingiz aniqlanmadi. Avval joylashuvga ruxsat bering.'),
-          duration: Duration(seconds: 3),
-        ),
-      );
+      AnimatedCustomSnackbar.show(
+          context: context,
+          message: S.of(context).location_permission,
+          type: SnackbarType.error);
       _mapController.checkLocationPermission();
       return;
     }
@@ -153,12 +152,11 @@ class _ClinicsMapScreenState extends State<ClinicsMapScreen>
   List<Clinic> _filterClinicsByDistance(
       List<Clinic> clinics, double maxDistanceKm) {
     if (_mapController.currentPosition == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Joylashuvingiz aniqlanmadi'),
-          duration: Duration(seconds: 2),
-        ),
-      );
+      AnimatedCustomSnackbar.show(
+          context: context,
+          message: S.of(context).location_permission,
+          type: SnackbarType.error);
+
       return clinics;
     }
 
@@ -202,12 +200,10 @@ class _ClinicsMapScreenState extends State<ClinicsMapScreen>
     // Agar hech qanday natija bo'lmasa, xabar ko'rsatish
     if (filtered.isEmpty && clinics.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                '${maxDistanceKm.toInt()} km masofada klinikalar topilmadi'),
-            duration: const Duration(seconds: 3),
-          ),
+        AnimatedCustomSnackbar.show(
+          context: context,
+          message: "${maxDistanceKm.toInt()} ${S.of(context).no_clinics_in_distance}",
+          type: SnackbarType.error,
         );
       });
     }
@@ -221,7 +217,7 @@ class _ClinicsMapScreenState extends State<ClinicsMapScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Klinikalar xaritasi'),
+        title:  Text(S.of(context).clinic_map),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -234,7 +230,6 @@ class _ClinicsMapScreenState extends State<ClinicsMapScreen>
               IconButton(
                 onPressed: () => _showFilterDialog(),
                 icon: const Icon(Icons.filter_list),
-                tooltip: 'Filtrlash',
               ),
               if (_mapController.maxDistance != 5.0)
                 Positioned(
@@ -341,7 +336,7 @@ class _ClinicsMapScreenState extends State<ClinicsMapScreen>
                   _mapController.moveToClinicsBounds(_allClinics);
                 });
               },
-              label: const Text('Filtrni o\'chirish'),
+              label: Text(S.of(context).remove_filter),
               icon: const Icon(Icons.clear),
               backgroundColor: Colors.redAccent,
             )

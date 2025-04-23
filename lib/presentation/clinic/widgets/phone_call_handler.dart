@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhoneCallHandler {
@@ -11,7 +12,6 @@ class PhoneCallHandler {
     List<String> phoneNumbers,
   ) {
     if (phoneNumbers.isEmpty) {
-      _showNoPhoneMessage(context);
     } else if (phoneNumbers.length == 1) {
       _makeCall(phoneNumbers[0]);
     } else {
@@ -31,23 +31,6 @@ class PhoneCallHandler {
   }
 
   /// Raqam mavjud emasligi haqida xabar
-  static void _showNoPhoneMessage(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            const Icon(Icons.info_outline, color: Colors.white),
-            const SizedBox(width: 10),
-            const Text('Klinika uchun telefon raqam mavjud emas'),
-          ],
-        ),
-        backgroundColor: Colors.redAccent,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        margin: const EdgeInsets.all(10),
-      ),
-    );
-  }
 
   /// Ko'p raqamlar uchun tanlash dialogini ko'rsatish
   static void _showPhoneSelectionDialog(
@@ -96,8 +79,8 @@ class PhoneCallHandler {
                     children: [
                       Icon(Icons.phone, color: primaryColor, size: 24),
                       const SizedBox(width: 10),
-                      const Text(
-                        'Telefon raqam tanlang',
+                      Text(
+                        S.of(context).select_phone,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -167,8 +150,8 @@ class PhoneCallHandler {
                       ),
                     ),
                     const SizedBox(height: 2),
-                    const Text(
-                      'Qo\'ng\'iroq qilish uchun bosing',
+                     Text(
+                      S.of(context).tap_to_call,
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
@@ -181,7 +164,7 @@ class PhoneCallHandler {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: primaryColor.withOpacity(0.1),
+                  color: primaryColor.withValues(alpha: 0.1),
                 ),
                 child: Icon(
                   Icons.call_outlined,

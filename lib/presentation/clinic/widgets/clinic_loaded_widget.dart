@@ -12,9 +12,9 @@ class ClinicsLoadedView extends StatelessWidget {
   final ClinicsModel clinicsModel;
 
   const ClinicsLoadedView({
-    Key? key,
+    super.key,
     required this.clinicsModel,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,8 @@ class _ClinicCard extends StatelessWidget {
   final Clinic clinic;
 
   const _ClinicCard({
-    Key? key,
     required this.clinic,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

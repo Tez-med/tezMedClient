@@ -121,7 +121,7 @@ class _DescriptionSectionState extends State<DescriptionSection>
               child: Row(
                 children: [
                   Text(
-                    _isExpanded ? "Yashirish" : "Barchasini ko'rish",
+                    _isExpanded ? S.of(context).hide : S.of(context).see_all,
                     style: TextStyle(
                       color: AppColor.primaryColor,
                       fontWeight: FontWeight.w600,

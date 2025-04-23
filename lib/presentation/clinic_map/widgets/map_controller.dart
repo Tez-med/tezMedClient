@@ -221,47 +221,82 @@ class ClinicsMapController {
   }
 
   /// Klinikalarni masofa bo'yicha filtrlash
-  void filterClinicsByDistance(double distance,
-      [Function(Clinic)? onClinicTap]) {
+  /// Klinikalarni masofa bo'yicha filtrlash
+  Future<void> filterClinicsByDistance(double distance,
+      [Function(Clinic)? onClinicTap]) async {
     maxDistance = distance;
+    isLoading = true; // Filtrlash jarayonini ko'rsatish
 
     if (currentPosition == null) {
       debugPrint('Foydalanuvchi joylashuvi aniqlanmadi, filtrlash imkonsiz');
-      return;
-    }
+      // Lokatsiya ruxsatini tekshirish va olishga harakat qilish
+      await checkLocationPermission();
 
-    _filteredClinics = _allClinics.where((clinic) {
-      try {
-        if (clinic.latitude.isEmpty || clinic.longitude.isEmpty) {
-          return false;
+      // Agar hali ham yo'q bo'lsa
+      if (currentPosition == null) {
+        isLoading = false;
+        // Barcha klinikalarni ko'rsatish
+        _filteredClinics = _allClinics;
+        if (onClinicTap != null) {
+          createMapObjects(_filteredClinics, onClinicTap);
         }
-
-        final clinicLat = double.parse(clinic.latitude);
-        final clinicLng = double.parse(clinic.longitude);
-
-        final distanceInMeters = Geolocator.distanceBetween(
-          currentPosition!.latitude,
-          currentPosition!.longitude,
-          clinicLat,
-          clinicLng,
-        );
-
-        final distanceInKm = distanceInMeters / 1000;
-        return distanceInKm <= maxDistance;
-      } catch (e) {
-        debugPrint('Klinika masofasini hisoblashda xatolik: $e');
-        return false;
+        return;
       }
-    }).toList();
-
-    // Marker'larni yangilash
-    if (onClinicTap != null) {
-      createMapObjects(_filteredClinics, onClinicTap);
     }
 
-    // Xaritani yangi chegaralarga moslashtirish
-    if (_filteredClinics.isNotEmpty) {
-      moveToClinicsBounds(_filteredClinics);
+    try {
+      _filteredClinics = _allClinics.where((clinic) {
+        try {
+          // Koordinatalar mavjudligini tekshirish
+          if (clinic.latitude.isEmpty || clinic.longitude.isEmpty) {
+            return false;
+          }
+
+          // Double formatga o'tkazishdan oldin raqam ekanligini tekshirish
+          final clinicLat = double.tryParse(clinic.latitude);
+          final clinicLng = double.tryParse(clinic.longitude);
+
+          // Agar koordinatalar noto'g'ri bo'lsa, bu klinikani filtrlashdan o'tkazmang
+          if (clinicLat == null || clinicLng == null) {
+            return false;
+          }
+
+          // Masofani hisoblash
+          final distanceInMeters = Geolocator.distanceBetween(
+            currentPosition!.latitude,
+            currentPosition!.longitude,
+            clinicLat,
+            clinicLng,
+          );
+
+          final distanceInKm = distanceInMeters / 1000;
+          return distanceInKm <= maxDistance;
+        } catch (e) {
+          debugPrint('Klinika ${clinic.id} masofasini hisoblashda xatolik: $e');
+          return false; // Xatolik bo'lsa, bu klinikani ko'rsatmang
+        }
+      }).toList();
+
+      debugPrint('Filtrlangan klinikalar soni: ${_filteredClinics.length}');
+
+      // Marker'larni yangilash
+      if (onClinicTap != null) {
+        createMapObjects(_filteredClinics, onClinicTap);
+      }
+
+      // Xaritani yangi chegaralarga moslashtirish
+      if (_filteredClinics.isNotEmpty) {
+        moveToClinicsBounds(_filteredClinics);
+      } else {
+        // Agar filtrlash natijasida klinikalar topilmasa, bu haqda xabar berish kerak
+        debugPrint('Berilgan radius ichida klinikalar topilmadi');
+        // Realniy holatda bu yerda UI orqali foydalanuvchiga xabar berish kerak
+      }
+    } catch (e) {
+      debugPrint('Filtrlashda kutilmagan xato: $e');
+    } finally {
+      isLoading =
+          false; // Filtrlash tugagandan so'ng yuklanish holatini o'chirish
     }
   }
 
@@ -311,17 +346,17 @@ class ClinicsMapController {
 
       // Zoom levelga mos radius hisoblaymiz
       double calculateRadius(double zoom) {
-        if (zoom <= 5) return 300;
-        if (zoom <= 10) return 200;
-        if (zoom <= 13) return 100;
-        if (zoom <= 15) return 50;
+        if (zoom <= 5) return 400;
+        if (zoom <= 10) return 300;
+        if (zoom <= 13) return 200;
+        if (zoom <= 15) return 100;
         return 30;
       }
 
       final clusterizedCollection = ClusterizedPlacemarkCollection(
         mapId: const MapObjectId('clinics_cluster'),
-        radius: calculateRadius(currentZoom),
-        minZoom: 0,
+        radius: 100,
+        minZoom: 15,
         placemarks: placemarks,
         onClusterAdded: (self, cluster) async {
           final bytes = await _getClusterIconBytes(cluster.size);

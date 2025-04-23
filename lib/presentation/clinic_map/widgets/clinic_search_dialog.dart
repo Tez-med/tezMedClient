@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/data/clinic/model/clinics_model.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 
 class ClinicSearchDialog extends StatefulWidget {
   final List<Clinic> clinics;
@@ -59,8 +60,8 @@ class _ClinicSearchDialogState extends State<ClinicSearchDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Klinika qidirish',
+             Text(
+              S.of(context).search_clinic,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -72,7 +73,7 @@ class _ClinicSearchDialogState extends State<ClinicSearchDialog> {
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Klinika nomi yoki manzili',
+                hintText: S.of(context).clinic_name_or_address,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -93,8 +94,8 @@ class _ClinicSearchDialogState extends State<ClinicSearchDialog> {
                   maxHeight: MediaQuery.of(context).size.height * 0.4,
                 ),
                 child: _filteredClinics.isEmpty
-                    ? const Center(
-                        child: Text('Klinikalar topilmadi'),
+                    ?  Center(
+                        child: Text(S.of(context).no_clinics_found),
                       )
                     : ListView.builder(
                         shrinkWrap: true,
@@ -133,7 +134,7 @@ class _ClinicSearchDialogState extends State<ClinicSearchDialog> {
               width: double.infinity,
               child: TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Yopish'),
+                child: Text(S.of(context).close),
               ),
             ),
           ],

@@ -180,7 +180,7 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Kilinikalar",
+                                  S.of(context).clinics,
                                   style: AppTextstyle.nunitoBold.copyWith(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20.0,
@@ -190,7 +190,7 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "Klinikalarimiz sizni kutmoqda",
+                                  S.of(context).clinic_welcome,
                                   style: AppTextstyle.nunitoMedium.copyWith(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14.0,

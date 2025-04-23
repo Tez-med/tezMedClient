@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "balance_fill":
             MessageLookupByLibrary.simpleMessage("Balansni to\'ldirish"),
         "birthday": MessageLookupByLibrary.simpleMessage("Tug\'ilgan sana"),
+        "calculating_distance":
+            MessageLookupByLibrary.simpleMessage("Masofani hisoblash..."),
         "callCenter": MessageLookupByLibrary.simpleMessage("Call-centr"),
         "call_help_center": MessageLookupByLibrary.simpleMessage(
             "Yordam markaziga qo\'ng\'iroq qilish"),
@@ -78,6 +80,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profil suratini tanlang"),
         "clickAddButtonToCreateDisease": MessageLookupByLibrary.simpleMessage(
             "Yangi kasallik varaqasi yaratish uchun qo\'shish tugmasini bosing"),
+        "clinic_map":
+            MessageLookupByLibrary.simpleMessage("Klinikalar xaritasi"),
+        "clinic_name_or_address":
+            MessageLookupByLibrary.simpleMessage("Klinika nomi yoki manzili"),
+        "clinic_welcome": MessageLookupByLibrary.simpleMessage(
+            "Malakali mutaxassislar va zamonaviy xizmatlar bilan klinikalarimiz sizni kutmoqda."),
+        "clinics": MessageLookupByLibrary.simpleMessage("Klinikalar"),
+        "clinics_nearby": MessageLookupByLibrary.simpleMessage(
+            "Sizning joylashuvingizdan ko\'rsatilgan masofada joylashgan klinikalar ko\'rsatiladi"),
+        "close": MessageLookupByLibrary.simpleMessage("Yopish"),
         "code_error":
             MessageLookupByLibrary.simpleMessage("Kod noto\'g\'ri kiritildi"),
         "comment": MessageLookupByLibrary.simpleMessage("Izoh"),
@@ -133,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disease_info": MessageLookupByLibrary.simpleMessage(
             "Kasallik ma\'lumotlarini ko\'rish"),
         "disease_name": MessageLookupByLibrary.simpleMessage("Kasallik nomi"),
+        "distance": MessageLookupByLibrary.simpleMessage("Masofa"),
         "doctor": MessageLookupByLibrary.simpleMessage("Shifokor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Shifokor retsepti"),
@@ -172,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fill_price":
             MessageLookupByLibrary.simpleMessage("So\'mma to\'ldirish"),
         "filled": MessageLookupByLibrary.simpleMessage("To\'ldirilgan"),
+        "filter_by_distance":
+            MessageLookupByLibrary.simpleMessage("Masofa bo\'yicha filtrlash"),
         "finish": MessageLookupByLibrary.simpleMessage("Tugatish"),
         "finished": MessageLookupByLibrary.simpleMessage("Yakunlandi"),
         "fio": MessageLookupByLibrary.simpleMessage("FIO"),
@@ -185,7 +200,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Galereya"),
         "gender": MessageLookupByLibrary.simpleMessage("Jinsi"),
         "general": MessageLookupByLibrary.simpleMessage("Umumiy"),
+        "get_directions":
+            MessageLookupByLibrary.simpleMessage("Yo\'l ko\'rsatish"),
+        "get_route": MessageLookupByLibrary.simpleMessage("Yo\'nalish olish"),
         "helpSupport": MessageLookupByLibrary.simpleMessage("Bog\'lanish"),
+        "hide": MessageLookupByLibrary.simpleMessage("Yashirish"),
         "history": MessageLookupByLibrary.simpleMessage("Tarix"),
         "home": MessageLookupByLibrary.simpleMessage("Asosiy"),
         "hour": MessageLookupByLibrary.simpleMessage("Soat"),
@@ -218,6 +237,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Lokatsiya aniqlanmoqda..."),
         "location_error":
             MessageLookupByLibrary.simpleMessage("Manzilni olishda xatolik"),
+        "location_permission": MessageLookupByLibrary.simpleMessage(
+            "Joylashuvingiz aniqlanmadi. Avval joylashuvga ruxsat bering."),
         "location_selected":
             MessageLookupByLibrary.simpleMessage("Manzil tanlandi"),
         "location_successfully": MessageLookupByLibrary.simpleMessage(
@@ -225,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Erkak"),
         "map_not_found":
             MessageLookupByLibrary.simpleMessage("Xarita ilovasi topilmadi."),
+        "max_distance": MessageLookupByLibrary.simpleMessage("Maksimal masofa"),
         "minimum_amount_error": MessageLookupByLibrary.simpleMessage(
             "Minimum so\'mma 1000 so\'m bo\'lishi kerak"),
         "minimum_amount_hint": MessageLookupByLibrary.simpleMessage(
@@ -239,6 +261,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Keyingi"),
         "noDiseaseCardsAvailable": MessageLookupByLibrary.simpleMessage(
             "Kasallik varaqalari mavjud emas"),
+        "no_clinics_found":
+            MessageLookupByLibrary.simpleMessage("Klinikalar topilmadi"),
+        "no_clinics_in_distance": MessageLookupByLibrary.simpleMessage(
+            "km masofada klinikalar topilmadi"),
         "no_complated_order": MessageLookupByLibrary.simpleMessage(
             "Tugatilgan buyurtmalar yo\'q"),
         "no_current_order":
@@ -255,12 +281,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Yangiliklar va yangilanishlarni kuting!"),
         "no_selected_address":
             MessageLookupByLibrary.simpleMessage("Manzil tanlanmagan"),
+        "no_services":
+            MessageLookupByLibrary.simpleMessage("Xizmatlar mavjud emas"),
         "no_services_available":
             MessageLookupByLibrary.simpleMessage("Xizmatlar hali mavjud emas"),
         "no_services_description": MessageLookupByLibrary.simpleMessage(
             "Bizning xizmatlarimiz hali bu hududda ishga tushmagan. Xizmatlar doirasini kengaytirish ustida faol ish olib boryapmiz. Iltimos, keyinroq tekshiring."),
         "no_telemedicine_time": MessageLookupByLibrary.simpleMessage(
             "Bu kunda telemeditsina uchun vaqtlar mavjud emas"),
+        "not_found": MessageLookupByLibrary.simpleMessage("Aniqlanmadi"),
         "not_payment_history":
             MessageLookupByLibrary.simpleMessage("To\'lov tarixi mavjud emas"),
         "notification":
@@ -353,19 +382,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xatolik yuz berdi"),
         "region_error_desc": MessageLookupByLibrary.simpleMessage(
             "Ma\'lumotlarni yuklashda xatolik yuz berdi"),
+        "remove_filter":
+            MessageLookupByLibrary.simpleMessage("Filtrni o\'chirish"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Majburiy maydon"),
+        "reset": MessageLookupByLibrary.simpleMessage("Asl holatga qaytarish"),
         "retry": MessageLookupByLibrary.simpleMessage("Qayta urinib ko\'rish"),
         "russian": MessageLookupByLibrary.simpleMessage("Rus"),
         "scheduleId": MessageLookupByLibrary.simpleMessage("Jadval ID"),
+        "search_clinic":
+            MessageLookupByLibrary.simpleMessage("Klinika qidirish"),
         "search_region": MessageLookupByLibrary.simpleMessage(
             "Hudud nomi bo\'yicha qidirish"),
+        "see_all": MessageLookupByLibrary.simpleMessage("Barchasini ko\'rish"),
         "select_address":
             MessageLookupByLibrary.simpleMessage("Manzilni tanlash"),
         "select_gender": MessageLookupByLibrary.simpleMessage("Jinsni tanlang"),
         "select_location":
             MessageLookupByLibrary.simpleMessage("Manzilni tanlash"),
         "select_map": MessageLookupByLibrary.simpleMessage("Xaritani tanlang"),
+        "select_phone":
+            MessageLookupByLibrary.simpleMessage("Telefon raqam tanlang"),
         "select_photo": MessageLookupByLibrary.simpleMessage("Rasmni tanlang"),
         "select_region":
             MessageLookupByLibrary.simpleMessage("Yashash hududi tanlang"),
@@ -386,6 +423,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Jadval bo\'yicha sozlash"),
         "settings": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
         "share_app": MessageLookupByLibrary.simpleMessage("Ilovani ulashish"),
+        "showing": MessageLookupByLibrary.simpleMessage("Ko\'rsatilmoqda"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Ro\'yxatdan o\'tish"),
         "skip": MessageLookupByLibrary.simpleMessage("Oʻtkazib yuborish"),
         "start": MessageLookupByLibrary.simpleMessage("Boshlash"),
@@ -406,11 +444,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kunning istalgan vaqtida malakali shifokorlarimiz bilan bog\'lanib, sog\'lig\'ingiz haqida maslahat olishingiz mumkin."),
         "supreme": MessageLookupByLibrary.simpleMessage("Oliy"),
         "taking_pictures": MessageLookupByLibrary.simpleMessage("Rasmga olish"),
+        "tap_to_call": MessageLookupByLibrary.simpleMessage(
+            "Qo\'ng\'iroq qilish uchun bosing"),
         "telegram": MessageLookupByLibrary.simpleMessage("Telegram"),
         "term": MessageLookupByLibrary.simpleMessage("Muddat"),
         "time": MessageLookupByLibrary.simpleMessage("Vaqt"),
         "total": MessageLookupByLibrary.simpleMessage("Jami"),
         "total_price": MessageLookupByLibrary.simpleMessage("Umumiy narx"),
+        "travel_time": MessageLookupByLibrary.simpleMessage("Yo\'l vaqti"),
         "tryAgain":
             MessageLookupByLibrary.simpleMessage("Qayta urinib ko\'ring"),
         "understoodText": MessageLookupByLibrary.simpleMessage("Tushundim"),

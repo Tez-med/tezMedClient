@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/clinic/model/clinics_model.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 
 class WorkingHoursWidget extends StatefulWidget {
   final List<Hour> hours;
@@ -18,6 +19,39 @@ class _WorkingHoursWidgetState extends State<WorkingHoursWidget>
 
   // Konstantalar
   static const int _initialVisibleCount = 3;
+
+  // O'zbek tilidagi kun nomlari
+  static const Map<int, String> _dayNamesUz = {
+    1: 'Dushanba',
+    2: 'Seshanba',
+    3: 'Chorshanba',
+    4: 'Payshanba',
+    5: 'Juma',
+    6: 'Shanba',
+    7: 'Yakshanba',
+  };
+
+  // Ingliz tilidagi kun nomlari
+  static const Map<int, String> _dayNamesEn = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+    7: 'Sunday',
+  };
+
+  // Rus tilidagi kun nomlari
+  static const Map<int, String> _dayNamesRu = {
+    1: 'Понедельник',
+    2: 'Вторник',
+    3: 'Среда',
+    4: 'Четверг',
+    5: 'Пятница',
+    6: 'Суббота',
+    7: 'Воскресенье',
+  };
 
   @override
   void initState() {
@@ -49,6 +83,9 @@ class _WorkingHoursWidgetState extends State<WorkingHoursWidget>
 
   @override
   Widget build(BuildContext context) {
+    // Joriy tilni aniqlash
+    final String currentLocale = Localizations.localeOf(context).toString();
+
     // Kunlar bo'yicha guruhlangan ish soatlari
     final Map<int, Hour> uniqueHours = {};
 
@@ -90,9 +127,9 @@ class _WorkingHoursWidgetState extends State<WorkingHoursWidget>
                   children: [
                     // Agar hours bo'sh bo'lsa
                     if (sortedEntries.isEmpty)
-                      const Text(
-                        'Ish vaqti ko\'rsatilmagan',
-                        style: TextStyle(fontSize: 14),
+                      Text(
+                        _getEmptyHoursText(currentLocale),
+                        style: const TextStyle(fontSize: 14),
                       ),
 
                     // Dastlab ko'rsatiladigan soatlar (maximum 3 ta)
@@ -101,9 +138,8 @@ class _WorkingHoursWidgetState extends State<WorkingHoursWidget>
                           .take(_showAllHours
                               ? sortedEntries.length
                               : _initialVisibleCount)
-                          .map(
-                              (entry) => _buildHourItem(entry.key, entry.value))
-                          .toList(),
+                          .map((entry) => _buildHourItem(
+                              entry.key, entry.value, currentLocale)),
                   ],
                 ),
               ),
@@ -132,7 +168,9 @@ class _WorkingHoursWidgetState extends State<WorkingHoursWidget>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            _showAllHours ? "Yashirish" : "Barchasini ko'rish",
+                            _showAllHours
+                                ? S.of(context).see_all
+                                : _getSeeAllText(currentLocale),
                             style: TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.w600,
@@ -161,34 +199,73 @@ class _WorkingHoursWidgetState extends State<WorkingHoursWidget>
     );
   }
 
-  Widget _buildHourItem(int dayOfWeek, Hour hour) {
+  Widget _buildHourItem(int dayOfWeek, Hour hour, String locale) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Text(
-        '${_getDayName(dayOfWeek)}: ${hour.openHour} dan ${hour.closeHours} gacha',
+        '${_getDayName(dayOfWeek, locale)}: ${hour.openHour} ${_getFromText(locale)} ${hour.closeHours} ${_getToText(locale)}',
         style: const TextStyle(fontSize: 14),
       ),
     );
   }
 
-  String _getDayName(int dayOfWeek) {
-    switch (dayOfWeek) {
-      case 1:
-        return 'Dushanba';
-      case 2:
-        return 'Seshanba';
-      case 3:
-        return 'Chorshanba';
-      case 4:
-        return 'Payshanba';
-      case 5:
-        return 'Juma';
-      case 6:
-        return 'Shanba';
-      case 7:
-        return 'Yakshanba';
-      default:
-        return 'Kun $dayOfWeek';
+  // Kunning nomini qaytaradi tilga moslab
+  String _getDayName(int dayOfWeek, String locale) {
+    final Map<int, String> dayNames;
+
+    // Til kodiga qarab mos kunlar ro'yxatini tanlash
+    if (locale.startsWith('en')) {
+      dayNames = _dayNamesEn;
+    } else if (locale.startsWith('ru')) {
+      dayNames = _dayNamesRu;
+    } else {
+      dayNames = _dayNamesUz; // Default o'zbek tili
+    }
+
+    return dayNames[dayOfWeek] ?? 'Kun $dayOfWeek';
+  }
+
+  // "dan" so'zini tilga moslab qaytaradi
+  String _getFromText(String locale) {
+    if (locale.startsWith('en')) {
+      return 'from';
+    } else if (locale.startsWith('ru')) {
+      return 'с';
+    } else {
+      return 'dan';
+    }
+  }
+
+  // "gacha" so'zini tilga moslab qaytaradi
+  String _getToText(String locale) {
+    if (locale.startsWith('en')) {
+      return 'to';
+    } else if (locale.startsWith('ru')) {
+      return 'до';
+    } else {
+      return 'gacha';
+    }
+  }
+
+  // "Barchasini ko'rish" matnini tilga moslab qaytaradi
+  String _getSeeAllText(String locale) {
+    if (locale.startsWith('en')) {
+      return 'See all';
+    } else if (locale.startsWith('ru')) {
+      return 'Показать все';
+    } else {
+      return 'Barchasini ko\'rish';
+    }
+  }
+
+  // Bo'sh soatlar matnini tilga moslab qaytaradi
+  String _getEmptyHoursText(String locale) {
+    if (locale.startsWith('en')) {
+      return 'Working hours not specified';
+    } else if (locale.startsWith('ru')) {
+      return 'Рабочее время не указано';
+    } else {
+      return 'Ish vaqti ko\'rsatilmagan';
     }
   }
 }

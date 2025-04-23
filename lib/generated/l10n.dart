@@ -2799,6 +2799,266 @@ class S {
       args: [],
     );
   }
+
+  /// `Clinics`
+  String get clinics {
+    return Intl.message(
+      'Clinics',
+      name: 'clinics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove filter`
+  String get remove_filter {
+    return Intl.message(
+      'Remove filter',
+      name: 'remove_filter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clinic map`
+  String get clinic_map {
+    return Intl.message(
+      'Clinic map',
+      name: 'clinic_map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clinics located within the specified distance from your location will be displayed`
+  String get clinics_nearby {
+    return Intl.message(
+      'Clinics located within the specified distance from your location will be displayed',
+      name: 'clinics_nearby',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum distance`
+  String get max_distance {
+    return Intl.message(
+      'Maximum distance',
+      name: 'max_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset`
+  String get reset {
+    return Intl.message(
+      'Reset',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter by distance`
+  String get filter_by_distance {
+    return Intl.message(
+      'Filter by distance',
+      name: 'filter_by_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travel time`
+  String get travel_time {
+    return Intl.message(
+      'Travel time',
+      name: 'travel_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distance`
+  String get distance {
+    return Intl.message(
+      'Distance',
+      name: 'distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get directions`
+  String get get_directions {
+    return Intl.message(
+      'Get directions',
+      name: 'get_directions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No clinics found`
+  String get no_clinics_found {
+    return Intl.message(
+      'No clinics found',
+      name: 'no_clinics_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clinic name or address`
+  String get clinic_name_or_address {
+    return Intl.message(
+      'Clinic name or address',
+      name: 'clinic_name_or_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search clinic`
+  String get search_clinic {
+    return Intl.message(
+      'Search clinic',
+      name: 'search_clinic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Showing`
+  String get showing {
+    return Intl.message(
+      'Showing',
+      name: 'showing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hide`
+  String get hide {
+    return Intl.message(
+      'Hide',
+      name: 'hide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See all`
+  String get see_all {
+    return Intl.message(
+      'See all',
+      name: 'see_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not found`
+  String get not_found {
+    return Intl.message(
+      'Not found',
+      name: 'not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get route`
+  String get get_route {
+    return Intl.message(
+      'Get route',
+      name: 'get_route',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calculating distance...`
+  String get calculating_distance {
+    return Intl.message(
+      'Calculating distance...',
+      name: 'calculating_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to call`
+  String get tap_to_call {
+    return Intl.message(
+      'Tap to call',
+      name: 'tap_to_call',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select phone number`
+  String get select_phone {
+    return Intl.message(
+      'Select phone number',
+      name: 'select_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No services available`
+  String get no_services {
+    return Intl.message(
+      'No services available',
+      name: 'no_services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location not detected. Please allow location access first.`
+  String get location_permission {
+    return Intl.message(
+      'Location not detected. Please allow location access first.',
+      name: 'location_permission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No clinics found within km`
+  String get no_clinics_in_distance {
+    return Intl.message(
+      'No clinics found within km',
+      name: 'no_clinics_in_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our clinics are waiting for you with qualified specialists and modern services.`
+  String get clinic_welcome {
+    return Intl.message(
+      'Our clinics are waiting for you with qualified specialists and modern services.',
+      name: 'clinic_welcome',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

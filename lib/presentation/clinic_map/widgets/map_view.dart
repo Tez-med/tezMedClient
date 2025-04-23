@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/clinic/model/clinics_model.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/clinic_map/widgets/map_controller.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -40,7 +41,6 @@ class _MapViewState extends State<MapView> {
       children: [
         YandexMap(
           mapObjects: widget.mapController.mapObjects,
-          
           onMapCreated: (controller) {
             debugPrint('Xarita yaratildi');
             widget.mapController.mapController = controller;
@@ -147,7 +147,6 @@ class _MapViewState extends State<MapView> {
                 backgroundColor: Colors.white,
                 onPressed: () =>
                     widget.mapController.zoomToUserLocation(context),
-                tooltip: 'Mening joylashuvim',
                 child: Icon(
                   Icons.my_location,
                   color: widget.mapController.showUserLocation
@@ -164,7 +163,6 @@ class _MapViewState extends State<MapView> {
                 backgroundColor: Colors.white,
                 onPressed: () =>
                     widget.mapController.moveToClinicsBounds(widget.clinics),
-                tooltip: 'Barcha klinikalar',
                 child: const Icon(Icons.map, color: Colors.blue),
               ),
             ],
@@ -197,7 +195,7 @@ class _MapViewState extends State<MapView> {
               ],
             ),
             child: Text(
-              'Ko\'rsatilmoqda: ${widget.clinics.length} klinika',
+              '${S.of(context).showing}: ${widget.clinics.length} ${S.of(context).clinics}',
               style: TextStyle(
                 color: Colors.grey[800],
                 fontWeight: FontWeight.w500,
@@ -236,7 +234,7 @@ class _MapViewState extends State<MapView> {
                 const Icon(Icons.search, color: Colors.grey),
                 const SizedBox(width: 12),
                 Text(
-                  'Klinika qidirish',
+                  S.of(context).search_clinic,
                   style: TextStyle(
                     color: Colors.grey[600],
                     fontSize: 16,

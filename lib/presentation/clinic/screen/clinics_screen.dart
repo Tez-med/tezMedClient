@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/widgets/error_display_widget.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/clinic/bloc/clinic_bloc.dart';
 import 'package:tez_med_client/presentation/clinic/widgets/clinic_loaded_widget.dart';
 import 'package:tez_med_client/presentation/clinic/widgets/clinics_loading.dart';
@@ -43,7 +43,7 @@ class _ClinicsScreenState extends State<ClinicsScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Klinikalar'),
+        title: Text(S.of(context).clinics),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(

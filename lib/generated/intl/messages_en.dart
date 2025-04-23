@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "There is a problem with the security certificate. It may be related to the server or your internet connection. Please check your internet connection or try a different network."),
         "balance_fill": MessageLookupByLibrary.simpleMessage("Balance Top-Up"),
         "birthday": MessageLookupByLibrary.simpleMessage("Date of birth"),
+        "calculating_distance":
+            MessageLookupByLibrary.simpleMessage("Calculating distance..."),
         "callCenter": MessageLookupByLibrary.simpleMessage("Call Center"),
         "call_help_center":
             MessageLookupByLibrary.simpleMessage("Call help center"),
@@ -79,6 +81,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Choose profile picture"),
         "clickAddButtonToCreateDisease": MessageLookupByLibrary.simpleMessage(
             "Click the add button to create a new disease card"),
+        "clinic_map": MessageLookupByLibrary.simpleMessage("Clinic map"),
+        "clinic_name_or_address":
+            MessageLookupByLibrary.simpleMessage("Clinic name or address"),
+        "clinic_welcome": MessageLookupByLibrary.simpleMessage(
+            "Our clinics are waiting for you with qualified specialists and modern services."),
+        "clinics": MessageLookupByLibrary.simpleMessage("Clinics"),
+        "clinics_nearby": MessageLookupByLibrary.simpleMessage(
+            "Clinics located within the specified distance from your location will be displayed"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "code_error":
             MessageLookupByLibrary.simpleMessage("Entered code is incorrect"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
@@ -127,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disease_info":
             MessageLookupByLibrary.simpleMessage("View Disease Information"),
         "disease_name": MessageLookupByLibrary.simpleMessage("Disease name"),
+        "distance": MessageLookupByLibrary.simpleMessage("Distance"),
         "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctor_prescription":
             MessageLookupByLibrary.simpleMessage("Doctor prescription"),
@@ -162,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please fill in all the fields"),
         "fill_price": MessageLookupByLibrary.simpleMessage("Top-Up Amount"),
         "filled": MessageLookupByLibrary.simpleMessage("Filled"),
+        "filter_by_distance":
+            MessageLookupByLibrary.simpleMessage("Filter by distance"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "finished": MessageLookupByLibrary.simpleMessage("Finished"),
         "fio": MessageLookupByLibrary.simpleMessage("Full Name"),
@@ -175,7 +189,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
+        "get_directions":
+            MessageLookupByLibrary.simpleMessage("Get directions"),
+        "get_route": MessageLookupByLibrary.simpleMessage("Get route"),
         "helpSupport": MessageLookupByLibrary.simpleMessage("Contact"),
+        "hide": MessageLookupByLibrary.simpleMessage("Hide"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "hour": MessageLookupByLibrary.simpleMessage("Hour"),
@@ -206,6 +224,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Detecting location..."),
         "location_error":
             MessageLookupByLibrary.simpleMessage("Error obtaining location"),
+        "location_permission": MessageLookupByLibrary.simpleMessage(
+            "Location not detected. Please allow location access first."),
         "location_selected":
             MessageLookupByLibrary.simpleMessage("Location selected"),
         "location_successfully": MessageLookupByLibrary.simpleMessage(
@@ -213,6 +233,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "map_not_found":
             MessageLookupByLibrary.simpleMessage("Map application not found."),
+        "max_distance":
+            MessageLookupByLibrary.simpleMessage("Maximum distance"),
         "minimum_amount_error": MessageLookupByLibrary.simpleMessage(
             "The minimum amount must be 1000 UZS"),
         "minimum_amount_hint": MessageLookupByLibrary.simpleMessage(
@@ -226,6 +248,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noDiseaseCardsAvailable":
             MessageLookupByLibrary.simpleMessage("No disease cards available"),
+        "no_clinics_found":
+            MessageLookupByLibrary.simpleMessage("No clinics found"),
+        "no_clinics_in_distance":
+            MessageLookupByLibrary.simpleMessage("No clinics found within km"),
         "no_complated_order":
             MessageLookupByLibrary.simpleMessage("No completed orders"),
         "no_current_order":
@@ -242,12 +268,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Stay tuned for news and updates!"),
         "no_selected_address":
             MessageLookupByLibrary.simpleMessage("No address selected"),
+        "no_services":
+            MessageLookupByLibrary.simpleMessage("No services available"),
         "no_services_available":
             MessageLookupByLibrary.simpleMessage("Services Not Available Yet"),
         "no_services_description": MessageLookupByLibrary.simpleMessage(
             "Our services are not yet available in this area. We are working hard to expand our coverage. Please check back later."),
         "no_telemedicine_time": MessageLookupByLibrary.simpleMessage(
             "No available time slots for telemedicine on this day"),
+        "not_found": MessageLookupByLibrary.simpleMessage("Not found"),
         "not_payment_history": MessageLookupByLibrary.simpleMessage(
             "Payment history is not available."),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -334,21 +363,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("An error occurred"),
         "region_error_desc": MessageLookupByLibrary.simpleMessage(
             "An error occurred while loading the data"),
+        "remove_filter": MessageLookupByLibrary.simpleMessage("Remove filter"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Required field"),
+        "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "russian": MessageLookupByLibrary.simpleMessage("Russian"),
         "scheduleId": MessageLookupByLibrary.simpleMessage("Schedule ID"),
         "search_address":
             MessageLookupByLibrary.simpleMessage("Search address"),
+        "search_clinic": MessageLookupByLibrary.simpleMessage("Search clinic"),
         "search_region":
             MessageLookupByLibrary.simpleMessage("Search by region name"),
+        "see_all": MessageLookupByLibrary.simpleMessage("See all"),
         "select_address":
             MessageLookupByLibrary.simpleMessage("Select address"),
         "select_gender": MessageLookupByLibrary.simpleMessage("Select gender"),
         "select_location":
             MessageLookupByLibrary.simpleMessage("Select location"),
         "select_map": MessageLookupByLibrary.simpleMessage("Select map"),
+        "select_phone":
+            MessageLookupByLibrary.simpleMessage("Select phone number"),
         "select_photo": MessageLookupByLibrary.simpleMessage("Select photo"),
         "select_region":
             MessageLookupByLibrary.simpleMessage("Select your region"),
@@ -369,6 +404,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Set by schedule"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "share_app": MessageLookupByLibrary.simpleMessage("Share App"),
+        "showing": MessageLookupByLibrary.simpleMessage("Showing"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
@@ -388,11 +424,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "supreme": MessageLookupByLibrary.simpleMessage("Senior"),
         "taking_pictures":
             MessageLookupByLibrary.simpleMessage("Taking pictures"),
+        "tap_to_call": MessageLookupByLibrary.simpleMessage("Tap to call"),
         "telegram": MessageLookupByLibrary.simpleMessage("Telegram"),
         "term": MessageLookupByLibrary.simpleMessage("Term"),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "total_price": MessageLookupByLibrary.simpleMessage("Total price"),
+        "travel_time": MessageLookupByLibrary.simpleMessage("Travel time"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "understoodText": MessageLookupByLibrary.simpleMessage("Got it"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
