@@ -32,6 +32,8 @@ class HistoryScreen extends StatelessWidget {
                     ? (bloc.state as ActiveDoctorRequestLoaded)
                         .scheduleModel
                         .schedules
+                        .where((s) => s.status != "done")
+                        .toList()
                         .length
                     : 0);
 

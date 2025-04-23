@@ -58,6 +58,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/location.svg
   SvgGenImage get location => const SvgGenImage('assets/icons/location.svg');
 
+  /// File path: assets/icons/no_payment_history.svg
+  SvgGenImage get noPaymentHistory =>
+      const SvgGenImage('assets/icons/no_payment_history.svg');
+
   /// File path: assets/icons/notification.svg
   SvgGenImage get notification => const SvgGenImage('assets/icons/notification.svg');
 
@@ -71,8 +75,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ontheway.svg
   SvgGenImage get ontheway => const SvgGenImage('assets/icons/ontheway.svg');
 
+  /// File path: assets/icons/payme.png
+  AssetGenImage get payme => const AssetGenImage('assets/icons/payme.png');
+
   /// File path: assets/icons/payment.png
   AssetGenImage get payment => const AssetGenImage('assets/icons/payment.png');
+
+  /// File path: assets/icons/payment_order.svg
+  SvgGenImage get paymentOrder => const SvgGenImage('assets/icons/payment_order.svg');
 
   /// File path: assets/icons/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/icons/profile.svg');
@@ -88,6 +98,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/uz.png
   AssetGenImage get uz => const AssetGenImage('assets/icons/uz.png');
+
+  /// File path: assets/icons/wallet.svg
+  SvgGenImage get wallet => const SvgGenImage('assets/icons/wallet.svg');
 
   /// List of all assets
   List<dynamic> get values => [
@@ -105,16 +118,20 @@ class $AssetsIconsGen {
         historyEmpty,
         home,
         location,
+        noPaymentHistory,
         notification,
         notificationEmpty,
         nurse,
         ontheway,
+        payme,
         payment,
+        paymentOrder,
         profile,
         ru,
         search,
         star,
-        uz
+        uz,
+        wallet
       ];
 }
 
@@ -126,6 +143,13 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/banner2.png
   AssetGenImage get banner2 => const AssetGenImage('assets/images/banner2.png');
+
+  /// File path: assets/images/clinic.png
+  AssetGenImage get clinic => const AssetGenImage('assets/images/clinic.png');
+
+  /// File path: assets/images/clinic_location.png
+  AssetGenImage get clinicLocation =>
+      const AssetGenImage('assets/images/clinic_location.png');
 
   /// File path: assets/images/ic_launcher-playstore.png
   AssetGenImage get icLauncherPlaystore =>
@@ -143,12 +167,26 @@ class $AssetsImagesGen {
   /// File path: assets/images/nurse.png
   AssetGenImage get nurse => const AssetGenImage('assets/images/nurse.png');
 
+  /// File path: assets/images/payme.png
+  AssetGenImage get payme => const AssetGenImage('assets/images/payme.png');
+
   /// File path: assets/images/support.png
   AssetGenImage get support => const AssetGenImage('assets/images/support.png');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [banner, banner2, icLauncherPlaystore, location, logoPng, logoSvg, nurse, support];
+  List<dynamic> get values => [
+        banner,
+        banner2,
+        clinic,
+        clinicLocation,
+        icLauncherPlaystore,
+        location,
+        logoPng,
+        logoSvg,
+        nurse,
+        payme,
+        support
+      ];
 }
 
 class $AssetsLottieGen {

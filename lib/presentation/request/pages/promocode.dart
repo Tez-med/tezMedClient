@@ -109,7 +109,7 @@ class _PromocodeState extends State<Promocode> {
                       ],
                       decoration: InputDecoration(
                         suffixIcon: _success
-                            ? Icon(
+                            ? const Icon(
                                 CupertinoIcons.checkmark_alt_circle,
                                 color: Colors.green,
                               )
@@ -136,34 +136,37 @@ class _PromocodeState extends State<Promocode> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  ElevatedButton(
-                    onPressed:
-                        _isLoading ? null : () => _applyPromocode(context),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      backgroundColor: AppColor.primaryColor,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 13),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  SizedBox(
+                    // Fixed width to prevent constraint issues
+                    width: 100,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed:
+                          _isLoading ? null : () => _applyPromocode(context),
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: AppColor.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
+                      child: _isLoading
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : Text(
+                              S.of(context).apply,
+                              style: AppTextstyle.nunitoMedium.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                     ),
-                    child: _isLoading
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 2,
-                            ),
-                          )
-                        : Text(
-                            S.of(context).apply,
-                            style: AppTextstyle.nunitoMedium.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
                   ),
                 ],
               ),

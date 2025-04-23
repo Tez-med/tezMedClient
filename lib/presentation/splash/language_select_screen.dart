@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
 
@@ -94,7 +93,7 @@ class _LanguageButton extends StatelessWidget {
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-            color: AppColor.buttonBackColor,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Row(

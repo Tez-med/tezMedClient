@@ -111,41 +111,33 @@ class ProfileHeader extends StatelessWidget {
   void _showProfileImage(BuildContext context) {
     showDialog(
       context: context,
+      barrierColor: Colors.transparent,
       builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.zero,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                child: Container(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Stack(
+              children: [
+                Container(
                   width: double.infinity,
                   height: double.infinity,
-                  color: Colors.black.withOpacity(0.7),
+                  color: const Color(0xFF1C1C1E),
                 ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 300,
-                    height: 300,
+
+                Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    height: MediaQuery.of(context).size.width * 0.75,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                        ),
-                      ],
+                      shape: BoxShape.circle,
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Hero(
-                        tag: 'profileImage-${clientModel!.phoneNumber}',
+                    child: Hero(
+                      tag: 'profileImage-${clientModel!.phoneNumber}',
+                      child: ClipOval(
                         child: CustomCachedImage(
                           image: clientModel!.photo,
                           fit: BoxFit.cover,
@@ -153,37 +145,9 @@ class ProfileHeader extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Text(
-                      clientModel!.fullName,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                top: 40,
-                right: 20,
-                child: IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 30,
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

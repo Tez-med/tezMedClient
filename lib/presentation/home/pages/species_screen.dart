@@ -1,10 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/presentation/home/bloc/category_bloc/category_bloc.dart';
 import 'package:tez_med_client/presentation/home/bloc/species_bloc/species_bloc.dart';
 import 'package:tez_med_client/presentation/category/widgets/category_card.dart';
@@ -145,7 +148,68 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
         itemCount: speciesList.length,
         itemBuilder: (context, index) {
           final species = speciesList[index];
-          return CategoryCard(speciess: species);
+          return Column(
+            children: [
+              if (index == 0)
+                GestureDetector(
+                  onTap: () => context.router.push(const ClinicsRoute()),
+                  child: Card(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Assets.images.clinic.image(
+                                  width: 100,
+                                  height: 91,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Kilinikalar",
+                                  style: AppTextstyle.nunitoBold.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20.0,
+                                    color: Color(0xff1D2D50),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "Klinikalarimiz sizni kutmoqda",
+                                  style: AppTextstyle.nunitoMedium.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14.0,
+                                    color: Color(0xff737F91),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              CategoryCard(speciess: species),
+            ],
+          );
         },
       );
     }

@@ -289,8 +289,6 @@ class _BadgeWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isSelected ? AppColor.primaryColor : Colors.black;
-
     // iPad uchun tekshirish
     final screenWidth = MediaQuery.of(context).size.width;
     final bool isIpad = Platform.isIOS && screenWidth >= 768;
@@ -327,15 +325,16 @@ class _BadgeWrapper extends StatelessWidget {
           builder: (context, doctorState) {
             int totalDoctorRequests = 0;
             if (doctorState is ActiveDoctorRequestLoaded) {
-              totalDoctorRequests = doctorState.scheduleModel.schedules.length;
+              totalDoctorRequests = doctorState.scheduleModel.schedules
+                  .where((element) => element.status != "done")
+                  .length;
             }
             int totalRequests = requestCount + totalDoctorRequests;
 
             return Badge(
               alignment: Alignment.topRight,
               textStyle: textStyle,
-              padding:
-                  EdgeInsets.all(isIpad ? 6 : 4), // iPad uchun kattaroq padding
+              padding: EdgeInsets.all(isIpad ? 6 : 4),
               largeSize: badgeLargeSize,
               smallSize: badgeSmallSize,
               offset: badgeOffset,
@@ -345,7 +344,6 @@ class _BadgeWrapper extends StatelessWidget {
                 width: iconSize,
                 height: iconSize,
                 fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
               ),
             );
           },

@@ -4,8 +4,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tez_med_client/core/extension/localization_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
-import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
-import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/core/widgets/error_display_widget.dart';
 import 'package:tez_med_client/data/doctor/model/doctor_model.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/category/bloc/nurse_type/nurse_type_bloc.dart';
@@ -65,16 +64,10 @@ class _CategoryDoctorState extends State<CategoryDoctor>
           );
         }
         if (state is NurseTypeError) {
-          if (state.error.code == 400) {
-            return NoInternetConnectionWidget(
-              onRetry: () => context.read<NurseTypeBloc>().add(GetType()),
-            );
-          } else if (state.error.code == 500) {
-            return ServerConnection(
-              onRetry: () => context.read<NurseTypeBloc>().add(GetType()),
-            );
-          }
-          return Center(child: Text(S.of(context).unexpected_error));
+         return ErrorDisplayWidget(
+            errorCode: state.error.code,
+            onRetry: () => context.read<NurseTypeBloc>().add(GetType()),
+          );
         }
         if (state is NurseTypeLoaded) {
           final doctorTypes = state.data.types

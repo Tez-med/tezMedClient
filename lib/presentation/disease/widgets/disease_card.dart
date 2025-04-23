@@ -120,7 +120,7 @@ class DiseaseCard extends StatelessWidget {
                 );
               },
               child: SizedBox(
-                height: 160,
+                height: 100,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
@@ -129,8 +129,8 @@ class DiseaseCard extends StatelessWidget {
                   itemCount: disease.photo.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      width: 160,
-                      height: 160,
+                      width: 100,
+                      height: 100,
                       margin: const EdgeInsets.only(right: 12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),

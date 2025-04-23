@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tez_med_client/core/extension/space_extensions.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
@@ -12,6 +13,7 @@ import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/profile/bloc/profile_bloc/profile_bloc.dart';
 import 'package:tez_med_client/presentation/profile/widgets/delete_account.dart';
 import 'package:tez_med_client/presentation/profile/widgets/profile_menu_widget.dart';
+import 'package:tez_med_client/presentation/profile/widgets/wallet.dart';
 import '../widgets/profile_header.dart';
 
 @RoutePage()
@@ -105,11 +107,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ProfileHeader(clientModel: state.clientModel),
+            WalletAndRating(clientModel: state.clientModel),
+            16.h,
             _buildDiseaseCardSection(context),
-            const SizedBox(height: 16),
+            16.h,
             const ProfileMenuWidget(),
             const DeleteAccountSection(),
-            const SizedBox(height: 24),
+            24.h,
             _buildVersionInfo(),
           ],
         ),
@@ -131,13 +135,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.primaryColor.withValues(alpha: 0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Material(
         color: Colors.transparent,
@@ -146,11 +143,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           onTap: () => context.router.push(DiseasesRoute()),
           highlightColor: Colors.transparent,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
@@ -158,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: const Icon(
                     Icons.medical_information_rounded,
                     color: Colors.white,
-                    size: 24,
+                    size: 20,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -169,7 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         S.of(context).diseaseCards,
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -178,7 +175,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         S.of(context).disease_info,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           color: Colors.white.withValues(alpha: 0.9),
                         ),
                       ),
@@ -188,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: Colors.white,
-                  size: 22,
+                  size: 20,
                 ),
               ],
             ),

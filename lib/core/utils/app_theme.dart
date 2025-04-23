@@ -9,7 +9,6 @@ class AppTheme {
   // Yorug' tema
   static ThemeData get lightTheme {
     return ThemeData(
-      useMaterial3: true,
       primaryColor: AppColor.primaryColor,
       scaffoldBackgroundColor: AppColor.buttonBackColor,
 
@@ -40,7 +39,6 @@ class AppTheme {
         shadowColor: AppColor.buttonBackColor,
         elevation: 0,
         centerTitle: true,
-        
         titleTextStyle: AppTextstyle.nunitoBold.copyWith(
             fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
         iconTheme: IconThemeData(color: AppColor.primaryDark),
@@ -51,7 +49,7 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.primaryColor,
           foregroundColor: Colors.white,
-          minimumSize: const Size(double.infinity, 48),
+          minimumSize: const Size(0, 48),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -62,7 +60,7 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColor.primaryColor,
           side: const BorderSide(color: AppColor.primaryColor),
-          minimumSize: const Size(double.infinity, 48),
+          minimumSize: const Size(0, 48),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),

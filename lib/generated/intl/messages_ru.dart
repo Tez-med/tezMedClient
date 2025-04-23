@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
         "badCertificate": MessageLookupByLibrary.simpleMessage(
             "Проблема с сертификатом безопасности при подключении. Это может быть связано с сервером или интернет-соединением. Пожалуйста, проверьте ваш интернет или попробуйте другую сеть."),
+        "balance_fill":
+            MessageLookupByLibrary.simpleMessage("Пополнение баланса"),
         "birthday": MessageLookupByLibrary.simpleMessage("Дата рождения"),
         "callCenter": MessageLookupByLibrary.simpleMessage("Колл-центр"),
         "call_help_center":
@@ -141,6 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Завершить видеозвонок"),
         "endText": MessageLookupByLibrary.simpleMessage("Завершить"),
         "english": MessageLookupByLibrary.simpleMessage("Английский"),
+        "enter_amount": MessageLookupByLibrary.simpleMessage("Введите сумму"),
         "enter_fullname":
             MessageLookupByLibrary.simpleMessage("Введите ваше полное имя"),
         "enter_sms": MessageLookupByLibrary.simpleMessage(
@@ -167,6 +170,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "female": MessageLookupByLibrary.simpleMessage("Женский"),
         "fill_all_fields": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, заполните все поля"),
+        "fill_price": MessageLookupByLibrary.simpleMessage("Сумма пополнения"),
+        "filled": MessageLookupByLibrary.simpleMessage("Заполнено"),
         "finish": MessageLookupByLibrary.simpleMessage("Завершить"),
         "finished": MessageLookupByLibrary.simpleMessage("Завершено"),
         "fio": MessageLookupByLibrary.simpleMessage("ФИО"),
@@ -219,6 +224,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Мужской"),
         "map_not_found": MessageLookupByLibrary.simpleMessage(
             "Приложение карты не найдено."),
+        "minimum_amount_error": MessageLookupByLibrary.simpleMessage(
+            "Минимальная сумма должна быть 1000 сум"),
+        "minimum_amount_hint": MessageLookupByLibrary.simpleMessage(
+            "Минимальная сумма платежа 1000 сум"),
         "my_address": MessageLookupByLibrary.simpleMessage("Мои адреса"),
         "my_self": MessageLookupByLibrary.simpleMessage("Для себя"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
@@ -234,6 +243,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Нет текущих заказов"),
         "no_doctor_types_found":
             MessageLookupByLibrary.simpleMessage("Виды врачей не найдены"),
+        "no_home_visit_time": MessageLookupByLibrary.simpleMessage(
+            "В этот день нет доступного времени для вызова на дом"),
         "no_internet": MessageLookupByLibrary.simpleMessage(
             "Интернет-соединение нестабильно"),
         "no_notification":
@@ -246,6 +257,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Услуги пока недоступны"),
         "no_services_description": MessageLookupByLibrary.simpleMessage(
             "Наши услуги пока недоступны в этом районе. Мы активно работаем над расширением зоны обслуживания. Пожалуйста, проверьте позже."),
+        "no_telemedicine_time": MessageLookupByLibrary.simpleMessage(
+            "В этот день нет доступного времени для телемедицины"),
+        "not_payment_history":
+            MessageLookupByLibrary.simpleMessage("История платежей недоступна"),
         "notification": MessageLookupByLibrary.simpleMessage("Уведомления"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Настройки уведомлений"),
@@ -273,6 +288,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "our_service": MessageLookupByLibrary.simpleMessage("Наши услуги"),
         "patient_medical_card":
             MessageLookupByLibrary.simpleMessage("Медицинская карта пациента"),
+        "payme": MessageLookupByLibrary.simpleMessage("PayMe"),
+        "payme_with_fill":
+            MessageLookupByLibrary.simpleMessage("Пополнить через PayMe"),
         "payment_other": MessageLookupByLibrary.simpleMessage(
             "На данный момент вы можете оплатить только наличными. В будущем будут добавлены другие виды оплаты"),
         "payment_type": MessageLookupByLibrary.simpleMessage("Тип оплаты"),
@@ -287,6 +305,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "photo_error":
             MessageLookupByLibrary.simpleMessage("Ошибка при загрузке фото"),
         "photos": MessageLookupByLibrary.simpleMessage("Фотографии"),
+        "please_amount":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста, введите сумму"),
         "please_date": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, выберите дату рождения"),
         "please_fullname": MessageLookupByLibrary.simpleMessage(
@@ -403,6 +423,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "video_chat": MessageLookupByLibrary.simpleMessage("Видеочат"),
         "waitingForData":
             MessageLookupByLibrary.simpleMessage("Ожидание данных..."),
+        "wallet": MessageLookupByLibrary.simpleMessage("Кошелек"),
+        "wallet_filling":
+            MessageLookupByLibrary.simpleMessage("Пополнение счета"),
         "work_experience": MessageLookupByLibrary.simpleMessage("Опыт работы"),
         "year": MessageLookupByLibrary.simpleMessage("год"),
         "your_check": MessageLookupByLibrary.simpleMessage("Ваш чек"),

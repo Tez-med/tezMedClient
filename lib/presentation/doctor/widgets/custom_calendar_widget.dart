@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:tez_med_client/core/extension/date_format_extension.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/data/doctor/model/basic_doctor_model.dart';
+import 'package:tez_med_client/generated/l10n.dart';
 
 class CustomCalendarWidget extends StatefulWidget {
   final List<Schedule> data;
@@ -260,9 +261,10 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: Text(
-                      widget.online
-                          ? "Bu kunda telemeditsina uchun vaqtlar mavjud emas"
-                          : "Bu kunda uyga chaqirish uchun vaqtlar mavjud emas",
+                      !widget.online
+                          ? S.of(context).no_telemedicine_time
+                          : S.of(context).no_home_visit_time,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
                         color: AppColor.greyTextColor,

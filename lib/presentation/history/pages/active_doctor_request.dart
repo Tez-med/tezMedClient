@@ -43,9 +43,13 @@ class ActiveDoctorRequest extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: ListView.builder(
-                itemCount: state.scheduleModel.schedules.length,
+                itemCount: state.scheduleModel.schedules
+                    .where((element) => element.status != "done")
+                    .length,
                 itemBuilder: (context, index) {
-                  final data = state.scheduleModel.schedules[index];
+                  final data = state.scheduleModel.schedules
+                      .where((element) => element.status != "done")
+                      .toList()[index];
                   return DoctorCardWidget(
                     data: data,
                   );

@@ -63,7 +63,8 @@ class _VideoCallCompletionBottomSheetState
 
     return BlocListener<DiseaseBloc, DiseaseState>(
       listener: (context, state) {
-        if (state is DiseaseLoaded) {
+        if (state is DiseaseLoadedPost) {
+          context.read<DiseaseBloc>().add(FetchDiseases());
           AnimatedCustomSnackbar.show(
               context: context,
               message: S.of(context).data_saved_successfully,

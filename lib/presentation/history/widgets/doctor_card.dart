@@ -126,29 +126,29 @@ class DoctorCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildDoctorInfo(),
-                  data.nurseTypeName == 'Uyga chaqirish'
-                      ? Container(
-                          padding: EdgeInsets.all(8),
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color(0x99FFFFFF),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.1),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Icon(Icons.home,
-                              color: AppColor.primaryColor, size: 22),
-                        )
-                      : VideoCallButton(
-                          scheduleId: data.id,
-                        )
-                  // _buildStatusBadge(context),
+                  if (data.status != 'done')
+                    data.nurseTypeName == 'Uyga chaqirish'
+                        ? Container(
+                            padding: EdgeInsets.all(8),
+                            width: 44,
+                            height: 44,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: const Color(0x99FFFFFF),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.1),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Icon(Icons.home,
+                                color: AppColor.primaryColor, size: 22),
+                          )
+                        : VideoCallButton(
+                            scheduleId: data.id,
+                          )
                 ],
               ),
               const SizedBox(height: 12),

@@ -261,5 +261,19 @@
   "fill_all_fields": "Please fill in all the fields",
   "data_saved_successfully": "Data saved successfully",
   "video_call_exit_message": "You have exited the video call. Please enter the disease information.",
-  "disease_name": "Disease name"
+  "disease_name": "Disease name",
+  "no_telemedicine_time": "No available time slots for telemedicine on this day",
+  "no_home_visit_time": "No available time slots for home visit on this day",
+  "wallet":"Wallet",
+  "wallet_filling": "Account Top-Up",
+  "fill_price": "Top-Up Amount",
+  "enter_amount": "Enter Amount",
+  "please_amount": "Please enter the amount",
+  "payme": "PayMe",
+  "payme_with_fill": "Top-Up via PayMe",
+  "balance_fill": "Balance Top-Up",
+  "filled": "Filled",
+  "minimum_amount_error": "The minimum amount must be 1000 UZS",
+  "minimum_amount_hint": "The minimum payment amount is 1000 UZS",
+  "not_payment_history" : "Payment history is not available."
 }

@@ -261,5 +261,19 @@
   "fill_all_fields": "Barcha maydonlarni to'ldiring",
   "data_saved_successfully": "Ma'lumotlar muvaffaqiyatli saqlandi",
   "video_call_exit_message": "Siz video qo'ng'iroqdan chiqdingiz. Iltimos, kasallik ma'lumotlarini kiriting.",
-  "disease_name": "Kasallik nomi"
+  "disease_name": "Kasallik nomi",
+  "no_telemedicine_time": "Bu kunda telemeditsina uchun vaqtlar mavjud emas",
+  "no_home_visit_time": "Bu kunda uyga chaqirish uchun vaqtlar mavjud emas",
+  "wallet":"Hamyon",
+  "wallet_filling" : "Hisobni to'ldirish",
+  "fill_price" : "So'mma to'ldirish",
+  "enter_amount" : "So'mmani kiriting",
+  "please_amount" : "Iltimos, so'mmani kiriting",
+  "payme" : "PayMe",
+  "payme_with_fill" : "PayMe orqali to'ldirish",
+  "balance_fill" : "Balansni to'ldirish",
+  "filled":"To'ldirilgan",
+  "minimum_amount_error" : "Minimum so'mma 1000 so'm bo'lishi kerak",
+  "minimum_amount_hint" : "Minimum to'lov so'mmasi 1000 so'm",
+  "not_payment_history" : "To'lov tarixi mavjud emas"
 }

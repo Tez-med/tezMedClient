@@ -15,6 +15,7 @@ class ClientModel {
   final String longitude;
   final String latitude;
   final String phoneNumber;
+  final int amount;
   final String gender;
   final String birthday;
   final String photo;
@@ -34,6 +35,7 @@ class ClientModel {
     required this.longitude,
     required this.latitude,
     required this.phoneNumber,
+    required this.amount,
     required this.gender,
     required this.birthday,
     required this.photo,
@@ -54,6 +56,7 @@ class ClientModel {
         longitude: json["longitude"] ?? "",
         latitude: json["latitude"] ?? "",
         phoneNumber: json["phone_number"] ?? "",
+        amount: json["amount"] ?? 0,
         gender: json["gender"] ?? "",
         birthday: json["birthday"] ?? "",
         photo: json["photo"] ?? "",
@@ -74,6 +77,7 @@ class ClientModel {
         "longitude": longitude,
         "latitude": latitude,
         "phone_number": phoneNumber,
+        "amount": amount,
         "gender": gender,
         "birthday": birthday,
         "photo": photo,

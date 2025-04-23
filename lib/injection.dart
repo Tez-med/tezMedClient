@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tez_med_client/core/routes/app_routes.dart';
 import 'package:tez_med_client/data/banner/source/get_banner_source.dart';
+import 'package:tez_med_client/data/clinic/repositories/clinic_repositories_impl.dart';
+import 'package:tez_med_client/data/clinic/source/clinic_source.dart';
 import 'package:tez_med_client/data/comments/repositories/comment_repositories_impl.dart';
 import 'package:tez_med_client/data/comments/source/comment_source.dart';
 import 'package:tez_med_client/data/disease/repositories/disease_repository_impl.dart';
@@ -13,6 +15,9 @@ import 'package:tez_med_client/data/doctor/source/doctor_source.dart';
 import 'package:tez_med_client/data/my_address/repositories/my_address_repositories_impl.dart';
 import 'package:tez_med_client/data/my_address/source/my_address_source.dart';
 import 'package:tez_med_client/data/notification/repositories/notification_repository_impl.dart';
+import 'package:tez_med_client/data/payment/repositories/post_payment_repositories_impl.dart';
+import 'package:tez_med_client/data/payment/source/post_payment_source.dart';
+import 'package:tez_med_client/data/payment_history/repositories/payment_history_repositories_impl.dart';
 import 'package:tez_med_client/data/profile_update/repositories/profile_update_repositories_impl.dart';
 import 'package:tez_med_client/data/profile_update/source/profile_update_source.dart';
 import 'package:tez_med_client/data/promocode/repositories/promocode_repositories_impl.dart';
@@ -43,6 +48,8 @@ import 'package:tez_med_client/data/schedule/source/schedule_source.dart';
 import 'package:tez_med_client/data/species/repositories/species_repositories_impl.dart';
 import 'package:tez_med_client/data/species/source/get_nurse_type_source.dart';
 import 'package:tez_med_client/data/species/source/species_source.dart';
+import 'package:tez_med_client/domain/clinic/repositories/clinic_repositories.dart';
+import 'package:tez_med_client/domain/clinic/usecase/clinic_usecase.dart';
 import 'package:tez_med_client/domain/comments/repositories/comment_repositories.dart';
 import 'package:tez_med_client/domain/comments/usecase/post_comment_usecase.dart';
 import 'package:tez_med_client/domain/disease/repositories/disease_repository.dart';
@@ -52,6 +59,9 @@ import 'package:tez_med_client/domain/doctor/useacase/doctor_usecase.dart';
 import 'package:tez_med_client/domain/my_address/repositories/my_address_repositories.dart';
 import 'package:tez_med_client/domain/my_address/usecase/get_my_address_usecase.dart';
 import 'package:tez_med_client/domain/notification/repositories/notification_repository.dart';
+import 'package:tez_med_client/domain/payment/repositories/post_payment_repositories.dart';
+import 'package:tez_med_client/domain/payment/usecase/post_payment_usecase.dart';
+import 'package:tez_med_client/domain/payment_history/usecase/get_payment_history_usecase.dart';
 import 'package:tez_med_client/domain/profile_update/repositories/profile_update_repositories.dart';
 import 'package:tez_med_client/domain/profile_update/usecase/profile_update_usecase.dart';
 import 'package:tez_med_client/domain/promocode/repositories/promocode_repositories.dart';
@@ -80,10 +90,12 @@ import 'package:tez_med_client/domain/schedule/usecase/schedule_usecase.dart';
 import 'package:tez_med_client/domain/species/repositories/species_repositories.dart';
 import 'package:tez_med_client/domain/species/usecase/get_species_usecase.dart';
 import 'package:tez_med_client/domain/upload_file/usecase/upload_file_usecase.dart';
+import 'data/payment_history/source/payment_history_source.dart';
 import 'data/region/repositories/region_repositories_impl.dart';
 import 'data/region/source/region_source.dart';
 import 'data/upload_file/repositories/upload_file_repositories_impl.dart';
 import 'data/upload_file/source/upload_file_source.dart';
+import 'domain/payment_history/repositories/payment_history_repositories.dart';
 import 'domain/region/repositories/region_repositories.dart';
 import 'domain/region/usecase/get_region_usecase.dart';
 import 'domain/upload_file/repository/upload_file_repository.dart';
@@ -273,4 +285,27 @@ Future<void> setUp() async {
       DiseaseRepositoryImpl(diseaseSource: getIt<DiseaseSource>()));
   getIt.registerSingleton<GetDiseasesUseCase>(
       GetDiseasesUseCase(getIt<DiseaseRepository>()));
+
+  // Clinic
+  getIt.registerSingleton<ClinicSource>(
+      ClinicSourceImpl(getIt<DioClientRepository>()));
+  getIt.registerSingleton<ClinicRepositories>(
+      ClinicRepositoriesImpl(getIt<ClinicSource>()));
+  getIt.registerSingleton<ClinicUsecase>(
+      ClinicUsecase(getIt<ClinicRepositories>()));
+
+   getIt.registerSingleton<PostPaymentSource>(
+      PostPaymentSourceImpl(getIt<DioClientRepository>()));
+  getIt.registerSingleton<PostPaymentRepositories>(
+      PostPaymentRepositoriesImpl(getIt<PostPaymentSource>()));
+  getIt.registerSingleton<PostPaymentUsecase>(
+      PostPaymentUsecase(getIt<PostPaymentRepositories>()));
+
+  // Payment_History
+  getIt.registerSingleton<PaymentHistorySource>(
+      PaymentHistorySourceImpl(getIt<DioClientRepository>()));
+  getIt.registerSingleton<PaymentHistoryRepositories>(
+      PaymentHistoryRepositoriesImpl(getIt<PaymentHistorySource>()));
+  getIt.registerSingleton<GetPaymentHistoryUsecase>(
+      GetPaymentHistoryUsecase(getIt<PaymentHistoryRepositories>()));
 }

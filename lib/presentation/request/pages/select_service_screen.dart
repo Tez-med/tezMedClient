@@ -22,25 +22,35 @@ class SelectServiceScreen extends StatefulWidget {
   State<SelectServiceScreen> createState() => _SelectServiceScreenState();
 }
 
-class _SelectServiceScreenState extends State<SelectServiceScreen> {
-  final formatter = NumberFormat('#,###');
+class _SelectServiceScreenState extends State<SelectServiceScreen>
+    with TickerProviderStateMixin {
+  final _formatter = NumberFormat('#,###');
 
-  Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onPressed,
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Icon(
-            icon,
-            color: AppColor.greyColor500,
-            size: 24,
-          ),
-        ),
-      ),
-    );
+  // Pre-filter active services to improve performance
+  late final List<Service> _activeServices =
+      widget.service.where((service) => service.isActive).toList();
+
+  // Map to store animation controllers for each item
+  final Map<int, AnimationController> _animationControllers = {};
+
+  @override
+  void dispose() {
+    // Dispose all animation controllers
+    for (var controller in _animationControllers.values) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  // Get or create animation controller for an index
+  AnimationController _getAnimationController(int index) {
+    if (!_animationControllers.containsKey(index)) {
+      _animationControllers[index] = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 400),
+      );
+    }
+    return _animationControllers[index]!;
   }
 
   @override
@@ -48,50 +58,92 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       child: Card(
+        elevation: 1,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: ListView.separated(
-          separatorBuilder: (context, index) {
-            return Divider(
-              color: AppColor.buttonBackColor,
-            );
-          },
           shrinkWrap: true,
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          itemCount: widget.service.where((service) => service.isActive).length,
-          itemBuilder: (context, index) {
-            final filtrGeneral = widget.service
-                .where(
-                  (service) => service.isActive,
-                )
-                .toList();
-            final data = filtrGeneral[index];
-            return ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 1),
-              title: Text(
-                context.toLocalized(
-                    uz: data.nameUz, ru: data.nameRu, en: data.nameEn),
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 17,
-                  height: 18 / 13,
-                  letterSpacing: 0.01,
-                  textBaseline: TextBaseline.alphabetic,
+          itemCount: _activeServices.length,
+          separatorBuilder: (_, __) => Divider(color: AppColor.buttonBackColor),
+          itemBuilder: _buildServiceItem,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServiceItem(BuildContext context, int index) {
+    final service = _activeServices[index];
+    final bool isSelected = widget.selectedItems.containsKey(index);
+    final AnimationController controller = _getAnimationController(index);
+
+    // Ensure controller is at correct value without animation when building
+    if (isSelected && controller.status != AnimationStatus.completed) {
+      controller.value = 1.0;
+    } else if (!isSelected && controller.status != AnimationStatus.dismissed) {
+      controller.value = 0.0;
+    }
+
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      title: Text(
+        context.toLocalized(
+            uz: service.nameUz, ru: service.nameRu, en: service.nameEn),
+        style: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 17,
+          height: 18 / 13,
+          letterSpacing: 0.01,
+        ),
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        "${_formatter.format(service.price)} ${S.of(context).sum}",
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+          height: 18 / 14,
+          letterSpacing: 0.01,
+          color: AppColor.primaryColor,
+        ),
+      ),
+      trailing: SizedBox(
+        width: 110,
+        height: 40,
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            return Stack(
+              children: [
+                // Add button
+                Positioned.fill(
+                  child: Opacity(
+                    opacity: 1 - controller.value,
+                    child: Transform.scale(
+                      scale: 1.0 - 0.2 * controller.value,
+                      child: IgnorePointer(
+                        ignoring: controller.value > 0.5,
+                        child: _buildAddButton(index),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              subtitle: Text(
-                "${formatter.format(data.price)} ${S.of(context).sum}",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  height: 18 / 14,
-                  letterSpacing: 0.01,
-                  textBaseline: TextBaseline.alphabetic,
-                  color: AppColor.primaryColor,
+
+                // Quantity control
+                Positioned.fill(
+                  child: Opacity(
+                    opacity: controller.value,
+                    child: Transform.scale(
+                      scale: 0.8 + 0.2 * controller.value,
+                      child: IgnorePointer(
+                        ignoring: controller.value < 0.5,
+                        child: _buildQuantityControl(index),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              trailing: widget.selectedItems.containsKey(index)
-                  ? _buildQuantityControl(index)
-                  : _buildAddButton(index),
+              ],
             );
           },
         ),
@@ -99,7 +151,6 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
     );
   }
 
-  // Quantity control: + / - tugmalari bilan
   Widget _buildQuantityControl(int index) {
     final quantity = widget.selectedItems[index] ?? 0;
 
@@ -108,62 +159,107 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
         color: AppColor.buttonBackColor,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildIconButton(Icons.remove, () {
-            if (quantity > 0) {
-              setState(() {
-                widget.onUpdate(index, quantity - 1);
-              });
-            }
-          }),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              transitionBuilder: (child, animation) =>
-                  ScaleTransition(scale: animation, child: child),
-              child: Text(
-                '$quantity',
-                key: ValueKey<int>(quantity),
-                style: AppTextstyle.nunitoBold.copyWith(
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
+          _buildControlButton(
+            Icons.remove,
+            () => _updateQuantity(index, quantity - 1),
+            enabled: quantity > 0,
+          ),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (child, animation) =>
+                ScaleTransition(scale: animation, child: child),
+            child: Text(
+              '$quantity',
+              key: ValueKey<int>(quantity),
+              style: AppTextstyle.nunitoBold.copyWith(
+                fontSize: 18,
+                color: Colors.black,
               ),
             ),
           ),
-          _buildIconButton(Icons.add, () {
-            setState(() {
-              widget.onUpdate(index, quantity + 1);
-            });
-          }),
+          _buildControlButton(
+            Icons.add,
+            () => _updateQuantity(index, quantity + 1),
+          ),
         ],
       ),
     );
   }
 
-// ADD button — faqat 0 bo‘lsa ko‘rinadi
-  Widget _buildAddButton(int index) {
-    return OutlinedButton(
-      onPressed: () {
-        setState(() {
-          widget.onUpdate(index, 1);
-        });
-      },
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        backgroundColor: AppColor.buttonBackColor,
-        side: BorderSide.none,
-        shape: RoundedRectangleBorder(
+  Widget _buildControlButton(IconData icon, VoidCallback onPressed,
+      {bool enabled = true}) {
+    return SizedBox(
+      width: 36,
+      height: 36,
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(10),
+        child: InkWell(
           borderRadius: BorderRadius.circular(10),
+          onTap: enabled ? onPressed : null,
+          child: Center(
+            child: Icon(
+              icon,
+              color: enabled
+                  ? AppColor.greyColor500
+                  : AppColor.greyColor500.withValues(alpha: 0.5),
+              size: 20,
+            ),
+          ),
         ),
       ),
-      child: Text(
-        S.of(context).add,
-        style: AppTextstyle.nunitoMedium.copyWith(color: Colors.black),
+    );
+  }
+
+  void _updateQuantity(int index, int newQuantity) {
+    final controller = _getAnimationController(index);
+
+    if (newQuantity <= 0) {
+      // Animate from quantity control to add button
+      setState(() {
+        widget.onUpdate(index, 0);
+      });
+
+      controller.reverse();
+    } else if (!widget.selectedItems.containsKey(index)) {
+      // Animate from add button to quantity control
+      setState(() {
+        widget.onUpdate(index, newQuantity);
+      });
+
+      controller.forward();
+    } else {
+      // Just update the quantity
+      setState(() {
+        widget.onUpdate(index, newQuantity);
+      });
+    }
+  }
+
+  Widget _buildAddButton(int index) {
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: OutlinedButton(
+        onPressed: () => _updateQuantity(index, 1),
+        style: OutlinedButton.styleFrom(
+          backgroundColor: AppColor.buttonBackColor,
+          side: BorderSide.none,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+        ),
+        child: Text(
+          S.of(context).add,
+          style: AppTextstyle.nunitoMedium.copyWith(
+            color: Colors.black,
+            fontSize: 15,
+          ),
+        ),
       ),
     );
   }

@@ -261,5 +261,19 @@
   "fill_all_fields": "Пожалуйста, заполните все поля",
   "data_saved_successfully": "Данные успешно сохранены",
   "video_call_exit_message": "Вы вышли из видеозвонка. Пожалуйста, введите информацию о болезни.",
-  "disease_name": "Название болезни"
+  "disease_name": "Название болезни",
+  "no_telemedicine_time": "В этот день нет доступного времени для телемедицины",
+  "no_home_visit_time": "В этот день нет доступного времени для вызова на дом",
+  "wallet":"Кошелек",
+  "wallet_filling": "Пополнение счета",
+  "fill_price": "Сумма пополнения",
+  "enter_amount": "Введите сумму",
+  "please_amount": "Пожалуйста, введите сумму",
+  "payme": "PayMe",
+  "payme_with_fill": "Пополнить через PayMe",
+  "balance_fill": "Пополнение баланса",
+  "filled": "Заполнено",
+  "minimum_amount_error": "Минимальная сумма должна быть 1000 сум",
+  "minimum_amount_hint": "Минимальная сумма платежа 1000 сум",
+  "not_payment_history" : "История платежей недоступна"
 }

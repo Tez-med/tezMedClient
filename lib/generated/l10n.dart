@@ -2659,6 +2659,146 @@ class S {
       args: [],
     );
   }
+
+  /// `No available time slots for telemedicine on this day`
+  String get no_telemedicine_time {
+    return Intl.message(
+      'No available time slots for telemedicine on this day',
+      name: 'no_telemedicine_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No available time slots for home visit on this day`
+  String get no_home_visit_time {
+    return Intl.message(
+      'No available time slots for home visit on this day',
+      name: 'no_home_visit_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet`
+  String get wallet {
+    return Intl.message(
+      'Wallet',
+      name: 'wallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Top-Up`
+  String get wallet_filling {
+    return Intl.message(
+      'Account Top-Up',
+      name: 'wallet_filling',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top-Up Amount`
+  String get fill_price {
+    return Intl.message(
+      'Top-Up Amount',
+      name: 'fill_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Amount`
+  String get enter_amount {
+    return Intl.message(
+      'Enter Amount',
+      name: 'enter_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the amount`
+  String get please_amount {
+    return Intl.message(
+      'Please enter the amount',
+      name: 'please_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PayMe`
+  String get payme {
+    return Intl.message(
+      'PayMe',
+      name: 'payme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top-Up via PayMe`
+  String get payme_with_fill {
+    return Intl.message(
+      'Top-Up via PayMe',
+      name: 'payme_with_fill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance Top-Up`
+  String get balance_fill {
+    return Intl.message(
+      'Balance Top-Up',
+      name: 'balance_fill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filled`
+  String get filled {
+    return Intl.message(
+      'Filled',
+      name: 'filled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The minimum amount must be 1000 UZS`
+  String get minimum_amount_error {
+    return Intl.message(
+      'The minimum amount must be 1000 UZS',
+      name: 'minimum_amount_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The minimum payment amount is 1000 UZS`
+  String get minimum_amount_hint {
+    return Intl.message(
+      'The minimum payment amount is 1000 UZS',
+      name: 'minimum_amount_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment history is not available.`
+  String get not_payment_history {
+    return Intl.message(
+      'Payment history is not available.',
+      name: 'not_payment_history',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

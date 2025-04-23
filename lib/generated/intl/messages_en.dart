@@ -56,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "badCertificate": MessageLookupByLibrary.simpleMessage(
             "There is a problem with the security certificate. It may be related to the server or your internet connection. Please check your internet connection or try a different network."),
+        "balance_fill": MessageLookupByLibrary.simpleMessage("Balance Top-Up"),
         "birthday": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "callCenter": MessageLookupByLibrary.simpleMessage("Call Center"),
         "call_help_center":
@@ -133,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "endCallText": MessageLookupByLibrary.simpleMessage("End video call"),
         "endText": MessageLookupByLibrary.simpleMessage("End"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "enter_amount": MessageLookupByLibrary.simpleMessage("Enter Amount"),
         "enter_fullname":
             MessageLookupByLibrary.simpleMessage("Enter your full name"),
         "enter_sms": MessageLookupByLibrary.simpleMessage(
@@ -158,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "fill_all_fields": MessageLookupByLibrary.simpleMessage(
             "Please fill in all the fields"),
+        "fill_price": MessageLookupByLibrary.simpleMessage("Top-Up Amount"),
+        "filled": MessageLookupByLibrary.simpleMessage("Filled"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "finished": MessageLookupByLibrary.simpleMessage("Finished"),
         "fio": MessageLookupByLibrary.simpleMessage("Full Name"),
@@ -209,6 +213,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "map_not_found":
             MessageLookupByLibrary.simpleMessage("Map application not found."),
+        "minimum_amount_error": MessageLookupByLibrary.simpleMessage(
+            "The minimum amount must be 1000 UZS"),
+        "minimum_amount_hint": MessageLookupByLibrary.simpleMessage(
+            "The minimum payment amount is 1000 UZS"),
         "my_address": MessageLookupByLibrary.simpleMessage("My addresses"),
         "my_self": MessageLookupByLibrary.simpleMessage("For myself"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -224,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No current orders"),
         "no_doctor_types_found":
             MessageLookupByLibrary.simpleMessage("No doctor types found"),
+        "no_home_visit_time": MessageLookupByLibrary.simpleMessage(
+            "No available time slots for home visit on this day"),
         "no_internet":
             MessageLookupByLibrary.simpleMessage("Internet connection is poor"),
         "no_notification":
@@ -236,6 +246,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Services Not Available Yet"),
         "no_services_description": MessageLookupByLibrary.simpleMessage(
             "Our services are not yet available in this area. We are working hard to expand our coverage. Please check back later."),
+        "no_telemedicine_time": MessageLookupByLibrary.simpleMessage(
+            "No available time slots for telemedicine on this day"),
+        "not_payment_history": MessageLookupByLibrary.simpleMessage(
+            "Payment history is not available."),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notification_settings":
             MessageLookupByLibrary.simpleMessage("Notification settings"),
@@ -259,6 +273,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "our_service": MessageLookupByLibrary.simpleMessage("Our services"),
         "patient_medical_card":
             MessageLookupByLibrary.simpleMessage("Patient Medical Card"),
+        "payme": MessageLookupByLibrary.simpleMessage("PayMe"),
+        "payme_with_fill":
+            MessageLookupByLibrary.simpleMessage("Top-Up via PayMe"),
         "payment_other": MessageLookupByLibrary.simpleMessage(
             "Currently, you can only pay in cash. Other payment types will be added soon"),
         "payment_type": MessageLookupByLibrary.simpleMessage("Payment type"),
@@ -273,6 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "photo_error":
             MessageLookupByLibrary.simpleMessage("Error uploading photo"),
         "photos": MessageLookupByLibrary.simpleMessage("Photos"),
+        "please_amount":
+            MessageLookupByLibrary.simpleMessage("Please enter the amount"),
         "please_date":
             MessageLookupByLibrary.simpleMessage("Please select a birth date"),
         "please_fullname":
@@ -390,6 +409,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "video_chat": MessageLookupByLibrary.simpleMessage("Video Chat"),
         "waitingForData":
             MessageLookupByLibrary.simpleMessage("Waiting for data..."),
+        "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
+        "wallet_filling":
+            MessageLookupByLibrary.simpleMessage("Account Top-Up"),
         "work_experience":
             MessageLookupByLibrary.simpleMessage("Work experience"),
         "year": MessageLookupByLibrary.simpleMessage("year"),

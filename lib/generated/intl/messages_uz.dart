@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "badCertificate": MessageLookupByLibrary.simpleMessage(
             "Xavfsizlik sertifikatida muammo yuzaga keldi. Bu server yoki internet ulanishi bilan bog\'liq bo\'lishi mumkin. Iltimos, internetni tekshiring yoki boshqa tarmoqni sinab ko\'ring."),
+        "balance_fill":
+            MessageLookupByLibrary.simpleMessage("Balansni to\'ldirish"),
         "birthday": MessageLookupByLibrary.simpleMessage("Tug\'ilgan sana"),
         "callCenter": MessageLookupByLibrary.simpleMessage("Call-centr"),
         "call_help_center": MessageLookupByLibrary.simpleMessage(
@@ -139,6 +141,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Video suhbatni tugatish"),
         "endText": MessageLookupByLibrary.simpleMessage("Tugatish"),
         "english": MessageLookupByLibrary.simpleMessage("Ingliz"),
+        "enter_amount":
+            MessageLookupByLibrary.simpleMessage("So\'mmani kiriting"),
         "enter_fullname":
             MessageLookupByLibrary.simpleMessage("To\'liq ismingizni kiriting"),
         "enter_sms": MessageLookupByLibrary.simpleMessage(
@@ -165,6 +169,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "female": MessageLookupByLibrary.simpleMessage("Ayol"),
         "fill_all_fields": MessageLookupByLibrary.simpleMessage(
             "Barcha maydonlarni to\'ldiring"),
+        "fill_price":
+            MessageLookupByLibrary.simpleMessage("So\'mma to\'ldirish"),
+        "filled": MessageLookupByLibrary.simpleMessage("To\'ldirilgan"),
         "finish": MessageLookupByLibrary.simpleMessage("Tugatish"),
         "finished": MessageLookupByLibrary.simpleMessage("Yakunlandi"),
         "fio": MessageLookupByLibrary.simpleMessage("FIO"),
@@ -218,6 +225,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Erkak"),
         "map_not_found":
             MessageLookupByLibrary.simpleMessage("Xarita ilovasi topilmadi."),
+        "minimum_amount_error": MessageLookupByLibrary.simpleMessage(
+            "Minimum so\'mma 1000 so\'m bo\'lishi kerak"),
+        "minimum_amount_hint": MessageLookupByLibrary.simpleMessage(
+            "Minimum to\'lov so\'mmasi 1000 so\'m"),
         "my_address":
             MessageLookupByLibrary.simpleMessage("Mening manzillarim"),
         "my_self": MessageLookupByLibrary.simpleMessage("O\'zim uchun"),
@@ -234,6 +245,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hozircha buyurtmalar yo\'q"),
         "no_doctor_types_found":
             MessageLookupByLibrary.simpleMessage("Shifokor turlari topilmadi"),
+        "no_home_visit_time": MessageLookupByLibrary.simpleMessage(
+            "Bu kunda uyga chaqirish uchun vaqtlar mavjud emas"),
         "no_internet":
             MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
         "no_notification": MessageLookupByLibrary.simpleMessage(
@@ -246,6 +259,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xizmatlar hali mavjud emas"),
         "no_services_description": MessageLookupByLibrary.simpleMessage(
             "Bizning xizmatlarimiz hali bu hududda ishga tushmagan. Xizmatlar doirasini kengaytirish ustida faol ish olib boryapmiz. Iltimos, keyinroq tekshiring."),
+        "no_telemedicine_time": MessageLookupByLibrary.simpleMessage(
+            "Bu kunda telemeditsina uchun vaqtlar mavjud emas"),
+        "not_payment_history":
+            MessageLookupByLibrary.simpleMessage("To\'lov tarixi mavjud emas"),
         "notification":
             MessageLookupByLibrary.simpleMessage("Bildirishnomalar"),
         "notification_settings":
@@ -276,6 +293,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bizning xizmatlarimiz"),
         "patient_medical_card":
             MessageLookupByLibrary.simpleMessage("Bemor tibbiy varaqasi"),
+        "payme": MessageLookupByLibrary.simpleMessage("PayMe"),
+        "payme_with_fill":
+            MessageLookupByLibrary.simpleMessage("PayMe orqali to\'ldirish"),
         "payment_other": MessageLookupByLibrary.simpleMessage(
             "Hozirda faqat naqd pul orqali to\'lash mumkin. Keyinchalik boshqa to\'lov turlari ham qo\'shiladi"),
         "payment_type": MessageLookupByLibrary.simpleMessage("To\'lov turi"),
@@ -290,6 +310,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "photo_error":
             MessageLookupByLibrary.simpleMessage("Rasm yuklashda xatolik"),
         "photos": MessageLookupByLibrary.simpleMessage("Rasmlar"),
+        "please_amount":
+            MessageLookupByLibrary.simpleMessage("Iltimos, so\'mmani kiriting"),
         "please_date": MessageLookupByLibrary.simpleMessage(
             "Iltimos, tug\'ilgan sanangizni tanlang"),
         "please_fullname": MessageLookupByLibrary.simpleMessage(
@@ -405,6 +427,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "video_chat": MessageLookupByLibrary.simpleMessage("Video suhbat"),
         "waitingForData":
             MessageLookupByLibrary.simpleMessage("Ma\'lumotlar kutilmoqda..."),
+        "wallet": MessageLookupByLibrary.simpleMessage("Hamyon"),
+        "wallet_filling":
+            MessageLookupByLibrary.simpleMessage("Hisobni to\'ldirish"),
         "work_experience":
             MessageLookupByLibrary.simpleMessage("Ish tajribasi"),
         "year": MessageLookupByLibrary.simpleMessage("yil"),

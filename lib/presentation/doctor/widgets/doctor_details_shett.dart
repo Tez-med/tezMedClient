@@ -18,12 +18,13 @@ class DoctorDetailSheet extends StatefulWidget {
   final String type;
   final String price;
 
-  const DoctorDetailSheet(
-      {super.key,
-      required this.id,
-      required this.online,
-      required this.type,
-      required this.price});
+  const DoctorDetailSheet({
+    super.key,
+    required this.id,
+    required this.online,
+    required this.type,
+    required this.price,
+  });
 
   @override
   State<DoctorDetailSheet> createState() => _DoctorDetailSheetState();
@@ -31,6 +32,7 @@ class DoctorDetailSheet extends StatefulWidget {
 
 class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
   String selectedDateId = "";
+
   @override
   void initState() {
     context.read<DoctorDetailsBloc>().add(GetIdDoctor(widget.id));
@@ -59,7 +61,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                   context.read<DoctorDetailsBloc>().add(GetIdDoctor(widget.id)),
             );
           }
-          return Center();
+          return const Center();
         }
         if (state is DoctorDetailsLoading) {
           return DoctorDetailsSkeleton();
@@ -68,9 +70,8 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
           final data = state.data;
           return SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Column(
-                spacing: 15,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomCachedImage(
@@ -79,10 +80,12 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                     width: 100,
                     height: 100,
                   ),
+                  const SizedBox(height: 15),
                   Column(
                     children: [
                       Text(
                         data.fullName,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 22,
@@ -93,13 +96,14 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                       ),
                       Text(
                         widget.type,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: AppColor.greyTextColor,
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 12),
@@ -129,20 +133,20 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        S.of(context).choose_date_time,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          height: 16.94 / 14,
-                          letterSpacing: 0.2,
-                        ),
+                  const SizedBox(height: 15),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      S.of(context).choose_date_time,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        height: 16.94 / 14,
+                        letterSpacing: 0.2,
                       ),
-                    ],
+                    ),
                   ),
+                  const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -157,7 +161,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     width: double.infinity,
                     color: Colors.transparent,
                     child: Padding(
@@ -173,13 +177,13 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                                     price: widget.price));
                               },
                         style: ElevatedButton.styleFrom(
-                          fixedSize: Size.fromHeight(50),
+                          fixedSize: const Size.fromHeight(50),
                           backgroundColor: AppColor.primaryColor,
                           elevation: 0,
                         ),
                         child: Text(
                           S.of(context).sign_up,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
@@ -193,7 +197,7 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
             ),
           );
         }
-        return Center();
+        return const Center();
       },
     );
   }
@@ -202,10 +206,10 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
       {required Widget icon, required String title, required String value}) {
     return Expanded(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xFFF5F7FB),
@@ -213,26 +217,32 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
             child: icon,
           ),
           const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: AppColor.greyTextColor,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.greyTextColor,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF1A1C1E),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF1A1C1E),
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

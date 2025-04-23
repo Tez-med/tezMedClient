@@ -6,7 +6,6 @@ import 'package:tez_med_client/data/category/model/category_model.dart';
 import 'package:tez_med_client/data/local_storage/local_storage_service.dart';
 import 'package:tez_med_client/domain/dio_client/repository/dio_client_repository.dart';
 import '../../../core/error/error_handler.dart';
-import 'dart:developer' as developer;
 
 abstract class CategorySource {
   Future<Either<Failure, List<CategoryModel>>> getCategory(
@@ -22,7 +21,6 @@ class CategorySourceImpl implements CategorySource {
   Future<Either<Failure, List<CategoryModel>>> getCategory(
       {String? districtId}) async {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
-
     try {
       // URL ni district_id bor-yo'qligiga qarab shakllantiramiz
       final url = districtId != null

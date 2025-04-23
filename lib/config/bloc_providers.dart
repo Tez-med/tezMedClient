@@ -2,11 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/bloc/language/language_bloc.dart';
 import 'package:tez_med_client/data/banner/source/get_banner_source.dart';
 import 'package:tez_med_client/data/species/source/get_nurse_type_source.dart';
+import 'package:tez_med_client/domain/clinic/usecase/clinic_usecase.dart';
 import 'package:tez_med_client/domain/comments/usecase/post_comment_usecase.dart';
 import 'package:tez_med_client/domain/disease/usecase/get_diseases_usecase.dart';
 import 'package:tez_med_client/domain/doctor/useacase/doctor_usecase.dart';
 import 'package:tez_med_client/domain/my_address/usecase/get_my_address_usecase.dart';
 import 'package:tez_med_client/domain/notification/repositories/notification_repository.dart';
+import 'package:tez_med_client/domain/payment/usecase/post_payment_usecase.dart';
+import 'package:tez_med_client/domain/payment_history/usecase/get_payment_history_usecase.dart';
 import 'package:tez_med_client/domain/profile_update/usecase/profile_update_usecase.dart';
 import 'package:tez_med_client/domain/promocode/usecase/promocode_usecase.dart';
 import 'package:tez_med_client/domain/region/usecase/get_region_usecase.dart';
@@ -28,6 +31,7 @@ import 'package:tez_med_client/presentation/auth/bloc/verify_user/verify_otp_blo
 import 'package:tez_med_client/presentation/banner/bloc/banner_bloc.dart';
 import 'package:tez_med_client/presentation/category/bloc/nurse_type/nurse_type_bloc.dart';
 import 'package:tez_med_client/presentation/category/bloc/species_get_bloc/species_get_by_id_bloc.dart';
+import 'package:tez_med_client/presentation/clinic/bloc/clinic_bloc.dart';
 import 'package:tez_med_client/presentation/disease/bloc/disease_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_details/doctor_details_bloc.dart';
 import 'package:tez_med_client/presentation/doctor/bloc/doctor_get_list/doctor_bloc.dart';
@@ -46,6 +50,8 @@ import 'package:tez_med_client/presentation/profile/bloc/profile_bloc/profile_bl
 import 'package:tez_med_client/presentation/profile/bloc/profile_update/profile_update_bloc.dart';
 import 'package:tez_med_client/presentation/request/bloc/my_address/my_address_bloc.dart';
 import 'package:tez_med_client/presentation/request/bloc/request/request_bloc.dart';
+import 'package:tez_med_client/presentation/wallet/bloc/payment/payment_bloc.dart';
+import 'package:tez_med_client/presentation/wallet/bloc/payment_history/payment_history_bloc.dart';
 
 import '../domain/upload_file/usecase/upload_file_usecase.dart';
 import '../presentation/add_user/bloc/region/region_bloc.dart';
@@ -143,6 +149,16 @@ class AppBlocProviders {
         ),
         BlocProvider(
           create: (context) => DiseaseBloc(getIt<GetDiseasesUseCase>()),
+        ),
+        BlocProvider(
+          create: (context) => ClinicBloc(getIt<ClinicUsecase>()),
+        ),
+        BlocProvider(
+          create: (context) => PaymentBloc(getIt<PostPaymentUsecase>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              PaymentHistoryBloc(getIt<GetPaymentHistoryUsecase>()),
         ),
       ];
 }
