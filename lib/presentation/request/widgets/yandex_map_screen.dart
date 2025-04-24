@@ -218,13 +218,6 @@ class _YandexMapScreenState extends State<YandexMapScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.08),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
                   ),
                   child: TextField(
                     onTap: () {
@@ -240,26 +233,35 @@ class _YandexMapScreenState extends State<YandexMapScreen> {
                     },
                     controller: _searchController,
                     decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
                       hintText: S.of(context).search_address,
                       hintStyle: TextStyle(
-                        color: Colors.grey.shade400,
+                        color: Colors.grey.shade800,
                         fontSize: 15,
                       ),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: Colors.grey.shade600,
+                        color: Colors.grey.shade800,
                         size: 20,
                       ),
-                      border: InputBorder.none,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16,
-                        vertical: 14,
+                        vertical: 10,
                       ),
                       suffixIcon: _searchController.text.isNotEmpty
                           ? IconButton(
                               icon: Icon(
                                 Icons.clear,
-                                color: Colors.grey.shade600,
+                                color: Colors.grey.shade800,
                                 size: 20,
                               ),
                               onPressed: () {
@@ -452,11 +454,8 @@ class _YandexMapScreenState extends State<YandexMapScreen> {
   Future<void> _searchForLocation(String query) async {
     setState(() => _isLoading = true);
     _searchResults = await _searchService.searchByText(
-        query,
-        const BoundingBox(
-          southWest: Point(latitude: 41.2, longitude: 69.1),
-          northEast: Point(latitude: 41.4, longitude: 69.3),
-        ));
+      query,
+    );
     setState(() => _isLoading = false);
   }
 

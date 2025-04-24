@@ -226,6 +226,15 @@ class NotificationRepositoryImpl implements NotificationRepository {
         defaultPresentAlert: true,
         defaultPresentBadge: true,
         defaultPresentBanner: true,
+        notificationCategories: [
+          DarwinNotificationCategory(
+            'all_notifications',
+            actions: [],
+            options: {
+              DarwinNotificationCategoryOption.allowAnnouncement,
+            },
+          ),
+        ],
       ),
     );
 

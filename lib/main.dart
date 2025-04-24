@@ -64,7 +64,8 @@ class MyApp extends StatelessWidget {
               deepLinkBuilder: (platformDeepLink) {
                 final uri = platformDeepLink.uri;
                 developer.log('Deeplink qabul qilindi: $uri', name: "DeepLink");
-                final url = Uri(path: uri.path, queryParameters: uri.queryParameters);
+                final url =
+                    Uri(path: uri.path, queryParameters: uri.queryParameters);
                 url.queryParameters.forEach((key, value) {
                   developer.log('$key: $value', name: "DeepLink");
                 });

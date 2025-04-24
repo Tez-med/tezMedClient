@@ -31,6 +31,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/camera.svg
   SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
 
+  /// File path: assets/icons/clinic_map.png
+  AssetGenImage get clinicMap => const AssetGenImage('assets/icons/clinic_map.png');
+
   /// File path: assets/icons/connecting.svg
   SvgGenImage get connecting => const SvgGenImage('assets/icons/connecting.svg');
 
@@ -109,6 +112,7 @@ class $AssetsIconsGen {
         call,
         came,
         camera,
+        clinicMap,
         connecting,
         doctorStar,
         en,

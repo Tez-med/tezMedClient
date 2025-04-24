@@ -344,6 +344,9 @@ class _BadgeWrapper extends StatelessWidget {
                 width: iconSize,
                 height: iconSize,
                 fit: BoxFit.cover,
+                colorFilter: isSelected
+                    ? ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn)
+                    : ColorFilter.mode(Colors.black, BlendMode.srcIn),
               ),
             );
           },

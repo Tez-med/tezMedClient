@@ -198,6 +198,7 @@ class _ClinicDetailViewState extends State<ClinicDetailView>
           ListView(
             controller: _scrollController,
             padding: EdgeInsets.zero,
+            physics: const ClampingScrollPhysics(),
             children: [
               const SizedBox(height: 215),
               Container(

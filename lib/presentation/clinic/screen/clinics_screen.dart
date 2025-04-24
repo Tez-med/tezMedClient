@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/widgets/error_display_widget.dart';
+import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 import 'package:tez_med_client/presentation/clinic/bloc/clinic_bloc.dart';
 import 'package:tez_med_client/presentation/clinic/widgets/clinic_loaded_widget.dart';
@@ -56,7 +56,7 @@ class _ClinicsScreenState extends State<ClinicsScreen>
             onPressed: () {
               context.router.push(const ClinicsMapRoute());
             },
-            icon: const Icon(FontAwesomeIcons.map),
+            icon: Assets.icons.clinicMap.image(),
           ),
         ],
       ),

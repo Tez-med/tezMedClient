@@ -10,6 +10,13 @@ import 'package:url_launcher/url_launcher.dart';
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
 
+  // Ilova linklar va ularning deep link versiyalari
+  static final Map<String, String> _appDeepLinks = {
+    'https://youtube.com/@TezMed': 'youtube://channel/TezMed',
+    'https://instagram.com/tezmed_uz': 'instagram://user?username=tezmed_uz',
+    'https://t.me/tezmed_uz': 'tg://resolve?domain=tezmed_uz',
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +26,8 @@ class SupportScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics:
+            const ClampingScrollPhysics(), // iOS bounce effektini yo'q qiladi
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -33,46 +42,61 @@ class SupportScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Column(
-                children: [
-                  _buildAnimatedContactItem(
-                    icon: FontAwesomeIcons.youtube,
-                    title: S.of(context).youtube,
-                    subtitle: S.of(context).videoGuides,
-                    color: const Color(0xFFFF0000),
-                    onTap: () => _launchUrl('https://youtube.com/@TezMed'),
-                    delay: 0,
-                  ),
-                  _buildAnimatedContactItem(
-                    icon: FontAwesomeIcons.instagram,
-                    title: S.of(context).instagram,
-                    subtitle: S.of(context).latestUpdates,
-                    color: const Color(0xFFE1306C),
-                    onTap: () => _launchUrl('https://instagram.com/tezmed_uz'),
-                    delay: 100,
-                  ),
-                  _buildAnimatedContactItem(
-                    icon: FontAwesomeIcons.telegram,
-                    title: S.of(context).telegram,
-                    subtitle: S.of(context).chatSupport,
-                    color: const Color(0xFF0088CC),
-                    onTap: () => _launchUrl('https://t.me/tezmed_uz'),
-                    delay: 200,
-                  ),
-                  _buildAnimatedContactItem(
-                    icon: Icons.phone_in_talk_rounded,
-                    title: S.of(context).callCenter,
-                    subtitle: '+998 55 514 00 03',
-                    color: const Color(0xFF4CAF50),
-                    onTap: () => _launchUrl('tel:+998555140003'),
-                    delay: 300,
-                  ),
-                ],
-              ),
+              _buildContactsList(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildContactsList(BuildContext context) {
+    final contactItems = [
+      ContactItem(
+        icon: FontAwesomeIcons.youtube,
+        title: S.of(context).youtube,
+        subtitle: S.of(context).videoGuides,
+        color: const Color(0xFFFF0000),
+        url: 'https://youtube.com/@TezMed',
+      ),
+      ContactItem(
+        icon: FontAwesomeIcons.instagram,
+        title: S.of(context).instagram,
+        subtitle: S.of(context).latestUpdates,
+        color: const Color(0xFFE1306C),
+        url: 'https://instagram.com/tezmed_uz',
+      ),
+      ContactItem(
+        icon: FontAwesomeIcons.telegram,
+        title: S.of(context).telegram,
+        subtitle: S.of(context).chatSupport,
+        color: const Color(0xFF0088CC),
+        url: 'https://t.me/tezmed_uz',
+      ),
+      ContactItem(
+        icon: Icons.phone_in_talk_rounded,
+        title: S.of(context).callCenter,
+        subtitle: '+998 55 514 00 03',
+        color: const Color(0xFF4CAF50),
+        url: 'tel:+998555140003',
+      ),
+    ];
+
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: contactItems.length,
+      itemBuilder: (context, index) {
+        final item = contactItems[index];
+        return _buildAnimatedContactItem(
+          icon: item.icon,
+          title: item.title,
+          subtitle: item.subtitle,
+          color: item.color,
+          onTap: () => _launchUrl(item.url),
+          delay: index * 100,
+        );
+      },
     );
   }
 
@@ -98,10 +122,11 @@ class SupportScreen extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Card(
           color: Colors.transparent,
           margin: EdgeInsets.zero,
+          elevation: 0,
           child: InkWell(
             onTap: onTap,
             borderRadius: BorderRadius.circular(16),
@@ -171,49 +196,84 @@ class SupportScreen extends StatelessWidget {
 
   Future<void> _launchUrl(String url) async {
     try {
-      // Telegram URL'ni aniqlaymiz va maxsus ishlaymiz
-      if (url.contains('t.me') || url.contains('telegram.me')) {
-        final String telegramAppUrl = url.replaceFirst('https://', 'tg://');
-        final Uri telegramUri = Uri.parse(telegramAppUrl);
+      // 1. Avval deep link versiyasini tekshirish
+      final String? deepLink = _getDeepLink(url);
 
-        if (await canLaunchUrl(telegramUri)) {
-          await launchUrl(telegramUri, mode: LaunchMode.externalApplication);
+      if (deepLink != null) {
+        final deepLinkUri = Uri.parse(deepLink);
+        // Ilova o'rnatilgan bo'lsa, to'g'ridan-to'g'ri ochish
+        if (await canLaunchUrl(deepLinkUri)) {
+          await launchUrl(deepLinkUri, mode: LaunchMode.externalApplication);
           return;
         }
       }
 
-      final Uri uri = Uri.parse(url);
+      // 2. Agar deep link bilan ochib bo'lmasa, oddiy URL bilan ochish
+      final uri = Uri.parse(url);
+
+      // Telefon, SMS, email va tashqi ilovalar uchun LaunchMode.externalApplication
       LaunchMode mode;
-
-      if (url.startsWith('tel:') ||
-          url.startsWith('sms:') ||
-          url.startsWith('mailto:') ||
-          url.startsWith('https://t.me/')) {
-        mode = LaunchMode.externalApplication; // Tashqi ilova bilan ochish
+      if (_isExternalAppUrl(url)) {
+        mode = LaunchMode.externalApplication;
       } else {
-        mode = LaunchMode.inAppWebView; // In-app view
+        // Web saytlar uchun LaunchMode.inAppWebView
+        mode = LaunchMode.inAppWebView;
       }
 
-      final bool canLaunch = await canLaunchUrl(uri);
-
-      if (canLaunch) {
-        await launchUrl(uri, mode: mode);
-      } else {
-        if (mode == LaunchMode.inAppWebView) {
-          await launchUrl(uri, mode: LaunchMode.externalApplication);
-        } else {
-          await launchUrl(uri, mode: LaunchMode.platformDefault);
-        }
-      }
+      await launchUrl(uri, mode: mode);
     } catch (e) {
       debugPrint('URL ochishda xatolik: $e');
 
+      // Fallback - har qanday holatda platformaga mos ravishda ochish
       try {
-        final Uri uri = Uri.parse(url);
+        final uri = Uri.parse(url);
         await launchUrl(uri, mode: LaunchMode.platformDefault);
       } catch (e2) {
         debugPrint('URL ochilmadi: $url, Xatolik: $e2');
       }
     }
   }
+
+  // URL uchun tegishli deep link ni qaytaradi
+  String? _getDeepLink(String url) {
+    // Social media ilovalar uchun deep link
+    if (_appDeepLinks.containsKey(url)) {
+      return _appDeepLinks[url];
+    }
+
+    // Telefon raqam uchun
+    if (url.startsWith('tel:')) {
+      return url;
+    }
+
+    return null;
+  }
+
+  // URL tashqi ilovada ochilishi kerak yoki yo'qligini aniqlaydi
+  bool _isExternalAppUrl(String url) {
+    return url.startsWith('tel:') ||
+        url.startsWith('sms:') ||
+        url.startsWith('mailto:') ||
+        url.contains('youtube.com') ||
+        url.contains('instagram.com') ||
+        url.contains('t.me') ||
+        url.contains('telegram.me');
+  }
+}
+
+// ContactItem klassi - kod tozaligi uchun
+class ContactItem {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final String url;
+
+  ContactItem({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.url,
+  });
 }

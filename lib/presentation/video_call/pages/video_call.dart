@@ -49,6 +49,7 @@ class _VideoCallScreenState extends State<VideoCallScreen>
 
   @override
   Widget build(BuildContext context) {
+    print(widget.url);
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
@@ -105,19 +106,33 @@ class _VideoCallScreenState extends State<VideoCallScreen>
               child: Stack(
                 children: [
                   InAppWebView(
+                    onReceivedServerTrustAuthRequest:
+                        (controller, challenge) async {
+                      return ServerTrustAuthResponse(
+                          action: ServerTrustAuthResponseAction.PROCEED);
+                    },
                     initialUrlRequest: URLRequest(url: WebUri(widget.url)),
                     initialSettings: InAppWebViewSettings(
-                      mediaPlaybackRequiresUserGesture: false,
-                      javaScriptEnabled: true,
-                      useShouldOverrideUrlLoading: true,
-                    ),
+                        mediaPlaybackRequiresUserGesture: false,
+                        javaScriptEnabled: true,
+                        useShouldOverrideUrlLoading: true,
+                        allowsInlineMediaPlayback: true,
+                        iframeAllow: "camera; microphone",
+                        iframeAllowFullscreen: true),
                     onWebViewCreated: (InAppWebViewController controller) {
                       webViewController = controller;
+                    },
+                   
+                    onConsoleMessage: (controller, consoleMessage) {
+                      debugPrint('Console: ${consoleMessage.message}');
                     },
                     onLoadStart: (controller, url) async {
                       setState(() {
                         isLoading = true;
                       });
+                    },
+                    shouldOverrideUrlLoading: (controller, action) async {
+                      return NavigationActionPolicy.ALLOW;
                     },
                     onLoadStop: (controller, url) {
                       setState(() {

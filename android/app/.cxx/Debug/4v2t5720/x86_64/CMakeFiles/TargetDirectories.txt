@@ -1,0 +1,2 @@
+/Users/airm2/Tez Med/tezMedClient/android/app/.cxx/Debug/4v2t5720/x86_64/CMakeFiles/edit_cache.dir
+/Users/airm2/Tez Med/tezMedClient/android/app/.cxx/Debug/4v2t5720/x86_64/CMakeFiles/rebuild_cache.dir

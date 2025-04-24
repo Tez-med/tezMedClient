@@ -120,22 +120,6 @@ class ClinicsMapController {
     }
   }
 
-  /// Foydalanuvchi joylashuvini xaritada yangilash
-  double calculateLocationIconScale(double zoomLevel) {
-    // Zoom level ga qarab optimal o'lchamni hisoblash
-    if (zoomLevel >= 16) {
-      return 0.3; // Juda yaqin - katta
-    } else if (zoomLevel >= 14) {
-      return 0.25; // O'rtacha
-    } else if (zoomLevel >= 12) {
-      return 0.2; // Kichik
-    } else if (zoomLevel >= 10) {
-      return 0.15; // Juda kichik
-    } else {
-      return 0.1; // Minimal o'lcham
-    }
-  }
-
   /// Foydalanuvchi joylashuvini xaritada yangilash (adaptive scaling bilan)
   Future<void> updateUserLocationOnMap() async {
     if (currentPosition == null) {
@@ -146,7 +130,6 @@ class ClinicsMapController {
 
     try {
       // Joriy zoom levelni olish
-      final currentZoom = (await mapController.getCameraPosition()).zoom;
 
       // Foydalanuvchi lokatsiyasi marker'i mavjud bo'lsa o'chiramiz
       final userLocationIndex = mapObjects
@@ -172,7 +155,7 @@ class ClinicsMapController {
             image: BitmapDescriptor.fromAssetImage(
               Assets.images.location.path,
             ),
-            scale: calculateLocationIconScale(currentZoom),
+            scale: .2,
           ),
         ),
       );
@@ -342,16 +325,8 @@ class ClinicsMapController {
 
     if (placemarks.isNotEmpty) {
       // Joriy zoom levelni olamiz
-      final currentZoom = (await mapController.getCameraPosition()).zoom;
 
       // Zoom levelga mos radius hisoblaymiz
-      double calculateRadius(double zoom) {
-        if (zoom <= 5) return 400;
-        if (zoom <= 10) return 300;
-        if (zoom <= 13) return 200;
-        if (zoom <= 15) return 100;
-        return 30;
-      }
 
       final clusterizedCollection = ClusterizedPlacemarkCollection(
         mapId: const MapObjectId('clinics_cluster'),

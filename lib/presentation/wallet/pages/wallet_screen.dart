@@ -71,7 +71,6 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.buttonBackColor,
       appBar: _buildAppBar(context),
       body: _buildBody(context),
     );
@@ -79,20 +78,8 @@ class _WalletScreenState extends State<WalletScreen> {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      elevation: 1,
-      centerTitle: true,
-      surfaceTintColor: Colors.white,
-      shadowColor: AppColor.buttonBackColor,
-      backgroundColor: Colors.white,
-      leading: IconButton(
-        onPressed: () => context.router.maybePop(),
-        icon: Icon(Icons.arrow_back_ios_new_rounded,
-            color: AppColor.primaryColor),
-      ),
       title: Text(
         S.of(context).wallet,
-        style: AppTextstyle.nunitoBold
-            .copyWith(fontSize: 22, color: Colors.black87),
       ),
     );
   }

@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>uz.tezmed.client</string>
+	<string>uz.client.tezmed</string>
 	<key>PROJECT_ID</key>
 	<string>tez-med-client</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:315615038709:ios:2c1b5978fda5e1233049bc</string>
+	<string>1:315615038709:ios:7f7c538decba92043049bc</string>
 </dict>
 </plist>

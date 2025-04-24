@@ -46,7 +46,6 @@ class _InputBalanceState extends State<InputBalance> {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          backgroundColor: AppColor.buttonBackColor,
           appBar: _buildAppBar(context),
           body: BlocListener<PaymentBloc, PaymentState>(
             listener: _handlePaymentState,
@@ -94,24 +93,8 @@ class _InputBalanceState extends State<InputBalance> {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      elevation: 0,
       title: Text(
         S.of(context).balance_fill,
-        style: AppTextstyle.nunitoBold
-            .copyWith(fontSize: 20, color: Colors.black87),
-      ),
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      leading: IconButton(
-        onPressed: () {
-          context.read<ProfileBloc>().add(GetProfileData());
-
-          context.router.maybePop();
-        },
-        icon: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: AppColor.primaryColor,
-        ),
       ),
     );
   }

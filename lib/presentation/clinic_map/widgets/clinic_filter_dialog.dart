@@ -50,12 +50,14 @@ class _ClinicFilterDialogState extends State<ClinicFilterDialog> {
                   ),
                 ),
                 // Reset button
-                IconButton(
-                  onPressed: _resetFilter,
-                  icon: const Icon(Icons.refresh, size: 20),
-                  tooltip: S.of(context).reset,
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
+                Expanded(
+                  child: IconButton(
+                    onPressed: _resetFilter,
+                    icon: const Icon(Icons.refresh, size: 20),
+                    tooltip: S.of(context).reset,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
                 ),
               ],
             ),

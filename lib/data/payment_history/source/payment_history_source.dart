@@ -22,7 +22,7 @@ class PaymentHistorySourceImpl implements PaymentHistorySource {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
     try {
       final response = await dioClientRepository
-          .getData('/payments?nurse_id=$id', token: token);
+          .getData('/payments?client_id=$id', token: token);
       final data = PaymentHistoryModel.fromJson(response.data);
       return Right(data);
     } on DioException catch (e) {
