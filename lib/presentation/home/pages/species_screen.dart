@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
 import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
-import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
-import 'package:tez_med_client/core/widgets/server_connection.dart';
+import 'package:tez_med_client/core/widgets/error_display_widget.dart';
 import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/presentation/home/bloc/category_bloc/category_bloc.dart';
 import 'package:tez_med_client/presentation/home/bloc/species_bloc/species_bloc.dart';
@@ -67,7 +66,13 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
               child: BlocBuilder<SpeciesBloc, SpeciesState>(
                 builder: (context, speciesState) {
                   if (speciesState is SpeciesError) {
-                    return _handleCategoryError(speciesState);
+                    return ErrorDisplayWidget(
+                      errorCode: speciesState.error.code,
+                      onRetry: () {
+                        _locationService.getCurrentLocation();
+                        context.read<SpeciesBloc>().add(GetSpecies());
+                      },
+                    );
                   }
                   return _handleSpeciesState(speciesState);
                 },
@@ -79,56 +84,16 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
     );
   }
 
-  Widget _handleCategoryError(SpeciesError state) {
-    if (state.error.code == 400) {
-      return NoInternetConnectionWidget(
-        onRetry: () {
-          _locationService.getCurrentLocation();
-
-          context.read<SpeciesBloc>().add(GetSpecies());
-        },
-      );
-    } else if (state.error.code == 500) {
-      return ServerConnection(
-        onRetry: () {
-          _locationService.getCurrentLocation();
-          context.read<SpeciesBloc>().add(GetSpecies());
-        },
-      );
-    }
-    return Center(
-      child: Text(
-        S.of(context).unexpected_error,
-        style: AppTextstyle.nunitoBold.copyWith(fontSize: 20),
-      ),
-    );
-  }
-
   Widget _handleSpeciesState(SpeciesState state) {
     if (state is SpeciesLoading) {
       return const SpeciesLoadingWidget();
     } else if (state is SpeciesError) {
-      if (state.error.code == 400) {
-        return NoInternetConnectionWidget(
-          onRetry: () {
-            _locationService.getCurrentLocation();
-            context.read<CategoryBloc>().add(GetCategory());
-          },
-        );
-      } else if (state.error.code == 500) {
-        return ServerConnection(
-          onRetry: () {
-            _locationService.getCurrentLocation();
-
-            context.read<CategoryBloc>().add(GetCategory());
-          },
-        );
-      }
-      return Center(
-        child: Text(
-          S.of(context).unexpected_error,
-          style: AppTextstyle.nunitoBold.copyWith(fontSize: 20),
-        ),
+      return ErrorDisplayWidget(
+        errorCode: state.error.code,
+        onRetry: () {
+          _locationService.getCurrentLocation();
+          context.read<CategoryBloc>().add(GetCategory());
+        },
       );
     } else if (state is SpeciesLoaded) {
       final speciesList = state.speciesModel.speciess;

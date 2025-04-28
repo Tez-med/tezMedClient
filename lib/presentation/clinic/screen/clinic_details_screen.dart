@@ -35,63 +35,60 @@ class _ClinicDetailsScreenState extends State<ClinicDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClinicBloc, ClinicState>(
-      buildWhen: (previous, current) {
-        return current is ClinicFullLoading ||
-            current is ClinicFullLoaded ||
-            current is ClinicFullError;
-      },
-      builder: (context, state) {
-        if (state is ClinicFullLoading) {
-          return Skeletonizer(
-              child: ClinicDetailView(
-                  clinic: Clinic(
-                      id: "",
-                      districtId: "",
-                      regionId: "",
-                      countryId: "",
-                      nameUz: "",
-                      nameRu: "",
-                      nameEn: "",
-                      longitude: "69.255",
-                      latitude: "41.255",
-                      description: "",
-                      phoneNumber: [],
-                      address: "",
-                      photo: [],
-                      instagramLink: "",
-                      tgLink: "",
-                      rating: 0,
-                      hours: [],
-                      amenities: []),
-                  mapController: mapController,
-                  onMapCreated: _onMapCreated));
-        } else if (state is ClinicFullLoaded) {
-          return ClinicDetailView(
-            clinic: state.clinic,
-            mapController: mapController,
-            onMapCreated: _onMapCreated,
-          );
-        } else if (state is ClinicFullError) {
-          return ErrorDisplayWidget(
-            errorCode: state.message.code,
-            onRetry: () => context
-                .read<ClinicBloc>()
-                .add(GetFullClinicsEvent(widget.clinicId)),
-          );
-        }
+    return Scaffold(
+      body: BlocBuilder<ClinicBloc, ClinicState>(
+        buildWhen: (previous, current) {
+          return current is ClinicFullLoading ||
+              current is ClinicFullLoaded ||
+              current is ClinicFullError;
+        },
+        builder: (context, state) {
+          if (state is ClinicFullLoading) {
+            return Skeletonizer(
+                child: ClinicDetailView(
+                    clinic: Clinic(
+                        id: "",
+                        districtId: "",
+                        regionId: "",
+                        countryId: "",
+                        nameUz: "",
+                        nameRu: "",
+                        nameEn: "",
+                        longitude: "69.255",
+                        latitude: "41.255",
+                        description: "",
+                        phoneNumber: [],
+                        address: "",
+                        photo: [],
+                        instagramLink: "",
+                        tgLink: "",
+                        rating: 0,
+                        hours: [],
+                        amenities: []),
+                    mapController: mapController,
+                    onMapCreated: _onMapCreated));
+          } else if (state is ClinicFullLoaded) {
+            return ClinicDetailView(
+              clinic: state.clinic,
+              mapController: mapController,
+              onMapCreated: _onMapCreated,
+            );
+          } else if (state is ClinicFullError) {
+            return ErrorDisplayWidget(
+              errorCode: state.message.code,
+              onRetry: () => context
+                  .read<ClinicBloc>()
+                  .add(GetFullClinicsEvent(widget.clinicId)),
+            );
+          }
 
-        return const SizedBox();
-      },
+          return const SizedBox();
+        },
+      ),
     );
   }
 
- 
-
   void _onMapCreated(YandexMapController controller) {
     mapController = controller;
-    
   }
 }
-
-
