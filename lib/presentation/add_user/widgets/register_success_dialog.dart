@@ -10,6 +10,7 @@ import 'package:tez_med_client/domain/notification/repositories/notification_rep
 import 'package:tez_med_client/gen/assets.gen.dart';
 import 'package:tez_med_client/injection.dart';
 import 'package:tez_med_client/presentation/profile/bloc/profile_update/profile_update_bloc.dart';
+import 'dart:io';
 
 import '../../../generated/l10n.dart';
 
@@ -70,27 +71,46 @@ class _RegisterSuccessDialogState extends State<RegisterSuccessDialog> {
               ),
               onLoaded: (composition) {
                 Future.delayed(composition.duration, () async {
-                  // Store necessary data before popping
-                  final token =
-                      await getIt<NotificationRepository>().getFcmToken();
-                  final profileUpdateModel = ProfileUpdateModel(
-                    birthday: "",
-                    fullName: "",
-                    gender: "",
-                    latitude: "",
-                    longitude: "",
-                    phoneNumber: "",
-                    photo: "",
-                    fcmToken: token!,
-                    updatedAt: DateTime.now().toString(),
-                  );
+                  try {
+                    // Platform-specific code for handling FCM token
+                    String? token;
+                    if (Platform.isIOS) {
+                      // iOS qurilmasida ehtiyotkorlik bilan token olish
+                      try {
+                        token =
+                            await getIt<NotificationRepository>().getFcmToken();
+                      } catch (e) {
+                        // Xato yuz berganda bo'sh token berish
+                        token = "";
+                        print("FCM token ololmadik: $e");
+                      }
+                    } else {
+                      // Android yoki boshqa qurilmalar uchun
+                      token =
+                          await getIt<NotificationRepository>().getFcmToken();
+                    }
 
-                  // Update profile before navigation changes
-                  _profileUpdateBloc.add(ProfileUpdate(profileUpdateModel));
+                    final profileUpdateModel = ProfileUpdateModel(
+                      birthday: "",
+                      fullName: "",
+                      gender: "",
+                      latitude: "",
+                      longitude: "",
+                      phoneNumber: "",
+                      photo: "",
+                      fcmToken: token ?? "", // Null bo'lsa bo'sh string berish
+                      updatedAt: DateTime.now().toString(),
+                    );
 
-                  // Check if context is still valid before navigation
-                  if (mounted) {
-                    context.router.replaceAll([const MainRoute()]);
+                    // Update profile before navigation changes
+                    _profileUpdateBloc.add(ProfileUpdate(profileUpdateModel));
+                  } catch (e) {
+                    print("Profile update xatosi: $e");
+                  } finally {
+                    // Har qanday holatda ham navigatsiyani bajarish
+                    if (mounted) {
+                      context.router.replaceAll([const MainRoute()]);
+                    }
                   }
                 });
               },

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
 import 'package:chuck_interceptor/chuck.dart';
@@ -286,6 +287,10 @@ class NotificationRepositoryImpl implements NotificationRepository {
 
   @override
   Future<String?> getFcmToken() async {
+    if (Platform.isIOS) {
+      final apnsToken = await _firebaseMessaging.getAPNSToken();
+      log(apnsToken!);
+    }
     return _firebaseMessaging.getToken();
   }
 

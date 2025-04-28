@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
+import 'package:tez_med_client/core/widgets/button_widget.dart';
 import 'package:tez_med_client/core/widgets/no_interner_connection.dart';
 import 'package:tez_med_client/core/widgets/server_connection.dart';
 import 'package:tez_med_client/data/request_post/model/request_model.dart';
@@ -203,21 +203,11 @@ class _UserDetailsState extends State<UserDetails> {
               builder: (context, state) {
                 return BottomAppBar(
                   color: Colors.transparent,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      fixedSize: const Size(double.maxFinite, 50),
-                      backgroundColor: AppColor.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: state is ProfileLoading ? null : _submitForm,
-                    child: Text(
-                      S.of(context).Continue,
-                      style: AppTextstyle.nunitoBold
-                          .copyWith(fontSize: 17, color: Colors.white),
-                    ),
+                  child: ButtonWidget(
+                    onPressed: _submitForm,
+                    consent: state is! ProfileLoading,
+                    buttonText: S.of(context).Continue,
+                    isLoading: false,
                   ),
                 );
               },

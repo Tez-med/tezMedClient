@@ -40,11 +40,12 @@ class DoctorSourceImpl implements DoctorSource {
   @override
   Future<Either<Failure, BasicDoctorModel>> getIdDoctor(String id) async {
     final token = LocalStorageService().getString(StorageKeys.accestoken);
+    print(id);
     try {
       final response =
           await dioClientRepository.getData("/doctor/$id", token: token);
       final data = BasicDoctorModel.fromJson(response.data);
-
+      print(data.toJson());
       return Right(data);
     } on DioException catch (e) {
       return Left(ErrorHandler.handleDioError(e));

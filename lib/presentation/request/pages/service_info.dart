@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tez_med_client/core/constant/storage_keys.dart';
 import 'package:tez_med_client/core/error/error_handler.dart';
 import 'package:tez_med_client/core/routes/app_routes.gr.dart';
-import 'package:tez_med_client/core/utils/app_color.dart';
-import 'package:tez_med_client/core/utils/app_textstyle.dart';
+import 'package:tez_med_client/core/widgets/button_widget.dart';
 import 'package:tez_med_client/data/category/model/category_model.dart';
 import 'package:tez_med_client/data/local_storage/local_storage_service.dart';
 import 'package:tez_med_client/data/request_post/model/request_model.dart';
@@ -164,7 +163,12 @@ class _ServiceInfoState extends State<ServiceInfo>
         child: Stack(
           children: [
             _buildForm(),
-            _buildSubmitButton(),
+            Positioned(
+              left: 1,
+              right: 1,
+              bottom: 10,
+              child: _buildSubmitButton(),
+            ),
           ],
         ),
       ),
@@ -276,30 +280,16 @@ class _ServiceInfoState extends State<ServiceInfo>
           builder: (context, child) {
             return Transform.scale(
               scale: _buttonScaleAnimation.value,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.primaryColor,
-                  elevation: 2,
-                  fixedSize: const Size(double.maxFinite, 54),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                onPressed: _isSubmitting
-                    ? null
-                    : () {
-                        _buttonController.forward().then((_) {
-                          _buttonController.reverse();
-                        });
-                        _submitRequest();
-                      },
-                child: Text(
-                  S.of(context).confirm,
-                  style: AppTextstyle.nunitoBold.copyWith(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
+              child: ButtonWidget(
+                onPressed: () {
+                  _buttonController.forward().then((_) {
+                    _buttonController.reverse();
+                  });
+                  _submitRequest();
+                },
+                buttonText: S.of(context).confirm,
+                isLoading: false,
+                consent: !_isSubmitting,
               ),
             );
           },

@@ -3,7 +3,7 @@ import 'package:tez_med_client/core/utils/app_color.dart';
 import 'package:tez_med_client/core/utils/app_textstyle.dart';
 import 'package:tez_med_client/generated/l10n.dart';
 
-class ButtonWidget extends StatelessWidget {
+class ButtonWidget extends StatefulWidget {
   const ButtonWidget({
     super.key,
     this.consent = false,
@@ -24,30 +24,58 @@ class ButtonWidget extends StatelessWidget {
   final Color? textColor;
 
   @override
+  State<ButtonWidget> createState() => _ButtonWidgetState();
+}
+
+class _ButtonWidgetState extends State<ButtonWidget> {
+  bool _isButtonDisabled = false;
+
+  void _handleTap() {
+    if (_isButtonDisabled) return; // Agar bloklangan bo'lsa, qaytamiz
+
+    setState(() {
+      _isButtonDisabled = true;
+    });
+
+    widget.onPressed?.call();
+
+    // 1 sekunddan keyin qayta bosishga ruxsat beramiz
+    Future.delayed(const Duration(seconds: 1), () {
+      if (mounted) {
+        setState(() {
+          _isButtonDisabled = false;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final currentColor = buttonColor ??
-        (consent ? AppColor.primaryColor : AppColor.buttonBackColor);
+    final currentColor = widget.buttonColor ??
+        (widget.consent ? AppColor.primaryColor : AppColor.buttonBackColor);
     final currentTextColor =
-        textColor ?? (consent ? Colors.white : Colors.grey);
+        widget.textColor ?? (widget.consent ? Colors.white : Colors.grey);
     final size = MediaQuery.of(context).size;
 
     return Center(
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        width: isLoading ? 50 : size.width,
+        width: widget.isLoading ? 50 : size.width,
         height: 50,
         decoration: BoxDecoration(
           color: currentColor,
-          borderRadius: BorderRadius.circular(isLoading ? 25 : 10),
+          borderRadius: BorderRadius.circular(widget.isLoading ? 25 : 10),
         ),
         child: InkWell(
-          borderRadius: BorderRadius.circular(isLoading ? 25 : 10),
-          onTap: (consent && !isLoading) ? onPressed : null,
+          borderRadius: BorderRadius.circular(widget.isLoading ? 25 : 10),
+          onTap: (widget.consent && !widget.isLoading && !_isButtonDisabled)
+              ? _handleTap
+              : null,
           child: Center(
             child: AnimatedCrossFade(
               duration: const Duration(milliseconds: 300),
               reverseDuration: const Duration(milliseconds: 200),
-              crossFadeState: isLoading
+              crossFadeState: widget.isLoading
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,
               firstChild: SizedBox(
@@ -55,15 +83,15 @@ class ButtonWidget extends StatelessWidget {
                 height: 24,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    consent ? Colors.white : Colors.black,
+                    widget.consent ? Colors.white : Colors.black,
                   ),
                   strokeWidth: 2.5,
                 ),
               ),
               secondChild: Text(
-                buttonText ?? S.of(context).confirm,
+                widget.buttonText ?? S.of(context).confirm,
                 style: AppTextstyle.nunitoBold.copyWith(
-                  color: consent ? currentTextColor : Colors.grey,
+                  color: widget.consent ? currentTextColor : Colors.grey,
                   fontSize: 17,
                 ),
               ),

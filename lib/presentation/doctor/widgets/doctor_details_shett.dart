@@ -107,10 +107,6 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,11 +115,6 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
                           icon: Assets.icons.expirense.svg(),
                           title: S.of(context).work_experience,
                           value: "${data.experience} ${S.of(context).year}",
-                        ),
-                        Container(
-                          width: 1.5,
-                          height: 40,
-                          color: AppColor.buttonBackColor,
                         ),
                         _buildInfoItem(
                           icon: Assets.icons.doctorStar.svg(),
@@ -204,48 +195,44 @@ class _DoctorDetailSheetState extends State<DoctorDetailSheet> {
 
   Widget _buildInfoItem(
       {required Widget icon, required String title, required String value}) {
-    return Expanded(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFFF5F7FB),
-            ),
-            child: icon,
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0xFFF5F7FB),
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.greyTextColor,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A1C1E),
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+          child: icon,
+        ),
+        const SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: AppColor.greyTextColor,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
-          ),
-        ],
-      ),
+            Text(
+              value,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF1A1C1E),
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

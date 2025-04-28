@@ -45,7 +45,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
       if (!widget.online) {
         return s.nurseTypeName.toLowerCase() == "telemeditsina";
       } else {
-        return s.nurseTypeName.toLowerCase() == "uyga chaqirish";
+        return s.nurseTypeName.toLowerCase().trim() == "uyga borish";
       }
     }).toList();
 

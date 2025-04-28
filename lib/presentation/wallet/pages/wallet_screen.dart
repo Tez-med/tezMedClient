@@ -342,13 +342,28 @@ class _WalletScreenState extends State<WalletScreen> {
   }
 
   Widget _buildPaymentAmount(Payment payment) {
-    return Text(
-      "${payment.price < 0 ? "" : "+"} ${_formatAmount(payment.price.toString())} ${S.of(context).sum}",
-      style: AppTextstyle.nunitoBold.copyWith(
-        fontSize: 16,
-        color: payment.price < 0 ? Colors.red : Colors.green,
-        fontWeight: FontWeight.w700,
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          "${payment.price < 0 ? "" : "+"} ${_formatAmount(payment.price.toString())} ${S.of(context).sum}",
+          style: AppTextstyle.nunitoBold.copyWith(
+            fontSize: 16,
+            color: payment.price < 0
+                ? Colors.red
+                : (payment.status == 'pending'
+                    ? AppColor.primaryColor
+                    : Colors.green),
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        if (payment.status == 'pending')
+          Text(
+            S.of(context).in_process,
+            style: TextStyle(color: AppColor.primaryColor),
+          ),
+      ],
     );
   }
 

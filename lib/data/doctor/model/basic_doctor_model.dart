@@ -60,8 +60,10 @@ class BasicDoctorModel {
         experience: json["experience"],
         consultationTime: json["consultation_time"]?.toDouble(),
         consultationPrice: json["consultation_price"],
-        schedules: List<Schedule>.from(
-            json["schedules"].map((x) => Schedule.fromJson(x))),
+        schedules: json["schedules"] != null
+            ? List<Schedule>.from(
+                json["schedules"].map((x) => Schedule.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {
