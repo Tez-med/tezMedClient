@@ -287,11 +287,23 @@ class NotificationRepositoryImpl implements NotificationRepository {
 
   @override
   Future<String?> getFcmToken() async {
-    if (Platform.isIOS) {
-      final apnsToken = await _firebaseMessaging.getAPNSToken();
-      log(apnsToken!);
+    try {
+      // iOS qurilmalarida APNS token mavjudligini tekshirish
+      if (Platform.isIOS) {
+        final apnsToken = await _firebaseMessaging.getAPNSToken();
+        if (apnsToken == null) {
+          print('APNS token hali mavjud emas. FCM token olinmaydi.');
+          return null;
+        }
+      }
+
+      // FCM tokenini olish
+      final token = await _firebaseMessaging.getToken();
+      return token;
+    } catch (e) {
+      print('FCM token olishda xatolik: $e');
+      return null;
     }
-    return _firebaseMessaging.getToken();
   }
 
   @override
